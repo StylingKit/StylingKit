@@ -20,10 +20,14 @@ it, simply add the following line to your Podfile:
 pod "StylingKit"
 ```
 
+## Discussions
+
+All discussion are happening on the [public Slack channel](https://stylingkit.slack.com).
+
 ## Author
 
 Anton Matosov, anton.matosov@gmail.com
 
 ## License
 
-StylingKit is available under the MIT license. See the LICENSE file for more info.
+Except as otherwise noted, StylingKit is licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html). See the LICENSE file for more info.
