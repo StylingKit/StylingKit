@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'StylingKit_Example', :exclusive => true do
+  pod "StylingKit", :path => "../"
+end
+
+target 'StylingKit_Tests', :exclusive => true do
+  pod "StylingKit", :path => "../"
+
+  pod 'Kiwi'
+  pod 'FBSnapshotTestCase'
+end
