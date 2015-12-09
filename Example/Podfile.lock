@@ -1,0 +1,24 @@
+PODS:
+  - FBSnapshotTestCase (2.0.7):
+    - FBSnapshotTestCase/SwiftSupport (= 2.0.7)
+  - FBSnapshotTestCase/Core (2.0.7)
+  - FBSnapshotTestCase/SwiftSupport (2.0.7):
+    - FBSnapshotTestCase/Core
+  - Kiwi (2.4.0)
+  - StylingKit (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - Kiwi
+  - StylingKit (from `../`)
+
+EXTERNAL SOURCES:
+  StylingKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
+  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
+  StylingKit: 3b21e772378e8ffe9b56af3b4644594279dbf400
+
+COCOAPODS: 0.39.0
