@@ -52,8 +52,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Freestyle' do |ss|
-    ss.prefix_header_file = "Pod/Classes/freestyle/src/pixate-freestyle-Prefix.pch"
-    ss.source_files = 'Pod/Classes/freestyle/src/**/*'
+    ss.prefix_header_file = "Pod/freestyle/src/pixate-freestyle-Prefix.pch"
+    ss.source_files = 'Pod/freestyle/src/**/*.{h,m,c}'
     ss.requires_arc = true
     ss.dependency 'StylingKit/MAFuture'
     ss.dependency 'CocoaLumberjack', '~> 2.2.0'
@@ -63,8 +63,8 @@ Pod::Spec.new do |s|
 
   # This code was moved to subspec as it uses MRR while the rest of the project uses ARC
   s.subspec 'MAFuture' do |ss|
-    ss.prefix_header_file = "Pod/Classes/freestyle/src/pixate-freestyle-Prefix.pch"
-    ss.source_files = 'Pod/Classes/freestyle/Third-Party/MAFuture/*.{h,m}'
+    ss.prefix_header_file = "Pod/freestyle/src/pixate-freestyle-Prefix.pch"
+    ss.source_files = 'Pod/freestyle/Third-Party/MAFuture/*.{h,m}'
     ss.requires_arc = false
   end
 
