@@ -1,4 +1,5 @@
 /*
+ * Copyright 2015-present StylingKit Development Team
  * Copyright 2012-present Pixate, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +19,7 @@
 //  UIView+PXStyling.m
 //  PXButtonDemo
 //
+//  Modified by Anton Matosov on 12/14/15.
 //  Created by Kevin Lindsey on 8/22/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -625,7 +627,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 static void getMonthDayYear(NSDate *date, NSInteger *month_p, NSInteger *day_p, NSInteger *year_p)
 {
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
 
     *month_p = [components month];
     *day_p   = [components day];

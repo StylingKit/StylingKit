@@ -1,4 +1,5 @@
 /*
+ * Copyright 2015-present StylingKit Development Team
  * Copyright 2012-present Pixate, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +19,7 @@
 //  PXUINavigationBar.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/14/15.
 //  Created by Paul Colton on 10/8/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -67,7 +69,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 
     PSEUDOCLASS_MAP = @{
         @"default" : @(UIBarMetricsDefault),
-        @"landscape-iphone" : @(UIBarMetricsLandscapePhone)
+        @"landscape-iphone" : @(UIBarMetricsCompact)
     };
     
     BUTTONS_PSEUDOCLASS_MAP = @{
