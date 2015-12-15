@@ -1,11 +1,26 @@
 PODS:
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
   - FBSnapshotTestCase (2.0.7):
     - FBSnapshotTestCase/SwiftSupport (= 2.0.7)
   - FBSnapshotTestCase/Core (2.0.7)
   - FBSnapshotTestCase/SwiftSupport (2.0.7):
     - FBSnapshotTestCase/Core
   - Kiwi (2.4.0)
-  - StylingKit (0.1.0)
+  - StylingKit (0.1.0):
+    - StylingKit/All (= 0.1.0)
+  - StylingKit/All (0.1.0):
+    - StylingKit/Freestyle
+  - StylingKit/Freestyle (0.1.0):
+    - CocoaLumberjack (~> 2.2.0)
+    - StylingKit/MAFuture
+  - StylingKit/MAFuture (0.1.0)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -17,8 +32,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: 31616e9710be502514eedd3676e91cf78f033df9
+  StylingKit: c6ac28398102198c4e6f886e9d43152eb9082269
 
 COCOAPODS: 0.39.0
