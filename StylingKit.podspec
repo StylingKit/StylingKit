@@ -20,7 +20,6 @@ Pod::Spec.new do |s|
     :type => 'Apache 2.0',
     :text => <<-LICENSE
                   Copyright © 2015 StylingKit Development Team
-                  Copyright © 2012-2014 Pixate, Inc.
 
                   Licensed under the Apache License, Version 2.0 (the "License");
                   you may not use this file except in compliance with the License.
@@ -35,7 +34,7 @@ Pod::Spec.new do |s|
                   limitations under the License.
                 LICENSE
   }
-  s.author           = { "Anton Matosov" => "anton.matosov@gmail.com", "Pixate" => "info@pixate.com" }
+  s.author           = { "Anton Matosov" => "anton.matosov@gmail.com" }
   s.source           = { :git => "https://github.com/StylingKit/StylingKit.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
