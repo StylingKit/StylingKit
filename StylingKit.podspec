@@ -44,22 +44,28 @@ Pod::Spec.new do |s|
   s.default_subspec = 'All'
   s.subspec 'All' do |ss|
     ss.source_files = 'Pod/Classes/**/*'
-    # ss.prefix_header_file = "src/pixate-freestyle-Prefix.pch"
-    # ss.source_files = 'src/PixateFreestyle.{h,m}', "src/Version.h", 'src/Core/**/*.{h,m}', 'src/Modules/**/*.{h,m}', 'src/Kernel/# Categories/*.{h,m}', 'src/Kernel/Utils/*.{h,c}'
-    # ss.requires_arc = true
-    # ss.dependency 'PixateFreestyle/MAFuture'
-    # ss.dependency 'CocoaLumberjack', '~> 2.2.0'
-    # ss.resource_bundles = {
-    #   'StylingKit' => ['Pod/Assets/*.png']
-    # }
+    ss.resource_bundles = {
+      'StylingKit' => ['Pod/Assets/*.png']
+    }
+
+    ss.dependency 'StylingKit/Freestyle'
   end
 
-  # This code was moved to subspec as it uses MMR while the rest of the project ARC
-  # s.subspec 'MAFuture' do |ss|
-  #   ss.prefix_header_file = "src/pixate-freestyle-Prefix.pch"
-  #   ss.source_files = 'src/Kernel/Third-Party/MAFuture/*.{h,m}'
-  #   ss.requires_arc = false
-  # end
+  s.subspec 'Freestyle' do |ss|
+    ss.prefix_header_file = "Pod/Classes/freestyle/src/pixate-freestyle-Prefix.pch"
+    ss.source_files = 'Pod/Classes/freestyle/src/**/*'
+    ss.requires_arc = true
+    ss.dependency 'StylingKit/MAFuture'
+    ss.dependency 'CocoaLumberjack', '~> 2.2.0'
 
-  s.frameworks = 'CoreText', 'QuartzCore', 'UIKit', 'CoreGraphics'
+    ss.frameworks = 'CoreText', 'QuartzCore', 'UIKit', 'CoreGraphics'
+  end
+
+  # This code was moved to subspec as it uses MRR while the rest of the project uses ARC
+  s.subspec 'MAFuture' do |ss|
+    ss.prefix_header_file = "Pod/Classes/freestyle/src/pixate-freestyle-Prefix.pch"
+    ss.source_files = 'Pod/Classes/freestyle/Third-Party/MAFuture/*.{h,m}'
+    ss.requires_arc = false
+  end
+
 end
