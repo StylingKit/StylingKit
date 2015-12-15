@@ -12,6 +12,6 @@ end
 target 'StylingKit_Tests', :exclusive => true do
   pod "StylingKit", :path => "../"
 
-  pod 'Kiwi'
-  pod 'FBSnapshotTestCase'
+  pod 'Kiwi', :inhibit_warnings => true
+  pod 'FBSnapshotTestCase', :inhibit_warnings => true
 end
