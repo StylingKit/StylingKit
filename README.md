@@ -34,7 +34,7 @@ Except as otherwise noted, StylingKit is licensed under the Apache License, Vers
 
 ### NOTICE
 
-StylingKit includes the Pixate Freestyle library developed by Pixate, Inc.
+StylingKit includes modified version of Pixate Freestyle library developed by Pixate, Inc.
 
 ## Disclaimer
 
