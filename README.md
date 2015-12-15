@@ -1,6 +1,6 @@
 # StylingKit
 
-[![CI Status](http://img.shields.io/travis/Anton Matosov/StylingKit.svg?style=flat)](https://travis-ci.org/Anton Matosov/StylingKit)
+[![CI Status](http://img.shields.io/travis/StylingKit/StylingKit.svg?style=flat)](https://travis-ci.org/StylingKit/StylingKit)
 [![Version](https://img.shields.io/cocoapods/v/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 [![License](https://img.shields.io/cocoapods/l/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 [![Platform](https://img.shields.io/cocoapods/p/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
