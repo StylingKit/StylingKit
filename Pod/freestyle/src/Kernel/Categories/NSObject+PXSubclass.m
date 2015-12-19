@@ -32,15 +32,17 @@
 
 static BOOL respondsToSelectorIMP(id self, SEL _cmd, SEL selector);
 
-void PXForceLoadNSObjectPXSubclass() {}
-
-@implementation NSObject (PXSubclass)
+#define ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR (TARGET_IPHONE_SIMULATOR && TARGET_CPU_X86_64)
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_5_1
 #define IMPL_BLOCK_CAST	(__bridge void *)
 #else
 #define IMPL_BLOCK_CAST
 #endif
+
+void PXForceLoadNSObjectPXSubclass() {}
+
+@implementation NSObject (PXSubclass)
 
 // object is the instance of a UIView that we need to 'subclass' (e.g. UIButton)
 // 'self' here is Pixate class (e.g. PXUIButton)
@@ -147,6 +149,8 @@ static BOOL respondsToSelectorRAW(id self, SEL selector)
     return NO;
 }
 
+#if ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR
+
 static BOOL classHierarchyRespondsToSelector(Class class, SEL selector)
 {
     if (class)
@@ -163,12 +167,14 @@ static BOOL classHierarchyRespondsToSelector(Class class, SEL selector)
 
     return NO;
 }
+#endif
+
 
 static BOOL respondsToSelectorIMP(id self, SEL _cmd, SEL selector)
 {
     // iOS 9 x64 simulators crashes with UITextFiled styling
     // For more detail see https://github.com/Pixate/pixate-freestyle-ios/issues/186
-#if (TARGET_IPHONE_SIMULATOR && TARGET_CPU_X86_64)
+#if ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR
     // Use RAW implementation
     BOOL pxClassRespondsToSelector = classHierarchyRespondsToSelector([self pxClass], selector);
 #else
