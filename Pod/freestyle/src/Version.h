@@ -18,6 +18,7 @@
 //  Version.h
 //  Pixate
 //
+//  Modified by Anton Matosov
 //  Created by Kevin Lindsey on 9/6/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -25,7 +26,7 @@
 #ifndef Pixate_Version_h
 #define Pixate_Version_h
 
-#define PIXATE_FREESTYLE_VERSION "2.1.6"
+#define PIXATE_FREESTYLE_VERSION "2.1.4 + modifications"
 
 #define PIXATE_FREESTYLE_API_VERSION 2
 

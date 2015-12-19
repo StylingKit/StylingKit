@@ -35,6 +35,6 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: 2c1bb681c2f619ec8be31e5c6657b9fb0b9fce72
+  StylingKit: 14a0ae3d5ae0f0782acbd089d67ab56ca8b4940c
 
 COCOAPODS: 0.39.0
