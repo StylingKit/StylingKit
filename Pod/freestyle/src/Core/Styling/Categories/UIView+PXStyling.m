@@ -19,7 +19,7 @@
 //  UIView+PXStyling.m
 //  PXButtonDemo
 //
-//  Modified by Anton Matosov on 12/14/15.
+//  Modified by Anton Matosov
 //  Created by Kevin Lindsey on 8/22/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -214,7 +214,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
                       getMonthDayYear([PixateFreestyle sharedInstance].buildDate, &month, &day, &year);
 
                       // Print build info
-                      NSLog(@"Pixate Freestyle v%@ (API %d) %@- Build %ld/%02ld/%02ld",
+                      DDLogVerbose(@"Pixate Freestyle v%@ (API %d) %@- Build %ld/%02ld/%02ld",
                             [PixateFreestyle sharedInstance].version,
                             [PixateFreestyle sharedInstance].apiVersion,
                             [PixateFreestyle sharedInstance].titaniumMode ? @"Titanium " : @"",

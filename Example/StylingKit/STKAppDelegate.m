@@ -8,11 +8,14 @@
 
 #import "STKAppDelegate.h"
 
+@import StylingKit;
+
 @implementation STKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[StylingKit sharedKit] startStyling];
+
     return YES;
 }
 

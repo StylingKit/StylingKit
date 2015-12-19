@@ -18,6 +18,7 @@
 //  PXStylerContext.m
 //  Pixate
 //
+//  Modified by Anton Matosov
 //  Created by Kevin Lindsey on 11/15/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //

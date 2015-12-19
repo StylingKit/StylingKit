@@ -18,6 +18,7 @@
 //  NSObject+Swizzle.m
 //  PXStyleKit
 //
+//  Modified by Anton Matosov
 //  Created by Pixate on 1/7/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //

@@ -18,6 +18,7 @@
 //  PXImagePaint.m
 //  Pixate
 //
+//  Modified by Anton Matosov
 //  Created by Kevin Lindsey on 3/27/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -109,7 +110,7 @@
                 // log error
                 if(image == nil)
                 {
-                    NSLog(@"Nil image for URL %@", _imageURL);
+                    DDLogError(@"Nil image for URL %@", _imageURL);
                 }
             }
             

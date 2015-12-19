@@ -18,6 +18,7 @@
 //  PXLinearGradient.m
 //  Pixate
 //
+//  Modified by Anton Matosov
 //  Created by Kevin Lindsey on 6/8/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -277,7 +278,7 @@ typedef enum {
             else
             {
                 // error
-                NSLog(@"Angle not within the half-closed interval [0,360): %f", angle);
+                DDLogError(@"Angle not within the half-closed interval [0,360): %f", angle);
             }
 
             // find center

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "StylingKit"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "Style your iOS app with CSS, using 100% native code and no webviews." 
   s.description      = <<-DESC
                       StylingKit is an iOS framework that allows you to style your application using stylesheets and a CSS-like syntax. StylingKit lets you build  beautiful applications with less code and more flexibility by using familiar CSS markup to style native controls and components. Free up your team to focus on creating amazing user experiences throughout the design and development cycle.
@@ -54,6 +54,7 @@ Pod::Spec.new do |s|
   s.subspec 'Freestyle' do |ss|
     ss.prefix_header_file = "Pod/freestyle/src/pixate-freestyle-Prefix.pch"
     ss.source_files = 'Pod/freestyle/src/**/*.{h,m,c}'
+    ss.private_header_files = 'Pod/freestyle/src/**/*.h'
     ss.requires_arc = true
     ss.dependency 'StylingKit/MAFuture'
     ss.dependency 'CocoaLumberjack', '~> 2.2.0'
@@ -65,6 +66,7 @@ Pod::Spec.new do |s|
   s.subspec 'MAFuture' do |ss|
     ss.prefix_header_file = "Pod/freestyle/src/pixate-freestyle-Prefix.pch"
     ss.source_files = 'Pod/freestyle/Third-Party/MAFuture/*.{h,m}'
+    ss.private_header_files = 'Pod/freestyle/Third-Party/MAFuture/*.h'
     ss.requires_arc = false
   end
 

@@ -19,7 +19,7 @@
 //  PXUINavigationBar.m
 //  Pixate
 //
-//  Modified by Anton Matosov on 12/14/15.
+//  Modified by Anton Matosov
 //  Created by Paul Colton on 10/8/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //

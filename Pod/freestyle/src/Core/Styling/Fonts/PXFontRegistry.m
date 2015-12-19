@@ -18,6 +18,7 @@
 //  PXFontRegistry.m
 //  Pixate
 //
+//  Modified by Anton Matosov
 //  Created by Kevin Lindsey on 9/21/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -162,7 +163,7 @@ static NSMutableSet *LOADED_FONTS;
             if (!CTFontManagerRegisterGraphicsFont(font, &error))
             {
                 CFStringRef errorDescription = CFErrorCopyDescription(error);
-                NSLog(@"Failed to load font: %@", errorDescription);
+                DDLogError(@"Failed to load font: %@", errorDescription);
                 CFRelease(errorDescription);
             }
 
