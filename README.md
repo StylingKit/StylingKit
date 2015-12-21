@@ -2,11 +2,9 @@
 
 [![CI Status](http://img.shields.io/travis/StylingKit/StylingKit.svg?style=flat)](https://travis-ci.org/StylingKit/StylingKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-<!---
 [![Version](https://img.shields.io/cocoapods/v/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 [![License](https://img.shields.io/cocoapods/l/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
-[![Platform](https://img.shields.io/cocoapods/p/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit))
--->
+[![Platform](https://img.shields.io/cocoapods/p/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 
 StylingKit is an iOS framework that allows you to style your application using stylesheets and a CSS-like syntax. StylingKit lets you build  beautiful applications with less code and more flexibility by using familiar CSS markup to style native controls and components. Free up your team to focus on creating amazing user experiences throughout the design and development cycle.
 
