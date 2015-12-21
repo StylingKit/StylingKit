@@ -47,13 +47,25 @@ If you use Objective-C and CocoaPods without frameworks you will have to add the
 ```
 ### Add stylesheet
 
-The last, but not least required step is to add stylesheet to your app. The default stylesheet is `default.css` and will be loaded from your app's main bundle automatically. For more information on how to defile `default.css` see [Styling Reference][].
+The last, but not least required step is to add stylesheet to your app. The default stylesheet file `default.css` will be loaded from your app's main bundle automatically. For more information on defining your app style in `default.css` see [Styling Reference](#styling-reference) and [Themes](#themes) sections.
 
 ## Styling Reference
 
 StylingKit uses Pixate Freestyle internally, and so far style handling is 100% compatible. You can reference [pixate-freestyle-ios/style-reference](http://pixate.github.io/pixate-freestyle-ios/////style-reference/index.html) for now.
 
 Please keep in mind that while StylingKit evolves it may become incomaptible with original Pixate Freestyle. This page will always reflect the most recent documentation links.
+
+## Themes
+
+With StylingKit you can style an entire iOS app with CSS, making an app themeable by applying different collections of CSS classes. Changing the theme of an app is as simple as switching out the CSS file.
+
+Themes consist of various classes that work together to style controls and views in your app. All themes have a default.css file which contains all of the styles included with the theme. A theme can also include a set of Sass (or other [CSS Preprocessors](#css-preprocessors)) files that compile into the default.css file.
+
+### CSS Preprocessors
+
+The StylingKit's CSS support is based on the W3C's CSS specification. It means that most CSS tools out there, like CSS preprocessors, should work just fine with.
+
+The preprocessor of choise by StylingKit team is Sass, therefore all the documentation and themes are provided in its format. However your app can use whatever CSS Preprocessors you like.
 
 ## Discussions, Help and Support
 
