@@ -17,6 +17,7 @@
 //
 //  PixateFreestyle.m
 //
+//  Modified by Anton Matosov on 12/21/15.
 //  Created by Paul Colton on 12/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -45,8 +46,10 @@
     BOOL _refreshStylesWithOrientationChange;
 }
 
-+ (void) initializePixateFreestyle
++ (void)load
 {
+    [super load];
+
     //
     // These are required so we don't have to require a -ObjC flag on the project
     //

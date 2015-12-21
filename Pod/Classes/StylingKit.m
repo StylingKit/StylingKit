@@ -49,7 +49,6 @@
 
 - (void)startStyling
 {
-    [PixateFreestyle initializePixateFreestyle];
 }
 
 @end

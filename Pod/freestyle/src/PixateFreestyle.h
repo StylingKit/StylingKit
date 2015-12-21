@@ -17,6 +17,7 @@
 //
 //  PixateFreestyle.h
 //
+//  Modified by Anton Matosov on 12/21/15.
 //  Created by Paul Colton on 12/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -70,11 +71,6 @@
  */
 + (BOOL)refreshStylesWithOrientationChange;
 + (void)setRefreshStylesWithOrientationChange:(BOOL)value;
-
-/**
- *  This is required before styling can occur.
- */
-+ (void) initializePixateFreestyle;
 
 /**
  *  Return a collection of all styleables that match the specified selector. Note that the selector runs against views
