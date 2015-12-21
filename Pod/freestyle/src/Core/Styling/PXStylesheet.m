@@ -18,6 +18,7 @@
 //  PXStylesheet.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/19/15.
 //  Created by Kevin Lindsey on 7/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -305,7 +306,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
             namespacePrefixMap_ = [[NSMutableDictionary alloc] init];
         }
 
-        [namespacePrefixMap_ setObject:uri forKey:prefix];
+        namespacePrefixMap_[prefix] = uri;
     }
 }
 
@@ -320,7 +321,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
             prefix = @"";
         }
 
-        result = [namespacePrefixMap_ objectForKey:prefix];
+        result = namespacePrefixMap_[prefix];
     }
 
     return result;
@@ -335,13 +336,13 @@ static int ddLogLevel = LOG_LEVEL_WARN;
             keyframesByName_ = [[NSMutableDictionary alloc] init];
         }
 
-        [keyframesByName_ setObject:keyframe forKey:keyframe.name];
+        keyframesByName_[keyframe.name] = keyframe;
     }
 }
 
 - (PXKeyframe *)keyframeForName:(NSString *)name
 {
-    return [keyframesByName_ objectForKey:name];
+    return keyframesByName_[name];
 }
 
 #pragma mark - Static public methods
