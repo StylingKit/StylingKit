@@ -64,11 +64,17 @@
             @"device" : ^BOOL(PXNamedMediaExpression *expression) {
                 
                 static NSString *platform;
+                static NSString *suffix;
                 static dispatch_once_t onceToken;
                 dispatch_once(&onceToken, ^{
                     struct utsname u;
                     uname(&u);
                     platform = [[NSString stringWithUTF8String:u.machine] lowercaseString];
+
+                    if (platform.length > 3)
+                    {
+                       suffix = [platform substringFromIndex:platform.length - 3];
+                    }
                 });
 
                 NSString *userValue = expression.value;
@@ -100,11 +106,33 @@
                     }
                     else if([userValue isEqualToString:@"ipad-mini"])
                     {
+                       static dispatch_once_t once;
+                       static NSSet *miniSuffix;
+                       dispatch_once(&once, ^{
+                          miniSuffix = [NSSet setWithArray:@[
+                            @"2,5", // mini wifi
+                            @"2,6", // mini Cellular ATT
+                            @"2,7", // mini Cellular Verizon
+                            @"4,4",
+                            @"4,5",
+                            @"4,6",
+                            @"4,7",
+                            @"4,8",
+                            @"4,9",
+                            @"5,1",
+                            @"5,2",
+                          ]];
+                        });
                         return ([platform hasPrefix:@"ipad"] &&
-                                ([platform hasSuffix:@"2,5"] || // mini wifi
-                                 [platform hasSuffix:@"2,6"] || // mini Cellular ATT
-                                 [platform hasSuffix:@"2,7"]    // mini Cellular Verizon
-                                ));
+                          [miniSuffix containsObject:suffix]
+                        );
+                    }
+                    else if ([userValue isEqualToString:@"ipad-pro"])
+                    {
+                      return ([platform hasPrefix:@"ipad"] &&
+                              ([suffix isEqualToString:@"6,7"] ||
+                               [suffix isEqualToString:@"6,8"]
+                             ));
                     }
                     else if([userValue isEqualToString:@"appletv"])
                     {
