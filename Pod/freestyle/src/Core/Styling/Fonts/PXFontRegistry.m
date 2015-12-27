@@ -30,7 +30,6 @@
 @implementation PXFontRegistry
 
 static NSMutableDictionary *REGISTRY;
-static NSCache *FONT_CACHE;
 static NSMutableSet *LOADED_FONTS;
 
 + (void)initialize
@@ -56,11 +55,7 @@ static NSMutableSet *LOADED_FONTS;
 {
     NSString *key = [self keyFromFamily:family stretch:stretch weight:weight style:style];
 
-    UIFont *result = [self fontFromCacheWithKey:key];
-    if (result)
-    {
-        return result;
-    }
+    UIFont *result;
 
     id resultingFontName = REGISTRY[key];
 
@@ -116,29 +111,10 @@ static NSMutableSet *LOADED_FONTS;
     if (resultingFontName &&
         resultingFontName != [NSNull null])
     {
-        static int count = 0;
-        NSLog(@"fontWithName: %i, key: %@, res: %@, %f", ++count, key, resultingFontName, size);
-
+        // Fonts are cached by iOS, no need for extra caching
         result = [UIFont fontWithName:resultingFontName size:size];
     }
-
-    if (result)
-    {
-        [self storeFont:result
-                withKey:key];
-    }
     return result;
-}
-
-+ (UIFont *)fontFromCacheWithKey:(NSString*)key
-{
-    return [FONT_CACHE objectForKey:key];
-}
-
-+ (void)storeFont:(UIFont *)font
-          withKey:(NSString*)key
-{
-    [FONT_CACHE setObject:font forKey:key];
 }
 
 + (NSString *)keyFromFamily:(NSString *)family stretch:(NSString *)stretch weight:(NSString *)weight style:(NSString *)style
