@@ -274,23 +274,28 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
 -(void)setText:(NSString *)text
 {
-    callSuper1(SUPER_PREFIX, _cmd, text);
-    
-    if([self preventStyling] == NO)
+    if (self.text != text ||
+        ![self.text isEqualToString:text])
     {
-        [PXStyleUtils invalidateStyleableAndDescendants:self];
-        [self updateStylesNonRecursively];
+        callSuper1(SUPER_PREFIX, _cmd, text);
     }
+
+    // Setting plain text can't change style
+    // Layout change is handled explicitly by layoutSubviews override
 }
 
 -(void)setAttributedText:(NSAttributedString *)attributedText
 {
-    callSuper1(SUPER_PREFIX, _cmd, attributedText);
-    
-    if([self preventStyling] == NO)
+    if (self.attributedText != attributedText ||
+      ![self.attributedText isEqualToAttributedString:attributedText])
     {
-        [PXStyleUtils invalidateStyleableAndDescendants:self];
-        [self updateStylesNonRecursively];
+        callSuper1(SUPER_PREFIX, _cmd, attributedText);
+
+        if([self preventStyling] == NO)
+        {
+            [PXStyleUtils invalidateStyleableAndDescendants:self];
+            [self updateStylesNonRecursively];
+        }
     }
 }
 
