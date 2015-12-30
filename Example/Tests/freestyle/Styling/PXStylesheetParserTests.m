@@ -814,7 +814,7 @@
 - (void)testLargeCSS
 {
     double start = [NSDate date].timeIntervalSinceNow;
-    NSString *path = [[NSBundle bundleWithIdentifier:@"com.pixate.pixate-freestyleTests"] pathForResource:@"large" ofType:@"css"];
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"large" ofType:@"css"];
     PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:path withOrigin:PXStylesheetOriginApplication];
     double diff = [NSDate date].timeIntervalSinceNow - start;
 
@@ -842,7 +842,7 @@
 
 - (void)testCrashOnImport
 {
-    NSString *path = [[NSBundle bundleWithIdentifier:@"com.pixate.pixate-freestyleTests"] pathForResource:@"crashOnImport" ofType:@"css"];
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"crashOnImport" ofType:@"css"];
     PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:path withOrigin:PXStylesheetOriginApplication];
     
     XCTAssertNotNil(stylesheet, @"Expected a stylesheet after parsing crashOnImport.css");

@@ -17,6 +17,8 @@
  *
  ****************************************************************************/
 
+//  Modified by Anton Matosov on 12/30/15.
+
 #import "ImageBasedTests.h"
 
 #define BYTES_PER_PIXEL 4
@@ -111,7 +113,7 @@
 
 - (UIImage *)getImageForName:(NSString *)name
 {
-    NSString *path = [[NSBundle bundleWithIdentifier:@"com.pixate.pixate-freestyleTests"] pathForResource:name ofType:@"png"];
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:name ofType:@"png"];
 
     return [UIImage imageWithContentsOfFile:path];
 }

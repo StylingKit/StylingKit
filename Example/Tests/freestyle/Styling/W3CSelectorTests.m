@@ -46,7 +46,7 @@ static NSString *tempFile;
 
 - (PXDOMElement *)loadXMLFromFilename:(NSString *)filename
 {
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.pixate.pixate-freestyleTests"];
+    NSBundle *bundle = [NSBundle bundleForClass:self.class];
     NSString *fullPath = [bundle pathForResource:filename ofType:@"xml"];
     NSURL *url = [NSURL fileURLWithPath:fullPath];
 
@@ -163,7 +163,7 @@ static NSString *tempFile;
 
 - (NSString *)getTextForName:(NSString *)name
 {
-    NSString *path = [[NSBundle bundleWithIdentifier:@"com.pixate.pixate-freestyleTests"] pathForResource:name ofType:@"xml"];
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:name ofType:@"xml"];
 
     return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
 }

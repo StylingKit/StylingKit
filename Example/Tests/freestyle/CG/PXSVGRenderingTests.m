@@ -60,7 +60,7 @@
 - (UIImage *)getSVGImageForName:(NSString *)name
 {
     // get path to SVG file
-    NSString *path = [[NSBundle bundleWithIdentifier:@"com.pixate.pixate-freestyleTests"] pathForResource:name ofType:@"svg"];
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:name ofType:@"svg"];
 
     // create view
     PXShapeView *shapeView = [[PXShapeView alloc] init];
