@@ -89,6 +89,8 @@ typedef NS_ENUM(unsigned int, PXDimensionType)
  */
 - (instancetype)initWithNumber:(CGFloat)number withDimension:(NSString *)dimension NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /**
  *  A predicate indicating if this is a length value
  */

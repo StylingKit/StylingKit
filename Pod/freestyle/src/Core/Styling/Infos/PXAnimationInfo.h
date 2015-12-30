@@ -91,7 +91,7 @@ typedef NS_ENUM(int, PXAnimationFillMode)
 @property (nonatomic, strong, readonly) PXKeyframe *keyframe;
 @property (nonatomic, readonly, getter = isValid) BOOL valid;
 
-- (instancetype)initWithCSSDefaults NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCSSDefaults;
 
 - (void)setUndefinedPropertiesWithAnimationInfo:(PXAnimationInfo *)info;
 

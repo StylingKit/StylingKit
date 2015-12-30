@@ -31,6 +31,7 @@
 @property (readonly, nonatomic, strong) NSString *name;
 @property (readonly, nonatomic, strong) NSArray *blocks;
 
+- (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 
 - (void)addKeyframeBlock:(PXKeyframeBlock *)block;

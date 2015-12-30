@@ -38,7 +38,7 @@
 /**
  *  Initialize a newly allocated paint group, adding the specified list of paints
  */
-- (instancetype)initWithPaints:(NSArray *)paints NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPaints:(NSArray *)paints;
 
 /**
  *  Add the specified paint to this group of paints

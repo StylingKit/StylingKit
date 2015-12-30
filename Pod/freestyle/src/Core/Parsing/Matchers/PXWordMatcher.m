@@ -51,7 +51,7 @@
 
             patternString = [[@"^(?:" stringByAppendingString:joinedKeys] stringByAppendingString:closingRegex];
 
-            if (self = [self initWithType:0 withPatternString:patternString])
+            if (self = [super initWithType:0 withPatternString:patternString])
             {
                 self->wordMap = [NSDictionary dictionaryWithDictionary:dictionary];
             }

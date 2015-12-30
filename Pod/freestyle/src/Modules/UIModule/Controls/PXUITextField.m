@@ -61,6 +61,7 @@ static const char STATE_KEY;
 
 // Private PX_PositionCursorDelegate class
 @interface PX_PositionCursorDelegate : NSObject
+- (instancetype)init NS_UNAVAILABLE;
 - (instancetype) initWithTextField:(UITextField *)textField NS_DESIGNATED_INITIALIZER;
 @end
 

@@ -27,6 +27,9 @@
 
 @interface PXNotificationInfo : PXWeakWrapper
 
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithObject:(id)object NS_UNAVAILABLE;
+
 - (instancetype)initWithObject:(id)object withBlock:(void(^)())block NS_DESIGNATED_INITIALIZER;
 
 - (void)invokeBlock;

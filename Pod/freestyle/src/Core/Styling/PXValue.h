@@ -47,6 +47,8 @@ typedef NS_ENUM(unsigned int, PXValueType) {
 
 @property (nonatomic, readonly) PXValueType type;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithBytes:(const void *)value type:(PXValueType)type NS_DESIGNATED_INITIALIZER;
 
 @property (NS_NONATOMIC_IOSONLY, readonly) CGRect CGRectValue;

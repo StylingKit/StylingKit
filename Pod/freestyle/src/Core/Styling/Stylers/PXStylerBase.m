@@ -31,6 +31,11 @@
 
 #pragma mark - Initializers
 
+- (instancetype)init
+{
+    return [self initWithCompletionBlock:nil];
+}
+
 - (instancetype)initWithCompletionBlock:(PXStylerCompletionBlock)block
 {
     if (self = [super init])

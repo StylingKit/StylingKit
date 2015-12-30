@@ -64,4 +64,6 @@
  */
 - (instancetype)initWithString:(NSString *)text NS_DESIGNATED_INITIALIZER;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 @end

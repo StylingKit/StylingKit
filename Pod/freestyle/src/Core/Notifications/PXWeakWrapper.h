@@ -29,6 +29,8 @@
 
 @property (nonatomic, readonly, weak) id object;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithObject:(id)object NS_DESIGNATED_INITIALIZER;
 
 @end

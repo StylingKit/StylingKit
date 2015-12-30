@@ -54,6 +54,8 @@ typedef void(^PXDeclarationHandlerBlock)(PXDeclaration *declaration, PXStylerCon
  */
 @property (nonatomic, readonly) PXStylerCompletionBlock completionBlock;
 
+- (instancetype)init;
+
 /**
  *  Initialize a newly allocated instance.
  *

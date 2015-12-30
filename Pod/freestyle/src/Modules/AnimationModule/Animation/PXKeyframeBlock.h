@@ -30,6 +30,8 @@
 
 @property (readonly, nonatomic) CGFloat offset;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithOffset:(CGFloat)offset NS_DESIGNATED_INITIALIZER;
 
 @end

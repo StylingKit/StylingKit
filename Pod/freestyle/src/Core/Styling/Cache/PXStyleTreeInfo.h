@@ -31,6 +31,8 @@
 @property (nonatomic, readonly) NSString *styleKey;
 @property (nonatomic, readonly) BOOL cached;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithStyleable:(id<PXStyleable>)styleable NS_DESIGNATED_INITIALIZER;
 
 - (void)applyStylesToStyleable:(id<PXStyleable>)styleable;

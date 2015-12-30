@@ -37,6 +37,8 @@ typedef NS_ENUM(unsigned int, PXLexemeFlagType) {
 + (instancetype)lexemeWithType:(int)type withValue:(id)value;
 + (instancetype)lexemeWithType:(int)type withRange:(NSRange)range withValue:(id)value;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithType:(int)type withRange:(NSRange)range withValue:(id)value NS_DESIGNATED_INITIALIZER;
 
 @end

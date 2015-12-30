@@ -29,6 +29,7 @@ void CGPathAddEllipticalArc(CGMutablePathRef path, const CGAffineTransform *m, C
 
 @interface PXEllipticalArc : NSObject
 
+- (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithCx:(CGFloat)cx cy:(CGFloat)cy radiusX:(CGFloat)a radiusY:(CGFloat)b startingAngle:(CGFloat)lambda1 endingAngle:(CGFloat)lambda2 NS_DESIGNATED_INITIALIZER;
 
 - (void)addToPath:(CGMutablePathRef)path transform:(CGAffineTransform)transform;

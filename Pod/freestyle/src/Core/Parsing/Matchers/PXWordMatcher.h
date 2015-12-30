@@ -28,6 +28,8 @@
 
 @interface PXWordMatcher : PXPatternMatcher
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary usingSymbols:(BOOL)usingSymbols NS_DESIGNATED_INITIALIZER;
 

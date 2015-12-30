@@ -41,6 +41,8 @@
 + (NSArray *)filterEntries:(NSArray *)entries byStyle:(NSString *)style;
 + (NSArray *)filterEntries:(NSArray *)entries byWeight:(NSInteger)weight;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithFontFamily:(NSString *)family fontName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 
 @end

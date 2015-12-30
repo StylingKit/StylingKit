@@ -27,6 +27,9 @@
 
 @interface PXGenericStyler : PXStylerBase
 
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithCompletionBlock:(PXStylerCompletionBlock)block NS_UNAVAILABLE;
+
 - (instancetype)initWithHandlers:(NSDictionary *)handlers;
 - (instancetype)initWithHandlers:(NSDictionary *)handlers completionBlock:(PXStylerCompletionBlock)block NS_DESIGNATED_INITIALIZER;
 
