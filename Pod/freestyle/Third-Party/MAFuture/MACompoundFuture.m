@@ -130,13 +130,13 @@
                             [parameterDatas self];
                             return (id)nil;
                         }];
-                        invocationFuture.autorelease;
+                        [invocationFuture autorelease];
                     }
                     [parameterDatas addObject: newParameterSpace];
                     
                     // create the compound future that we'll "return" in this argument
                     _MACompoundFuture *parameterFuture = [[_MACompoundFuture alloc] initWithBlock: ^{
-                        invocationFuture.resolveFuture;
+                        [invocationFuture resolveFuture];
                         // capture the NSMutableData to ensure that it stays live
                         // interior pointer problem
                         [newParameterSpace self];
@@ -147,7 +147,7 @@
                     *parameterValue = parameterFuture;
                     
                     // memory management
-                    parameterFuture.autorelease;
+                    [parameterFuture autorelease];
                 }
             }
         }
@@ -156,7 +156,7 @@
         _MACompoundFuture *returnFuture = [[_MACompoundFuture alloc] initWithBlock:^{
             id value = nil;
             if(invocationFuture)
-                invocationFuture.resolveFuture;
+                [invocationFuture resolveFuture];
             else
                 [invocation invokeWithTarget: self.resolveFuture];
             [invocation getReturnValue: &value];
@@ -179,7 +179,7 @@ id MACompoundBackgroundFuture(id (^block)(void))
         return [blockFuture resolveFuture];
     }];
     
-    return compoundFuture.autorelease;
+    return [compoundFuture autorelease];
 }
 
 #undef MACompoundLazyFuture
@@ -187,5 +187,5 @@ id MACompoundLazyFuture(id (^block)(void))
 {
     _MACompoundFuture *compoundFuture = [[_MACompoundFuture alloc] initWithBlock: block];
     
-    return compoundFuture.autorelease;
+    return [compoundFuture autorelease];
 }

@@ -72,13 +72,13 @@ NSString* IKMemoryAwareFuturePath(id future);
   @abstract Archives value to the disk.
   @result YES if value is archived without errors. Otherwise NO.
 */
-@property (NS_NONATOMIC_IOSONLY, readonly) BOOL archiveValueUnlocked;
+- (BOOL)archiveValueUnlocked;
 
 /*
   @abstract Unarchives value from the disk.
   @result YES if value is unarchived without errors. If either archive for future doesn't exist or error is occured, returns NO. 
 */
-@property (NS_NONATOMIC_IOSONLY, readonly) BOOL unarchiveValueUnlocked;
+- (BOOL)unarchiveValueUnlocked;
 
 @end
 

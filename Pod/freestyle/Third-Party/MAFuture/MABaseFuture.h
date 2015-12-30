@@ -28,10 +28,10 @@
 
 // if setFutureValue: has not been called yet, blocks until it has
 // returns _value
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) id waitForFutureResolution;
+- (id)waitForFutureResolution;
 
 // subclasses must implement! don't call super!
 // returns the future value, blocks for it to resolve if needed
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) id resolveFuture;
+- (id)resolveFuture;
 
 @end

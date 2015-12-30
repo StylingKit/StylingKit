@@ -22,7 +22,7 @@
  *  Advance to the next lexeme in the lexeme stream. The current lexeme is returned and the currentLexeme is set to that
  *  return value.
  */
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) id<PXLexeme> advance;
+- (id<PXLexeme>)advance;
 
 /**
  *  Return a string name for the given lexeme type

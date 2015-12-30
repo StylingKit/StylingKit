@@ -121,14 +121,14 @@
 {
     [self assertType:type];
 
-    return self.advance;
+    return [self advance];
 }
 
 - (void)advanceIfIsType:(int)type
 {
     if (currentLexeme.type == type)
     {
-        self.advance;
+        [self advance];
     }
 }
 
@@ -136,7 +136,7 @@
 {
     if (currentLexeme.type == type)
     {
-        self.advance;
+        [self advance];
     }
     else
     {

@@ -112,13 +112,13 @@
 #undef MABackgroundFuture
 id MABackgroundFuture(id (^block)(void))
 {
-    return [[_MABackgroundBlockFuture alloc] initWithBlock: block].autorelease;
+    return [[[_MABackgroundBlockFuture alloc] initWithBlock:block] autorelease];
 }
 
 #undef MALazyFuture
 id MALazyFuture(id (^block)(void))
 {
-    return [[_MALazyBlockFuture alloc] initWithBlock: block].autorelease;
+    return [[[_MALazyBlockFuture alloc] initWithBlock:block] autorelease];
 }
 
 #pragma mark -
@@ -328,7 +328,7 @@ NSString* IKMemoryAwareFuturePath(id future) {
 
 
 - (void)processMemoryWarningUnlocked {
-    self.archiveValueUnlocked;
+    [self archiveValueUnlocked];
     [super processMemoryWarningUnlocked];
 }
 
