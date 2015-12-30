@@ -18,7 +18,8 @@
                                         fontStretch:@""
                                          fontWeight:@""
                                           fontStyle:@""
-                                               size:10.f];
+                                               size:10.f
+                                      isDefaultFont:YES];
 }
 
 @end
