@@ -242,7 +242,7 @@
         // NOTE: the parser guarantees that _name is lower case
         NSDictionary *handlers = [PXNamedMediaExpression nameHandlers];
         PXNamedMediaExpressionHandler handler = handlers[_name];
-        _matches = [NSNumber numberWithBool:(handler) ? handler(self) : NO];
+        _matches = @((handler) ? handler(self) : NO);
     }
     return _matches.boolValue;
 }

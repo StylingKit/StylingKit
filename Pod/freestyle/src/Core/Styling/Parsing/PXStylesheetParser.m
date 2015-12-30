@@ -942,7 +942,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             }
             else if (denom.floatValue == 0.0)
             {
-                value = [NSNumber numberWithDouble:NAN];
+                value = @(NAN);
             }
             else
             {

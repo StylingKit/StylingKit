@@ -190,7 +190,7 @@ void PXForceLoadUINavigationItemPXStyling() {}
     //
     // Set the styling mode value on the object
     //
-    objc_setAssociatedObject(self, &STYLE_MODE_KEY, [NSNumber numberWithInt:mode], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &STYLE_MODE_KEY, @(mode), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)setPxStyleParent:(id)parent

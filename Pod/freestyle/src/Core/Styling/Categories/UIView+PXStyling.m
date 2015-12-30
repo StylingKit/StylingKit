@@ -236,7 +236,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     //
     // Set the styling mode value on the object
     //
-    objc_setAssociatedObject(self, &STYLE_MODE_KEY, [NSNumber numberWithInt:mode], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &STYLE_MODE_KEY, @(mode), OBJC_ASSOCIATION_COPY_NONATOMIC);
     
     //NSLog(@"Found: %@ (%p)", [self class], self);
 

@@ -74,12 +74,12 @@
         if (index == -1)
         {
             [_colors addObject:color];
-            [_offsets addObject:[NSNumber numberWithFloat:offset]];
+            [_offsets addObject:@(offset)];
         }
         else
         {
             _colors[index] = color;
-            _offsets[index] = [NSNumber numberWithFloat:offset];
+            _offsets[index] = @(offset);
         }
     }
 }
@@ -114,7 +114,7 @@
 
             for (int i = 0; i < _colors.count; i++)
             {
-                [_offsets addObject:[NSNumber numberWithFloat:(CGFloat) i / (_colors.count - 1)]];
+                [_offsets addObject:@((CGFloat) i / (_colors.count - 1))];
             }
         }
 

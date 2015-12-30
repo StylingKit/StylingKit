@@ -946,7 +946,7 @@ didStartElement:(NSString *)elementName
     {
         if ([scanner scanCGFloat:&value])
         {
-            [numbers addObject:[NSNumber numberWithFloat:value]];
+            [numbers addObject:@(value)];
         }
         else
         {
