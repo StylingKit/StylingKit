@@ -18,6 +18,7 @@
 //  PXSpecificity.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -32,7 +33,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {

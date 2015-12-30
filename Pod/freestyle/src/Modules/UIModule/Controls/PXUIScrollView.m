@@ -18,6 +18,7 @@
 //  PXUIScrollView.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -109,12 +110,12 @@
 {
     if (context.usesColorOnly)
     {
-        [self setBackgroundColor: context.color];
+        self.backgroundColor = context.color;
         self.px_layer.contents = nil;
     }
     else if (context.usesImage)
     {
-        [self setBackgroundColor: [UIColor clearColor]];
+        self.backgroundColor = [UIColor clearColor];
         self.px_layer.contents = (__bridge id)(context.backgroundImage.CGImage);
     }
 }

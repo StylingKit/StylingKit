@@ -18,6 +18,7 @@
 //  PXBoxModel.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/25/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -26,11 +27,11 @@
 #import "PXBoundable.h"
 #import "PXBorderInfo.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, PXBoxSizing) {
     PXBoxSizingContentBox,
     PXBoxSizingPaddingBox,
     PXBoxSizingBorderBox
-} PXBoxSizing;
+};
 
 @interface PXBoxModel : PXShape <PXBoundable>
 
@@ -61,13 +62,13 @@ typedef enum {
 @property (nonatomic) PXOffsets *padding;
 @property (nonatomic) PXBoxSizing boxSizing;
 
-- (id)initWithBounds:(CGRect)bounds;
+- (instancetype)initWithBounds:(CGRect)bounds NS_DESIGNATED_INITIALIZER;
 
-- (BOOL)hasBorder;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL hasBorder;
 
-- (BOOL)hasCornerRadius;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL hasCornerRadius;
 
-- (BOOL)isOpaque;
+@property (NS_NONATOMIC_IOSONLY, getter=isOpaque, readonly) BOOL opaque;
 
 /**
  *  Set the corner radius of all corners to the specified value

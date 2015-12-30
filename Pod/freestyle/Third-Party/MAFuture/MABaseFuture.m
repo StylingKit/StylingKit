@@ -1,3 +1,6 @@
+
+//  Modified by Anton Matosov on 12/30/15.
+
 #import "MABaseFuture.h"
 
 #import <objc/runtime.h>
@@ -5,7 +8,7 @@
 
 @implementation MABaseFuture
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     _lock = [[NSCondition alloc] init];

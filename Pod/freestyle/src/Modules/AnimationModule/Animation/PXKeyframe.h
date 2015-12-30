@@ -18,6 +18,7 @@
 //  PXKeyframe.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/5/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -30,7 +31,7 @@
 @property (readonly, nonatomic, strong) NSString *name;
 @property (readonly, nonatomic, strong) NSArray *blocks;
 
-- (id)initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 
 - (void)addKeyframeBlock:(PXKeyframeBlock *)block;
 

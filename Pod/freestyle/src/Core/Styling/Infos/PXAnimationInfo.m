@@ -18,6 +18,7 @@
 //  PXAnimationInfo.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/5/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -34,7 +35,7 @@
 /**
  *  Use this method to get undefined values (needed for parsing)
  */
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -54,7 +55,7 @@
 /**
  *  Use this method to get CSS default values
  */
-- (id)initWithCSSDefaults
+- (instancetype)initWithCSSDefaults
 {
     if (self = [super init])
     {

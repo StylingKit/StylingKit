@@ -1,3 +1,6 @@
+
+//  Modified by Anton Matosov on 12/30/15.
+
 #import "MABaseFuture.h"
 
 
@@ -11,7 +14,7 @@
     id (^_block)(void);
 }
 
-- (id)initWithBlock: (id (^)(void))block;
+- (instancetype)initWithBlock: (id (^)(void))block;
 
 @end
 
@@ -69,13 +72,13 @@ NSString* IKMemoryAwareFuturePath(id future);
   @abstract Archives value to the disk.
   @result YES if value is archived without errors. Otherwise NO.
 */
-- (BOOL)archiveValueUnlocked;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL archiveValueUnlocked;
 
 /*
   @abstract Unarchives value from the disk.
   @result YES if value is unarchived without errors. If either archive for future doesn't exist or error is occured, returns NO. 
 */
-- (BOOL)unarchiveValueUnlocked;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL unarchiveValueUnlocked;
 
 @end
 

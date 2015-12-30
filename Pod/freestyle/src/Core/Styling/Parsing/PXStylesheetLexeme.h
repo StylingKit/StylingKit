@@ -18,6 +18,7 @@
 //  PXLexeme.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/23/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -25,17 +26,17 @@
 #import <Foundation/Foundation.h>
 #import "PXLexeme.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, PXLexemeFlagType) {
     PXLexemeFlagFollowsWhitespace = 1
-} PXLexemeFlagType;
+};
 
 @interface PXStylesheetLexeme : NSObject <PXLexeme>
 
-+ (id)lexemeWithType:(int)type;
-+ (id)lexemeWithType:(int)type withRange:(NSRange)range;
-+ (id)lexemeWithType:(int)type withValue:(id)value;
-+ (id)lexemeWithType:(int)type withRange:(NSRange)range withValue:(id)value;
++ (instancetype)lexemeWithType:(int)type;
++ (instancetype)lexemeWithType:(int)type withRange:(NSRange)range;
++ (instancetype)lexemeWithType:(int)type withValue:(id)value;
++ (instancetype)lexemeWithType:(int)type withRange:(NSRange)range withValue:(id)value;
 
-- (id)initWithType:(int)type withRange:(NSRange)range withValue:(id)value;
+- (instancetype)initWithType:(int)type withRange:(NSRange)range withValue:(id)value NS_DESIGNATED_INITIALIZER;
 
 @end

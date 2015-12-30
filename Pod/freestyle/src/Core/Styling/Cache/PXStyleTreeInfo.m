@@ -18,6 +18,7 @@
 //  PXStyleCache.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/2/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -37,12 +38,12 @@
 
 #pragma mark - Initializers
 
-- (id)initWithStyleable:(id<PXStyleable>)styleable
+- (instancetype)initWithStyleable:(id<PXStyleable>)styleable
 {
     if (self = [super init])
     {
         styleKey_ = styleable.styleKey;
-        NSNumber* checkPseudoClassFunction = [NSNumber numberWithBool:NO];
+        NSNumber* checkPseudoClassFunction = @NO;
         styleableStyleInfo_ = [PXStyleInfo styleInfoForStyleable:styleable checkPseudoClassFunction:&checkPseudoClassFunction];
         _cached = !checkPseudoClassFunction.boolValue;
         styleableStyleInfo_.forceInvalidation = YES;
@@ -76,7 +77,7 @@
 
         if (child != nil)
         {
-            PXStyleInfo *styleInfo = [childStyleInfo_ objectForKey:indexPath];
+            PXStyleInfo *styleInfo = childStyleInfo_[indexPath];
             if (styleInfo.changeable)
                 styleInfo = [PXStyleInfo styleInfoForStyleable:child];
 
@@ -137,7 +138,7 @@
         styleInfo.forceInvalidation = YES;
 
         // save info for this index path
-        [childStyleInfo_ setObject:styleInfo forKey:indexPath];
+        childStyleInfo_[indexPath] = styleInfo;
     }
 
     // now process this child's children

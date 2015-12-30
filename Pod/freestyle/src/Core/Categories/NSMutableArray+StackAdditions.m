@@ -18,6 +18,7 @@
 //  NSMutableArray+StackAdditions.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/12/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -39,7 +40,7 @@ void PXForceLoadStackAdditions() {}
 
     if (self.count > 0)
     {
-        item = [self lastObject];
+        item = self.lastObject;
 
         [self removeLastObject];
     }

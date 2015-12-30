@@ -18,6 +18,7 @@
 //  PXUITableViewHeaderFooterView.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 11/1/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -136,21 +137,21 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
                                       
                                       if (group.shadows.count > 0)
                                       {
-                                          PXShadow *shadow = [[group shadows] objectAtIndex:0];
+                                          PXShadow *shadow = group.shadows[0];
                                           
-                                          [view setShadowColor: shadow.color];
-                                          [view setShadowOffset: CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset)];
+                                          view.shadowColor = shadow.color;
+                                          view.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                                       }
                                       else
                                       {
-                                          [view setShadowColor: [UIColor clearColor]];
-                                          [view setShadowOffset: CGSizeZero];
+                                          view.shadowColor = [UIColor clearColor];
+                                          view.shadowOffset = CGSizeZero;
                                       }
                                   }],
                                   
                                   [[PXFontStyler alloc] initWithCompletionBlock:^(id control, PXFontStyler *styler, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
-                                      [view setFont:context.font];
+                                      view.font = context.font;
                                   }],
                                   
                                   [[PXPaintStyler alloc] initWithCompletionBlock:^(id control, PXPaintStyler *styler, PXStylerContext *context) {
@@ -161,33 +162,33 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
                                       {
                                           if([context stateFromStateNameMap:LABEL_PSEUDOCLASS_MAP] == UIControlStateHighlighted)
                                           {
-                                              [view setHighlightedTextColor:color];
+                                              view.highlightedTextColor = color;
                                           }
                                           else
                                           {
-                                              [view setTextColor:color];
+                                              view.textColor = color;
                                           }
                                       }
                                   }],
                                   
                                   [[PXTextContentStyler alloc] initWithCompletionBlock:^(id control, PXTextContentStyler *styler, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
-                                      [view setText:context.text];
+                                      view.text = context.text;
                                   }],
                                   
                                   [[PXGenericStyler alloc] initWithHandlers: @{
                                                                                
                                    @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
-                                      [view setTextAlignment:declaration.textAlignmentValue];
+                                      view.textAlignment = declaration.textAlignmentValue;
                                   },
                                    @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
-                                      [view setText:[PXStylerContext transformString:view.text usingAttribute:declaration.stringValue]];
+                                      view.text = [PXStylerContext transformString:view.text usingAttribute:declaration.stringValue];
                                   },
                                    @"text-overflow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
-                                      [view setLineBreakMode:declaration.lineBreakModeValue];
+                                      view.lineBreakMode = declaration.lineBreakModeValue;
                                   }
                                                                                }],
                                   PXAnimationStyler.sharedInstance
@@ -216,11 +217,11 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
                 {
                     if(state == UIControlStateHighlighted)
                     {
-                        [view setHighlightedTextColor:color];
+                        view.highlightedTextColor = color;
                     }
                     else
                     {
-                        [view setTextColor:color];
+                        view.textColor = color;
                     }
                 }
                 
@@ -234,7 +235,7 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
                     attrString = [[NSMutableAttributedString alloc] initWithString:context.transformedText attributes:dict];
                 }
                 
-                [view setAttributedText:attrString];
+                view.attributedText = attrString;
             }]
         ];
         
@@ -292,12 +293,11 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 {
     if (context.usesColorOnly)
     {
-        [self.px_contentView setBackgroundColor: context.color];
+        (self.px_contentView).backgroundColor = context.color;
     }
     else if (context.usesImage)
     {
-        [self.px_contentView setBackgroundColor:
-         [UIColor colorWithPatternImage:[context backgroundImageWithBounds:self.px_contentView.bounds]]];
+        (self.px_contentView).backgroundColor = [UIColor colorWithPatternImage:[context backgroundImageWithBounds:self.px_contentView.bounds]];
     }
 }
 

@@ -18,6 +18,7 @@
 //  PXPseudoClassFunction.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -43,7 +44,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)initWithFunctionType:(PXPseudoClassFunctionType)type modulus:(NSInteger)modulus remainder:(NSInteger)remainder
+- (instancetype)initWithFunctionType:(PXPseudoClassFunctionType)type modulus:(NSInteger)modulus remainder:(NSInteger)remainder
 {
     if (self = [super init])
     {

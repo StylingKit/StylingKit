@@ -18,6 +18,7 @@
 //  PXShapeGroup.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/1/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -32,7 +33,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 
@@ -82,7 +83,7 @@
 
 - (id<PXRenderable>)shapeAtIndex:(NSUInteger)index
 {
-    return (shapes_) ? [shapes_ objectAtIndex:index] : nil;
+    return (shapes_) ? shapes_[index] : nil;
 }
 
 - (CGAffineTransform) viewPortTransform
@@ -174,7 +175,7 @@
 - (void) renderChildren:(CGContextRef)context
 {
 
-    CGAffineTransform matrix = [self viewPortTransform];
+    CGAffineTransform matrix = self.viewPortTransform;
 
     CGContextConcatCTM(context, matrix);
 

@@ -18,6 +18,7 @@
 //  PXTypeSelector.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/9/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -82,7 +83,7 @@
  *
  *  @param type The element name to match
  */
-- (id)initWithTypeName:(NSString *)type;
+- (instancetype)initWithTypeName:(NSString *)type;
 
 /**
  *  Initializer a new instance with the specified element namespace and name
@@ -90,7 +91,7 @@
  *  @param uri The element namespace URI to match
  *  @param type The element name to match
  */
-- (id)initWithNamespaceURI:(NSString *)uri typeName:(NSString *)type;
+- (instancetype)initWithNamespaceURI:(NSString *)uri typeName:(NSString *)type NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Add an attribute expression to this selector. This selector matches only if it and it's attribute expressions all

@@ -98,7 +98,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 {
     if (PXUtils.isIPhone)
     {
-        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 
         switch (orientation) {
             case UIInterfaceOrientationLandscapeLeft:
@@ -192,7 +192,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
                 nsShadow.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                 nsShadow.shadowBlurRadius = shadow.blurDistance;
                 
-                [currentTextAttributes setObject:nsShadow forKey:NSShadowAttributeName];
+                currentTextAttributes[NSShadowAttributeName] = nsShadow;
                
                [weakSelf px_setTitleTextAttributes:currentTextAttributes];
             }],
@@ -200,8 +200,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
             [[PXFontStyler alloc] initWithCompletionBlock:^(PXVirtualStyleableControl *view, PXFontStyler *styler, PXStylerContext *context) {
                NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:weakSelf.titleTextAttributes];
                
-               [currentTextAttributes setObject:context.font
-                                         forKey:NSFontAttributeName];
+               currentTextAttributes[NSFontAttributeName] = context.font;
                
                [weakSelf px_setTitleTextAttributes:currentTextAttributes];
                 
@@ -219,8 +218,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
                
                 if(color)
                 {
-                   [currentTextAttributes setObject:color
-                                             forKey:NSForegroundColorAttributeName];
+                   currentTextAttributes[NSForegroundColorAttributeName] = color;
                    
                    [weakSelf px_setTitleTextAttributes:currentTextAttributes];
                 }
@@ -359,8 +357,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
                     
                     if(color)
                     {
-                        [currentTextAttributes setObject:color
-                                                  forKey:NSForegroundColorAttributeName];
+                        currentTextAttributes[NSForegroundColorAttributeName] = color;
                         
                         [view px_setTitleTextAttributes:currentTextAttributes];
                     }
@@ -385,7 +382,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
                 nsShadow.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                 nsShadow.shadowBlurRadius = shadow.blurDistance;
                 
-                [currentTextAttributes setObject:nsShadow forKey:NSShadowAttributeName];
+                currentTextAttributes[NSShadowAttributeName] = nsShadow;
                 
                 [view px_setTitleTextAttributes:currentTextAttributes];
             }],
@@ -394,8 +391,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
             [[PXFontStyler alloc] initWithCompletionBlock:^(PXUINavigationBar *view, PXFontStyler *styler, PXStylerContext *context) {
                 NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:view.titleTextAttributes];
                 
-                [currentTextAttributes setObject:context.font
-                                          forKey:NSFontAttributeName];
+                currentTextAttributes[NSFontAttributeName] = context.font;
                 
                 [view px_setTitleTextAttributes:currentTextAttributes];
                 

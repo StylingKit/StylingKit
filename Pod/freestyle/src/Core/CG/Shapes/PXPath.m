@@ -18,6 +18,7 @@
 //  PXPath.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 5/31/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -42,7 +43,7 @@
 
     NSScanner *scanner = [NSScanner scannerWithString:data];
     NSCharacterSet *skipSet = [NSCharacterSet characterSetWithCharactersInString:@" \r\n,"];
-    [scanner setCharactersToBeSkipped:skipSet];
+    scanner.charactersToBeSkipped = skipSet;
 
     NSCharacterSet *commandSet = [NSCharacterSet characterSetWithCharactersInString:@"MmLlCcHhVvQqAaSsTtZz"];
     NSString *command;
@@ -52,7 +53,7 @@
     CGFloat lastHandleX = 0.0, lastHandleY = 0.0;
     CGFloat x1, y1, x2, y2, x3, y3;
 
-    while ([scanner isAtEnd] == NO)
+    while (scanner.atEnd == NO)
     {
         unichar ch;
 
@@ -459,7 +460,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

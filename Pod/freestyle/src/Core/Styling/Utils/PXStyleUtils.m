@@ -18,6 +18,7 @@
 //  PXStyleUtils.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -198,8 +199,8 @@ static const char viewDelegate;
     NSInvocation *inv = [NSInvocation invocationWithMethodSignature:[(NSObject *)parent methodSignatureForSelector:selector]];
     NSInteger result;
 
-    [inv setSelector:selector];
-    [inv setTarget:parent];
+    inv.selector = selector;
+    inv.target = parent;
     [inv setArgument:&index atIndex:2];
     [inv invoke];
     [inv getReturnValue:&result];
@@ -274,7 +275,7 @@ static const char viewDelegate;
         NSMutableArray *queue = [NSMutableArray array];
 
         // initialize queue with styleable's childen
-        for (id child in [styleable pxStyleChildren])
+        for (id child in styleable.pxStyleChildren)
         {
             [queue enqueue:child];
         }
@@ -301,7 +302,7 @@ static const char viewDelegate;
         // enqueue children, but only if we're going to continue
         if (stop == NO && stopDescending == NO)
         {
-            for (id child in [current pxStyleChildren])
+            for (id child in current.pxStyleChildren)
             {
                 [queue enqueue:child];
             }
@@ -322,7 +323,7 @@ static const char viewDelegate;
     {
         for (NSString *property in styler.supportedProperties)
         {
-            [properties setObject:styler forKey:property];
+            properties[property] = styler;
         }
     }
 
@@ -444,7 +445,7 @@ static const char viewDelegate;
 
         // grab last saved hash, may be nil
         NSString *stateNameKey = (state) ? state : @"";
-        NSValue *cachedHashValue = [cachedHashValues objectForKey:stateNameKey];
+        NSValue *cachedHashValue = cachedHashValues[stateNameKey];
 
         // calculate active declarations hash
         CGRect bounds = styleable.bounds;
@@ -472,7 +473,7 @@ static const char viewDelegate;
         }
         else
         {
-            [cachedHashValues setObject:[[NSValue alloc] initWithBytes:&activeDeclarationsHash objCType:@encode(NSUInteger)] forKey:stateNameKey];
+            cachedHashValues[stateNameKey] = [[NSValue alloc] initWithBytes:&activeDeclarationsHash objCType:@encode(NSUInteger)];
         }
     }
     
@@ -495,7 +496,7 @@ static const char viewDelegate;
 {
     NSMutableDictionary *cachedHashValues = objc_getAssociatedObject(styleable, &hash);
     NSString *stateNameKey = (state) ? state : @"";
-    NSValue *cachedHashValue = [cachedHashValues objectForKey:stateNameKey];
+    NSValue *cachedHashValue = cachedHashValues[stateNameKey];
     NSUInteger cachedHash;
 
     [cachedHashValue getValue:&cachedHash];
@@ -609,18 +610,18 @@ static const char viewDelegate;
 
 + (void)updateCellStyleWhenReady:(UIView *)view
 {
-    [self updateCellStyleWhenReady:view startTime:[[NSDate date] timeIntervalSince1970] recursive:YES];
+    [self updateCellStyleWhenReady:view startTime:[NSDate date].timeIntervalSince1970 recursive:YES];
 }
 
 + (void)updateCellStyleNonRecursiveWhenReady:(UIView *)view
 {
-    [self updateCellStyleWhenReady:view startTime:[[NSDate date] timeIntervalSince1970] recursive:NO];
+    [self updateCellStyleWhenReady:view startTime:[NSDate date].timeIntervalSince1970 recursive:NO];
 }
 
 + (void)updateCellStyleWhenReady:(UIView *)view startTime:(double)time recursive:(BOOL)recursive
 {
     // If this takes more than 1 second, abort
-    if(([[NSDate date] timeIntervalSince1970] - time) > 1)
+    if(([NSDate date].timeIntervalSince1970 - time) > 1)
     {
         return;
     }

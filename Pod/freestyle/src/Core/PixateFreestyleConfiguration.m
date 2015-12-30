@@ -18,6 +18,7 @@
 //  PixateConfiguration.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 1/23/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -53,7 +54,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -73,7 +74,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 - (id)propertyValueForName:(NSString *)name
 {
-    return [properties_ objectForKey:name];
+    return properties_[name];
 }
 
 - (void)setPropertyValue:(id)value forName:(NSString *)name
@@ -85,7 +86,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
             properties_ = [[NSMutableDictionary alloc] init];
         }
 
-        [properties_ setObject:value forKey:name];
+        properties_[name] = value;
     }
 }
 
@@ -227,17 +228,17 @@ static int ddLogLevel = LOG_LEVEL_WARN;
                 @"image-cache-count" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                     NSString *value = declaration.stringValue;
 
-                    PixateFreestyle.configuration.imageCacheCount = [value integerValue];
+                    PixateFreestyle.configuration.imageCacheCount = value.integerValue;
                 },
                 @"image-cache-size" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                     NSString *value = declaration.stringValue;
 
-                    PixateFreestyle.configuration.imageCacheSize = [value integerValue];
+                    PixateFreestyle.configuration.imageCacheSize = value.integerValue;
                 },
                 @"style-cache-count" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                     NSString *value = declaration.stringValue;
 
-                    PixateFreestyle.configuration.styleCacheCount = [value integerValue];
+                    PixateFreestyle.configuration.styleCacheCount = value.integerValue;
                 }
             }]
         ];

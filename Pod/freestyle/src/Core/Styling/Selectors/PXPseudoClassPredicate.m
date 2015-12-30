@@ -18,6 +18,7 @@
 //  PXPseudoClassPredicate.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/26/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -43,7 +44,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)initWithPredicateType:(PXPseudoClassPredicateType)type
+- (instancetype)initWithPredicateType:(PXPseudoClassPredicateType)type
 {
     if (self = [super init])
     {

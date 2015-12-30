@@ -18,6 +18,7 @@
 //  PXUITableView.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -178,7 +179,7 @@ static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
              @"selection-mode" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXUITableView *view = (PXUITableView *)context.styleable;
                 
-                NSString *mode = [declaration.stringValue lowercaseString];
+                NSString *mode = (declaration.stringValue).lowercaseString;
                 
                 if([mode isEqualToString:@"single"])
                 {
@@ -192,7 +193,7 @@ static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
              @"selection-mode-during-editing" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXUITableView *view = (PXUITableView *)context.styleable;
                 
-                NSString *mode = [declaration.stringValue lowercaseString];
+                NSString *mode = (declaration.stringValue).lowercaseString;
                 
                 if([mode isEqualToString:@"single"])
                 {
@@ -225,7 +226,7 @@ static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
             },
              @"separator-style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXUITableView *view = (PXUITableView *)context.styleable;
-                NSString *style = [declaration.stringValue lowercaseString];
+                NSString *style = (declaration.stringValue).lowercaseString;
 
                 if ([style isEqualToString:@"none"])
                 {

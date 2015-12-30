@@ -18,6 +18,7 @@
 //  PXUIImageView.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 9/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -96,7 +97,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                                                          
             @"-ios-rendering-mode" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 
-                NSString *mode = [declaration.stringValue lowercaseString];
+                NSString *mode = (declaration.stringValue).lowercaseString;
                 
                 if([mode isEqualToString:@"original"])
                 {

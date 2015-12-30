@@ -18,6 +18,7 @@
 //  NSArray+Reverse.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 4/25/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -30,7 +31,7 @@ void PXForceLoadNSArrayReverse() {}
 
 - (NSArray *)reversedArray
 {
-    return [[self reverseObjectEnumerator] allObjects];
+    return [self reverseObjectEnumerator].allObjects;
 }
 
 @end

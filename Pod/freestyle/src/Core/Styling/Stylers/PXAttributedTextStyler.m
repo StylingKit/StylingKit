@@ -18,6 +18,7 @@
 //  PXAttributedTextStyler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Robin Debreuil on 1/9/2014.
 //  Copyright (c) 2014 Pixate, Inc. All rights reserved.
 //
@@ -54,10 +55,10 @@
                          context.fontStyle = declaration.stringValue;
                      },
                      @"font-weight" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                         context.fontWeight = [declaration.stringValue lowercaseString];
+                         context.fontWeight = (declaration.stringValue).lowercaseString;
                      },
                      @"font-stretch" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                         context.fontStretch = [declaration.stringValue lowercaseString];
+                         context.fontStretch = (declaration.stringValue).lowercaseString;
                      },
                      
                      // kerning
@@ -67,10 +68,10 @@
                      
                      // special text
                      @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                         context.textTransform = [declaration.stringValue lowercaseString];
+                         context.textTransform = (declaration.stringValue).lowercaseString;
                      },
                      @"text-decoration" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                         context.textDecoration = [declaration.stringValue lowercaseString];
+                         context.textDecoration = (declaration.stringValue).lowercaseString;
                      },
                      @"text-shadow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                          context.textShadow = declaration.shadowValue;

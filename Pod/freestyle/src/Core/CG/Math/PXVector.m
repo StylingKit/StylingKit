@@ -18,6 +18,7 @@
 //  PXVector.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -31,24 +32,24 @@
 
 #pragma mark - Static Initializers
 
-+ (id)vectorWithX:(CGFloat)x Y:(CGFloat)y
++ (instancetype)vectorWithX:(CGFloat)x Y:(CGFloat)y
 {
     return [[PXVector alloc] initWithX:x Y:y];
 }
 
-+ (id)vectorWithStartPoint:(CGPoint)p1 EndPoint:(CGPoint)p2
++ (instancetype)vectorWithStartPoint:(CGPoint)p1 EndPoint:(CGPoint)p2
 {
     return [PXVector vectorWithX:p2.x - p1.x Y:p2.y - p1.y];
 }
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithX:0 Y:0];
 }
 
-- (id)initWithX:(CGFloat)anX Y:(CGFloat)aY
+- (instancetype)initWithX:(CGFloat)anX Y:(CGFloat)aY
 {
     if (self = [super init])
     {

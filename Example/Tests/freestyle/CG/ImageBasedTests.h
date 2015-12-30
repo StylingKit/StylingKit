@@ -17,11 +17,13 @@
  *
  ****************************************************************************/
 
+//  Modified by Anton Matosov on 12/30/15.
+
 #import <XCTest/XCTest.h>
 
 @interface ImageBasedTests : XCTestCase
 
-- (NSString *)rasterImageDirectoryName;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *rasterImageDirectoryName;
 
 - (void)assertImage:(UIImage *)image1 equalsImage:(UIImage *)image2;
 - (NSString *)localPathForName:(NSString *)name;

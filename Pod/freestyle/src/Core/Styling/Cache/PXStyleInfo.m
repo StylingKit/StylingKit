@@ -99,7 +99,7 @@
                 if (!(*checkPseudoClassFunction).boolValue) {
                     for (id<PXSelector> attribute in selector.attributeExpressions) {
                         if ([attribute isKindOfClass:PXPseudoClassFunction.class]) {
-                            *checkPseudoClassFunction = [NSNumber numberWithBool:YES];
+                            *checkPseudoClassFunction = @YES;
                             break;
                         }
                     }
@@ -162,7 +162,7 @@
 
     for (PXDeclaration *declaration in mergedRuleSet.declarations)
     {
-        id<PXStyler> styler = [stylersByProperty objectForKey:declaration.name];
+        id<PXStyler> styler = stylersByProperty[declaration.name];
 
         if (styler)
         {
@@ -185,7 +185,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithStyleKey:(NSString *)styleKey
+- (instancetype)initWithStyleKey:(NSString *)styleKey
 {
     if (self = [super init])
     {
@@ -199,7 +199,7 @@
 
 - (NSArray *)states
 {
-    return (declarationsByState_ != nil) ? [declarationsByState_ allKeys] : nil;
+    return (declarationsByState_ != nil) ? declarationsByState_.allKeys : nil;
 }
 
 #pragma mark - Methods
@@ -215,7 +215,7 @@
 
         // TODO: check for pre-existing?
 
-        [declarationsByState_ setObject:declarations forKey:stateName];
+        declarationsByState_[stateName] = declarations;
     }
 }
 
@@ -228,18 +228,18 @@
             stylersByState_ = [NSMutableDictionary dictionary];
         }
 
-        [stylersByState_ setObject:stylers forKey:stateName];
+        stylersByState_[stateName] = stylers;
     }
 }
 
 - (NSArray *)declarationsForState:(NSString *)stateName
 {
-    return (declarationsByState_ != nil) ? [declarationsByState_ objectForKey:stateName] : nil;
+    return (declarationsByState_ != nil) ? declarationsByState_[stateName] : nil;
 }
 
 - (NSSet *)stylersForState:(NSString *)stateName
 {
-    return (stylersByState_ != nil) ? [stylersByState_ objectForKey:stateName] : nil;
+    return (stylersByState_ != nil) ? stylersByState_[stateName] : nil;
 }
 
 - (void)applyToStyleable:(id<PXStyleable>)styleable
@@ -295,7 +295,7 @@
                     // process the declarations, in order
                     for (PXDeclaration *declaration in activeDeclarations)
                     {
-                        id<PXStyler> styler = [stylersByProperty objectForKey:declaration.name];
+                        id<PXStyler> styler = stylersByProperty[declaration.name];
 
                         if (styler == currentStyler)
                         {
@@ -344,7 +344,7 @@
         [parts addObject:[NSString stringWithFormat:@"%@ {", stateName]];
 
         // emit declaration
-        for (PXDeclaration *declaration in [declarationsByState_ objectForKey:state])
+        for (PXDeclaration *declaration in declarationsByState_[state])
         {
             [parts addObject:[NSString stringWithFormat:@"  %@", declaration.description]];
         }

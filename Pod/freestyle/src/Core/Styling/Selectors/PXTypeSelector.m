@@ -18,6 +18,7 @@
 //  PXTypeSelector.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/9/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -49,17 +50,17 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithNamespaceURI:@"*" typeName:@"*"];
 }
 
-- (id)initWithTypeName:(NSString *)type
+- (instancetype)initWithTypeName:(NSString *)type
 {
     return [self initWithNamespaceURI:@"*" typeName:type];
 }
 
-- (id)initWithNamespaceURI:(NSString *)uri typeName:(NSString *)type
+- (instancetype)initWithNamespaceURI:(NSString *)uri typeName:(NSString *)type
 {
     if (self = [super init])
     {
@@ -232,7 +233,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
         {
             if ([element respondsToSelector:@selector(supportedPseudoElements)])
             {
-                result = ([[element supportedPseudoElements] indexOfObject:self.pseudoElement] != NSNotFound);
+                result = ([element.supportedPseudoElements indexOfObject:self.pseudoElement] != NSNotFound);
             }
             else
             {
@@ -335,7 +336,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 {
     NSMutableArray *parts = [NSMutableArray array];
 
-    if ([self hasUniversalNamespace])
+    if (self.hasUniversalNamespace)
     {
         [parts addObject:@"*"];
     }
@@ -349,7 +350,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
     [parts addObject:@"|"];
 
-    if ([self hasUniversalType])
+    if (self.hasUniversalType)
     {
         [parts addObject:@"*"];
     }

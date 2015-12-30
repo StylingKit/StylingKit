@@ -18,6 +18,7 @@
 //  PXEllipticalArc.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/27/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -85,7 +86,7 @@ void CGPathAddEllipticalArc(CGMutablePathRef path, const CGAffineTransform *m, C
 
 #pragma mark - Initializers
 
-- (id)initWithCx:(CGFloat)cx cy:(CGFloat)cy radiusX:(CGFloat)a radiusY:(CGFloat)b startingAngle:(CGFloat)lambda1 endingAngle:(CGFloat)lambda2
+- (instancetype)initWithCx:(CGFloat)cx cy:(CGFloat)cy radiusX:(CGFloat)a radiusY:(CGFloat)b startingAngle:(CGFloat)lambda1 endingAngle:(CGFloat)lambda2
 {
     if (self = [super init])
     {

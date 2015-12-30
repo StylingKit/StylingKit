@@ -18,6 +18,7 @@
 //  PXDeclaration.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/1/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -74,17 +75,17 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithName:@"<unknown>" value:nil];
 }
 
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
 {
     return [self initWithName:name value:nil];
 }
 
-- (id)initWithName:(NSString *)name value:(NSString *)value
+- (instancetype)initWithName:(NSString *)name value:(NSString *)value
 {
     if (self = [super init])
     {
@@ -109,7 +110,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
 
     if (lexemes.count > 0)
     {
-        PXStylesheetLexeme *firstLexeme = [lexemes objectAtIndex:0];
+        PXStylesheetLexeme *firstLexeme = lexemes[0];
         NSUInteger firstOffset = firstLexeme.range.location;
 
         [_lexemes enumerateObjectsUsingBlock:^(PXStylesheetLexeme *lexeme, NSUInteger idx, BOOL *stop) {
@@ -281,12 +282,12 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
 
     if (_lexemes.count > 0)
     {
-        PXStylesheetLexeme *lexeme = [_lexemes objectAtIndex:0];
+        PXStylesheetLexeme *lexeme = _lexemes[0];
 
         if ([lexeme.value isKindOfClass:[NSString class]])
         {
             result = lexeme.value;
-            result = [result lowercaseString];
+            result = result.lowercaseString;
         }
     }
 
@@ -329,7 +330,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         if (_lexemes.count > 0)
         {
-            PXStylesheetLexeme *lexeme = [_lexemes objectAtIndex:0];
+            PXStylesheetLexeme *lexeme = _lexemes[0];
 
             if (lexeme.type == PXSS_LENGTH)
             {
@@ -339,7 +340,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
             {
                 NSNumber *number = lexeme.value;
 
-                cache_ = [[PXDimension alloc] initWithNumber:[number floatValue] withDimension:@"px"];
+                cache_ = [[PXDimension alloc] initWithNumber:number.floatValue withDimension:@"px"];
             }
             // error
         }
@@ -373,7 +374,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
 
         if (value)
         {
-            mode = (NSLineBreakMode) [value intValue];
+            mode = (NSLineBreakMode) value.intValue;
         }
 
         cache_ = [[PXValue alloc] initWithBytes:&mode type:PXValueType_NSLineBreakMode];
@@ -509,7 +510,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
                 for (NSTextCheckingResult *match in matches)
                 {
                     NSRange matchRange = match.range;
-                    NSString *replacementText = [ESCAPE_SEQUENCE_MAP objectForKey:[content substringWithRange:matchRange]];
+                    NSString *replacementText = ESCAPE_SEQUENCE_MAP[[content substringWithRange:matchRange]];
 
                     if (!replacementText)
                     {
@@ -551,11 +552,11 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         NSTextAlignment alignment = NSTextAlignmentCenter;
         NSString *text = self.firstWord;
-        NSNumber *value = [MAP objectForKey:text];
+        NSNumber *value = MAP[text];
 
         if (value)
         {
-            alignment = (NSTextAlignment) [value intValue];
+            alignment = (NSTextAlignment) value.intValue;
         }
 
         cache_ = [[PXValue alloc] initWithBytes:&alignment type:PXValueType_NSTextAlignment];
@@ -580,11 +581,11 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         UITextBorderStyle style = UITextBorderStyleNone;
         NSString *text = self.firstWord;
-        NSNumber *value = [MAP objectForKey:text];
+        NSNumber *value = MAP[text];
 
         if (value)
         {
-            style = (UITextBorderStyle) [value intValue];
+            style = (UITextBorderStyle) value.intValue;
         }
 
         cache_ = [[PXValue alloc] initWithBytes:&style type:PXValueType_UITextBorderStyle];
@@ -604,7 +605,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     PXDimension *result = nil;
     if (_lexemes.count > 0)
     {
-        PXStylesheetLexeme *lexeme = [_lexemes objectAtIndex:0];
+        PXStylesheetLexeme *lexeme = _lexemes[0];
         
         if (lexeme.type == PXSS_LENGTH || lexeme.type == PXSS_EMS || lexeme.type == PXSS_PERCENTAGE)
         {
@@ -613,7 +614,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
         else if (lexeme.type == PXSS_NUMBER)
         {
             NSNumber *number = lexeme.value;
-            result = [[PXDimension alloc] initWithNumber:[number floatValue] withDimension:@"px"];
+            result = [[PXDimension alloc] initWithNumber:number.floatValue withDimension:@"px"];
         }
         // error
     }

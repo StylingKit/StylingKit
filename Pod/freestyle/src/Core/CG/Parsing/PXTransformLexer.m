@@ -18,6 +18,7 @@
 //  PXTransformLexer.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -39,7 +40,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -74,28 +75,24 @@
         [tokenList addObject:[[PXNumberMatcher alloc] initWithType:PXTransformToken_NUMBER withDictionary:unitMap withUnknownType:PXTransformToken_DIMENSION]];
 
         // keywords
-        NSDictionary *keywordMap = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:PXTransformToken_TRANSLATE], @"translate",
-                                    [NSNumber numberWithInt:PXTransformToken_TRANSLATEX], @"translateX",
-                                    [NSNumber numberWithInt:PXTransformToken_TRANSLATEY], @"translateY",
-                                    [NSNumber numberWithInt:PXTransformToken_SCALE], @"scale",
-                                    [NSNumber numberWithInt:PXTransformToken_SCALEX], @"scaleX",
-                                    [NSNumber numberWithInt:PXTransformToken_SCALEY], @"scaleY",
-                                    [NSNumber numberWithInt:PXTransformToken_SKEW], @"skew",
-                                    [NSNumber numberWithInt:PXTransformToken_SKEWX], @"skewX",
-                                    [NSNumber numberWithInt:PXTransformToken_SKEWY], @"skewY",
-                                    [NSNumber numberWithInt:PXTransformToken_ROTATE], @"rotate",
-                                    [NSNumber numberWithInt:PXTransformToken_MATRIX], @"matrix",
-                                    nil];
+        NSDictionary *keywordMap = @{@"translate": @(PXTransformToken_TRANSLATE),
+                                    @"translateX": @(PXTransformToken_TRANSLATEX),
+                                    @"translateY": @(PXTransformToken_TRANSLATEY),
+                                    @"scale": @(PXTransformToken_SCALE),
+                                    @"scaleX": @(PXTransformToken_SCALEX),
+                                    @"scaleY": @(PXTransformToken_SCALEY),
+                                    @"skew": @(PXTransformToken_SKEW),
+                                    @"skewX": @(PXTransformToken_SKEWX),
+                                    @"skewY": @(PXTransformToken_SKEWY),
+                                    @"rotate": @(PXTransformToken_ROTATE),
+                                    @"matrix": @(PXTransformToken_MATRIX)};
         [tokenList addObject:[[PXWordMatcher alloc] initWithDictionary:keywordMap]];
 
         // single-character operators
         NSString *operators = @"(),";
-        NSArray *operatorTypes = [NSArray arrayWithObjects:
-                                  [NSNumber numberWithInt:PXTransformToken_LPAREN],
-                                  [NSNumber numberWithInt:PXTransformToken_RPAREN],
-                                  [NSNumber numberWithInt:PXTransformToken_COMMA],
-                                  nil];
+        NSArray *operatorTypes = @[@(PXTransformToken_LPAREN),
+                                  @(PXTransformToken_RPAREN),
+                                  @(PXTransformToken_COMMA)];
         [tokenList addObject:[[PXCharacterMatcher alloc] initWithCharactersInString:operators withTypes:operatorTypes]];
 
         self->tokens = [NSArray arrayWithArray:tokenList];
@@ -105,7 +102,7 @@
     return self;
 }
 
-- (id)initWithString:(NSString *)text
+- (instancetype)initWithString:(NSString *)text
 {
     if (self = [self init])
     {
@@ -131,7 +128,7 @@
 
     if (source)
     {
-        NSUInteger length = [source length];
+        NSUInteger length = source.length;
 
         while (offset < length)
         {

@@ -2,6 +2,7 @@
 //  PXSpecificityTests.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/28/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -105,7 +106,7 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    return [ruleSets objectAtIndex:0];
+    return ruleSets[0];
 }
 
 @end

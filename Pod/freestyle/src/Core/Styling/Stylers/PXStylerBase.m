@@ -18,6 +18,7 @@
 //  PXStylerBase.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -30,7 +31,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithCompletionBlock:(PXStylerCompletionBlock)block
+- (instancetype)initWithCompletionBlock:(PXStylerCompletionBlock)block
 {
     if (self = [super init])
     {
@@ -57,7 +58,7 @@
 
 - (void)processDeclaration:(PXDeclaration *)declaration withContext:(PXStylerContext *)context
 {
-    PXDeclarationHandlerBlock block = [[self declarationHandlers] objectForKey:declaration.name];
+    PXDeclarationHandlerBlock block = [self declarationHandlers][declaration.name];
 
     if (block)
     {

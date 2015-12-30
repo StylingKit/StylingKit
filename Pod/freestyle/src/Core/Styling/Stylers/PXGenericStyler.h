@@ -18,6 +18,7 @@
 //  PXGenericStyler.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 1/31/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -26,7 +27,7 @@
 
 @interface PXGenericStyler : PXStylerBase
 
-- (id)initWithHandlers:(NSDictionary *)handlers;
-- (id)initWithHandlers:(NSDictionary *)handlers completionBlock:(PXStylerCompletionBlock)block;
+- (instancetype)initWithHandlers:(NSDictionary *)handlers;
+- (instancetype)initWithHandlers:(NSDictionary *)handlers completionBlock:(PXStylerCompletionBlock)block NS_DESIGNATED_INITIALIZER;
 
 @end

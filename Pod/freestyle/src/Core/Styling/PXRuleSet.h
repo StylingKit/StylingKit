@@ -18,6 +18,7 @@
 //  PXRuleSet.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/3/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -58,7 +59,7 @@
  *
  *  @param ruleSets An array of rule sets to merge
  */
-+ (id)ruleSetWithMergedRuleSets:(NSArray *)ruleSets;
++ (instancetype)ruleSetWithMergedRuleSets:(NSArray *)ruleSets;
 
 /**
  *  Add a selector to the list of selectors associated with this rule set

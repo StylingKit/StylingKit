@@ -2,6 +2,7 @@
 //  PXStylesheetParserTests.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/12/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -36,11 +37,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *declarations = ruleSet.declarations;
     XCTAssertTrue(declarations.count == 1, @"Expected a single declaration");
 
-    PXDeclaration *declaration = [declarations objectAtIndex:0];
+    PXDeclaration *declaration = declarations[0];
     XCTAssertEqualObjects(@"abc", declaration.name, @"Expected 'abc' declaration");
 }
 
@@ -56,14 +57,14 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *declarations = ruleSet.declarations;
     XCTAssertTrue(declarations.count == 2, @"Expected two declarations");
 
-    PXDeclaration *declaration = [declarations objectAtIndex:0];
+    PXDeclaration *declaration = declarations[0];
     XCTAssertEqualObjects(@"abc", declaration.name, @"Expected 'abc' declaration");
 
-    declaration = [declarations objectAtIndex:1];
+    declaration = declarations[1];
     XCTAssertEqualObjects(@"ghi", declaration.name, @"Expected 'abc' declaration");
 }
 
@@ -79,14 +80,14 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *declarations = ruleSet.declarations;
     XCTAssertTrue(declarations.count == 2, @"Expected two declarations");
 
-    PXDeclaration *declaration = [declarations objectAtIndex:0];
+    PXDeclaration *declaration = declarations[0];
     XCTAssertEqualObjects(@"abc", declaration.name, @"Expected 'abc' declaration");
 
-    declaration = [declarations objectAtIndex:1];
+    declaration = declarations[1];
     XCTAssertEqualObjects(@"ghi", declaration.name, @"Expected 'abc' declaration");
 }
 
@@ -102,11 +103,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *declarations = ruleSet.declarations;
     XCTAssertTrue(declarations.count == 1, @"Expected one declaration");
 
-    PXDeclaration *declaration = [declarations objectAtIndex:0];
+    PXDeclaration *declaration = declarations[0];
     XCTAssertEqualObjects(@"abc", declaration.name, @"Expected 'abc' declaration");
 }
 
@@ -122,11 +123,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *declarations = ruleSet.declarations;
     XCTAssertTrue(declarations.count == 1, @"Expected one declaration");
 
-    PXDeclaration *declaration = [declarations objectAtIndex:0];
+    PXDeclaration *declaration = declarations[0];
     XCTAssertEqualObjects(@"ghi", declaration.name, @"Expected 'ghi' declaration");
 }
 
@@ -142,11 +143,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *declarations = ruleSet.declarations;
     XCTAssertTrue(declarations.count == 1, @"Expected one declaration");
 
-    PXDeclaration *declaration = [declarations objectAtIndex:0];
+    PXDeclaration *declaration = declarations[0];
     XCTAssertEqualObjects(@"abc", declaration.name, @"Expected 'ghi' declaration");
 }
 
@@ -166,11 +167,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
 
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
 
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = %@\nactual = %@", expected, selector.source);
 }
@@ -192,11 +193,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
 
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
 
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected, selector.source);
 }
@@ -218,11 +219,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
 
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
 
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected, selector.source);
 }
@@ -244,11 +245,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
 
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
 
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected, selector.source);
 }
@@ -270,11 +271,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
 
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
 
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected, selector.source);
 }
@@ -298,11 +299,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
 
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
 
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected, selector.source);
 }
@@ -326,11 +327,11 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected a single rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
 
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
 
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected, selector.source);
 }
@@ -350,16 +351,16 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 2, @"Expected two rule sets");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
     XCTAssertEqualObjects(expected1, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected1, selector.source);
 
-    ruleSet = [ruleSets objectAtIndex:1];
+    ruleSet = ruleSets[1];
     selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
-    selector = [selectors objectAtIndex:0];
+    selector = selectors[0];
     XCTAssertEqualObjects(expected2, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected2, selector.source);
 }
 
@@ -380,10 +381,10 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected one rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
     XCTAssertEqualObjects(expected, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected, selector.source);
 }
 
@@ -407,16 +408,16 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 2, @"Expected two rule sets");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
-    id<PXSelector> selector = [selectors objectAtIndex:0];
+    id<PXSelector> selector = selectors[0];
     XCTAssertEqualObjects(expected1, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected1, selector.source);
 
-    ruleSet = [ruleSets objectAtIndex:1];
+    ruleSet = ruleSets[1];
     selectors = ruleSet.selectors;
     XCTAssertTrue(selectors.count == 1, @"Expected one selector");
-    selector = [selectors objectAtIndex:0];
+    selector = selectors[0];
     XCTAssertEqualObjects(expected2, selector.source, @"Selector trees do not match:\nexpected = \n%@\nactual = \n%@", expected2, selector.source);
 }
 
@@ -538,10 +539,10 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected two rule sets");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     NSArray *declarations = ruleSet.declarations;
     XCTAssertTrue(declarations.count == 1, @"Expected one declaration");
-    PXDeclaration *declaration = [declarations objectAtIndex:0];
+    PXDeclaration *declaration = declarations[0];
     XCTAssertTrue(declaration.important, @"declaration should be marked as important");
 
     NSString *stringValue = declaration.stringValue;
@@ -596,7 +597,7 @@
     NSArray *blocks = keyframe.blocks;
     XCTAssertTrue(blocks.count == 1, @"Expected 1 keyframe block but found %d", blocks.count);
 
-    PXKeyframeBlock *block = [blocks objectAtIndex:0];
+    PXKeyframeBlock *block = blocks[0];
     XCTAssertTrue(block.offset == 1.0f, @"Expected offset to be 1.0, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 }
@@ -613,7 +614,7 @@
     NSArray *blocks = keyframe.blocks;
     XCTAssertTrue(blocks.count == 1, @"Expected 1 keyframe block but found %d", blocks.count);
 
-    PXKeyframeBlock *block = [blocks objectAtIndex:0];
+    PXKeyframeBlock *block = blocks[0];
     XCTAssertTrue(block.offset == 0.0f, @"Expected offset to be 0.0, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 }
@@ -630,7 +631,7 @@
     NSArray *blocks = keyframe.blocks;
     XCTAssertTrue(blocks.count == 1, @"Expected 1 keyframe block but found %d", blocks.count);
 
-    PXKeyframeBlock *block = [blocks objectAtIndex:0];
+    PXKeyframeBlock *block = blocks[0];
     XCTAssertTrue(block.offset == 0.5f, @"Expected offset to be 0.5, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 }
@@ -647,15 +648,15 @@
     NSArray *blocks = keyframe.blocks;
     XCTAssertTrue(blocks.count == 3, @"Expected 3 keyframe blocks but found %d", blocks.count);
 
-    PXKeyframeBlock *block = [blocks objectAtIndex:0];
+    PXKeyframeBlock *block = blocks[0];
     XCTAssertTrue(block.offset == 0.0f, @"Expected offset to be 0.0, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 
-    block = [blocks objectAtIndex:1];
+    block = blocks[1];
     XCTAssertTrue(block.offset == 0.5f, @"Expected offset to be 0.5, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 
-    block = [blocks objectAtIndex:2];
+    block = blocks[2];
     XCTAssertTrue(block.offset == 1.0f, @"Expected offset to be 1.0, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 }
@@ -672,11 +673,11 @@
     NSArray *blocks = keyframe.blocks;
     XCTAssertTrue(blocks.count == 2, @"Expected 2 keyframe blocks but found %d", blocks.count);
 
-    PXKeyframeBlock *block = [blocks objectAtIndex:0];
+    PXKeyframeBlock *block = blocks[0];
     XCTAssertTrue(block.offset == 0.0f, @"Expected offset to be 0.0, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 
-    block = [blocks objectAtIndex:1];
+    block = blocks[1];
     XCTAssertTrue(block.offset == 1.0f, @"Expected offset to be 1.0, but found %f", block.offset);
     XCTAssertTrue(block.declarations.count == 1, @"Expected 1 declaration but found %d", block.declarations.count);
 }
@@ -693,7 +694,7 @@
     XCTAssertTrue(mediaGroups.count == 1, @"Expected one media group");
 
     // check expressions
-    PXMediaGroup *mediaGroup = [mediaGroups objectAtIndex:0];
+    PXMediaGroup *mediaGroup = mediaGroups[0];
     PXNamedMediaExpression *expression = mediaGroup.query;
     XCTAssertTrue([@"orientation" isEqualToString:expression.name], @"Expected name to be 'orientation'");
     XCTAssertTrue([@"portrait" isEqualToString:expression.value], @"Expected value to be 'portrait'");
@@ -713,16 +714,16 @@
     XCTAssertTrue(mediaGroups.count == 1, @"Expected one media group");
 
     // check expressions
-    PXMediaGroup *mediaGroup = [mediaGroups objectAtIndex:0];
+    PXMediaGroup *mediaGroup = mediaGroups[0];
     PXMediaExpressionGroup *expressionGroup = mediaGroup.query;
     NSArray *expressions = expressionGroup.expressions;
     XCTAssertTrue(expressions.count == 2, @"Expected two query expressions");
 
-    PXNamedMediaExpression *expression = [expressions objectAtIndex:0];
+    PXNamedMediaExpression *expression = expressions[0];
     XCTAssertTrue([@"orientation" isEqualToString:expression.name], @"Expected name to be 'orientation'");
     XCTAssertTrue([@"portrait" isEqualToString:expression.value], @"Expected value to be 'portrait'");
 
-    expression = [expressions objectAtIndex:1];
+    expression = expressions[1];
     XCTAssertTrue([@"min-device-width" isEqualToString:expression.name], @"Expected name to be 'orientation'");
     XCTAssertTrue([@(100) isEqual:expression.value], @"Expected value to be 100");
 
@@ -741,7 +742,7 @@
     XCTAssertTrue(mediaGroups.count == 1, @"Expected one media group");
 
     // check expressions
-    PXMediaGroup *mediaGroup = [mediaGroups objectAtIndex:0];
+    PXMediaGroup *mediaGroup = mediaGroups[0];
     PXNamedMediaExpression *expression = mediaGroup.query;
     XCTAssertNil(expression, @"Expected the media group query to be nil");
 
@@ -773,7 +774,7 @@
     XCTAssertTrue(mediaGroups.count == 1, @"Expected one media group");
 
     // check expressions
-    PXMediaGroup *mediaGroup = [mediaGroups objectAtIndex:0];
+    PXMediaGroup *mediaGroup = mediaGroups[0];
     PXNamedMediaExpression *expression = mediaGroup.query;
     id value = expression.value;
     XCTAssertTrue([value isKindOfClass: [NSNumber class]], @"Expected device aspect ratio to be an NSNumber");
@@ -799,7 +800,7 @@
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected one rule set");
 
-    PXRuleSet *ruleSet = [ruleSets objectAtIndex:0];
+    PXRuleSet *ruleSet = ruleSets[0];
     PXDeclaration *backgroundColor = [ruleSet declarationForName:@"background-color"];
     XCTAssertNotNil(backgroundColor, @"Expected a 'background-color' declaration");
 
@@ -812,10 +813,10 @@
 
 - (void)testLargeCSS
 {
-    double start = [[NSDate date] timeIntervalSinceNow];
+    double start = [NSDate date].timeIntervalSinceNow;
     NSString *path = [[NSBundle bundleWithIdentifier:@"com.pixate.pixate-freestyleTests"] pathForResource:@"large" ofType:@"css"];
     PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:path withOrigin:PXStylesheetOriginApplication];
-    double diff = [[NSDate date] timeIntervalSinceNow] - start;
+    double diff = [NSDate date].timeIntervalSinceNow - start;
 
     XCTAssertNotNil(stylesheet, @"Expected a stylesheet");
 

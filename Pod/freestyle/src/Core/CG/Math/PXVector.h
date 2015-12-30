@@ -18,6 +18,7 @@
 //  PXVector.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -70,7 +71,7 @@
  *  @param x The x-component of this vector
  *  @param y The y-component of this vector
  */
-+ (id)vectorWithX:(CGFloat)x Y:(CGFloat)y;
++ (instancetype)vectorWithX:(CGFloat)x Y:(CGFloat)y;
 
 /**
  *  Allocate and initialize a new instance as specified by two end points of a line segment
@@ -78,7 +79,7 @@
  *  @param p1 The starting point of the vector
  *  @param p2 The ending point of the vector
  */
-+ (id)vectorWithStartPoint:(CGPoint)p1 EndPoint:(CGPoint)p2;
++ (instancetype)vectorWithStartPoint:(CGPoint)p1 EndPoint:(CGPoint)p2;
 
 /**
  *  Initialize a new instance
@@ -86,7 +87,7 @@
  *  @param x The x-component of this vector
  *  @param y The y-component of this vector
  */
-- (id)initWithX:(CGFloat)x Y:(CGFloat)y;
+- (instancetype)initWithX:(CGFloat)x Y:(CGFloat)y NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Find the angle between two vectors

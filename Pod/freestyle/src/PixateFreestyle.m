@@ -72,10 +72,10 @@
 		sharedInstance = [[PixateFreestyle alloc] init];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MMM d yyyy"];
+        dateFormatter.dateFormat = @"MMM d yyyy";
         NSLocale *localeUS = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-        [dateFormatter setLocale:localeUS];
-        NSDate *date = [dateFormatter dateFromString:[NSString stringWithUTF8String:__DATE__]];
+        dateFormatter.locale = localeUS;
+        NSDate *date = [dateFormatter dateFromString:@__DATE__];
         sharedInstance->_buildDate = date;
         sharedInstance->_version = @PIXATE_FREESTYLE_VERSION;
         sharedInstance->_apiVersion = PIXATE_FREESTYLE_API_VERSION;
@@ -167,12 +167,12 @@
     return [declarationStrings componentsJoinedByString:@"\n"];
 }
 
-+ (id)styleSheetFromFilePath:(NSString *)filePath withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromFilePath:(NSString *)filePath withOrigin:(PXStylesheetOrigin)origin
 {
     return [PXStylesheet styleSheetFromFilePath:filePath withOrigin:origin];
 }
 
-+ (id)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
 {
     return [PXStylesheet styleSheetFromSource:source withOrigin:origin];
 }
@@ -203,7 +203,7 @@
     {
         if([self titaniumMode])
         {
-            [[window subviews] enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+            [window.subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
                 // Style the first Ti* named view we find, the rest should be recursive from that one
                 if([[[view class] description] hasPrefix:@"Ti"])
                 {
@@ -251,7 +251,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {

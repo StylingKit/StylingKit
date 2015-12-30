@@ -18,6 +18,7 @@
 //  PXUICollectionView.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -199,7 +200,7 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
                 
                 @"selection-mode" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                     PXUICollectionView *view = (PXUICollectionView *)context.styleable;
-                    NSString *mode = [declaration.stringValue lowercaseString];
+                    NSString *mode = (declaration.stringValue).lowercaseString;
                     
                     if([mode isEqualToString:@"single"])
                     {

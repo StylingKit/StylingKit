@@ -18,6 +18,7 @@
 //  PXTransformLexer.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -41,11 +42,11 @@
  *
  *  @param source The sourse string to scane
  */
-- (id)initWithString:(NSString *)source;
+- (instancetype)initWithString:(NSString *)source;
 
 /**
  *  Return the next lexeme in the stream. This returns nil when no more tokens can be matched.
  */
-- (PXStylesheetLexeme *)nextLexeme;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXStylesheetLexeme *nextLexeme;
 
 @end

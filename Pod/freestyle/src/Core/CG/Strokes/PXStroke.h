@@ -18,6 +18,7 @@
 //  PXStroke.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/2/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -30,12 +31,12 @@
  *  PXStrokeType is an enumeration indicating the placement of the stroke in relation to the contour it is being applied
  *  to.
  */
-typedef enum
+typedef NS_ENUM(unsigned int, PXStrokeType)
 {
     kStrokeTypeCenter,
     kStrokeTypeInner,
     kStrokeTypeOuter
-} PXStrokeType;
+};
 
 /**
  *  PXStroke is a general-purpose stroke allowing for the specification of standard stroke properties such as width,
@@ -88,13 +89,13 @@ typedef enum
  *
  *  @param width The stroke width
  */
-- (id)initWithStrokeWidth:(CGFloat)width;
+- (instancetype)initWithStrokeWidth:(CGFloat)width NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Return ths CGPath representation of the stroke as it will be rendered in the CGContext
  *
  *  @param path The path to stroke
  */
-- (CGPathRef)newStrokedPath:(CGPathRef)path;
+- (CGPathRef)newStrokedPath:(CGPathRef)path CF_RETURNS_RETAINED;
 
 @end

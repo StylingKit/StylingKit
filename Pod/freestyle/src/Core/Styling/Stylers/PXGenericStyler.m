@@ -18,6 +18,7 @@
 //  PXGenericStyler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 1/31/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -29,12 +30,12 @@
     NSDictionary *handlers_;
 }
 
-- (id)initWithHandlers:(NSDictionary *)handlers
+- (instancetype)initWithHandlers:(NSDictionary *)handlers
 {
     return [self initWithHandlers:handlers completionBlock:nil];
 }
 
-- (id)initWithHandlers:(NSDictionary *)handlers completionBlock:(PXStylerCompletionBlock)block
+- (instancetype)initWithHandlers:(NSDictionary *)handlers completionBlock:(PXStylerCompletionBlock)block
 {
     if (self = [super initWithCompletionBlock:block])
     {

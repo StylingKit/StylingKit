@@ -18,6 +18,7 @@
 //  PXTransformTokenType.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -27,7 +28,7 @@
 /**
  *  An enumeration of the PXTransform token types
  */
-typedef enum
+typedef NS_ENUM(int, PXTransformTokens)
 {
     PXTransformToken_ERROR = -1,
     PXTransformToken_EOF,
@@ -59,7 +60,7 @@ typedef enum
     PXTransformToken_SKEWY,
     PXTransformToken_ROTATE,
     PXTransformToken_MATRIX
-} PXTransformTokens;
+};
 
 /**
  *  A singleton class used to represent a PXTransform token type

@@ -18,6 +18,7 @@
 //  UIBarItem+PXStyling.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/7/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -54,7 +55,7 @@ void PXForceLoadUIBarItemPXStyling() {}
         return;
     
     // Set default styling mode to 'normal' (i.e. stylable)
-    [[UIBarItem appearance] setStyleMode:PXStylingNormal];
+    [UIBarItem appearance].styleMode = PXStylingNormal;
 }
 
 - (NSString *)styleClass
@@ -136,7 +137,7 @@ void PXForceLoadUIBarItemPXStyling() {}
 - (void)setStyleClass:(NSString *)aClass
 {
     // make sure we have a string - needed to filter bad input from IB
-    aClass = [aClass description];
+    aClass = aClass.description;
 
     // trim leading and trailing whitespace
     aClass = [aClass stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -157,7 +158,7 @@ void PXForceLoadUIBarItemPXStyling() {}
 - (void)setStyleId:(NSString *)anId
 {
     // make sure we have a string - needed to filter bad input from IB
-    anId = [anId description];
+    anId = anId.description;
 
     // trim leading and trailing whitespace
     anId = [anId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -169,13 +170,13 @@ void PXForceLoadUIBarItemPXStyling() {}
 
 - (void)setStyleChangeable:(BOOL)changeable
 {
-    objc_setAssociatedObject(self, &STYLE_CHANGEABLE_KEY, [NSNumber numberWithBool:changeable], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &STYLE_CHANGEABLE_KEY, @(changeable), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)setStyleCSS:(NSString *)aCSS
 {
     // make sure we have a string - needed to filter bad input from IB
-    aCSS = [aCSS description];
+    aCSS = aCSS.description;
 
     objc_setAssociatedObject(self, &STYLE_CSS_KEY, aCSS, OBJC_ASSOCIATION_COPY_NONATOMIC);
     

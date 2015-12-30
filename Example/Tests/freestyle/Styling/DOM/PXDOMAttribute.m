@@ -2,6 +2,7 @@
 //  PXDOMAttribute.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -14,7 +15,7 @@
 @synthesize name = name_;
 @synthesize value = value_;
 
-- initWithName:(NSString *)name value:(id)value
+- (instancetype) initWithName:(NSString *)name value:(id)value
 {
     if (self = [super init])
     {
@@ -22,8 +23,8 @@
 
         if (parts.count == 2)
         {
-            namespacePrefix_ = [parts objectAtIndex:0];
-            name_ = [parts lastObject];
+            namespacePrefix_ = parts[0];
+            name_ = parts.lastObject;
         }
         else
         {

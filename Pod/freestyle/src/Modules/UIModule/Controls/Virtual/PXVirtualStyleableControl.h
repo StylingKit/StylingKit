@@ -18,6 +18,7 @@
 //  PXVirtualControlBase.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/16/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -36,7 +37,7 @@ typedef void(^PXViewStyleUpdaterBlock)(PXRuleSet *ruleSet, PXStylerContext *cont
 @property (nonatomic, copy) NSString *defaultPseudoClass;
 @property (nonatomic, weak) CALayer *layer;
 
-- (id)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName;
-- (id)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(PXViewStyleUpdaterBlock)block;
+- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName;
+- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(PXViewStyleUpdaterBlock)block NS_DESIGNATED_INITIALIZER;
 
 @end

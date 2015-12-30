@@ -75,12 +75,12 @@ static int ddLogLevel = LOG_LEVEL_WARN;
     }
 }
 
-+ (id)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
 {
     return [self styleSheetFromSource:source withOrigin:origin filename:nil];
 }
 
-+ (id)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin filename:(NSString *)name
++ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin filename:(NSString *)name
 {
     PXStylesheet *result = nil;
 
@@ -106,7 +106,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
     return result;
 }
 
-+ (id)styleSheetFromFilePath:(NSString *)aFilePath withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromFilePath:(NSString *)aFilePath withOrigin:(PXStylesheetOrigin)origin
 {
     NSString* source = [NSString stringWithContentsOfFile:aFilePath encoding:NSUTF8StringEncoding error:NULL];
 
@@ -122,12 +122,12 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithOrigin:PXStylesheetOriginApplication];
 }
 
-- (id)initWithOrigin:(PXStylesheetOrigin)anOrigin
+- (instancetype)initWithOrigin:(PXStylesheetOrigin)anOrigin
 {
     if (self = [super init])
     {

@@ -18,6 +18,7 @@
 //  PXAdjacentSiblingCombinator.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/25/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -66,7 +67,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
             if (elementIndex != NSNotFound && elementIndex > 0)
             {
-                id previousSibling = [children objectAtIndex:elementIndex - 1];
+                id previousSibling = children[elementIndex - 1];
 
                 if ([previousSibling conformsToProtocol:@protocol(PXStyleable)])
                 {

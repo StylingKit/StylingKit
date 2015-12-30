@@ -18,6 +18,7 @@
 //  PXSourceWriter.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/26/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -33,7 +34,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -54,16 +55,16 @@
 
 - (void)decreaseIndent
 {
-    if ([currentIndent length] >= [indentString length])
+    if (currentIndent.length >= indentString.length)
     {
-        currentIndent = [currentIndent substringToIndex:[currentIndent length] - [indentString length]];
+        currentIndent = [currentIndent substringToIndex:currentIndent.length - indentString.length];
     }
     // else log error
 }
 
 - (void)printIndent
 {
-    if ([currentIndent length] > 0)
+    if (currentIndent.length > 0)
     {
         [strings addObject:currentIndent];
     }

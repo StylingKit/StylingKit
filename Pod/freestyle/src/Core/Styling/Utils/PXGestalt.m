@@ -18,6 +18,7 @@
 //  PXGestalt.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Giovanni Donelli on 8/23/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -53,7 +54,7 @@ PXVersionType PXVersionFromObject(id value)
         stringValue = _PX_NomalizeStringInput(stringValue);
     }
     else if ([value isKindOfClass:[NSNumber class]])
-        stringValue = [(NSNumber*)value stringValue];
+        stringValue = ((NSNumber*)value).stringValue;
     else
         DDLogError(@"**** %s invalid version value: %@", __FUNCTION__, value );
     
@@ -74,17 +75,17 @@ PXVersionType PXVersionFromString(NSString* vString)
     
     if ( elementsCount >= 1 ) {
         NSString* nString = versionElements[0];
-        result.primary    = [nString integerValue];
+        result.primary    = nString.integerValue;
     }
     
     if ( elementsCount >= 2 ) {
         NSString* nString = versionElements[1];
-        result.secondary  = [nString integerValue];
+        result.secondary  = nString.integerValue;
     }
     
     if ( elementsCount >= 3 ) {
         NSString* nString = versionElements[2];
-        result.tertiary   = [nString integerValue];
+        result.tertiary   = nString.integerValue;
     }
     
     if ( elementsCount >= 4 ) {
@@ -175,7 +176,7 @@ NSComparisonResult PXVersionCompare(PXVersionType v1, PXVersionType v2)
 
 PXVersionType PXVersionCurrentSystem()
 {
-    return PXVersionFromString( [[UIDevice currentDevice] systemVersion] );
+    return PXVersionFromString( [UIDevice currentDevice].systemVersion );
 }
 
 BOOL PXVersionMatch(PXVersionType base, PXVersionType testVersion)
@@ -227,8 +228,8 @@ PXScreenRatioType PXScreenRatioFromString(NSString* ratioString)
     dendString  = [dendString  stringByTrimmingCharactersInSet:charSet];
     visorString = [visorString stringByTrimmingCharactersInSet:charSet];
     
-    CGFloat dividend = [dendString  integerValue];
-    CGFloat divisor  = [visorString integerValue];
+    CGFloat dividend = dendString.integerValue;
+    CGFloat divisor  = visorString.integerValue;
     
     if (dividend == 0)
         DDLogError(@"Malformed ratio (dividend is 0) string: %@", ratioString);
@@ -246,7 +247,7 @@ PXScreenRatioType PXScreenRatioFromObject(id object)
         return PXScreenRatioFromString( (NSString*)object );
     }
     else if ([object isKindOfClass:[NSNumber class]]) {
-        return [(NSNumber*)object floatValue];
+        return ((NSNumber*)object).floatValue;
     }
     else
     {
@@ -294,7 +295,7 @@ PXScreenRatioType PXScreenRatioFromCGSize(CGSize size)
 PXScreenRatioType PXScreenRatioCurrentSystem()
 {
     UIScreen* mainScreen     = [UIScreen mainScreen];
-    CGRect mainScreenBounds  = [mainScreen bounds];
+    CGRect mainScreenBounds  = mainScreen.bounds;
 
     return PXScreenRatioFromCGSize(mainScreenBounds.size);
 }

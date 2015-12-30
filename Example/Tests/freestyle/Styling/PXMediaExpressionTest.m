@@ -2,6 +2,7 @@
 //  PXMediaExpressionTest.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Giovanni Donelli on 8/23/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -135,7 +136,7 @@
 
 - (NSString*) _systemMainVersion
 {
-    NSString* sysVersion = [[UIDevice currentDevice] systemVersion];
+    NSString* sysVersion = [UIDevice currentDevice].systemVersion;
     NSArray* versionArray = [sysVersion componentsSeparatedByString:@"."];
     
     NSString* mainVersion = versionArray[0];
@@ -159,7 +160,7 @@
     PXStylesheet* validStylesheet2 = [parser parse:validSource2 withOrigin:PXStylesheetOriginApplication];
     XCTAssertTrue( [validStylesheet2.ruleSets count] > 0 , @"ruleSets count %d", [validStylesheet2.ruleSets count] );
     
-    NSString *maxCurrentSource = [NSString stringWithFormat:@"@media (max-device-os-version: '%@') { #myButton { background-color: pink; } }", [[UIDevice currentDevice] systemVersion] ];
+    NSString *maxCurrentSource = [NSString stringWithFormat:@"@media (max-device-os-version: '%@') { #myButton { background-color: pink; } }", [UIDevice currentDevice].systemVersion ];
     PXStylesheet* maxCurrentStylesheet = [parser parse:maxCurrentSource withOrigin:PXStylesheetOriginApplication];
     XCTAssertTrue( [maxCurrentStylesheet.ruleSets count] > 0 , @"ruleSets count %d", [maxCurrentStylesheet.ruleSets count] );
 }
@@ -183,7 +184,7 @@
 
 - (void) testOSMediaQuery_NumberVersion
 {
-    NSString* sysVersion = [[UIDevice currentDevice] systemVersion];
+    NSString* sysVersion = [UIDevice currentDevice].systemVersion;
     NSArray* versionArray = [sysVersion componentsSeparatedByString:@"."];
     
     NSString* mainVersion = versionArray[0];
@@ -250,7 +251,7 @@
 
 - (void) testOSMediaQuery_ScreenRatio
 {    
-    CGRect screenBounds =[[UIScreen mainScreen] bounds];
+    CGRect screenBounds =[UIScreen mainScreen].bounds;
     
     NSString *validSource = [NSString stringWithFormat:@"@media (device-aspect-ratio: %d/%d) { #myButton { background-color: pink; } }", 
                              (int)screenBounds.size.width, 

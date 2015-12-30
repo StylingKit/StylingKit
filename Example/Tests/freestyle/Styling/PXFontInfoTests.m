@@ -2,6 +2,7 @@
 //  PXFontInfoTests.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/26/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -27,7 +28,7 @@
 
     XCTAssertNotNil(result, @"Expected an array back when filtering by stretch");
     XCTAssertTrue(result.count == 1, @"Expected only a single font info but found %d", result.count);
-    PXFontEntry *item = [result objectAtIndex:0];
+    PXFontEntry *item = result[0];
     XCTAssertEqualObjects(normal, item, @"Expected to find normal stretch font");
 }
 
@@ -42,7 +43,7 @@
 
     XCTAssertNotNil(result, @"Expected an array back when filtering by stretch");
     XCTAssertTrue(result.count == 1, @"Expected only a single font info but found %d", result.count);
-    PXFontEntry *item = [result objectAtIndex:0];
+    PXFontEntry *item = result[0];
     XCTAssertEqualObjects(condensed, item, @"Expected to find normal stretch font");
 }
 
@@ -58,7 +59,7 @@
 
     XCTAssertNotNil(result, @"Expected an array back when filtering by weight");
     XCTAssertTrue(result.count == 1, @"Expected only a single font info but found %d", result.count);
-    PXFontEntry *item = [result objectAtIndex:0];
+    PXFontEntry *item = result[0];
     XCTAssertEqualObjects(normal, item, @"Expected %@ but found %@", normal, item);
 }
 
@@ -73,7 +74,7 @@
 
     XCTAssertNotNil(result, @"Expected an array back when filtering by weight");
     XCTAssertTrue(result.count == 1, @"Expected only a single font info but found %d", result.count);
-    PXFontEntry *item = [result objectAtIndex:0];
+    PXFontEntry *item = result[0];
     XCTAssertEqualObjects(bold, item, @"Expected %d but found %@", (int) normal, item);
 }
 
@@ -89,7 +90,7 @@
 
     XCTAssertNotNil(result, @"Expected an array back when filtering by style");
     XCTAssertTrue(result.count == 1, @"Expected only a single font info but found %d", result.count);
-    PXFontEntry *item = [result objectAtIndex:0];
+    PXFontEntry *item = result[0];
     XCTAssertEqualObjects(normal, item, @"Expected %@ but found %@", normal, item);
 }
 
@@ -104,7 +105,7 @@
 
     XCTAssertNotNil(result, @"Expected an array back when filtering by style");
     XCTAssertTrue(result.count == 1, @"Expected only a single font info but found %d", result.count);
-    PXFontEntry *item = [result objectAtIndex:0];
+    PXFontEntry *item = result[0];
     XCTAssertEqualObjects(italic, item, @"Expected %d but found %@", (int) normal, item);
 }
 

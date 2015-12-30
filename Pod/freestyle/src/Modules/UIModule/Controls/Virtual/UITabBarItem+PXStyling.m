@@ -18,6 +18,7 @@
 //  UITabBarItem+PXStyling.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/31/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -110,7 +111,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
             }],
             
             [[PXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, PXTextContentStyler *styler, PXStylerContext *context) {
-                [view setTitle: context.text];
+                view.title = context.text;
             }],
         ];
     });
@@ -124,7 +125,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
     {
         if (context.usesImage)
         {
-            [self setImage:context.backgroundImage];
+            self.image = context.backgroundImage;
         }
     }
     else if([context.activeStateName isEqualToString:@"selected"])

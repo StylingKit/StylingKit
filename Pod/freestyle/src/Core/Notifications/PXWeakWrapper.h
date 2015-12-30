@@ -18,6 +18,7 @@
 //  PXWeakWrapper.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 2/28/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -28,6 +29,6 @@
 
 @property (nonatomic, readonly, weak) id object;
 
-- (id)initWithObject:(id)object;
+- (instancetype)initWithObject:(id)object NS_DESIGNATED_INITIALIZER;
 
 @end

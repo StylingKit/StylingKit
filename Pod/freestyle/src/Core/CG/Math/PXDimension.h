@@ -18,6 +18,7 @@
 //  PXDimension.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/7/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -27,7 +28,7 @@
 /**
  *  An enumeration indicating a dimension type
  */
-typedef enum
+typedef NS_ENUM(unsigned int, PXDimensionType)
 {
     kDimensionTypeEms,
     kDimensionTypeExs,
@@ -47,7 +48,7 @@ typedef enum
     kDimensionTypeKilohertz,
     kDimensionTypePercentage,
     kDimensionTypeUserDefined,
-} PXDimensionType;
+};
 
 /**
  *  PXDimension is used to associate a dimensions with a float. Methods are included to inquire into the general
@@ -78,7 +79,7 @@ typedef enum
  *  @param number The dimension's scalar value
  *  @param dimension The dimension units as a string
  */
-+ (id)dimensionWithNumber:(CGFloat)number withDimension:(NSString *)dimension;
++ (instancetype)dimensionWithNumber:(CGFloat)number withDimension:(NSString *)dimension;
 
 /**
  *  Initialize a new instance
@@ -86,55 +87,55 @@ typedef enum
  *  @param number The dimension's scalar value
  *  @param dimension The dimension units as a string
  */
-- (id)initWithNumber:(CGFloat)number withDimension:(NSString *)dimension;
+- (instancetype)initWithNumber:(CGFloat)number withDimension:(NSString *)dimension NS_DESIGNATED_INITIALIZER;
 
 /**
  *  A predicate indicating if this is a length value
  */
-- (BOOL)isLength;
+@property (NS_NONATOMIC_IOSONLY, getter=isLength, readonly) BOOL length;
 
 /**
  *  A predicate indicating if this is a angle value
  */
-- (BOOL)isAngle;
+@property (NS_NONATOMIC_IOSONLY, getter=isAngle, readonly) BOOL angle;
 
 /**
  *  A predicate indicating if this is a time value
  */
-- (BOOL)isTime;
+@property (NS_NONATOMIC_IOSONLY, getter=isTime, readonly) BOOL time;
 
 /**
  *  A predicate indicating if this is a frequency value
  */
-- (BOOL)isFrequency;
+@property (NS_NONATOMIC_IOSONLY, getter=isFrequency, readonly) BOOL frequency;
 
 /**
  *  A predicate indicating if this is a percentage
  */
-- (BOOL)isPercentage;
+@property (NS_NONATOMIC_IOSONLY, getter=isPercentage, readonly) BOOL percentage;
 
 /**
  *  A predicate indicating if this is a user-defined value
  */
-- (BOOL)isUserDefined;
+@property (NS_NONATOMIC_IOSONLY, getter=isUserDefined, readonly) BOOL userDefined;
 
 /**
  *  Return a new PXDimension, converting this instance's value to points. If this instance is not a length, then a zero
  *  value will be returned.
  */
-- (PXDimension *)points;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXDimension *points;
 
 /**
  *  Return a new PXDimension, converting this instance's value to degrees. If this instance is not an angle, then a zero
  *  value will be returned.
  */
-- (PXDimension *)degrees;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXDimension *degrees;
 
 /**
  *  Return a new PXDimesion, converting this instance's value to radians. If this instance is not an angle, then a zero
  *  value will be returned.
  */
-- (PXDimension *)radians;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXDimension *radians;
 
 
 

@@ -18,6 +18,7 @@
 //  PXURLMatcher.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/19/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -26,6 +27,6 @@
 
 @interface PXURLMatcher : PXPatternMatcher
 
-- (id)initWithType:(int)type;
+- (instancetype)initWithType:(int)type NS_DESIGNATED_INITIALIZER;
 
 @end

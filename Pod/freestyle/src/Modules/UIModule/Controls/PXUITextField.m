@@ -18,6 +18,7 @@
 //  PXUITextField.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -60,7 +61,7 @@ static const char STATE_KEY;
 
 // Private PX_PositionCursorDelegate class
 @interface PX_PositionCursorDelegate : NSObject
-- (id) initWithTextField:(UITextField *)textField;
+- (instancetype) initWithTextField:(UITextField *)textField NS_DESIGNATED_INITIALIZER;
 @end
 
 @implementation PX_PositionCursorDelegate
@@ -68,7 +69,7 @@ static const char STATE_KEY;
     UITextField *textField_;
 }
 
-- (id) initWithTextField:(UITextField *)textField
+- (instancetype) initWithTextField:(UITextField *)textField
 {
     if(self = [super init])
     {
@@ -82,9 +83,9 @@ static const char STATE_KEY;
 {
     UITextRange *currentPos = textField_.selectedTextRange;
 
-    [textField_ setSelectedTextRange:[textField_ textRangeFromPosition:[textField_ beginningOfDocument]
-                                                            toPosition:[textField_ beginningOfDocument]]];
-    [textField_ setSelectedTextRange:currentPos];
+    textField_.selectedTextRange = [textField_ textRangeFromPosition:textField_.beginningOfDocument
+                                                            toPosition:textField_.beginningOfDocument];
+    textField_.selectedTextRange = currentPos;
 }
 @end
 // End PX_PositionCursorDelegate Private class
@@ -207,7 +208,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  nsShadow.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                  nsShadow.shadowBlurRadius = shadow.blurDistance;
                  
-                 [currentTextAttributes setObject:nsShadow forKey:NSShadowAttributeName];
+                 currentTextAttributes[NSShadowAttributeName] = nsShadow;
              }],
              
              [[PXFontStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXFontStyler *styler, PXStylerContext *context) {
@@ -220,8 +221,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                      [context setPropertyValue:currentTextAttributes forName:@"text-attributes"];
                  }
                  
-                 [currentTextAttributes setObject:context.font
-                                           forKey:NSFontAttributeName];
+                 currentTextAttributes[NSFontAttributeName] = context.font;
                  
              }],
              
@@ -239,8 +239,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  
                  if(color)
                  {
-                     [currentTextAttributes setObject:color
-                                               forKey:NSForegroundColorAttributeName];
+                     currentTextAttributes[NSForegroundColorAttributeName] = color;
                  }
              }],
              
@@ -470,7 +469,7 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
-    Class _superClass = [self pxClass];
+    Class _superClass = self.pxClass;
 	struct objc_super mysuper;
 	mysuper.receiver = self;
 	mysuper.super_class = _superClass;
@@ -488,7 +487,7 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 
 - (CGRect)editingRectForBounds:(CGRect)bounds
 {
-    Class _superClass = [self pxClass];
+    Class _superClass = self.pxClass;
 	struct objc_super mysuper;
 	mysuper.receiver = self;
 	mysuper.super_class = _superClass;
@@ -523,7 +522,7 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 
     if (ruleSetInfo.animatingRuleSets.count > 0)
     {
-        PXAnimationInfo *info = (ruleSetInfo.transitions.count > 0) ? [ruleSetInfo.transitions objectAtIndex:0] : nil;
+        PXAnimationInfo *info = (ruleSetInfo.transitions.count > 0) ? (ruleSetInfo.transitions)[0] : nil;
 
         if (info != nil)
         {

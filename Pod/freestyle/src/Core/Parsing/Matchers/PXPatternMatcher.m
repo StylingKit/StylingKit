@@ -18,6 +18,7 @@
 //  PXPatternMatcher.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/23/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -39,7 +40,7 @@ static NSRange NO_MATCH;
 
 #pragma mark - Initializers
 
-- (id)initWithType:(int)aType withPatternString:(NSString *)patternString
+- (instancetype)initWithType:(int)aType withPatternString:(NSString *)patternString
 {
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:patternString
@@ -49,7 +50,7 @@ static NSRange NO_MATCH;
     return [self initWithType:aType withRegularExpression:regex];
 }
 
-- (id)initWithType:(int)aType withRegularExpression:(NSRegularExpression *)aPattern
+- (instancetype)initWithType:(int)aType withRegularExpression:(NSRegularExpression *)aPattern
 {
     if (self = [super init])
     {

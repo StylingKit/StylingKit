@@ -18,6 +18,7 @@
 //  PXUISearchBar.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -76,7 +77,7 @@
                 nsShadow.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                 nsShadow.shadowBlurRadius = shadow.blurDistance;
                 
-                [currentTextAttributes setObject:nsShadow forKey:NSShadowAttributeName];
+                currentTextAttributes[NSShadowAttributeName] = nsShadow;
 
                 [view px_setScopeBarButtonTitleTextAttributes:currentTextAttributes forState:UIControlStateNormal];
             }],
@@ -101,7 +102,7 @@
                 
              @"bar-style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXUISearchBar *view = (PXUISearchBar *)context.styleable;
-                NSString *style = [declaration.stringValue lowercaseString];
+                NSString *style = (declaration.stringValue).lowercaseString;
 
                 if ([style isEqualToString:@"black"])
                 {

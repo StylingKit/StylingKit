@@ -18,6 +18,7 @@
 //  PXBarShadowStyler
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/16/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -66,7 +67,7 @@
         CGSize size = context.shadowBounds.size;
 
         // create image
-        if ([[context.shadowUrl.pathExtension lowercaseString] isEqualToString:@"svg"])
+        if ([(context.shadowUrl.pathExtension).lowercaseString isEqualToString:@"svg"])
         {
             CGRect bounds = context.shadowBounds;
 

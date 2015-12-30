@@ -18,6 +18,7 @@
 //  PXVirtualControlBase.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/16/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -45,17 +46,17 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithParent:nil elementName:@"" viewStyleUpdaterBlock:nil];
 }
 
-- (id)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName
+- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName
 {
     return [self initWithParent:parent elementName:elementName viewStyleUpdaterBlock:nil];
 }
 
-- (id)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(PXViewStyleUpdaterBlock)block
+- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(PXViewStyleUpdaterBlock)block
 {
     if (self = [super init])
     {

@@ -18,6 +18,7 @@
 //  PXProxy.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 11/22/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -30,7 +31,7 @@
 
 #pragma mark - Initializer
 
-- (id)initWithBaseOject:(id)base overridingObject:(id)overrider
+- (instancetype)initWithBaseOject:(id)base overridingObject:(id)overrider
 {
     self.baseObject = base;
     self.overridingObject = overrider;
@@ -54,12 +55,11 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
     
-    NSString *returnType = [NSString stringWithCString:invocation.methodSignature.methodReturnType
-                                              encoding:NSUTF8StringEncoding];
+    NSString *returnType = @(invocation.methodSignature.methodReturnType);
     
     BOOL voidReturnType = [returnType isEqualToString:@"v"];
     
-    if (self.overridingObject && [self.overridingObject respondsToSelector:[invocation selector]])
+    if (self.overridingObject && [self.overridingObject respondsToSelector:invocation.selector])
     {
         [invocation invokeWithTarget:self.overridingObject];
         
@@ -70,7 +70,7 @@
         }
     }
     
-    if (self.baseObject && [self.baseObject respondsToSelector:[invocation selector]])
+    if (self.baseObject && [self.baseObject respondsToSelector:invocation.selector])
     {
         [invocation invokeWithTarget:self.baseObject];
     }

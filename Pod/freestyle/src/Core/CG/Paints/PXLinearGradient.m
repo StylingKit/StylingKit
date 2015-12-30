@@ -28,11 +28,11 @@
 #import "PXMath.h"
 #import "UIColor+PXColors.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, PXAngleType) {
     PXAngleTypeAngle,
     PXAngleTypePoints,
     PXAngleTypeDirection
-} PXAngleType;
+};
 
 @implementation PXLinearGradient
 {
@@ -53,7 +53,7 @@ typedef enum {
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {

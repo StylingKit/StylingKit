@@ -2,6 +2,7 @@
 //  W3CSelectorTests.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -30,8 +31,8 @@ static NSString *tempFile;
 {
     if ([self class] == [W3CSelectorTests class])
     {
-        NSDictionary* env = [[NSProcessInfo processInfo] environment];
-        NSString *baseDirectory = [env objectForKey:@"PROJECT_DIRECTORY"];
+        NSDictionary* env = [NSProcessInfo processInfo].environment;
+        NSString *baseDirectory = env[@"PROJECT_DIRECTORY"];
         NSString *relativePath = @"Frameworks/Pixate/PixateTests/Resources/W3C/Selectors Level 3/results";
 
         if (!baseDirectory)
@@ -71,7 +72,7 @@ static NSString *tempFile;
 
     if (titles.count > 0)
     {
-        titleNode = [titles objectAtIndex:0];
+        titleNode = titles[0];
     }
 
     // find style node
@@ -79,7 +80,7 @@ static NSString *tempFile;
 
     if (styles.count > 0)
     {
-        styleNode = [styles objectAtIndex:0];
+        styleNode = styles[0];
     }
 
     // find test body

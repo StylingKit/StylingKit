@@ -18,6 +18,7 @@
 //  UINavigationItem+PXStyling.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/15/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -139,7 +140,7 @@ void PXForceLoadUINavigationItemPXStyling() {}
 - (void)setStyleClass:(NSString *)aClass
 {
     // make sure we have a string - needed to filter bad input from IB
-    aClass = [aClass description];
+    aClass = aClass.description;
 
     // trim leading and trailing whitespace
     aClass = [aClass stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -159,7 +160,7 @@ void PXForceLoadUINavigationItemPXStyling() {}
 - (void)setStyleId:(NSString *)anId
 {
     // make sure we have a string - needed to filter bad input from IB
-    anId = [anId description];
+    anId = anId.description;
 
     // trim leading and trailing whitespace
     anId = [anId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -171,13 +172,13 @@ void PXForceLoadUINavigationItemPXStyling() {}
 
 - (void)setStyleChangeable:(BOOL)changeable
 {
-    objc_setAssociatedObject(self, &STYLE_CHANGEABLE_KEY, [NSNumber numberWithBool:changeable], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &STYLE_CHANGEABLE_KEY, @(changeable), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)setStyleCSS:(NSString *)aCSS
 {
     // make sure we have a string - needed to filter bad input from IB
-    aCSS = [aCSS description];
+    aCSS = aCSS.description;
 
     objc_setAssociatedObject(self, &STYLE_CSS_KEY, aCSS, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
@@ -356,15 +357,15 @@ static NSDictionary *PSEUDOCLASS_MAP;
                              
                              if ([@"uppercase" isEqualToString:transform])
                              {
-                                 item.title = [value uppercaseString];
+                                 item.title = value.uppercaseString;
                              }
                              else if ([@"lowercase" isEqualToString:transform])
                              {
-                                 item.title = [value lowercaseString];
+                                 item.title = value.lowercaseString;
                              }
                              else if ([@"capitalize" isEqualToString:transform])
                              {
-                                 item.title = [value capitalizedString];
+                                 item.title = value.capitalizedString;
                              }
                          }],
         ];

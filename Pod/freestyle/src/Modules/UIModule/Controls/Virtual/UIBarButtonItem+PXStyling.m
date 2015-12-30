@@ -18,6 +18,7 @@
 //  UIBarButtonItem+PXStyling.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 12/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -148,7 +149,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
                                                          
                @"-ios-rendering-mode" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 
-                    NSString *mode = [declaration.stringValue lowercaseString];
+                    NSString *mode = (declaration.stringValue).lowercaseString;
                     
                     if([mode isEqualToString:@"original"])
                     {
@@ -209,7 +210,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
             }],
             
             [[PXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, PXTextContentStyler *styler, PXStylerContext *context) {
-                [view setTitle: context.text];
+                view.title = context.text;
             }],
             
 
@@ -237,7 +238,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
     {
         if (context.usesColorOnly)
         {
-            [target setTintColor: context.color];
+            target.tintColor = context.color;
             return;
         }
     }
@@ -255,7 +256,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
     return ^(PXDeclaration *declaration, PXStylerContext *context)
     {
         UIBarButtonItem *view = (target == nil ? (UIBarButtonItem *)context.styleable : target);
-        [view setTintColor: declaration.colorValue];
+        view.tintColor = declaration.colorValue;
     };
 }
     
@@ -265,7 +266,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
     {
         NSDictionary *attributes = [context propertyValueForName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
         NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
-        [currentTextAttributes setObject:context.font forKey:NSFontAttributeName];
+        currentTextAttributes[NSFontAttributeName] = context.font;
         [context setPropertyValue:currentTextAttributes forName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
         
         [(target == nil ? styleable : target) setTitleTextAttributes:currentTextAttributes
@@ -283,7 +284,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
         UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
         if(color)
         {
-            [currentTextAttributes setObject:color forKey:NSForegroundColorAttributeName];
+            currentTextAttributes[NSForegroundColorAttributeName] = color;
             [context setPropertyValue:currentTextAttributes forName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
             [(target == nil ? styleable : target) setTitleTextAttributes:currentTextAttributes
                                      forState:[context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP]];

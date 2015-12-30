@@ -18,6 +18,7 @@
 //  PXStyleCache.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/2/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -30,7 +31,7 @@
 @property (nonatomic, readonly) NSString *styleKey;
 @property (nonatomic, readonly) BOOL cached;
 
-- (id)initWithStyleable:(id<PXStyleable>)styleable;
+- (instancetype)initWithStyleable:(id<PXStyleable>)styleable NS_DESIGNATED_INITIALIZER;
 
 - (void)applyStylesToStyleable:(id<PXStyleable>)styleable;
 

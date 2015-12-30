@@ -18,6 +18,7 @@
 //  PXUILabel.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 9/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -116,7 +117,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
                      attrString = [[NSMutableAttributedString alloc] initWithString:context.transformedText attributes:dict];
                  }
                  
-                 [weakSelf setAttributedText:attrString];
+                 weakSelf.attributedText = attrString;
             }]
         ];
         
@@ -263,8 +264,8 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
 - (BOOL)preventStyling
 {
-    return [[self pxStyleParent] isKindOfClass:[UIButton class]]
-        || ([[self pxStyleParent] class] == NSClassFromString(@"UINavigationItemButtonView"))
+    return [self.pxStyleParent isKindOfClass:[UIButton class]]
+        || ([self.pxStyleParent class] == NSClassFromString(@"UINavigationItemButtonView"))
         ;
 }
 

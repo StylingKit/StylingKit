@@ -2,6 +2,7 @@
 //  PXDOMElement.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -30,7 +31,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
 {
     if (self = [super init])
     {
@@ -38,8 +39,8 @@
 
         if (parts.count == 2)
         {
-            namespacePrefix_ = [parts objectAtIndex:0];
-            name_ = [parts lastObject];
+            namespacePrefix_ = parts[0];
+            name_ = parts.lastObject;
         }
         else
         {
@@ -62,7 +63,7 @@
 {
     id result = nil;
 
-    NSMutableArray *attributes = [attributes_ objectForKey:name];
+    NSMutableArray *attributes = attributes_[name];
 
     for (PXDOMAttribute *attribute in attributes)
     {
@@ -126,11 +127,11 @@
 
                 [attributes addObject:attribute];
                 [attributeNames_ addObject:attribute.name];
-                [attributes_ setObject:attributes forKey:attribute.name];
+                attributes_[attribute.name] = attributes;
             }
             else
             {
-                NSMutableArray *attributes = [attributes_ objectForKey:name];
+                NSMutableArray *attributes = attributes_[name];
 
                 [attributes addObject:attribute];
             }
@@ -164,7 +165,7 @@
     if (![prefixNames_ containsObject:prefix])
     {
         [prefixNames_ addObject:prefix];
-        [prefixes_ setObject:URI forKey:prefix];
+        prefixes_[prefix] = URI;
     }
 }
 
@@ -190,7 +191,7 @@
 
     while (currentElement)
     {
-        NSString *candidate = [currentElement->prefixes_ objectForKey:prefix];
+        NSString *candidate = currentElement->prefixes_[prefix];
 
         if (candidate)
         {
@@ -212,7 +213,7 @@
 
     for (NSString *prefix in [prefixNames_ reverseObjectEnumerator])
     {
-        if ([namespaceURI isEqualToString:[prefixes_ objectForKey:prefix]])
+        if ([namespaceURI isEqualToString:prefixes_[prefix]])
         {
             result = prefix;
             break;
@@ -255,7 +256,7 @@
 
     for (NSString *name in attributeNames_)
     {
-        for (PXDOMAttribute *attribute in [attributes_ objectForKey:name])
+        for (PXDOMAttribute *attribute in attributes_[name])
         {
             [parts addObject:@" "];
             [parts addObject:attribute.description];

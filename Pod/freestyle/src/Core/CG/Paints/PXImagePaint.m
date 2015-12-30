@@ -33,7 +33,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithURL:(NSURL *)url
+- (instancetype)initWithURL:(NSURL *)url
 {
     if (self = [super init]) {
         _imageURL = url;
@@ -53,7 +53,7 @@
 - (BOOL)hasSVGImageURL
 {
     return
-    [[_imageURL.pathExtension lowercaseString] isEqualToString:@"svg"]
+    [(_imageURL.pathExtension).lowercaseString isEqualToString:@"svg"]
     ||  ([@"data" isEqualToString:_imageURL.scheme] && [_imageURL.resourceSpecifier hasPrefix:@"image/svg+xml"]);
 }
 
@@ -77,7 +77,7 @@
         }
         else
         {
-            if([[_imageURL scheme] isEqualToString:@"asset"])
+            if([_imageURL.scheme isEqualToString:@"asset"])
             {
                 image = [UIImage imageNamed:_imageURL.host];
             }
@@ -99,7 +99,7 @@
                 else
                 {
                     NSString *filename = _imageURL.lastPathComponent;
-                    NSString *basename = [filename stringByDeletingPathExtension];
+                    NSString *basename = filename.stringByDeletingPathExtension;
 
                     scale = [basename hasSuffix:@"@2x"] ? 2.0f : 1.0f;  // TODO: pull out number and use that?
                 }

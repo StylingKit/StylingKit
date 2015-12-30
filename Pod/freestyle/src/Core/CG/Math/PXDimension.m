@@ -18,6 +18,7 @@
 //  PXDimension.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/7/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -35,46 +36,44 @@ static NSDictionary *dimensionMap;
 
 + (void)initialize
 {
-    dimensionMap = [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithInt:kDimensionTypeEms], @"em",
-                    [NSNumber numberWithInt:kDimensionTypeExs], @"ex",
-                    [NSNumber numberWithInt:kDimensionTypePixels], @"px",
-                    [NSNumber numberWithInt:kDimensionTypeDevicePixels], @"dpx",
-                    [NSNumber numberWithInt:kDimensionTypeCentimeters], @"cm",
-                    [NSNumber numberWithInt:kDimensionTypeMillimeters], @"mm",
-                    [NSNumber numberWithInt:kDimensionTypeInches], @"in",
-                    [NSNumber numberWithInt:kDimensionTypePoints], @"pt",
-                    [NSNumber numberWithInt:kDimensionTypePicas], @"pc",
-                    [NSNumber numberWithInt:kDimensionTypeDegrees], @"deg",
-                    [NSNumber numberWithInt:kDimensionTypeRadians], @"rad",
-                    [NSNumber numberWithInt:kDimensionTypeGradians], @"grad",
-                    [NSNumber numberWithInt:kDimensionTypeMilliseconds], @"ms",
-                    [NSNumber numberWithInt:kDimensionTypeSeconds], @"s",
-                    [NSNumber numberWithInt:kDimensionTypeHertz], @"Hz",
-                    [NSNumber numberWithInt:kDimensionTypeKilohertz], @"kHz",
-                    [NSNumber numberWithInt:kDimensionTypePercentage], @"%",
-                    nil];
+    dimensionMap = @{@"em": @(kDimensionTypeEms),
+                    @"ex": @(kDimensionTypeExs),
+                    @"px": @(kDimensionTypePixels),
+                    @"dpx": @(kDimensionTypeDevicePixels),
+                    @"cm": @(kDimensionTypeCentimeters),
+                    @"mm": @(kDimensionTypeMillimeters),
+                    @"in": @(kDimensionTypeInches),
+                    @"pt": @(kDimensionTypePoints),
+                    @"pc": @(kDimensionTypePicas),
+                    @"deg": @(kDimensionTypeDegrees),
+                    @"rad": @(kDimensionTypeRadians),
+                    @"grad": @(kDimensionTypeGradians),
+                    @"ms": @(kDimensionTypeMilliseconds),
+                    @"s": @(kDimensionTypeSeconds),
+                    @"Hz": @(kDimensionTypeHertz),
+                    @"kHz": @(kDimensionTypeKilohertz),
+                    @"%": @(kDimensionTypePercentage)};
 }
 
 #pragma mark - Static Initializers
 
-+ (id)dimensionWithNumber:(CGFloat)number withDimension:(NSString *)dimension
++ (instancetype)dimensionWithNumber:(CGFloat)number withDimension:(NSString *)dimension
 {
     return [[PXDimension alloc] initWithNumber:number withDimension:dimension];
 }
 
 #pragma mark - Initializers
 
-- (id)initWithNumber:(CGFloat)aNumber withDimension:(NSString *)aDimension
+- (instancetype)initWithNumber:(CGFloat)aNumber withDimension:(NSString *)aDimension
 {
     if (self = [super init])
     {
         self->number = aNumber;
         self->dimension = aDimension;
 
-        NSNumber *typeNumber = [dimensionMap objectForKey:aDimension];
+        NSNumber *typeNumber = dimensionMap[aDimension];
 
-        self->type = (typeNumber) ? [typeNumber intValue] : kDimensionTypeUserDefined;
+        self->type = (typeNumber) ? typeNumber.intValue : kDimensionTypeUserDefined;
     }
 
     return self;

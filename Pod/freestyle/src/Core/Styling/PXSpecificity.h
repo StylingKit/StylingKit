@@ -18,6 +18,7 @@
 //  PXSpecificity.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -28,13 +29,13 @@
  *  The PXSpecificityType enumeration defines a list of specificity levels for rule sets based on the rule sets
  *  selector
  */
-typedef enum
+typedef NS_ENUM(unsigned int, PXSpecificityType)
 {
     kSpecificityTypeOrigin,
     kSpecificityTypeId,
     kSpecificityTypeClassOrAttribute,
     kSpecificityTypeElement
-} PXSpecificityType;
+};
 
 /**
  *  A PXSpecificity represents an order lists of specificities based on specificity type. Instances of this class are

@@ -18,6 +18,7 @@
 //  PXEllipse.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/6/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -28,19 +29,19 @@
 
 #pragma mark - Static Initializers
 
-+ (id)ellipseWithCenter:(CGPoint)aCenter withRadiusX:(CGFloat)aRadiusX withRadiusY:(CGFloat)aRadiusY
++ (instancetype)ellipseWithCenter:(CGPoint)aCenter withRadiusX:(CGFloat)aRadiusX withRadiusY:(CGFloat)aRadiusY
 {
     return [[PXEllipse alloc] initCenter:aCenter radiusX:aRadiusX radiusY:aRadiusY];
 }
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initCenter:CGPointZero radiusX:0.0f radiusY:0.0f];
 }
 
-- (id)initCenter:(CGPoint)aCenter radiusX:(CGFloat)aRadiusX radiusY:(CGFloat)aRadiusY
+- (instancetype)initCenter:(CGPoint)aCenter radiusX:(CGFloat)aRadiusX radiusY:(CGFloat)aRadiusY
 {
     if (self = [super init])
     {

@@ -117,8 +117,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     {
         if(subclass && superClass)
         {
-            NSString *className = [NSString stringWithCString:class_getName(subclass)
-                                                     encoding:NSUTF8StringEncoding];
+            NSString *className = @(class_getName(subclass));
 
             [self setElementName:elementName forClass:superClass];
             [self addStylingSubclass:className];
@@ -130,8 +129,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 {
     @autoreleasepool
     {
-        NSString *className = [NSString stringWithCString:class_getName(subclass)
-                                                 encoding:NSUTF8StringEncoding];
+        NSString *className = @(class_getName(subclass));
 
         [self setElementName:elementName forClass:class_getSuperclass(subclass)];
         [self addStylingSubclass:className];
@@ -173,7 +171,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         [PXStylesheet styleSheetFromFilePath:userPath withOrigin:PXStylesheetOriginUser];
         
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
-        [[UIView appearance] setStyleMode:PXStylingNormal];
+        [UIView appearance].styleMode = PXStylingNormal;
     }
 }
 
@@ -202,13 +200,13 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
                       NSInteger month, day, year;
 
                       // Get main info dictionary that keeps plist properties
-                      NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+                      NSDictionary *infoDictionary = [NSBundle mainBundle].infoDictionary;
 
                       // Check for Titanium mode
-                      if(infoDictionary && [infoDictionary objectForKey:@"PXTitanium"])
+                      if(infoDictionary && infoDictionary[@"PXTitanium"])
                       {
                           [PixateFreestyle sharedInstance].titaniumMode =
-                                [[infoDictionary objectForKey:@"PXTitanium"] boolValue];
+                                [infoDictionary[@"PXTitanium"] boolValue];
                       }
 
                       getMonthDayYear([PixateFreestyle sharedInstance].buildDate, &month, &day, &year);
@@ -375,7 +373,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     {
         NSMutableOrderedSet *set = objc_getAssociatedObject(self, &KVC_SET);
 
-        return [properties toCSSWithKeys:[set array]];
+        return [properties toCSSWithKeys:set.array];
     }
     else
     {
@@ -391,7 +389,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 - (void)setStyleClass:(NSString *)aClass
 {
     // make sure we have a string - needed to filter bad input from IB
-    aClass = [aClass description];
+    aClass = aClass.description;
 	
 	// reduce white spaces and duplicates
 	NSMutableSet *mutSet = [NSMutableSet new];
@@ -399,7 +397,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 	[mutSet removeObject:@""];
 
     //Precalculate classes array for performance gain
-    NSArray *classes = [mutSet allObjects];
+    NSArray *classes = mutSet.allObjects;
     classes = [classes sortedArrayUsingComparator:^NSComparisonResult(NSString *class1, NSString *class2) {
         return [class1 compare:class2];
     }];
@@ -416,7 +414,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 	
     objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, classes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-	if ([aClass length])
+	if (aClass.length)
     {
         self.styleMode = PXStylingNormal;
 	}
@@ -427,14 +425,14 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 - (void)setStyleId:(NSString *)anId
 {
     // make sure we have a string - needed to filter bad input from IB
-    anId = [anId description];
+    anId = anId.description;
 
     // trim leading and trailing whitespace
     anId = [anId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
     objc_setAssociatedObject(self, &STYLE_ID_KEY, anId, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-    if ([anId length])
+    if (anId.length)
     {
         self.styleMode = PXStylingNormal;
 	}
@@ -444,17 +442,17 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)setStyleChangeable:(BOOL)changeable
 {
-    objc_setAssociatedObject(self, &STYLE_CHANGEABLE_KEY, [NSNumber numberWithBool:changeable], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &STYLE_CHANGEABLE_KEY, @(changeable), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void)setStyleCSS:(NSString *)css
 {
     // make sure we have a string - needed to filter bad input from IB
-    css = [css description];
+    css = css.description;
 
     objc_setAssociatedObject(self, &STYLE_CSS_KEY, css, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-    if ([css length])
+    if (css.length)
     {
         self.styleMode = PXStylingNormal;
 	}
@@ -472,7 +470,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
         if ([value isKindOfClass:[NSObject class]])
         {
-            stringValue = [(NSObject *)value description];
+            stringValue = ((NSObject *)value).description;
         }
     }
     @catch (NSException *e) {
@@ -581,7 +579,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         key = [key substringFromIndex:1];
     }
 
-    id value = [properties objectForKey:key];
+    id value = properties[key];
 
     return (value != nil) ? value : [super valueForUndefinedKey:key];
 }
@@ -589,25 +587,25 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 - (void)addStyleClass:(NSString *)styleClass
 {
     if (self.styleClass){
-        self.styleClass = [NSString stringWithFormat:@"%@ %@", self.styleClass, [styleClass description]];
+        self.styleClass = [NSString stringWithFormat:@"%@ %@", self.styleClass, styleClass.description];
     } else {
-        self.styleClass = [styleClass description];
+        self.styleClass = styleClass.description;
     }
 }
 
 - (void)removeStyleClass:(NSString *)styleClass
 {
-    styleClass = [styleClass description];
+    styleClass = styleClass.description;
     NSMutableSet *mutSet = [NSMutableSet new];
 	[mutSet addObjectsFromArray:[styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 	[mutSet removeObject:@""];
-    NSArray *classesToRemove = [mutSet allObjects];
+    NSArray *classesToRemove = mutSet.allObjects;
 	NSArray *currentClasses = objc_getAssociatedObject(self, &STYLE_CLASSES_KEY);
     mutSet = [[NSMutableSet alloc] initWithArray:currentClasses];
     for (NSString *classToRemove in classesToRemove){
         [mutSet removeObject:classToRemove];
     }
-    NSArray *classes = [mutSet allObjects];
+    NSArray *classes = mutSet.allObjects;
 	self.styleClass = [classes componentsJoinedByString:@" "];
 }
 
@@ -629,9 +627,9 @@ static void getMonthDayYear(NSDate *date, NSInteger *month_p, NSInteger *day_p, 
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
 
-    *month_p = [components month];
-    *day_p   = [components day];
-    *year_p  = [components year];
+    *month_p = components.month;
+    *day_p   = components.day;
+    *year_p  = components.year;
 }
 
 static Class SubclassForViewWithClass(UIView *view, Class viewClass)

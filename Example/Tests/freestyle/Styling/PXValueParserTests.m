@@ -2,6 +2,7 @@
 //  PXValueParserTests.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/17/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -56,7 +57,7 @@
 - (PXDimension *)dimensionFromSource:(NSString *)source
 {
     NSArray *lexemes = [self lexemesFromSource:source];
-    PXStylesheetLexeme *lexeme = [lexemes objectAtIndex:0];
+    PXStylesheetLexeme *lexeme = lexemes[0];
     id value = lexeme.value;
 
     XCTAssertTrue([value isKindOfClass:[PXDimension class]], @"Expected lexeme value to a PXDimension");
@@ -275,8 +276,8 @@
     PXLinearGradient *linearGradient = paint;
     NSArray *offsets = linearGradient.offsets;
     XCTAssertTrue(2 == [offsets count], @"Expected 2 offsets, but found %d", [offsets count]);
-    CGFloat offset1 = ((NSNumber *)[offsets objectAtIndex:0]).floatValue;
-    CGFloat offset2 = ((NSNumber *)[offsets objectAtIndex:1]).floatValue;
+    CGFloat offset1 = ((NSNumber *)offsets[0]).floatValue;
+    CGFloat offset2 = ((NSNumber *)offsets[1]).floatValue;
     XCTAssertEqual(offset1, 0.25f, @"Expected 0.25f");
     XCTAssertEqual(offset2, 0.75f, @"Expected 0.75f");
 }

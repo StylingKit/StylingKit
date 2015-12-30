@@ -18,6 +18,7 @@
 //  PXStyleable.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -27,13 +28,13 @@
 /**
  *  An enumeration indicating the styling mode
  */
-typedef enum
+typedef NS_ENUM(unsigned int, PXStylingMode)
 {
     PXStylingUndefined = 0, // undefined
     PXStylingNormal,        // normal
     PXStylingNone           // none
     
-} PXStylingMode;
+};
 
 @class PXRuleSet;
 
@@ -98,7 +99,7 @@ typedef enum
 /**
  *  Return a key used to classify this styleable
  */
-- (NSString *)styleKey;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *styleKey;
 
 @optional
 
@@ -155,7 +156,7 @@ typedef enum
  *  Return a boolean indicating if this styleable should be excluded from styling. Instances that do not implement this
  *  method will assume this method was called and it returned NO
  */
-- (BOOL)preventStyling;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL preventStyling;
 
 /**
  *  Return a list of pseudo-elements that are recognized by this object
@@ -185,6 +186,6 @@ typedef enum
 /**
  *  Return a dictionary for animatable properties
  */
-- (NSDictionary *)animationPropertyHandlers;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *animationPropertyHandlers;
 
 @end

@@ -18,6 +18,7 @@
 //  PXAnimationStyler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/5/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -59,7 +60,7 @@
                  for (NSUInteger i = 0; i < names.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSString *name = [names objectAtIndex:i];
+                     NSString *name = names[i];
 
                      info.animationName = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                  }
@@ -70,9 +71,9 @@
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSNumber *time = [timeValues objectAtIndex:i];
+                     NSNumber *time = timeValues[i];
 
-                     info.animationDuration = [time floatValue];
+                     info.animationDuration = time.floatValue;
                  }
              },
              @"animation-timing-function" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -81,9 +82,9 @@
                  for (NSUInteger i = 0; i < timingFunctions.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSNumber *value = [timingFunctions objectAtIndex:i];
+                     NSNumber *value = timingFunctions[i];
 
-                     info.animationTimingFunction = (PXAnimationTimingFunction) [value intValue];
+                     info.animationTimingFunction = (PXAnimationTimingFunction) value.intValue;
                  }
              },
              @"animation-iteration-count" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -92,9 +93,9 @@
                  for (NSUInteger i = 0; i < counts.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSNumber *count = [counts objectAtIndex:i];
+                     NSNumber *count = counts[i];
 
-                     info.animationIterationCount = (NSUInteger)[count floatValue];
+                     info.animationIterationCount = (NSUInteger)count.floatValue;
                  }
              },
              @"animation-direction" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -103,9 +104,9 @@
                  for (NSUInteger i = 0; i < directions.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSNumber *value = [directions objectAtIndex:i];
+                     NSNumber *value = directions[i];
 
-                     info.animationDirection = (PXAnimationDirection) [value intValue];
+                     info.animationDirection = (PXAnimationDirection) value.intValue;
                  }
              },
              @"animation-play-state" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -114,9 +115,9 @@
                  for (NSUInteger i = 0; i < playStates.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSNumber *value = [playStates objectAtIndex:i];
+                     NSNumber *value = playStates[i];
 
-                     info.animationPlayState = (PXAnimationPlayState) [value intValue];
+                     info.animationPlayState = (PXAnimationPlayState) value.intValue;
                  }
              },
              @"animation-delay" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -125,9 +126,9 @@
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSNumber *time = [timeValues objectAtIndex:i];
+                     NSNumber *time = timeValues[i];
 
-                     info.animationDelay = [time floatValue];
+                     info.animationDelay = time.floatValue;
                  }
              },
              @"animation-fill-mode" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -136,9 +137,9 @@
                  for (NSUInteger i = 0; i < fillModes.count; i++)
                  {
                      PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
-                     NSNumber *value = [fillModes objectAtIndex:i];
+                     NSNumber *value = fillModes[i];
 
-                     info.animationFillMode = (PXAnimationFillMode) [value intValue];
+                     info.animationFillMode = (PXAnimationFillMode) value.intValue;
                  }
              },
         };
@@ -162,7 +163,7 @@
         [infos addObject:[[PXAnimationInfo alloc] init]];
     }
 
-    return [infos objectAtIndex:index];
+    return infos[index];
 }
 
 - (void)applyStylesWithContext:(PXStylerContext *)context
@@ -263,12 +264,12 @@
             {
                 [keyframe.blocks enumerateObjectsUsingBlock:^(PXKeyframeBlock *block, NSUInteger idx, BOOL *stop) {
                     [block.declarations enumerateObjectsUsingBlock:^(PXDeclaration *declaration, NSUInteger idx, BOOL *stop) {
-                        PXAnimationPropertyHandler *propertyHandler = [propertyHandlers objectForKey:declaration.name];
+                        PXAnimationPropertyHandler *propertyHandler = propertyHandlers[declaration.name];
 
                         if (propertyHandler != nil)
                         {
                             NSString *keyPath = propertyHandler.keyPath;
-                            PXKeyframeAnimation *animation = [keyframes objectForKey:keyPath];
+                            PXKeyframeAnimation *animation = keyframes[keyPath];
 
                             if (animation == nil)
                             {
@@ -279,7 +280,7 @@
                                 animation.repeatCount = info.animationIterationCount;
                                 animation.beginTime = info.animationDelay;
 
-                                [keyframes setObject:animation forKey:keyPath];
+                                keyframes[keyPath] = animation;
                             }
 
                             // TODO: need to grab value type as is appropriate for the property being animated (via blocks?)

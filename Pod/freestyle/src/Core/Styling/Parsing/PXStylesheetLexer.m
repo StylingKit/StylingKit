@@ -18,6 +18,7 @@
 //  PXSSLexer.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/23/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -39,7 +40,7 @@
 @end
 
 @implementation LexerState
-- (id)initWithSource:(NSString *)source offset:(NSUInteger)offset blockDepth:(NSUInteger)blockDepth lexemeStack:(NSMutableArray *)lexemeStack
+- (instancetype)initWithSource:(NSString *)source offset:(NSUInteger)offset blockDepth:(NSUInteger)blockDepth lexemeStack:(NSMutableArray *)lexemeStack
 {
     if (self = [super init])
     {
@@ -70,7 +71,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -218,7 +219,7 @@
     return self;
 }
 
-- (id)initWithString:(NSString *)text
+- (instancetype)initWithString:(NSString *)text
 {
     if (self = [self init])
     {
@@ -319,7 +320,7 @@
     }
     else if (_source)
     {
-        NSUInteger length = [_source length];
+        NSUInteger length = _source.length;
         BOOL followsWhitespace = NO;
 
         // loop until we find a valid lexeme or the end of the string

@@ -18,6 +18,7 @@
 //  PXOffsets.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 12/17/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -33,6 +34,6 @@
 
 @property (nonatomic, readonly) BOOL hasOffset;
 
-- (id)initWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left;
+- (instancetype)initWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left NS_DESIGNATED_INITIALIZER;
 
 @end

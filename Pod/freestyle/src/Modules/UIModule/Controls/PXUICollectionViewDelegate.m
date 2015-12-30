@@ -18,6 +18,7 @@
 //  PXUICollectionViewDelegate.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 12/2/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -33,7 +34,7 @@
 
 @implementation CGSizeWithFlag
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -53,7 +54,7 @@
 
 @implementation PXUICollectionViewDelegate
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -66,7 +67,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [[((PXProxy *)collectionView.dataSource) baseObject] collectionView:collectionView numberOfItemsInSection:section];
+    return [((PXProxy *)collectionView.dataSource).baseObject collectionView:collectionView numberOfItemsInSection:section];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -76,7 +77,7 @@
     
     if([baseObject isProxy])
     {
-        baseObject = [((PXProxy *) collectionView.dataSource) baseObject];
+        baseObject = ((PXProxy *) collectionView.dataSource).baseObject;
     }
     
     // Make sure the base object has implemented the call
@@ -121,7 +122,7 @@
     
     if([baseObject isProxy])
     {
-        baseObject = [((PXProxy *) collectionView.delegate) baseObject];
+        baseObject = ((PXProxy *) collectionView.delegate).baseObject;
     }
 
     // See if the base object implemented this call and if so, get the output

@@ -18,6 +18,7 @@
 //  PXClassUtils.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 1/4/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -164,7 +165,7 @@
 
 + (NSString *)stringFromCString:(const char *)cstring
 {
-    return (cstring) ? [NSString stringWithCString:cstring encoding:NSUTF8StringEncoding] : @"";
+    return (cstring) ? @(cstring) : @"";
 }
 
 @end

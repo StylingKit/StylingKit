@@ -18,6 +18,7 @@
 //  PXAnimationPropertyHandler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/31/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -38,7 +39,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithKeyPath:(NSString *)keyPath block:(PXAnimationPropertyHandlerBlock)block
+- (instancetype)initWithKeyPath:(NSString *)keyPath block:(PXAnimationPropertyHandlerBlock)block
 {
     if (self = [super init])
     {

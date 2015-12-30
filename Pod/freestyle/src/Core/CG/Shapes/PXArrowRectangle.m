@@ -18,6 +18,7 @@
 //  PXArrowRectangle.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 12/19/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -29,12 +30,12 @@
 
 #pragma mark - Initializers
 
-- (id)initWithDirection:(PXArrowRectangleDirection)direction
+- (instancetype)initWithDirection:(PXArrowRectangleDirection)direction
 {
     return [self initWithRect:CGRectZero direction:direction];
 }
 
-- (id)initWithRect:(CGRect)bounds direction:(PXArrowRectangleDirection)direction
+- (instancetype)initWithRect:(CGRect)bounds direction:(PXArrowRectangleDirection)direction
 {
     if (self = [super initWithRect:bounds])
     {

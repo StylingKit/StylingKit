@@ -18,6 +18,7 @@
 //  PXDeclaration.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/1/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -47,7 +48,7 @@
  *
  *  @param name The property name for this declaration
  */
-- (id)initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name;
 
 /**
  *  Initializes a newly allocated PXDeclaration using the specified property name and value. The value will be tokenized
@@ -56,7 +57,7 @@
  *  @param name The property name
  *  @param value The property value
  */
-- (id)initWithName:(NSString *)name value:(NSString *)value;
+- (instancetype)initWithName:(NSString *)name value:(NSString *)value NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Set source, filename, and lexemes associated with this declaration
@@ -70,157 +71,157 @@
 /**
  *  Convert the declaration value to a CGAffineTransformation using the SVG transform syntax
  */
-- (CGAffineTransform)affineTransformValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGAffineTransform affineTransformValue;
 
 /**
  *  Convert the declaration value to a list of animation infos, each delimited by a comma
  */
-- (NSArray *)animationInfoList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *animationInfoList;
 
 /**
  *  Convert the declaration value to a list of transition infos, each delimited by a comma
  */
-- (NSArray *)transitionInfoList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *transitionInfoList;
 
 /**
  *  Convert the declaration value to a list of animation directions, each delimited by a comma
  */
-- (NSArray *)animationDirectionList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *animationDirectionList;
 
 /**
  *  Convert the declaration value to a list of animation file modes, each delimited by a comma
  */
-- (NSArray *)animationFillModeList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *animationFillModeList;
 
 /**
  *  Convert the declaration value to a list of animation play states, each delimited by a comma
  */
-- (NSArray *)animationPlayStateList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *animationPlayStateList;
 
 /**
  *  Convert the declaration value to a list of animation timing functions, each delimited by a comma
  */
-- (NSArray *)animationTimingFunctionList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *animationTimingFunctionList;
 
 /**
  *  Convert the declaration value to a boolean value
  */
-- (BOOL)booleanValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL booleanValue;
 
 /**
  *  Convert the delcaration value to border settings
  */
-- (PXBorderInfo *)borderValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXBorderInfo *borderValue;
 
 /**
  *  Convert the declaration value to a list of radii, each represented by a CGSize
  */
-- (NSArray *)borderRadiiList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *borderRadiiList;
 
 /**
  *  Convert the declaration value to a border style
  */
-- (PXBorderStyle)borderStyleValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) PXBorderStyle borderStyleValue;
 
 /**
  *  Convert the decalration value to a list of border styles. This allows 1 = 4 values, similar to padding
  */
-- (NSArray *)borderStyleList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *borderStyleList;
 
 /**
  *  Convert the declaration value to a PXCacheStylesType value
  */
-- (PXCacheStylesType)cacheStylesTypeValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) PXCacheStylesType cacheStylesTypeValue;
 
 /**
  *  Convert the declaration value to a color value
  */
-- (UIColor *)colorValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) UIColor *colorValue;
 
 /**
  *  Convert the declaration value to a float value
  */
-- (CGFloat)floatValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat floatValue;
 
 /**
  *  Convert the declaration value to a list of floats, each delimited by a comma
  */
-- (NSArray *)floatListValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *floatListValue;
 
 /**
  *  Convert the declaration value to a UIEdgeInsets value
  */
-- (UIEdgeInsets)insetsValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) UIEdgeInsets insetsValue;
 
 /**
  *  Convert the declaration value to a PXDimension length value
  */
-- (PXDimension *)lengthValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXDimension *lengthValue;
 
 /**
  *  Convert the declaration value to a line break mode enumeration value
  */
-- (NSLineBreakMode)lineBreakModeValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSLineBreakMode lineBreakModeValue;
 
 /**
  *  Convert the declaration value to a list of names, each delimited by a comma
  */
-- (NSArray *)nameListValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *nameListValue;
 
 /**
  *  Convert the declaration value to a offsets value
  */
-- (PXOffsets *)offsetsValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXOffsets *offsetsValue;
 
 /**
  *  Convert the declaration value to a list of paints. This allows 1 - 4 paints, similar to padding
  */
-- (NSArray *)paintList;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *paintList;
 
 /**
  *  Convert the declaration value to a paint value
  */
-- (id<PXPaint>)paintValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id<PXPaint> paintValue;
 
 /**
  *  Convert the declaration value to a parse error destination value
  */
-- (PXParseErrorDestination)parseErrorDestinationValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) PXParseErrorDestination parseErrorDestinationValue;
 
 /**
  *  Convert the declaration value to seconds
  */
-- (CGFloat)secondsValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat secondsValue;
 
 /**
  *  Convert the declaration value to a list of seconds, each delimited by a comma
  */
-- (NSArray *)secondsListValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *secondsListValue;
 
 /**
  *  Convert the declaration value to a size value
  */
-- (CGSize)sizeValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGSize sizeValue;
 
 /**
  *  Convert the declaration value to a shadow value
  */
-- (PXShadow *)shadowValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXShadow *shadowValue;
 
 /**
  *  Convert the declaration value to a string value
  */
-- (NSString *)stringValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringValue;
 
 /**
  *  Convert the declaration value to a text alignment enumeration value
  */
-- (NSTextAlignment)textAlignmentValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSTextAlignment textAlignmentValue;
 
 /**
  *  Convert the declaration value to a border style enumeration value
  */
-- (UITextBorderStyle)textBorderStyleValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) UITextBorderStyle textBorderStyleValue;
 
 /**
   *  Treat the string value of this declaration as a text-transform value. Apply the text transform to the specified
@@ -233,11 +234,11 @@
 /**
  *  Convert the declaration value to a letter spacing value.
  */
-- (PXDimension *)letterSpacingValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) PXDimension *letterSpacingValue;
 
 /**
  *  Convert the declaration value to a URL
  */
-- (NSURL *)URLValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *URLValue;
 
 @end

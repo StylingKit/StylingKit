@@ -18,6 +18,7 @@
 //  PXCharacterToken.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/23/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -31,7 +32,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithCharactersInString:(NSString *)characters withTypes :(NSArray *)types
+- (instancetype)initWithCharactersInString:(NSString *)characters withTypes :(NSArray *)types
 {
     if (self = [super init])
     {
@@ -42,7 +43,7 @@
         {
             NSString *character = [characters substringWithRange:NSMakeRange(i, 1)];
 
-            [map setObject:[types objectAtIndex:i] forKey:character];
+            map[character] = types[i];
         }
 
         self->typeMap = [NSMutableDictionary dictionaryWithDictionary:map];
@@ -57,14 +58,14 @@
 {
     NSRange characterRange = NSMakeRange(aRange.location, 1);
     NSString *character = [aString substringWithRange:characterRange];
-    NSNumber *type = [typeMap objectForKey:character];
+    NSNumber *type = typeMap[character];
     PXStylesheetLexeme *result = nil;
 
     if (type)
     {
         NSString *text = [aString substringWithRange:characterRange];
 
-        result = [PXStylesheetLexeme lexemeWithType:[type intValue] withRange:characterRange withValue:text];
+        result = [PXStylesheetLexeme lexemeWithType:type.intValue withRange:characterRange withValue:text];
     }
 
     return result;

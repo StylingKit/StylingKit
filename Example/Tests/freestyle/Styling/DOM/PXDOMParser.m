@@ -2,6 +2,7 @@
 //  PXDOMParser.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -30,7 +31,7 @@
     //nsXmlParser.shouldReportNamespacePrefixes = YES;
 
     // set delegate
-    [nsXmlParser setDelegate:parser];
+    nsXmlParser.delegate = parser;
 
     // parsing...
     BOOL success = [nsXmlParser parse];
@@ -53,7 +54,7 @@
         prefixToURI_ = [[NSMutableDictionary alloc] init];
     }
 
-    [prefixToURI_ setObject:uri forKey:prefix];
+    prefixToURI_[prefix] = uri;
 }
 
 #pragma mark - Namespace parsing
@@ -96,7 +97,7 @@ didStartElement:(NSString *)elementName
     // add attributes
     for (NSString *key in attributeDict)
     {
-        [element setAttributeValue:[attributeDict objectForKey:key] forName:key];
+        [element setAttributeValue:attributeDict[key] forName:key];
     }
 
     // make child of current element

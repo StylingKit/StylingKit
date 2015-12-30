@@ -18,6 +18,7 @@
 //  PXUITableViewCell.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -111,12 +112,11 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
             
             if (context.usesColorOnly)
             {
-                [weakSelf.px_contentView setBackgroundColor: context.color];
+                (weakSelf.px_contentView).backgroundColor = context.color;
             }
             else if (context.usesImage)
             {
-                [weakSelf.px_contentView setBackgroundColor:
-                 [UIColor colorWithPatternImage:[context backgroundImageWithBounds:weakSelf.px_contentView.bounds]]];
+                (weakSelf.px_contentView).backgroundColor = [UIColor colorWithPatternImage:[context backgroundImageWithBounds:weakSelf.px_contentView.bounds]];
             }
             
         }];
@@ -177,21 +177,21 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   
                   if (group.shadows.count > 0)
                   {
-                      PXShadow *shadow = [[group shadows] objectAtIndex:0];
+                      PXShadow *shadow = group.shadows[0];
                       
-                      [view setShadowColor: shadow.color];
-                      [view setShadowOffset: CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset)];
+                      view.shadowColor = shadow.color;
+                      view.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                   }
                   else
                   {
-                      [view setShadowColor: [UIColor clearColor]];
-                      [view setShadowOffset: CGSizeZero];
+                      view.shadowColor = [UIColor clearColor];
+                      view.shadowOffset = CGSizeZero;
                   }
               }],
               
               [[PXFontStyler alloc] initWithCompletionBlock:^(id control, PXFontStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
-                  [view setFont:context.font];
+                  view.font = context.font;
               }],
               
               [[PXPaintStyler alloc] initWithCompletionBlock:^(id control, PXPaintStyler *styler, PXStylerContext *context) {
@@ -202,33 +202,33 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   {
                       if([context stateFromStateNameMap:LABEL_PSEUDOCLASS_MAP] == UIControlStateHighlighted)
                       {
-                          [view setHighlightedTextColor:color];
+                          view.highlightedTextColor = color;
                       }
                       else
                       {
-                          [view setTextColor:color];
+                          view.textColor = color;
                       }
                   }
               }],
               
               [[PXTextContentStyler alloc] initWithCompletionBlock:^(id control, PXTextContentStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
-                  [view setText:context.text];
+                  view.text = context.text;
               }],
               
               [[PXGenericStyler alloc] initWithHandlers: @{
                
                @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
-                  [view setTextAlignment:declaration.textAlignmentValue];
+                  view.textAlignment = declaration.textAlignmentValue;
               },
                @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
-                  [view setText:[declaration transformString:view.text]];
+                  view.text = [declaration transformString:view.text];
               },
                @"text-overflow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
-                  [view setLineBreakMode:declaration.lineBreakModeValue];
+                  view.lineBreakMode = declaration.lineBreakModeValue;
               }
                }],
               PXAnimationStyler.sharedInstance
@@ -283,21 +283,21 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   
                   if (group.shadows.count > 0)
                   {
-                      PXShadow *shadow = [[group shadows] objectAtIndex:0];
+                      PXShadow *shadow = group.shadows[0];
                       
-                      [view setShadowColor: shadow.color];
-                      [view setShadowOffset: CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset)];
+                      view.shadowColor = shadow.color;
+                      view.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                   }
                   else
                   {
-                      [view setShadowColor: [UIColor clearColor]];
-                      [view setShadowOffset: CGSizeZero];
+                      view.shadowColor = [UIColor clearColor];
+                      view.shadowOffset = CGSizeZero;
                   }
               }],
               
               [[PXFontStyler alloc] initWithCompletionBlock:^(id control, PXFontStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
-                  [view setFont:context.font];
+                  view.font = context.font;
               }],
               
               [[PXPaintStyler alloc] initWithCompletionBlock:^(id control, PXPaintStyler *styler, PXStylerContext *context) {
@@ -308,11 +308,11 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   {
                       if([context stateFromStateNameMap:LABEL_PSEUDOCLASS_MAP] == UIControlStateHighlighted)
                       {
-                          [view setHighlightedTextColor:color];
+                          view.highlightedTextColor = color;
                       }
                       else
                       {
-                          [view setTextColor:color];
+                          view.textColor = color;
                       }
                   }
                   
@@ -320,22 +320,22 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
               
               [[PXTextContentStyler alloc] initWithCompletionBlock:^(id control, PXTextContentStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
-                  [view setText:context.text];
+                  view.text = context.text;
               }],
               
               [[PXGenericStyler alloc] initWithHandlers: @{
                
                @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
-                  [view setTextAlignment:declaration.textAlignmentValue];
+                  view.textAlignment = declaration.textAlignmentValue;
               },
                @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
-                  [view setText:[declaration transformString:view.text]];
+                  view.text = [declaration transformString:view.text];
               },
                @"text-overflow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
-                  [view setLineBreakMode:declaration.lineBreakModeValue];
+                  view.lineBreakMode = declaration.lineBreakModeValue;
               }
                }],
               PXAnimationStyler.sharedInstance
@@ -365,11 +365,11 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                 {
                     if(state == UIControlStateHighlighted)
                     {
-                        [view setHighlightedTextColor:color];
+                        view.highlightedTextColor = color;
                     }
                     else
                     {
-                        [view setTextColor:color];
+                        view.textColor = color;
                     }
                 }
                 
@@ -383,7 +383,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                     attrString = [[NSMutableAttributedString alloc] initWithString:context.transformedText attributes:dict];
                 }
                 
-                [view setAttributedText:attrString];
+                view.attributedText = attrString;
             }]
             ];
         
@@ -410,11 +410,11 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                 {
                     if(state == UIControlStateHighlighted)
                     {
-                        [view setHighlightedTextColor:color];
+                        view.highlightedTextColor = color;
                     }
                     else
                     {
-                        [view setTextColor:color];
+                        view.textColor = color;
                     }
                 }
                 
@@ -428,7 +428,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                     attrString = [[NSMutableAttributedString alloc] initWithString:context.transformedText attributes:dict];
                 }
                 
-                [view setAttributedText:attrString];
+                view.attributedText = attrString;
             }]
             ];
         
@@ -521,7 +521,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 //          self.contentView.bounds.size.width,self.contentView.bounds.size.height);
 
     // For grouped table cells, we need to use contentView's bounds, not the cell's bounds
-    UITableView *parent = [self pxStyleParent]; //(UITableView *) self.superview;
+    UITableView *parent = self.pxStyleParent; //(UITableView *) self.superview;
     if([parent isKindOfClass:[UITableView class]] && parent.style == UITableViewStyleGrouped)
     {
         context.bounds = self.px_contentView.bounds;

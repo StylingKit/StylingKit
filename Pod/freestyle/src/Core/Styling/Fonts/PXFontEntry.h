@@ -18,6 +18,7 @@
 //  PXFontEntry.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/25/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -40,6 +41,6 @@
 + (NSArray *)filterEntries:(NSArray *)entries byStyle:(NSString *)style;
 + (NSArray *)filterEntries:(NSArray *)entries byWeight:(NSInteger)weight;
 
-- (id)initWithFontFamily:(NSString *)family fontName:(NSString *)name;
+- (instancetype)initWithFontFamily:(NSString *)family fontName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 
 @end

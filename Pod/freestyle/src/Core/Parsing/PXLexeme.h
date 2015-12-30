@@ -18,6 +18,7 @@
 //  PXLexeme.h
 //  pixate-expression-machine
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 2/3/14.
 //  Copyright (c) 2014 Pixate, Inc. All rights reserved.
 //
@@ -33,7 +34,7 @@
 @property (nonatomic, strong, readonly) id value;
 @property (nonatomic, readonly) NSRange range;
 
-- (id)initWithType:(int)type text:(NSString *)text;
+- (instancetype)initWithType:(int)type text:(NSString *)text;
 
 - (void)clearFlag:(int)type;
 - (void)setFlag:(int)type;

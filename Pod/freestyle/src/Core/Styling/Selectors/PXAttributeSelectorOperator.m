@@ -18,6 +18,7 @@
 //  PXAttributeSelectorOperator.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/1/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -49,7 +50,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)initWithOperatorType:(PXAttributeSelectorOperatorType)type
+- (instancetype)initWithOperatorType:(PXAttributeSelectorOperatorType)type
          attributeSelector:(PXAttributeSelector *)attributeSelector
                stringValue:(NSString *)value
 {

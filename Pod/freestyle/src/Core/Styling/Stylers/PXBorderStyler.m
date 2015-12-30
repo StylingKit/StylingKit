@@ -18,6 +18,7 @@
 //  PXBorderStyler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 12/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -63,39 +64,39 @@
             @"border-top" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXBorderInfo *settings = declaration.borderValue;
 
-                [context.boxModel setBorderTopWidth:settings.width];
-                [context.boxModel setBorderTopStyle:settings.style];
-                [context.boxModel setBorderTopPaint:settings.paint];
+                (context.boxModel).borderTopWidth = settings.width;
+                (context.boxModel).borderTopStyle = settings.style;
+                (context.boxModel).borderTopPaint = settings.paint;
             },
             @"border-right" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXBorderInfo *settings = declaration.borderValue;
 
-                [context.boxModel setBorderRightWidth:settings.width];
-                [context.boxModel setBorderRightStyle:settings.style];
-                [context.boxModel setBorderRightPaint:settings.paint];
+                (context.boxModel).borderRightWidth = settings.width;
+                (context.boxModel).borderRightStyle = settings.style;
+                (context.boxModel).borderRightPaint = settings.paint;
             },
             @"border-bottom" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXBorderInfo *settings = declaration.borderValue;
 
-                [context.boxModel setBorderBottomWidth:settings.width];
-                [context.boxModel setBorderBottomStyle:settings.style];
-                [context.boxModel setBorderBottomPaint:settings.paint];
+                (context.boxModel).borderBottomWidth = settings.width;
+                (context.boxModel).borderBottomStyle = settings.style;
+                (context.boxModel).borderBottomPaint = settings.paint;
             },
             @"border-left" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXBorderInfo *settings = declaration.borderValue;
 
-                [context.boxModel setBorderLeftWidth:settings.width];
-                [context.boxModel setBorderLeftStyle:settings.style];
-                [context.boxModel setBorderLeftPaint:settings.paint];
+                (context.boxModel).borderLeftWidth = settings.width;
+                (context.boxModel).borderLeftStyle = settings.style;
+                (context.boxModel).borderLeftPaint = settings.paint;
             },
 
             @"border-radius" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 NSArray *radii = declaration.borderRadiiList;
 
-                context.boxModel.radiusTopLeft = [(NSValue *)[radii objectAtIndex:0] CGSizeValue];
-                context.boxModel.radiusTopRight = [(NSValue *)[radii objectAtIndex:1] CGSizeValue];
-                context.boxModel.radiusBottomRight = [(NSValue *)[radii objectAtIndex:2] CGSizeValue];
-                context.boxModel.radiusBottomLeft = [(NSValue *)[radii objectAtIndex:3] CGSizeValue];
+                context.boxModel.radiusTopLeft = [(NSValue *)radii[0] CGSizeValue];
+                context.boxModel.radiusTopRight = [(NSValue *)radii[1] CGSizeValue];
+                context.boxModel.radiusBottomRight = [(NSValue *)radii[2] CGSizeValue];
+                context.boxModel.radiusBottomLeft = [(NSValue *)radii[3] CGSizeValue];
             },
             @"border-top-left-radius" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 context.boxModel.radiusTopLeft = declaration.sizeValue;
@@ -142,10 +143,10 @@
             @"border-color" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 NSArray *paints = declaration.paintList;
 
-                context.boxModel.borderTopPaint = [paints objectAtIndex:0];
-                context.boxModel.borderRightPaint = [paints objectAtIndex:1];
-                context.boxModel.borderBottomPaint = [paints objectAtIndex:2];
-                context.boxModel.borderLeftPaint = [paints objectAtIndex:3];
+                context.boxModel.borderTopPaint = paints[0];
+                context.boxModel.borderRightPaint = paints[1];
+                context.boxModel.borderBottomPaint = paints[2];
+                context.boxModel.borderLeftPaint = paints[3];
             },
             @"border-top-color" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 id<PXPaint> paint = declaration.paintValue;
@@ -171,10 +172,10 @@
             @"border-style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 NSArray *styles = declaration.borderStyleList;
 
-                context.boxModel.borderTopStyle = [(PXValue *)[styles objectAtIndex:0] PXBorderStyleValue];
-                context.boxModel.borderRightStyle = [(PXValue *)[styles objectAtIndex:1] PXBorderStyleValue];
-                context.boxModel.borderBottomStyle = [(PXValue *)[styles objectAtIndex:2] PXBorderStyleValue];
-                context.boxModel.borderLeftStyle = [(PXValue *)[styles objectAtIndex:3] PXBorderStyleValue];
+                context.boxModel.borderTopStyle = [(PXValue *)styles[0] PXBorderStyleValue];
+                context.boxModel.borderRightStyle = [(PXValue *)styles[1] PXBorderStyleValue];
+                context.boxModel.borderBottomStyle = [(PXValue *)styles[2] PXBorderStyleValue];
+                context.boxModel.borderLeftStyle = [(PXValue *)styles[3] PXBorderStyleValue];
             },
             @"border-top-style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXBorderStyle style = declaration.borderStyleValue;

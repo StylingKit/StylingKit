@@ -69,7 +69,7 @@ void PXForceLoadNSObjectPXSubclass() {}
 	}
 
     // creating the new classname by prefixing with the Pixate class name
-	const char *className = [[NSString stringWithFormat:@"%@_%@", [self description], [superClass description]] UTF8String];
+	const char *className = [NSString stringWithFormat:@"%@_%@", [self description], [superClass description]].UTF8String;
 
     // Check to see if the new Pixate class as already been created
 	Class newClass = objc_getClass(className);

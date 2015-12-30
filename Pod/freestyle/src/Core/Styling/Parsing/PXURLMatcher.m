@@ -18,6 +18,7 @@
 //  PXURLMatcher.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/19/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -26,7 +27,7 @@
 
 @implementation PXURLMatcher
 
-- (id)initWithType:(int)type
+- (instancetype)initWithType:(int)type
 {
     if (self = [super initWithType:type withPatternString:@"^url\\(\\s*(?:\"([^\"\\r\\n]*)\"|(data:[^,\\r\\n\\)]+,[a-zA-Z0-9+/ \\t\\r\\n]+\\={0,2})|([!#$%&*-~]*))\\s*\\)"])
     {

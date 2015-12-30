@@ -18,6 +18,7 @@
 //  PXCombinatorBase.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/25/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -47,7 +48,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)initWithLHS:(id<PXSelector>)lhs RHS:(id<PXSelector>)rhs
+- (instancetype)initWithLHS:(id<PXSelector>)lhs RHS:(id<PXSelector>)rhs
 {
     if (self = [super init])
     {

@@ -18,6 +18,7 @@
 //  PXPolygon.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/9/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -31,12 +32,12 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithPoints:nil];
 }
 
-- (id)initWithPoints:(NSArray *)pointArray
+- (instancetype)initWithPoints:(NSArray *)pointArray
 {
     self = [super init];
 
@@ -74,16 +75,16 @@
 {
     CGPathRef resultPath = nil;
 
-    if ([self.points count] > 1)
+    if ((self.points).count > 1)
     {
         CGMutablePathRef path = CGPathCreateMutable();
-        CGPoint p = [[self.points objectAtIndex:0] CGPointValue];
+        CGPoint p = [(self.points)[0] CGPointValue];
 
         CGPathMoveToPoint(path, NULL, p.x, p.y);
 
-        for (int i = 1; i < [self.points count]; i++)
+        for (int i = 1; i < (self.points).count; i++)
         {
-            p = [[self.points objectAtIndex:i] CGPointValue];
+            p = [(self.points)[i] CGPointValue];
 
             CGPathAddLineToPoint(path, NULL, p.x, p.y);
         }

@@ -2,6 +2,7 @@
 //  PXStylerContextTests.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Robin Debreuil on 1/10/2014.
 //  Copyright (c) 2014 Pixate, Inc. All rights reserved.
 //
@@ -103,10 +104,10 @@
     XCTAssertEqualObjects(context.font.familyName, @"American Typewriter", @"font name does not match");
     XCTAssertEqualObjects(fullFontName, @"AmericanTypewriter-Bold", @"font style does not match");
     XCTAssertEqualObjects(@(context.font.pointSize), @22, @"font size does not match");
-    XCTAssertEqualObjects([attributes objectForKey:NSUnderlineStyleAttributeName], @(NSUnderlinePatternSolid | NSUnderlineStyleSingle), @"font underline does not match");
+    XCTAssertEqualObjects(attributes[NSUnderlineStyleAttributeName], @(NSUnderlinePatternSolid | NSUnderlineStyleSingle), @"font underline does not match");
     
-    XCTAssertEqualObjects([attributes objectForKey:NSKernAttributeName], @11, @"kerned em size does not match");
-    XCTAssertEqualObjects([attributes objectForKey:NSForegroundColorAttributeName], [UIColor blueColor], @"text color does not match");
+    XCTAssertEqualObjects(attributes[NSKernAttributeName], @11, @"kerned em size does not match");
+    XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], [UIColor blueColor], @"text color does not match");
 }
 
 - (void)testGeneratedTextAttributes
@@ -129,10 +130,10 @@
     XCTAssertEqualObjects(context.font.familyName, @"Arial", @"font name does not match");
     XCTAssertEqualObjects(fullFontName, @"Arial-BoldMT", @"font style does not match");
     XCTAssertEqualObjects(@(context.font.pointSize), @16, @"font kerning does not match");
-    XCTAssertEqualObjects([attributes objectForKey:NSUnderlineStyleAttributeName], @(NSUnderlinePatternSolid | NSUnderlineStyleSingle), @"font underline does not match");
+    XCTAssertEqualObjects(attributes[NSUnderlineStyleAttributeName], @(NSUnderlinePatternSolid | NSUnderlineStyleSingle), @"font underline does not match");
     
-    XCTAssertEqualObjects([attributes objectForKey:NSKernAttributeName], @32, @"kerned em size does not match");
-    XCTAssertEqualObjects([attributes objectForKey:NSForegroundColorAttributeName], [UIColor redColor], @"text color does not match");
+    XCTAssertEqualObjects(attributes[NSKernAttributeName], @32, @"kerned em size does not match");
+    XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], [UIColor redColor], @"text color does not match");
 }
 
 - (void)testMergededAttributes
@@ -150,9 +151,9 @@
     
     attributes = [context mergeTextAttributes:attributes];
     
-    XCTAssertEqualObjects([attributes objectForKey:NSForegroundColorAttributeName], [UIColor yellowColor], @"text color does not match");
+    XCTAssertEqualObjects(attributes[NSForegroundColorAttributeName], [UIColor yellowColor], @"text color does not match");
     XCTAssertEqualObjects(context.font.familyName, @"Arial", @"font name does not match");
-    XCTAssertEqualObjects([attributes objectForKey:NSKernAttributeName], @16, @"font kerning does not match"); // should not be 22!
+    XCTAssertEqualObjects(attributes[NSKernAttributeName], @16, @"font kerning does not match"); // should not be 22!
 }
 
 @end

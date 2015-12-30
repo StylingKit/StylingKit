@@ -18,6 +18,7 @@
 //  PXBorderInfo.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/25/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -28,17 +29,17 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithPaint:nil width:0.0f style:PXBorderStyleNone];
 }
 
-- (id)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width
+- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width
 {
     return [self initWithPaint:paint width:width style:PXBorderStyleSolid];
 }
 
-- (id)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
+- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
     if (self = [super init])
     {

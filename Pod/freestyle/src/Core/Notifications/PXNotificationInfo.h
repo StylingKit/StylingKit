@@ -18,6 +18,7 @@
 //  PXNotificationInfo.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 2/28/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -26,7 +27,7 @@
 
 @interface PXNotificationInfo : PXWeakWrapper
 
-- (id)initWithObject:(id)object withBlock:(void(^)())block;
+- (instancetype)initWithObject:(id)object withBlock:(void(^)())block NS_DESIGNATED_INITIALIZER;
 
 - (void)invokeBlock;
 

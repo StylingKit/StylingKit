@@ -18,6 +18,7 @@
 //  PXCircle.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 5/31/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -31,19 +32,19 @@
 
 #pragma mark - Static Initializers
 
-+ (id)circleWithCenter:(CGPoint)aCenter withRadius:(CGFloat)aRadius
++ (instancetype)circleWithCenter:(CGPoint)aCenter withRadius:(CGFloat)aRadius
 {
     return [[PXCircle alloc] initCenter:aCenter radius:aRadius];
 }
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initCenter:CGPointZero radius:0.0f];
 }
 
-- (id)initCenter:(CGPoint)aCenter radius:(CGFloat)aRadius
+- (instancetype)initCenter:(CGPoint)aCenter radius:(CGFloat)aRadius
 {
     if (self = [super init])
     {

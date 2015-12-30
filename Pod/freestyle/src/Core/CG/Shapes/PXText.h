@@ -18,6 +18,7 @@
 //  PXText.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/2/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -54,13 +55,13 @@
  *
  *  @param text The text to render
  */
-+ (id)textWithString:(NSString *)text;
++ (instancetype)textWithString:(NSString *)text;
 
 /**
  *  Initializers a newly allocated PXText instance and sets its text to the specified value
  *
  *  @param text The text to render
  */
-- (id)initWithString:(NSString *)text;
+- (instancetype)initWithString:(NSString *)text NS_DESIGNATED_INITIALIZER;
 
 @end

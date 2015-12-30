@@ -18,6 +18,7 @@
 //  PXWeakWrapper.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 2/28/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -26,7 +27,7 @@
 
 @implementation PXWeakWrapper
 
-- (id)initWithObject:(id)object
+- (instancetype)initWithObject:(id)object
 {
     if (self = [super init])
     {

@@ -18,6 +18,7 @@
 //  PXStroke.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/2/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -28,12 +29,12 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithStrokeWidth:0.0f];
 }
 
-- (id)initWithStrokeWidth:(CGFloat)width
+- (instancetype)initWithStrokeWidth:(CGFloat)width
 {
     if (self = [super init])
     {
@@ -56,16 +57,16 @@
 {
     CGPathRef strokedPath;
 
-    if ([_dashArray count] > 0)
+    if (_dashArray.count > 0)
     {
-        NSUInteger count = [_dashArray count];
+        NSUInteger count = _dashArray.count;
         CGFloat lengths[count];
 
         for (int i = 0; i < count; i++)
         {
-            NSNumber *number = [_dashArray objectAtIndex:i];
+            NSNumber *number = _dashArray[i];
 
-            lengths[i] = [number floatValue];
+            lengths[i] = number.floatValue;
         }
 
         CGPathRef dashedStroke = CGPathCreateCopyByDashingPath(path, NULL, _dashOffset, lengths, count);

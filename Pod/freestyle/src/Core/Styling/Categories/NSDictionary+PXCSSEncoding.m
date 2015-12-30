@@ -18,6 +18,7 @@
 //  NSDictionary+PXCSSEncoding.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 12/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -44,7 +45,7 @@ void PXForceLoadNSDictionaryPXCSSEncoding() {}
     NSMutableArray* cssLine = [[NSMutableArray alloc] init];
 
     [keys enumerateObjectsUsingBlock:^(id key, NSUInteger idx, BOOL *stop) {
-        id object = [self objectForKey:key];
+        id object = self[key];
 
         if (object != nil)
         {

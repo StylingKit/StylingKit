@@ -1,3 +1,6 @@
+
+//  Modified by Anton Matosov on 12/30/15.
+
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
@@ -28,10 +31,10 @@
     NSMethodSignature *sig = [[MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
     
     if(!sig) return NO;
-    else if([sig methodReturnType][0] != @encode(id)[0]) return NO;
+    else if(sig.methodReturnType[0] != @encode(id)[0]) return NO;
     
     // it exists, returns an object, but does it return any non-objects by reference?
-    NSUInteger num = [sig numberOfArguments];
+    NSUInteger num = sig.numberOfArguments;
     for(unsigned i = 2; i < num; i++)
     {
         const char *type = [sig getArgumentTypeAtIndex: i];
@@ -91,8 +94,8 @@
         // look for return-by-reference objects
         _MALazyBlockFuture *invocationFuture = nil;
         NSMutableArray *parameterDatas = nil;
-        NSMethodSignature *sig = [invocation methodSignature];
-        NSUInteger num = [sig numberOfArguments];
+        NSMethodSignature *sig = invocation.methodSignature;
+        NSUInteger num = sig.numberOfArguments;
         for(unsigned i = 2; i < num; i++)
         {
             const char *type = [sig getArgumentTypeAtIndex: i];
@@ -109,7 +112,7 @@
                     
                     // allocate space to receive the final computed value
                     NSMutableData *newParameterSpace = [NSMutableData dataWithLength: sizeof(id)];
-                    id *newParameterValue = [newParameterSpace mutableBytes];
+                    id *newParameterValue = newParameterSpace.mutableBytes;
                     
                     // set the parameter to point to the new space
                     [invocation setArgument: &newParameterValue atIndex: i];

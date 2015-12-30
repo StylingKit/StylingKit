@@ -1,3 +1,6 @@
+
+//  Modified by Anton Matosov on 12/30/15.
+
 #import <objc/runtime.h>
 
 #import "MAMethodSignatureCache.h"
@@ -31,7 +34,7 @@
     return cache;
 }
 
-- (id)init
+- (instancetype)init
 {
     if((self = [super init]))
     {

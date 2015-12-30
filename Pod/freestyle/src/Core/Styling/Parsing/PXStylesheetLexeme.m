@@ -18,6 +18,7 @@
 //  PXLexeme.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/23/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -37,34 +38,34 @@
 
 #pragma mark - Static Initializers
 
-+ (id)lexemeWithType:(int)type
++ (instancetype)lexemeWithType:(int)type
 {
     return [[PXStylesheetLexeme alloc] initWithType:type withRange:NSMakeRange(NSNotFound, 0) withValue:nil];
 }
 
-+ (id)lexemeWithType:(int)type withRange:(NSRange)range
++ (instancetype)lexemeWithType:(int)type withRange:(NSRange)range
 {
     return [[PXStylesheetLexeme alloc] initWithType:type withRange:range withValue:nil];
 }
 
-+ (id)lexemeWithType:(int)type withValue:(id)value
++ (instancetype)lexemeWithType:(int)type withValue:(id)value
 {
     return [[PXStylesheetLexeme alloc] initWithType:type withRange:NSMakeRange(NSNotFound, 0) withValue:value];
 }
 
-+ (id)lexemeWithType:(int)type withRange:(NSRange)range withValue:(id)value
++ (instancetype)lexemeWithType:(int)type withRange:(NSRange)range withValue:(id)value
 {
     return [[PXStylesheetLexeme alloc] initWithType:type withRange:range withValue:value];
 }
 
 #pragma mark - Initializers
 
-- (id)initWithType:(int)type text:(NSString *)text
+- (instancetype)initWithType:(int)type text:(NSString *)text
 {
     return [self initWithType:type withRange:NSMakeRange(NSNotFound, 0) withValue:text];
 }
 
-- (id)initWithType:(int)aType withRange:(NSRange)aRange withValue:(id)aValue
+- (instancetype)initWithType:(int)aType withRange:(NSRange)aRange withValue:(id)aValue
 {
     if (self = [super init])
     {

@@ -18,6 +18,7 @@
 //  PXUICollectionViewCell.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -78,12 +79,11 @@ static const char STYLE_CHILDREN;
             
             if (context.usesColorOnly)
             {
-                [weakSelf.px_contentView setBackgroundColor: context.color];
+                (weakSelf.px_contentView).backgroundColor = context.color;
             }
             else if (context.usesImage)
             {
-                [weakSelf.px_contentView setBackgroundColor:
-                 [UIColor colorWithPatternImage:[context backgroundImageWithBounds:weakSelf.px_contentView.bounds]]];
+                (weakSelf.px_contentView).backgroundColor = [UIColor colorWithPatternImage:[context backgroundImageWithBounds:weakSelf.px_contentView.bounds]];
             }
             
         }];

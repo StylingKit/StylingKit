@@ -18,6 +18,7 @@
 //  PXValueParser.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/3/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -215,7 +216,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         if (urls.count > 0)
         {
-            NSURL *url = [urls objectAtIndex:0];
+            NSURL *url = urls[0];
 
             path = url.path;
         }
@@ -320,10 +321,10 @@ static NSString *ASSET_SCHEME = @"asset://";
     dispatch_once(&onceToken, ^{
         NSMutableSet *s = [[NSMutableSet alloc] init];
 
-        [s addObjectsFromArray:[ANIMATION_DIRECTION_MAP allKeys]];
-        [s addObjectsFromArray:[ANIMATION_FILL_MODE_MAP allKeys]];
-        [s addObjectsFromArray:[ANIMATION_PLAY_STATE_MAP allKeys]];
-        [s addObjectsFromArray:[ANIMATION_TIMING_FUNCTION_MAP allKeys]];
+        [s addObjectsFromArray:ANIMATION_DIRECTION_MAP.allKeys];
+        [s addObjectsFromArray:ANIMATION_FILL_MODE_MAP.allKeys];
+        [s addObjectsFromArray:ANIMATION_PLAY_STATE_MAP.allKeys];
+        [s addObjectsFromArray:ANIMATION_TIMING_FUNCTION_MAP.allKeys];
 
         KEYWORDS = [NSSet setWithSet:s];
     });
@@ -339,7 +340,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     {
         info.animationDuration = self.secondsValue;
     }
-    if ([self isType:PXSS_IDENTIFIER] && ([ANIMATION_TIMING_FUNCTION_MAP objectForKey:currentLexeme.value] != nil))
+    if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_TIMING_FUNCTION_MAP[currentLexeme.value] != nil))
     {
         info.animationTimingFunction = self.animationTimingFunction;
     }
@@ -355,15 +356,15 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         [self advance];
     }
-    if ([self isType:PXSS_IDENTIFIER] && ([ANIMATION_DIRECTION_MAP objectForKey:currentLexeme.value] != nil))
+    if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_DIRECTION_MAP[currentLexeme.value] != nil))
     {
         info.animationDirection = self.animationDirection;
     }
-    if ([self isType:PXSS_IDENTIFIER] && ([ANIMATION_FILL_MODE_MAP objectForKey:currentLexeme.value] != nil))
+    if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_FILL_MODE_MAP[currentLexeme.value] != nil))
     {
         info.animationFillMode = self.animationFillMode;
     }
-    if ([self isType:PXSS_IDENTIFIER] && ([ANIMATION_PLAY_STATE_MAP objectForKey:currentLexeme.value] != nil))
+    if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_PLAY_STATE_MAP[currentLexeme.value] != nil))
     {
         info.animationPlayState = self.animationPlayState;
     }
@@ -375,7 +376,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 {
     PXAnimationInfo *info = [[PXAnimationInfo alloc] init];
 
-    if ([self isType:PXSS_IDENTIFIER] && ([ANIMATION_TIMING_FUNCTION_MAP objectForKey:currentLexeme.value] == nil))
+    if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_TIMING_FUNCTION_MAP[currentLexeme.value] == nil))
     {
         info.animationName = currentLexeme.value;
         [self advance];
@@ -384,7 +385,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     {
         info.animationDuration = self.secondsValue;
     }
-    if ([self isType:PXSS_IDENTIFIER] && ([ANIMATION_TIMING_FUNCTION_MAP objectForKey:currentLexeme.value] != nil))
+    if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_TIMING_FUNCTION_MAP[currentLexeme.value] != nil))
     {
         info.animationTimingFunction = self.animationTimingFunction;
     }
@@ -689,11 +690,11 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_IDENTIFIER])
         {
             NSString *text = currentLexeme.value;
-            NSNumber *value = [MAP valueForKey:[text lowercaseString]];
+            NSNumber *value = [MAP valueForKey:text.lowercaseString];
 
             if (value)
             {
-                result = (PXBorderStyle) [value intValue];
+                result = (PXBorderStyle) value.intValue;
             }
 
             [self advance];
@@ -1066,11 +1067,11 @@ static NSString *ASSET_SCHEME = @"asset://";
             void (^addWith2xVersions)(NSString *) = ^(NSString *path) {
                 if (path)
                 {
-                    NSString *pathMinusExtension = [path stringByDeletingPathExtension];
+                    NSString *pathMinusExtension = path.stringByDeletingPathExtension;
 
                     if (![pathMinusExtension hasSuffix:@"@2x"])
                     {
-                        NSString *extension = [[path pathExtension] lowercaseString];
+                        NSString *extension = path.pathExtension.lowercaseString;
                         NSString *path2x = [NSString stringWithFormat:@"%@@2x.%@", pathMinusExtension, extension];
 
                         if ([UIScreen mainScreen].scale == 2.0f)
@@ -1106,15 +1107,15 @@ static NSString *ASSET_SCHEME = @"asset://";
             else if ([path hasPrefix:BUNDLE_SCHEME])
             {
                 path = [path substringFromIndex:BUNDLE_SCHEME.length];
-                NSString *pathMinusExtension = [path stringByDeletingPathExtension];
-                NSString *extension = [[path pathExtension] lowercaseString];
+                NSString *pathMinusExtension = path.stringByDeletingPathExtension;
+                NSString *extension = path.pathExtension.lowercaseString;
 
                 addWith2xVersions([[NSBundle mainBundle] pathForResource:pathMinusExtension ofType:extension]);
             }
             else if ([path hasPrefix:ASSET_SCHEME])
             {
                 path = [path substringFromIndex:ASSET_SCHEME.length];
-                NSString *pathMinusExtension = [path stringByDeletingPathExtension];
+                NSString *pathMinusExtension = path.stringByDeletingPathExtension;
                 
                 result = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ASSET_SCHEME, pathMinusExtension]];
             }
@@ -1133,8 +1134,8 @@ static NSString *ASSET_SCHEME = @"asset://";
             {
                 addWith2xVersions([NSString stringWithFormat:@"%@/%@", [PXValueParser documentsFilePath], path]);
 
-                NSString *pathMinusExtension = [path stringByDeletingPathExtension];
-                NSString *extension = [[path pathExtension] lowercaseString];
+                NSString *pathMinusExtension = path.stringByDeletingPathExtension;
+                NSString *extension = path.pathExtension.lowercaseString;
 
                 addWith2xVersions([[NSBundle mainBundle] pathForResource:pathMinusExtension ofType:extension]);
             }
@@ -1269,9 +1270,9 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_IDENTIFIER])
         {
             NSString *blendingMode = currentLexeme.value;
-            NSNumber *blendModeValue = [BLEND_MODE_MAP objectForKey:blendingMode];
+            NSNumber *blendModeValue = BLEND_MODE_MAP[blendingMode];
 
-            result.blendMode = (blendModeValue) ? [blendModeValue intValue] : kCGBlendModeNormal;
+            result.blendMode = (blendModeValue) ? blendModeValue.intValue : kCGBlendModeNormal;
 
             [self advance];
         }
@@ -1490,7 +1491,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         {
             NSNumber *number = (NSNumber *)currentLexeme.value;
 
-            result = [number floatValue] / divisor;
+            result = number.floatValue / divisor;
 
             [self advance];
         }
@@ -1516,7 +1517,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         {
             NSNumber *number = (NSNumber *)currentLexeme.value;
 
-            result = [number floatValue] / 360.0f;
+            result = number.floatValue / 360.0f;
 
             [self advance];
         }
@@ -1638,7 +1639,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
 - (PXStylesheetLexeme *)advance
 {
-    return currentLexeme = (_lexemeIndex < _lexemes.count) ? [_lexemes objectAtIndex:_lexemeIndex++] : nil;
+    return currentLexeme = (_lexemeIndex < _lexemes.count) ? _lexemes[_lexemeIndex++] : nil;
 }
 
 - (NSString *)lexemeNameFromType:(int)type
@@ -1681,11 +1682,11 @@ static NSString *ASSET_SCHEME = @"asset://";
     if ([self isType:PXSS_IDENTIFIER])
     {
         NSString *text = currentLexeme.value;
-        NSNumber *value = [ANIMATION_DIRECTION_MAP objectForKey:[text lowercaseString]];
+        NSNumber *value = ANIMATION_DIRECTION_MAP[text.lowercaseString];
 
         if (value)
         {
-            result = (PXAnimationDirection) [value intValue];
+            result = (PXAnimationDirection) value.intValue;
         }
     }
     else
@@ -1705,11 +1706,11 @@ static NSString *ASSET_SCHEME = @"asset://";
     if ([self isType:PXSS_IDENTIFIER])
     {
         NSString *text = currentLexeme.value;
-        NSNumber *value = [ANIMATION_PLAY_STATE_MAP objectForKey:[text lowercaseString]];
+        NSNumber *value = ANIMATION_PLAY_STATE_MAP[text.lowercaseString];
 
         if (value)
         {
-            result = (PXAnimationPlayState) [value intValue];
+            result = (PXAnimationPlayState) value.intValue;
         }
     }
     else
@@ -1729,11 +1730,11 @@ static NSString *ASSET_SCHEME = @"asset://";
     if ([self isType:PXSS_IDENTIFIER])
     {
         NSString *text = currentLexeme.value;
-        NSNumber *value = [ANIMATION_FILL_MODE_MAP objectForKey:[text lowercaseString]];
+        NSNumber *value = ANIMATION_FILL_MODE_MAP[text.lowercaseString];
 
         if (value)
         {
-            result = (PXAnimationFillMode) [value intValue];
+            result = (PXAnimationFillMode) value.intValue;
         }
     }
     else
@@ -1753,11 +1754,11 @@ static NSString *ASSET_SCHEME = @"asset://";
     if ([self isType:PXSS_IDENTIFIER])
     {
         NSString *text = currentLexeme.value;
-        NSNumber *value = [ANIMATION_TIMING_FUNCTION_MAP objectForKey:[text lowercaseString]];
+        NSNumber *value = ANIMATION_TIMING_FUNCTION_MAP[text.lowercaseString];
 
         if (value)
         {
-            result = (PXAnimationTimingFunction) [value intValue];
+            result = (PXAnimationTimingFunction) value.intValue;
         }
     }
     else
@@ -1780,7 +1781,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     {
         NSNumber *number = (NSNumber *)value;
 
-        result = [number floatValue];
+        result = number.floatValue;
     }
     else if ([value isKindOfClass:[PXDimension class]])
     {
@@ -1873,7 +1874,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     {
         NSNumber *number = (NSNumber *)currentLexeme.value;
 
-        result = [number floatValue];
+        result = number.floatValue;
 
         [self advance];
     }

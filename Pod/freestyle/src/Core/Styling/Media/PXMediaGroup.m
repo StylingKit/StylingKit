@@ -18,6 +18,7 @@
 //  PXMediaGroup.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 1/9/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -35,7 +36,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithQuery:(id<PXMediaExpression>)query origin:(PXStylesheetOrigin)origin
+- (instancetype)initWithQuery:(id<PXMediaExpression>)query origin:(PXStylesheetOrigin)origin
 {
     if (self = [super init])
     {
@@ -66,7 +67,7 @@
     // find relevant ruleSets by element name
     if (elementName.length > 0)
     {
-        for (PXRuleSet *ruleSet in [ruleSetsByElementName_ objectForKey:elementName])
+        for (PXRuleSet *ruleSet in ruleSetsByElementName_[elementName])
         {
             if ([items containsObject:ruleSet] == NO)
             {
@@ -79,7 +80,7 @@
     // find relevant ruleSets by id
     if (styleId.length > 0)
     {
-        for (PXRuleSet *ruleSet in [ruleSetsById_ objectForKey:styleId])
+        for (PXRuleSet *ruleSet in ruleSetsById_[styleId])
         {
             if ([items containsObject:ruleSet] == NO)
             {
@@ -94,7 +95,7 @@
     {
         for (NSString *aClass in styleClasses)
         {
-            for (PXRuleSet *ruleSet in [ruleSetsByClass_ objectForKey:aClass])
+            for (PXRuleSet *ruleSet in ruleSetsByClass_[aClass])
             {
                 if ([items containsObject:ruleSet] == NO)
                 {
@@ -119,7 +120,7 @@
 
 - (void)addRuleSet:(PXRuleSet *)ruleSet toPartition:(NSMutableDictionary *)partition withKey:(NSString *)key
 {
-    NSMutableArray *ruleSets = [partition objectForKey:key];
+    NSMutableArray *ruleSets = partition[key];
 
     // create ruleset array if we don't have one already
     if (ruleSets == nil)
@@ -130,7 +131,7 @@
         [ruleSets addObjectsFromArray:uncategorizedRuleSets_];
 
         // save the ruleSet array back to the partition dictionary
-        [partition setObject:ruleSets forKey:key];
+        partition[key] = ruleSets;
     }
 
     // add this ruleSet to the ruleSet array associated with the given key
@@ -197,21 +198,21 @@
             // add uncategorized ruleSets to all partitions
             for (NSString *key in ruleSetsByElementName_.allKeys)
             {
-                NSMutableArray *items = [ruleSetsByElementName_ objectForKey:key];
+                NSMutableArray *items = ruleSetsByElementName_[key];
 
                 [items addObject:ruleSet];
             }
 
             for (NSString *key in ruleSetsById_.allKeys)
             {
-                NSMutableArray *items = [ruleSetsById_ objectForKey:key];
+                NSMutableArray *items = ruleSetsById_[key];
 
                 [items addObject:ruleSet];
             }
 
             for (NSString *key in ruleSetsByClass_.allKeys)
             {
-                NSMutableArray *items = [ruleSetsByClass_ objectForKey:key];
+                NSMutableArray *items = ruleSetsByClass_[key];
 
                 [items addObject:ruleSet];
             }

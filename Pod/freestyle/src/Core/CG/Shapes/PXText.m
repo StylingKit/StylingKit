@@ -18,6 +18,7 @@
 //  PXText.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/2/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -34,14 +35,14 @@
 
 #pragma mark - Static Initializers
 
-+ (id)textWithString:(NSString *)text
++ (instancetype)textWithString:(NSString *)text
 {
     return [[PXText alloc] initWithString:text];
 }
 
 #pragma mark - Initializers
 
-- (id)initWithString:(NSString *)aText
+- (instancetype)initWithString:(NSString *)aText
 {
     if (self = [super init])
     {
@@ -65,9 +66,7 @@
 
         CTFontRef font = CTFontCreateWithName((__bridge CFStringRef) self.fontName, self.fontSize, NULL);
         font = CTFontCreateCopyWithSymbolicTraits(font, 0.0, NULL, kCTFontBoldTrait, kCTFontBoldTrait);
-        NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
-                               (__bridge id)font, kCTFontAttributeName,
-                               nil];
+        NSDictionary *attrs = @{(id)kCTFontAttributeName: (__bridge id)font};
         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:self.text
                                                                          attributes:attrs];
         CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)attrString);

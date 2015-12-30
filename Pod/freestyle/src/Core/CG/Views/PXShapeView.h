@@ -18,6 +18,7 @@
 //  PXShapeView.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 5/30/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -51,7 +52,7 @@
 /**
  *  Create an image of the current display
  */
-- (UIImage *)renderToImage;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) UIImage *renderToImage;
 
 /**
  *  Apply this views bounds to the content it contains. This may result in the content being scaled and/or shifted

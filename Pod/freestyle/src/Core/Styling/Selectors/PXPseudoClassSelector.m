@@ -18,6 +18,7 @@
 //  PXPseudoClassSelector.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 9/1/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -50,7 +51,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
 #pragma mark - Initializers
 
-- (id)initWithClassName:(NSString *)name
+- (instancetype)initWithClassName:(NSString *)name
 {
     if (self = [super init])
     {
@@ -73,7 +74,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
 
     if ([element respondsToSelector:@selector(supportedPseudoClasses)])
     {
-        result = ([[element supportedPseudoClasses] indexOfObject:className] != NSNotFound);
+        result = ([element.supportedPseudoClasses indexOfObject:className] != NSNotFound);
     }
 
     if (result)

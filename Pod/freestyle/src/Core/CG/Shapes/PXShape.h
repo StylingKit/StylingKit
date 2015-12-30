@@ -18,6 +18,7 @@
 //  PXShape.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 5/30/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -55,7 +56,7 @@
  *
  *  Typically, this method would not be called in isolation. It is more of a helper method for the path property.
  */
-- (CGPathRef)newPath;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGPathRef newPath CF_RETURNS_RETAINED;
 
 /**
  *  Clear the path cache.

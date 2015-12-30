@@ -18,6 +18,7 @@
 //  PXBoxModel.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/25/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -43,12 +44,12 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithBounds:CGRectZero];
 }
 
-- (id)initWithBounds:(CGRect)bounds
+- (instancetype)initWithBounds:(CGRect)bounds
 {
     if (self = [super init])
     {
@@ -245,54 +246,54 @@
 
 - (void)setBorderTopPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
-    [self setBorderTopPaint:paint];
-    [self setBorderTopWidth:width];
-    [self setBorderTopStyle:style];
+    self.borderTopPaint = paint;
+    self.borderTopWidth = width;
+    self.borderTopStyle = style;
 }
 
 - (void)setBorderRightPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
-    [self setBorderRightPaint:paint];
-    [self setBorderRightWidth:width];
-    [self setBorderRightStyle:style];
+    self.borderRightPaint = paint;
+    self.borderRightWidth = width;
+    self.borderRightStyle = style;
 }
 
 - (void)setBorderBottomPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
-    [self setBorderBottomPaint:paint];
-    [self setBorderBottomWidth:width];
-    [self setBorderBottomStyle:style];
+    self.borderBottomPaint = paint;
+    self.borderBottomWidth = width;
+    self.borderBottomStyle = style;
 }
 
 - (void)setBorderLeftPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
-    [self setBorderLeftPaint:paint];
-    [self setBorderLeftWidth:width];
-    [self setBorderLeftStyle:style];
+    self.borderLeftPaint = paint;
+    self.borderLeftWidth = width;
+    self.borderLeftStyle = style;
 }
 
 - (void)setBorderPaint:(id<PXPaint>)paint
 {
-    [self setBorderTopPaint:paint];
-    [self setBorderRightPaint:paint];
-    [self setBorderBottomPaint:paint];
-    [self setBorderLeftPaint:paint];
+    self.borderTopPaint = paint;
+    self.borderRightPaint = paint;
+    self.borderBottomPaint = paint;
+    self.borderLeftPaint = paint;
 }
 
 - (void)setBorderWidth:(CGFloat)width
 {
-    [self setBorderTopWidth:width];
-    [self setBorderRightWidth:width];
-    [self setBorderBottomWidth:width];
-    [self setBorderLeftWidth:width];
+    self.borderTopWidth = width;
+    self.borderRightWidth = width;
+    self.borderBottomWidth = width;
+    self.borderLeftWidth = width;
 }
 
 - (void)setBorderStyle:(PXBorderStyle)style
 {
-    [self setBorderTopStyle:style];
-    [self setBorderRightStyle:style];
-    [self setBorderBottomStyle:style];
-    [self setBorderLeftStyle:style];
+    self.borderTopStyle = style;
+    self.borderRightStyle = style;
+    self.borderBottomStyle = style;
+    self.borderLeftStyle = style;
 }
 
 - (void)setBorderPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style

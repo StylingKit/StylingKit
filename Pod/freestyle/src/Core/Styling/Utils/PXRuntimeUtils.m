@@ -18,6 +18,7 @@
 //  PXRuntimeUtils.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/20/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -43,7 +44,7 @@
     // NOTE: start at 1 to skip the call to this method
     for (int i = 1; i < frames; ++i)
     {
-        NSString *string = [NSString stringWithCString:strs[i] encoding:NSUTF8StringEncoding];
+        NSString *string = @(strs[i]);
 
         [callers addObject:string];
     }

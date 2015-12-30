@@ -2,6 +2,7 @@
 //  PXDOMText.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 11/10/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -19,7 +20,7 @@
 
 #pragma mark - Initializers
 
-- initWithText:(NSString *)text
+- (instancetype) initWithText:(NSString *)text
 {
     if (self = [super init])
     {

@@ -18,6 +18,7 @@
 //  PXValue.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 1/23/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -29,7 +30,7 @@
     NSValue *value_;
 }
 
-- (id)initWithBytes:(const void *)value type:(PXValueType)type
+- (instancetype)initWithBytes:(const void *)value type:(PXValueType)type
 {
     if (self = [super init])
     {

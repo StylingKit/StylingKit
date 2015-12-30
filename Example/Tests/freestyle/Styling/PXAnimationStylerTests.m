@@ -2,6 +2,7 @@
 //  PXAnimationStylerTests.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/12/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -25,7 +26,7 @@
     NSArray *infos = context.animationInfos;
     XCTAssertTrue(infos.count == 1, @"Expected one animation, but found %d", infos.count);
 
-    PXAnimationInfo *info = [infos objectAtIndex:0];
+    PXAnimationInfo *info = infos[0];
     XCTAssertTrue([@"myAnimation" isEqualToString:info.animationName], @"Expected 'myAnimation' as animation name, but found '%@'", info.animationName);
 }
 
@@ -40,7 +41,7 @@
     NSArray *infos = context.animationInfos;
     XCTAssertTrue(infos.count == 1, @"Expected one animation, but found %d", infos.count);
 
-    PXAnimationInfo *info = [infos objectAtIndex:0];
+    PXAnimationInfo *info = infos[0];
     XCTAssertTrue([@"myAnimation" isEqualToString:info.animationName], @"Expected 'myAnimation' as animation name, but found '%@'", info.animationName);
     XCTAssertTrue(info.animationDuration == 1.0f, @"Expected a 1s delay, but found %f", info.animationDuration);
     XCTAssertTrue(info.animationTimingFunction == PXAnimationTimingFunctionLinear, @"Expected timing function %d, but found %d", PXAnimationTimingFunctionLinear, info.animationTimingFunction);

@@ -18,6 +18,7 @@
 //  PXKeyframe.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/5/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -32,7 +33,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
 {
     if (self = [super init])
     {

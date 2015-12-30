@@ -1,3 +1,6 @@
+
+//  Modified by Anton Matosov on 12/30/15.
+
 #import <dispatch/dispatch.h>
 #import <Foundation/Foundation.h>
 
@@ -40,7 +43,7 @@
 {
     // this gets hit if the future resolves to nil
     // zero-fill the return value
-    char returnValue[[[inv methodSignature] methodReturnLength]];
+    char returnValue[inv.methodSignature.methodReturnLength];
     bzero(returnValue, sizeof(returnValue));
     [inv setReturnValue: returnValue];
 }
@@ -55,7 +58,7 @@
 
 @implementation _MABackgroundBlockFuture
 
-- (id)initWithBlock: (id (^)(void))block
+- (instancetype)initWithBlock: (id (^)(void))block
 {
     if((self = [self init]))
     {
@@ -76,7 +79,7 @@
 
 @implementation _MALazyBlockFuture
 
-- (id)initWithBlock: (id (^)(void))block
+- (instancetype)initWithBlock: (id (^)(void))block
 {
     if((self = [self init]))
     {

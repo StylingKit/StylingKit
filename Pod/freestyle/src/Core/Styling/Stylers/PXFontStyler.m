@@ -18,6 +18,7 @@
 //  PXFontStyler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/9/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -45,10 +46,10 @@
                 context.fontStyle = declaration.stringValue;
             },
             @"font-weight" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                context.fontWeight = [declaration.stringValue lowercaseString];
+                context.fontWeight = (declaration.stringValue).lowercaseString;
             },
             @"font-stretch" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                context.fontStretch = [declaration.stringValue lowercaseString];
+                context.fontStretch = (declaration.stringValue).lowercaseString;
             }
         };
     });

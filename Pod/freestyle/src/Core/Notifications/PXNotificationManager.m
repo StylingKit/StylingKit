@@ -18,6 +18,7 @@
 //  PXNotificationManager.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 2/28/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -42,7 +43,7 @@
     return manager;
 }
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -56,13 +57,13 @@
 {
     if (observer != nil && notification.length > 0)
     {
-        NSMutableArray *observers = [observersByNotification_ objectForKey:notification];
+        NSMutableArray *observers = observersByNotification_[notification];
         
         if (observers == nil)
         {
             observers = [[NSMutableArray alloc] init];
             
-            [observersByNotification_ setObject:observers forKey:notification];
+            observersByNotification_[notification] = observers;
         }
         
         __block BOOL isObserving = NO;
@@ -90,7 +91,7 @@
 {
     if (observer != nil && notification.length > 0)
     {
-        NSMutableArray *observers = [observersByNotification_ objectForKey:notification];
+        NSMutableArray *observers = observersByNotification_[notification];
         NSMutableArray *toDelete = [[NSMutableArray alloc] init];
         
         [observers enumerateObjectsUsingBlock:^(PXNotificationInfo *info, NSUInteger idx, BOOL *stop) {
@@ -130,7 +131,7 @@
     
     if (observer != nil)
     {
-        NSMutableArray *observers = [observersByNotification_ objectForKey:notification.name];
+        NSMutableArray *observers = observersByNotification_[notification.name];
         // TODO: should we remove nil references in here too?
         
         [observers enumerateObjectsUsingBlock:^(PXNotificationInfo *info, NSUInteger idx, BOOL *stop) {

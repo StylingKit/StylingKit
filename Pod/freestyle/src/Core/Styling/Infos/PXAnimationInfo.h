@@ -18,6 +18,7 @@
 //  PXAnimationInfo.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/5/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -28,7 +29,7 @@
 /**
  *  An enumeration indicating what type of timing function to use in an animation
  */
-typedef enum
+typedef NS_ENUM(int, PXAnimationTimingFunction)
 {
     PXAnimationTimingFunctionUndefined = -1,
     PXAnimationTimingFunctionEase,          // ease [default]
@@ -40,41 +41,41 @@ typedef enum
     PXAnimationTimingFunctionStepEnd,       // step-end
                                             // steps(<integer>[, [ start | end ] ]?)
                                             // cubic-bezier(<number>, <number>, <number>, <number>)
-} PXAnimationTimingFunction;
+};
 
 /**
  *  An enumeration indicating the direction of an animation
  */
-typedef enum
+typedef NS_ENUM(int, PXAnimationDirection)
 {
     PXAnimationDirectionUndefined = -1,
     PXAnimationDirectionNormal,             // normal [default]
     PXAnimationDirectionReverse,            // reverse
     PXAnimationDirectionAlternate,          // alternate
     PXAnimationDirectionAlternateReverse    // alternate-reverse
-} PXAnimationDirection;
+};
 
 /**
  *  An enumeration indicating the current state of an animation
  */
-typedef enum
+typedef NS_ENUM(int, PXAnimationPlayState)
 {
     PXAnimationPlayStateUndefined = -1,
     PXAnimationPlayStateRunning,            // running [default]
     PXAnimationPlayStatePaused              // paused
-} PXAnimationPlayState;
+};
 
 /**
  *  An enumeration indicating how an animation should fill its remaining time
  */
-typedef enum
+typedef NS_ENUM(int, PXAnimationFillMode)
 {
     PXAnimationFillModeUndefined = -1,
     PXAnimationFillModeNone,                // none [default]
     PXAnimationFillModeForwards,            // forwards
     PXAnimationFillModeBackwards,           // backwards
     PXAnimationFillModeBoth                 // both
-} PXAnimationFillMode;
+};
 
 @interface PXAnimationInfo : NSObject
 
@@ -90,7 +91,7 @@ typedef enum
 @property (nonatomic, strong, readonly) PXKeyframe *keyframe;
 @property (nonatomic, readonly, getter = isValid) BOOL valid;
 
-- (id)initWithCSSDefaults;
+- (instancetype)initWithCSSDefaults NS_DESIGNATED_INITIALIZER;
 
 - (void)setUndefinedPropertiesWithAnimationInfo:(PXAnimationInfo *)info;
 

@@ -50,7 +50,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -88,7 +88,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 
 - (id)propertyValueForName:(NSString *)name
 {
-    return [properties_ objectForKey:name];
+    return properties_[name];
 }
 
 - (void)setPropertyValue:(id)value forName:(NSString *)name
@@ -100,13 +100,13 @@ static NSString *DEFAULT_FONT = @"Helvetica";
             properties_ = [[NSMutableDictionary alloc] init];
         }
 
-        [properties_ setObject:value forKey:name];
+        properties_[name] = value;
     }
 }
 
 - (int)stateFromStateNameMap:(NSDictionary *)map
 {
-    return ((NSNumber *)[map objectForKey:self.activeStateName]).intValue;
+    return ((NSNumber *)map[self.activeStateName]).intValue;
 }
 
 #pragma mark - Getters
@@ -136,12 +136,12 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 - (UIImage *)backgroundImageWithBounds:(CGRect) bounds
 {
     _bounds = bounds;
-    return [self backgroundImage];
+    return self.backgroundImage;
 }
 
 - (UIImage *)backgroundImage
 {
-    NSNumber *hashKey = [NSNumber numberWithUnsignedInteger:self.styleHash];
+    NSNumber *hashKey = @(self.styleHash);
     UIImage *result = [PXCacheManager imageForKey:hashKey];
 
     if (result == nil)
@@ -327,7 +327,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 {
     if (_outerShadow.shadows.count > 0)
     {
-        PXShadow *shadow = [[_outerShadow shadows] objectAtIndex:0];
+        PXShadow *shadow = _outerShadow.shadows[0];
 
         layer.shadowColor = shadow.color.CGColor;
         layer.shadowOpacity = 1.0f;
@@ -450,15 +450,15 @@ static NSString *DEFAULT_FONT = @"Helvetica";
     {
         if ([@"uppercase" isEqualToString:attribute])
         {
-            result = [value uppercaseString];
+            result = value.uppercaseString;
         }
         else if ([@"lowercase" isEqualToString:attribute])
         {
-            result = [value lowercaseString];
+            result = value.lowercaseString;
         }
         else if ([@"capitalize" isEqualToString:attribute])
         {
-            result = [value capitalizedString];
+            result = value.capitalizedString;
         }
     }
     return result;
@@ -491,7 +491,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
     {
         if ([@"underline" isEqualToString:decoration])
         {
-            [attributes setObject:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) forKey:NSUnderlineStyleAttributeName];
+            attributes[NSUnderlineStyleAttributeName] = @(NSUnderlinePatternSolid | NSUnderlineStyleSingle);
         }
         else if ([@"overline" isEqualToString:decoration])
         {
@@ -499,11 +499,11 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         }
         else if ([@"line-through" isEqualToString:decoration])
         {
-            [attributes setObject:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) forKey:NSStrikethroughStyleAttributeName];
+            attributes[NSStrikethroughStyleAttributeName] = @(NSUnderlinePatternSolid | NSUnderlineStyleSingle);
         }
         else if ([@"letterpress" isEqualToString:decoration])
         {
-            [attributes setObject:NSTextEffectLetterpressStyle forKey:NSTextEffectAttributeName];
+            attributes[NSTextEffectAttributeName] = NSTextEffectLetterpressStyle;
         }
     }
 }
@@ -511,14 +511,14 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 - (NSDictionary *) mergeTextAttributes:(NSDictionary *)originalAttributes
 {
     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:originalAttributes];
-    [attributes setObject:self.font forKey:NSFontAttributeName];
+    attributes[NSFontAttributeName] = self.font;
 
     NSNumber *kern = [PXStylerContext kernPointsFrom:self.letterSpacing usingFont:self.font];
-    [attributes setObject:kern forKey:NSKernAttributeName];
+    attributes[NSKernAttributeName] = kern;
     
     if([self propertyValueForName:@"color"] )
     {
-        [attributes setObject:(UIColor *)[self propertyValueForName:@"color"]  forKey:NSForegroundColorAttributeName];
+        attributes[NSForegroundColorAttributeName] = (UIColor *)[self propertyValueForName:@"color"];
     }
     
     [PXStylerContext addDecoration:self.textDecoration toAttributes:attributes];
@@ -559,7 +559,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         shadow.shadowOffset = CGSizeMake(pxShadow.horizontalOffset, pxShadow.verticalOffset);
         shadow.shadowBlurRadius = pxShadow.blurDistance;
         
-        [attributes setObject:shadow forKey:NSShadowAttributeName];
+        attributes[NSShadowAttributeName] = shadow;
     }
 
     [PXStylerContext addDecoration:self.textDecoration toAttributes:attributes];

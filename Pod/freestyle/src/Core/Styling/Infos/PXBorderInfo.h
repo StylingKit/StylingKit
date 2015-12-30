@@ -18,6 +18,7 @@
 //  PXBorderInfo.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/25/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -25,7 +26,7 @@
 #import <Foundation/Foundation.h>
 #import "PXPaint.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, PXBorderStyle) {
     PXBorderStyleNone,
     PXBorderStyleHidden,
     PXBorderStyleDotted,
@@ -36,7 +37,7 @@ typedef enum {
     PXBorderStyleRidge,
     PXBorderStyleInset,
     PXBorderStyleOutset
-} PXBorderStyle;
+};
 
 @interface PXBorderInfo : NSObject
 
@@ -44,10 +45,10 @@ typedef enum {
 @property (nonatomic) PXBorderStyle style;
 @property (nonatomic) CGFloat width;
 
-- (id)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width;
-- (id)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style;
+- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width;
+- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style NS_DESIGNATED_INITIALIZER;
 
-- (BOOL)isOpaque;
-- (BOOL)hasContent;
+@property (NS_NONATOMIC_IOSONLY, getter=isOpaque, readonly) BOOL opaque;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL hasContent;
 
 @end

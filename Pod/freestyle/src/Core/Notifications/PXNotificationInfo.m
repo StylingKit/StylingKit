@@ -18,6 +18,7 @@
 //  PXNotificationInfo.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 2/28/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -29,7 +30,7 @@
     void(^block_)();
 }
 
-- (id)initWithObject:(id)object withBlock:(void(^)())block
+- (instancetype)initWithObject:(id)object withBlock:(void(^)())block
 {
     if (self = [super initWithObject:object])
     {

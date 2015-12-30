@@ -18,6 +18,7 @@
 //  PXInsetStyler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 12/20/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -33,7 +34,7 @@
     NSString *_leftName;
 }
 
-- (id)initWithBaseName:(NSString *)baseName completionBlock:(PXStylerCompletionBlock)block
+- (instancetype)initWithBaseName:(NSString *)baseName completionBlock:(PXStylerCompletionBlock)block
 {
     if (self = [super initWithCompletionBlock:block])
     {
@@ -51,7 +52,7 @@
     dispatch_once(&onceToken, ^{ handlers = [[NSMutableDictionary alloc] init]; });
 
     // see if we have a handler dictionary for our prefix
-    NSDictionary *result = [handlers objectForKey:_shortcutName];
+    NSDictionary *result = handlers[_shortcutName];
 
     // if not, then create it and store it for later
     if (!result)
@@ -86,7 +87,7 @@
             }
         };
 
-        [handlers setObject:result forKey:_shortcutName];
+        handlers[_shortcutName] = result;
     }
 
     return result;

@@ -18,6 +18,7 @@
 //  PXLine.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/6/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -31,12 +32,12 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initX1:0.0f y1:0.0f x2:0.0f y2:0.0f];
 }
 
-- (id)initX1:(CGFloat)aX1 y1:(CGFloat)aY1 x2:(CGFloat)aX2 y2:(CGFloat)aY2
+- (instancetype)initX1:(CGFloat)aX1 y1:(CGFloat)aY1 x2:(CGFloat)aX2 y2:(CGFloat)aY2
 {
     if (self = [super init])
     {

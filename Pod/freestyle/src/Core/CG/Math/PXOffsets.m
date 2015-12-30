@@ -18,6 +18,7 @@
 //  PXOffsets.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 12/17/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -28,12 +29,12 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithTop:0.0f right:0.0f bottom:0.0f left:0.0f];
 }
 
-- (id)initWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left
+- (instancetype)initWithTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left
 {
     if (self = [super init])
     {

@@ -18,6 +18,7 @@
 //  PXTransitionStyler.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/7/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -44,7 +45,7 @@
                  for (NSUInteger i = 0; i < names.count; i++)
                  {
                      PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
-                     NSString *name = [names objectAtIndex:i];
+                     NSString *name = names[i];
 
                      info.animationName = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                  }
@@ -55,9 +56,9 @@
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
                      PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
-                     NSNumber *time = [timeValues objectAtIndex:i];
+                     NSNumber *time = timeValues[i];
 
-                     info.animationDuration = [time floatValue];
+                     info.animationDuration = time.floatValue;
                  }
              },
              @"transition-timing-function" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -66,9 +67,9 @@
                  for (NSUInteger i = 0; i < timingFunctions.count; i++)
                  {
                      PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
-                     NSNumber *value = [timingFunctions objectAtIndex:i];
+                     NSNumber *value = timingFunctions[i];
 
-                     info.animationTimingFunction = (PXAnimationTimingFunction) [value intValue];
+                     info.animationTimingFunction = (PXAnimationTimingFunction) value.intValue;
                  }
              },
              @"transition-delay" : ^(PXDeclaration *declaration, PXStylerContext *context) {
@@ -77,9 +78,9 @@
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
                      PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
-                     NSNumber *time = [timeValues objectAtIndex:i];
+                     NSNumber *time = timeValues[i];
 
-                     info.animationDelay = [time floatValue];
+                     info.animationDelay = time.floatValue;
                  }
              },
          };
@@ -103,7 +104,7 @@
         [infos addObject:[[PXAnimationInfo alloc] init]];
     }
 
-    return [infos objectAtIndex:index];
+    return infos[index];
 }
 
 - (void)applyStylesWithContext:(PXStylerContext *)context

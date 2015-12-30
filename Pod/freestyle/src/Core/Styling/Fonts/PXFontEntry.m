@@ -18,6 +18,7 @@
 //  PXFontEntry.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 10/25/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -99,19 +100,19 @@ static NSRegularExpression *DIGIT_WEIGHT;
 {
     // default to normal
     NSInteger result = 400;
-    NSNumber *weight = [WEIGHT_MAP objectForKey:name];
+    NSNumber *weight = WEIGHT_MAP[name];
 
     if (weight)
     {
-        result = [weight integerValue];
+        result = weight.integerValue;
     }
     else
     {
-        NSRange range = [DIGIT_PATTERN rangeOfFirstMatchInString:name options:0 range:NSMakeRange(0, [name length])];
+        NSRange range = [DIGIT_PATTERN rangeOfFirstMatchInString:name options:0 range:NSMakeRange(0, name.length)];
 
         if (range.location != NSNotFound)
         {
-            result = [name integerValue];
+            result = name.integerValue;
         }
     }
 
@@ -172,7 +173,7 @@ static NSRegularExpression *DIGIT_WEIGHT;
 
     if (sortedInfos.count > 0)
     {
-        PXFontEntry *first = [sortedInfos objectAtIndex:0];
+        PXFontEntry *first = sortedInfos[0];
         NSInteger diff = first.stretch - fontStretch;
 
         [sortedInfos enumerateObjectsUsingBlock:^(PXFontEntry *obj, NSUInteger idx, BOOL *stop) {
@@ -269,7 +270,7 @@ static NSRegularExpression *DIGIT_WEIGHT;
 
     if (sortedItalics.count > 0)
     {
-        PXFontEntry *first = [sortedItalics objectAtIndex:0];
+        PXFontEntry *first = sortedItalics[0];
         NSInteger diff = styleToInteger(first.style) - styleValue;
 
         [sortedItalics enumerateObjectsUsingBlock:^(PXFontEntry *obj, NSUInteger idx, BOOL *stop) {
@@ -327,7 +328,7 @@ static NSRegularExpression *DIGIT_WEIGHT;
 
     if (sortedInfos.count > 0)
     {
-        PXFontEntry *first = [sortedInfos objectAtIndex:0];
+        PXFontEntry *first = sortedInfos[0];
         NSInteger diff = first.weight - weight;
 
         [sortedInfos enumerateObjectsUsingBlock:^(PXFontEntry *obj, NSUInteger idx, BOOL *stop) {
@@ -347,7 +348,7 @@ static NSRegularExpression *DIGIT_WEIGHT;
 
 #pragma mark - Initializers
 
-- (id)initWithFontFamily:(NSString *)family fontName:(NSString *)name
+- (instancetype)initWithFontFamily:(NSString *)family fontName:(NSString *)name
 {
     if (self = [super init])
     {
@@ -372,14 +373,14 @@ static NSRegularExpression *DIGIT_WEIGHT;
 
     if (matches.count > 0)
     {
-        NSTextCheckingResult *match = [matches objectAtIndex:0];
+        NSTextCheckingResult *match = matches[0];
         NSString *number = [name substringWithRange:[match rangeAtIndex:1]];
 
-        result = [number integerValue];
+        result = number.integerValue;
     }
     else
     {
-        name = [name lowercaseString];
+        name = name.lowercaseString;
 
         if ([name rangeOfString:@"black"].location != NSNotFound || [name rangeOfString:@"heavy"].location != NSNotFound)
         {
@@ -431,7 +432,7 @@ static NSRegularExpression *DIGIT_WEIGHT;
 {
     NSInteger result;
 
-    name = [name lowercaseString];
+    name = name.lowercaseString;
 
     if ([name rangeOfString:@"ultracondensed"].location != NSNotFound)
     {
@@ -479,7 +480,7 @@ static NSRegularExpression *DIGIT_WEIGHT;
 {
     NSString *result;
 
-    name = [name lowercaseString];
+    name = name.lowercaseString;
 
     if ([name rangeOfString:@"italic"].location != NSNotFound)
     {

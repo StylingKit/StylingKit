@@ -18,6 +18,7 @@
 //  PXSolidPaint.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/7/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -40,13 +41,13 @@
  *
  *  @param color The color of this paint
  */
-+ (id)paintWithColor:(UIColor *)color;
++ (instancetype)paintWithColor:(UIColor *)color;
 
 /**
  *  Initialize a new solid paint with the specified color
  *
  *  @param color The color of this paint
  */
-- (id)initWithColor:(UIColor *)color;
+- (instancetype)initWithColor:(UIColor *)color NS_DESIGNATED_INITIALIZER;
 
 @end

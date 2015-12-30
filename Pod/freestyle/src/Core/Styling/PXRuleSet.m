@@ -18,6 +18,7 @@
 //  PXRuleSet.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/3/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -35,7 +36,7 @@
 
 #pragma mark - Static initializers
 
-+ (id)ruleSetWithMergedRuleSets:(NSArray *)ruleSets
++ (instancetype)ruleSetWithMergedRuleSets:(NSArray *)ruleSets
 {
     PXRuleSet *result = [[PXRuleSet alloc] init];
 
@@ -86,7 +87,7 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init])
     {
@@ -116,7 +117,7 @@
 
     if (selectors.count > 0)
     {
-        id candidate = [selectors objectAtIndex:0];
+        id candidate = selectors[0];
 
         if (candidate)
         {

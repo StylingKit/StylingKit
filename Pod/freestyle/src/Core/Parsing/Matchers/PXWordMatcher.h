@@ -18,6 +18,7 @@
 //  PXWordMatcher.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/25/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -27,7 +28,7 @@
 
 @interface PXWordMatcher : PXPatternMatcher
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
-- (id)initWithDictionary:(NSDictionary *)dictionary usingSymbols:(BOOL)usingSymbols;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary usingSymbols:(BOOL)usingSymbols NS_DESIGNATED_INITIALIZER;
 
 @end

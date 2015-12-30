@@ -18,6 +18,7 @@
 //  PXUISegmentedControl.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -134,7 +135,7 @@ static char const STYLE_CHILDREN;
                 nsShadow.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
                 nsShadow.shadowBlurRadius = shadow.blurDistance;
                 
-                [currentTextAttributes setObject:nsShadow forKey:NSShadowAttributeName];
+                currentTextAttributes[NSShadowAttributeName] = nsShadow;
 
                 [view px_setTitleTextAttributes:currentTextAttributes forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
             }],
@@ -144,7 +145,7 @@ static char const STYLE_CHILDREN;
                 NSMutableDictionary *currentTextAttributes = [NSMutableDictionary
                                                               dictionaryWithDictionary:[view titleTextAttributesForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
 
-                [currentTextAttributes setObject:context.font forKey:NSFontAttributeName];
+                currentTextAttributes[NSFontAttributeName] = context.font;
 
                 [view px_setTitleTextAttributes:currentTextAttributes
                                        forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
@@ -158,7 +159,7 @@ static char const STYLE_CHILDREN;
 
                 if(color)
                 {
-                    [currentTextAttributes setObject:color forKey:NSForegroundColorAttributeName];
+                    currentTextAttributes[NSForegroundColorAttributeName] = color;
 
                     [view px_setTitleTextAttributes:currentTextAttributes
                                            forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];

@@ -18,6 +18,7 @@
 //  NSMutableDictionary+PXObject.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 3/26/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
@@ -33,69 +34,69 @@ void PXForceLoadNSMutableDictionaryPXObject() {}
 {
     id nilableObject = (object == nil) ? [NSNull null] : object;
 
-    [self setObject:nilableObject forKey:key];
+    self[key] = nilableObject;
 }
 
 - (void)setRect:(CGRect)rect forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&rect type:PXValueType_CGRect];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setFloat:(CGFloat)floatValue forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&floatValue type:PXValueType_CGFloat];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setColorRef:(CGColorRef)colorRef forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&colorRef type:PXValueType_CGColorRef];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setSize:(CGSize)size forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&size type:PXValueType_CGSize];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setBoolean:(BOOL)booleanValue forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&booleanValue type:PXValueType_Boolean];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setTransform:(CGAffineTransform)transform forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&transform type:PXValueType_CGAffineTransform];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setInsets:(UIEdgeInsets)insets forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&insets type:PXValueType_UIEdgeInsets];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setLineBreakMode:(NSLineBreakMode)mode forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&mode type:PXValueType_NSLineBreakMode];
 
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 
 - (void)setTextAlignment:(NSTextAlignment)alignment forKey:(id<NSCopying>)key
 {
     PXValue *value = [[PXValue alloc] initWithBytes:&alignment type:PXValueType_NSTextAlignment];
     
-    [self setObject:value forKey:key];
+    self[key] = value;
 }
 @end

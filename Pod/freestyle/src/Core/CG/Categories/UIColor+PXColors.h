@@ -18,6 +18,7 @@
 //  UIColor+PXColors.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/15/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -105,7 +106,7 @@
 /**
  *  Determine if this color is opaque. Essentially, this returns true if the alpha channel is 1.0
  */
-- (BOOL)isOpaque;
+@property (NS_NONATOMIC_IOSONLY, getter=isOpaque, readonly) BOOL opaque;
 
 /**
  *  Adds percent to the lightness channel of this color

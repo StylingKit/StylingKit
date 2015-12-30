@@ -18,6 +18,7 @@
 //  PXPaintGroup.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/2/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -37,7 +38,7 @@
 /**
  *  Initialize a newly allocated paint group, adding the specified list of paints
  */
-- (id)initWithPaints:(NSArray *)paints;
+- (instancetype)initWithPaints:(NSArray *)paints NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Add the specified paint to this group of paints

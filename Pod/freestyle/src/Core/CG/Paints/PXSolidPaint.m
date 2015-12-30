@@ -18,6 +18,7 @@
 //  PXSolidPaint.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/7/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -31,19 +32,19 @@
 
 #pragma mark - Static Initializers
 
-+ (id)paintWithColor:(UIColor *)color
++ (instancetype)paintWithColor:(UIColor *)color
 {
     return [[PXSolidPaint alloc] initWithColor:color];
 }
 
 #pragma mark - Initializers
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithColor:[UIColor blackColor]];
 }
 
-- (id)initWithColor:(UIColor *)aColor
+- (instancetype)initWithColor:(UIColor *)aColor
 {
     if (self = [super init])
     {

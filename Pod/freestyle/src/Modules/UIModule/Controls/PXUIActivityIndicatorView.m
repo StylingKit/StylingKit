@@ -18,6 +18,7 @@
 //  PXUIActivityIndicatorView.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -72,7 +73,7 @@
             },
              @"style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXUIActivityIndicatorView *view = (PXUIActivityIndicatorView *)context.styleable;
-                NSString *style = [declaration.stringValue lowercaseString];
+                NSString *style = (declaration.stringValue).lowercaseString;
 
                 if ([style isEqualToString:@"large"])
                 {

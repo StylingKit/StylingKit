@@ -18,6 +18,7 @@
 //  PXNumberMatcher.m
 //  Pixate
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/23/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -40,7 +41,7 @@ static NSRange NO_MATCH;
 
 #pragma mark - Initializers
 
-- (id)initWithType:(int)type
+- (instancetype)initWithType:(int)type
 {
     if (self = [super initWithType:type withPatternString:@"^([-+]?(?:[0-9]*\\.[0-9]+|[0-9]+))"])
     {
@@ -50,11 +51,11 @@ static NSRange NO_MATCH;
     return self;
 }
 
-- (id)initWithType:(int)type withDictionary:(NSDictionary *)dictionary withUnknownType:(int)unknownType
+- (instancetype)initWithType:(int)type withDictionary:(NSDictionary *)dictionary withUnknownType:(int)unknownType
 {
     if (dictionary)
     {
-        NSArray *keys = [dictionary allKeys];
+        NSArray *keys = dictionary.allKeys;
         NSMutableArray *keyPatterns = [NSMutableArray arrayWithCapacity:keys.count];
 
         for (NSString *key in keys)
@@ -98,23 +99,23 @@ static NSRange NO_MATCH;
 
     if (matches.count == 1)
     {
-        NSTextCheckingResult *matchResult = [matches objectAtIndex:0];
+        NSTextCheckingResult *matchResult = matches[0];
         NSRange numberRange = [matchResult rangeAtIndex:1];
 
         NSString *number = [aString substringWithRange:numberRange];
-        float floatValue = [number floatValue];
+        float floatValue = number.floatValue;
 
         NSRange dimensionRange = (matchResult.numberOfRanges > 2) ? [matchResult rangeAtIndex:2] : NO_MATCH;
 
         if (!NSEqualRanges(dimensionRange, NO_MATCH))
         {
             NSString *dimension = [aString substringWithRange:dimensionRange];
-            NSNumber *dimensionType = [dimensionMap objectForKey:dimension];
+            NSNumber *dimensionType = dimensionMap[dimension];
             int type;
 
             if (dimensionType)
             {
-                type = [dimensionType intValue];
+                type = dimensionType.intValue;
             }
             else
             {
@@ -128,7 +129,7 @@ static NSRange NO_MATCH;
         }
         else
         {
-            result = [PXStylesheetLexeme lexemeWithType:self.type withRange:numberRange withValue:[NSNumber numberWithFloat:floatValue]];
+            result = [PXStylesheetLexeme lexemeWithType:self.type withRange:numberRange withValue:@(floatValue)];
         }
     }
 
