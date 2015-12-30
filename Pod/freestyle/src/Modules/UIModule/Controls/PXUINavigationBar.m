@@ -334,7 +334,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
             
             [[PXBarMetricsAdjustmentStyler alloc] initWithCompletionBlock:^(PXUINavigationBar *view, PXBarMetricsAdjustmentStyler *styler, PXStylerContext *context) {
                 PXDimension *offset = context.barMetricsVerticalOffset;
-                CGFloat value = (offset) ? [offset points].number : 0.0f;
+                CGFloat value = (offset) ? offset.points.number : 0.0f;
                 
                 [view px_setTitleVerticalPositionAdjustment:value forBarMetrics:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
             }],

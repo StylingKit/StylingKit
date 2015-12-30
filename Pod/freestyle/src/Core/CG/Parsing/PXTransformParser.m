@@ -103,7 +103,7 @@ static NSIndexSet *PERCENTAGE_SET;
 
     // setup lexer and prime lexer stream
     lexer.source = source;
-    [self advance];
+    self.advance;
 
     // TODO: move try/catch inside while loop after adding some error recovery
     @try
@@ -130,7 +130,7 @@ static NSIndexSet *PERCENTAGE_SET;
     // advance over keyword
     [self assertTypeInSet:TRANSFORM_KEYWORD_SET];
     PXStylesheetLexeme *transformType = currentLexeme;
-    [self advance];
+    self.advance;
 
     // advance over '('
     [self assertTypeAndAdvance:PXTransformToken_LPAREN];
@@ -295,7 +295,7 @@ static NSIndexSet *PERCENTAGE_SET;
 
 - (PXStylesheetLexeme *)advance
 {
-    return currentLexeme = [lexer nextLexeme];
+    return currentLexeme = lexer.nextLexeme;
 }
 
 - (NSString *)lexemeNameFromType:(int)type
@@ -337,7 +337,7 @@ static NSIndexSet *PERCENTAGE_SET;
             }
         }
 
-        [self advance];
+        self.advance;
         [self advanceIfIsType:PXTransformToken_COMMA];
     }
 
@@ -354,7 +354,7 @@ static NSIndexSet *PERCENTAGE_SET;
 
         result = number.floatValue;
 
-        [self advance];
+        self.advance;
         [self advanceIfIsType:PXTransformToken_COMMA];
     }
     else
@@ -397,7 +397,7 @@ static NSIndexSet *PERCENTAGE_SET;
             }
         }
 
-        [self advance];
+        self.advance;
         [self advanceIfIsType:PXTransformToken_COMMA];
     }
     else
@@ -440,7 +440,7 @@ static NSIndexSet *PERCENTAGE_SET;
             }
         }
 
-        [self advance];
+        self.advance;
         [self advanceIfIsType:PXTransformToken_COMMA];
     }
     else

@@ -268,7 +268,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
     // setup lexer and prime it
     lexer_.source = source;
-    [self advance];
+    self.advance;
 
     @try
     {
@@ -325,7 +325,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // setup lexer and prime it
     lexer_.source = css;
     [lexer_ increaseNesting];
-    [self advance];
+    self.advance;
 
     @try
     {
@@ -361,7 +361,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
     // setup lexer and prime it
     lexer_.source = source;
-    [self advance];
+    self.advance;
 
     @try
     {
@@ -425,7 +425,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     if (path)
     {
         // advance over @import argument
-        [self advance];
+        self.advance;
 
         // calculate resource name and file extension
         NSString *pathMinusExtension = path.stringByDeletingPathExtension;
@@ -436,7 +436,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             // we need to go ahead and process the trailing semicolon so we have the corrent lexeme in case we push it
             // below
-            [self advance];
+            self.advance;
 
             [self addImportName:bundlePath];
 
@@ -446,7 +446,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             {
                 [lexer_ pushLexeme:currentLexeme];
                 [lexer_ pushSource:source];
-                [self advance];
+                self.advance;
             }
         }
         else
@@ -458,7 +458,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
             // NOTE: we do this here so we'll still have the current file on the active imports stack. This handles the
             // case of a file ending with an @import statement, causing advance to pop it from the active imports stack
-            [self advance];
+            self.advance;
         }
     }
 }
@@ -470,7 +470,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // TODO: support media types, NOT, and ONLY. Skipping for now
     while ([self isType:PXSS_IDENTIFIER])
     {
-        [self advance];
+        self.advance;
     }
 
     // 'and' may appear here
@@ -487,7 +487,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     {
         @try
         {
-            [self advance];
+            self.advance;
 
             while (currentLexeme && ![self isType:PXSS_RCURLY])
             {
@@ -569,7 +569,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // grab keyframe name
     [self assertType:PXSS_IDENTIFIER];
     PXKeyframe *keyframe = [[PXKeyframe alloc] initWithName:currentLexeme.value];
-    [self advance];
+    self.advance;
 
     // advance over '{'
     [self assertTypeAndAdvance:PXSS_LCURLY];
@@ -585,7 +585,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         while ([self isType:PXSS_COMMA])
         {
             // advance over ','
-            [self advance];
+            self.advance;
 
             [offsets addObject:@([self parseOffset])];
         }
@@ -632,7 +632,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             {
                 offset = 1.0f;
             }
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_PERCENTAGE:
@@ -641,7 +641,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             offset = percentage.number / 100.0f;
             offset = MIN(1.0f, offset);
             offset = MAX(0.0f, offset);
-            [self advance];
+            self.advance;
             break;
         }
 
@@ -666,7 +666,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     if ([self isType:PXSS_IDENTIFIER])
     {
         identifier = currentLexeme.value;
-        [self advance];
+        self.advance;
     }
 
     [self assertTypeInSet:NAMESPACE_SET];
@@ -680,7 +680,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         uri = [uri substringWithRange:NSMakeRange(1, uri.length - 2)];
     }
 
-    [self advance];
+    self.advance;
 
     // set namespace on stylesheet
     [currentStyleSheet_ setURI:uri forNamespacePrefix:identifier];
@@ -704,7 +704,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     while (currentLexeme.type == PXSS_COMMA)
     {
         // advance over ','
-        [self advance];
+        self.advance;
 
         // grab next selector
         [selectors addObject:[self parseSelectorSequence]];
@@ -742,7 +742,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         // and any others
         while ([self isType:PXSS_AND])
         {
-            [self advance];
+            self.advance;
 
             [expressions addObject:[self parseMediaExpression]];
         }
@@ -784,7 +784,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         if ([self isInTypeSet:SELECTOR_OPERATOR_SET])
         {
             operator = currentLexeme;
-            [self advance];
+            self.advance;
         }
 
         id<PXSelector> rhs = [self parseSelector];
@@ -820,11 +820,11 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // grab possible pseudo-element in new and old formats
     if ([self isType:PXSS_DOUBLE_COLON])
     {
-        [self advance];
+        self.advance;
 
         [self assertType:PXSS_IDENTIFIER];
         pseudoElement = currentLexeme.value;
-        [self advance];
+        self.advance;
     }
     else if ([self isInTypeSet:ARCHAIC_PSEUDO_ELEMENTS_SET])
     {
@@ -832,7 +832,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
         pseudoElement = [stringValue substringFromIndex:1];
 
-        [self advance];
+        self.advance;
     }
 
     if (pseudoElement.length > 0)
@@ -886,7 +886,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             // TODO: parseDeclaration could do error recovery. If not, this should probably do the same recovery
             while (currentLexeme && ![self isInTypeSet:DECLARATION_DELIMITER_SET])
             {
-                [self advance];
+                self.advance;
             }
 
             [self advanceIfIsType:PXSS_SEMICOLON];
@@ -903,7 +903,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // grab name
     [self assertType:PXSS_IDENTIFIER];
     NSString *name = [currentLexeme.value lowercaseString];
-    [self advance];
+    self.advance;
 
     id value = nil;
 
@@ -916,7 +916,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         // grab value
         [self assertTypeInSet:QUERY_VALUE_SET];
         value = currentLexeme.value;
-        [self advance];
+        self.advance;
 
         // make string values lowercase to avoid doing it later
         if ([value isKindOfClass:[NSString class]])
@@ -929,12 +929,12 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             NSNumber *numerator = (NSNumber *) value;
             
             // advance over '/'
-            [self advance];
+            self.advance;
 
             // grab denominator
             [self assertType:PXSS_NUMBER];
             NSNumber *denom = currentLexeme.value;
-            [self advance];
+            self.advance;
 
             if (numerator.floatValue == 0.0)
             {
@@ -996,7 +996,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // process property name
     [self assertType:PXSS_IDENTIFIER];
     PXDeclaration *declaration = [[PXDeclaration alloc] initWithName:currentLexeme.value];
-    [self advance];
+    self.advance;
 
     // colon
     [self assertTypeAndAdvance:PXSS_COLON];
@@ -1020,7 +1020,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         else
         {
             [lexemes addObject:currentLexeme];
-            [self advance];
+            self.advance;
         }
     }
 
@@ -1078,7 +1078,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             // assume we have a name only
             name = currentLexeme.value;
-            [self advance];
+            self.advance;
         }
 
         // if pipe, then we had a namespace, now process type
@@ -1087,13 +1087,13 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             namespace = name;
 
             // advance over '|'
-            [self advance];
+            self.advance;
 
             if ([self isInTypeSet:TYPE_NAME_SET])
             {
                 // set name
                 name = currentLexeme.value;
-                [self advance];
+                self.advance;
             }
             else
             {
@@ -1143,7 +1143,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             {
                 NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
                 [expressions addObject:[[PXIdSelector alloc] initWithIdValue:name]];
-                [self advance];
+                self.advance;
                 break;
             }
 
@@ -1151,7 +1151,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             {
                 NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
                 [expressions addObject:[[PXClassSelector alloc] initWithClassName:name]];
-                [self advance];
+                self.advance;
                 break;
             }
 
@@ -1169,42 +1169,42 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
             case PXSS_ROOT_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateRoot]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_FIRST_CHILD_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstChild]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_LAST_CHILD_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastChild]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_FIRST_OF_TYPE_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstOfType]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_LAST_OF_TYPE_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastOfType]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_ONLY_CHILD_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyChild]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_ONLY_OF_TYPE_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyOfType]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_EMPTY_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateEmpty]];
-                [self advance];
+                self.advance;
                 break;
 
             case PXSS_NTH_CHILD_PSEUDO_CLASS:
@@ -1226,14 +1226,14 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             case PXSS_CHECKED_PSEUDO_CLASS:
             case PXSS_INDETERMINATE_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassSelector alloc] initWithClassName:currentLexeme.value]];
-                [self advance];
+                self.advance;
                 break;
 
             // TODO: implement
             case PXSS_LANG_PSEUDO_CLASS:
                 [expressions addObject:[[PXPseudoClassSelector alloc] initWithClassName:currentLexeme.value]];
                 [self advanceToType:PXSS_RPAREN];
-                [self advance];
+                self.advance;
                 break;
 
             default:
@@ -1277,7 +1277,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     }
 
     // advance over function name and left paren
-    [self advance];
+    self.advance;
 
     NSInteger modulus = 0;
     NSInteger remainder = 0;
@@ -1310,17 +1310,17 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             modulus = [numberString substringWithRange:NSMakeRange(0, numberString.length - 1)].intValue;
         }
 
-        [self advance];
+        self.advance;
 
         if ([self isType:PXSS_PLUS])
         {
-            [self advance];
+            self.advance;
 
             // grab remainder
             [self assertType:PXSS_NUMBER];
             NSNumber *remainderNumber = currentLexeme.value;
             remainder = remainderNumber.intValue;
-            [self advance];
+            self.advance;
         }
         else if ([self isType:PXSS_NUMBER])
         {
@@ -1330,7 +1330,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             {
                 NSNumber *remainderNumber = currentLexeme.value;
                 remainder = remainderNumber.intValue;
-                [self advance];
+                self.advance;
             }
             else
             {
@@ -1356,7 +1356,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             [self errorWithMessage:[NSString stringWithFormat:@"Unrecognized identifier '%@'. Expected 'odd' or 'even'", stringValue]];
         }
 
-        [self advance];
+        self.advance;
     }
     else if ([self isType:PXSS_NUMBER])
     {
@@ -1364,7 +1364,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         NSNumber *remainderNumber = currentLexeme.value;
         remainder = remainderNumber.intValue;
 
-        [self advance];
+        self.advance;
     }
     else
     {
@@ -1400,7 +1400,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
                 break;
         }
 
-        [self advance];
+        self.advance;
 
         if ([self isType:PXSS_STRING])
         {
@@ -1411,7 +1411,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
                                                              attributeSelector:result
                                                                    stringValue:[value substringWithRange:NSMakeRange(1, value.length - 2)]];
 
-            [self advance];
+            self.advance;
         }
         else if ([self isType:PXSS_IDENTIFIER])
         {
@@ -1420,7 +1420,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
                                                              attributeSelector:result
                                                                    stringValue:currentLexeme.value];
 
-            [self advance];
+            self.advance;
         }
         else
         {
@@ -1438,13 +1438,13 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     id<PXSelector> result = nil;
 
     [self assertType:PXSS_COLON];
-    [self advance];
+    self.advance;
 
     if ([self isType:PXSS_IDENTIFIER])
     {
         // process identifier
         result = [[PXPseudoClassSelector alloc] initWithClassName:currentLexeme.value];
-        [self advance];
+        self.advance;
     }
     else
     {
@@ -1460,7 +1460,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 {
     // advance over 'not'
     [self assertType:PXSS_NOT_PSEUDO_CLASS];
-    [self advance];
+    self.advance;
 
     id<PXSelector> result = [[PXNotPseudoClass alloc] initWithExpression:[self parseNegationArgument]];
 
@@ -1486,7 +1486,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             // assume we have a name only
             name = currentLexeme.value;
-            [self advance];
+            self.advance;
         }
 
         // if pipe, then we had a namespace, now process type
@@ -1495,13 +1495,13 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             namespace = name;
 
             // advance over '|'
-            [self advance];
+            self.advance;
 
             if ([self isInTypeSet:TYPE_NAME_SET])
             {
                 // set name
                 name = currentLexeme.value;
-                [self advance];
+                self.advance;
             }
             else
             {
@@ -1547,7 +1547,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
             result = [[PXIdSelector alloc] initWithIdValue:name];
-            [self advance];
+            self.advance;
             break;
         }
 
@@ -1555,7 +1555,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
             result = [[PXClassSelector alloc] initWithClassName:name];
-            [self advance];
+            self.advance;
             break;
         }
 
@@ -1569,42 +1569,42 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
         case PXSS_ROOT_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateRoot];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_FIRST_CHILD_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstChild];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_LAST_CHILD_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastChild];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_FIRST_OF_TYPE_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstOfType];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_LAST_OF_TYPE_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastOfType];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_ONLY_CHILD_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyChild];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_ONLY_OF_TYPE_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyOfType];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_EMPTY_PSEUDO_CLASS:
             result = [[PXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateEmpty];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_NTH_CHILD_PSEUDO_CLASS:
@@ -1626,14 +1626,14 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         case PXSS_CHECKED_PSEUDO_CLASS:
         case PXSS_INDETERMINATE_PSEUDO_CLASS:
             result = [[PXPseudoClassSelector alloc] initWithClassName:currentLexeme.value];
-            [self advance];
+            self.advance;
             break;
 
             // TODO: implement
         case PXSS_LANG_PSEUDO_CLASS:
             result = [[PXPseudoClassSelector alloc] initWithClassName:currentLexeme.value];
             [self advanceToType:PXSS_RPAREN];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_RPAREN:
@@ -1673,7 +1673,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 - (PXStylesheetLexeme *)advance
 {
-    return currentLexeme = [lexer_ nextLexeme];
+    return currentLexeme = lexer_.nextLexeme;
 }
 
 - (NSString *)lexemeNameFromType:(int)type
@@ -1710,7 +1710,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 {
     while (currentLexeme && currentLexeme.type != type)
     {
-        [self advance];
+        self.advance;
     }
 }
 

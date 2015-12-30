@@ -72,7 +72,7 @@
 {
     if (!self->_path)
     {
-        self->_path = [self newPath];
+        self->_path = self.newPath;
     }
 
     return self->_path;

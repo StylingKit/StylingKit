@@ -73,7 +73,7 @@
             PXShapeView *shapeView = [[PXShapeView alloc] initWithFrame:bounds];
 
             [shapeView loadSceneFromURL:_imageURL];
-            image = [shapeView renderToImage];
+            image = shapeView.renderToImage;
         }
         else
         {

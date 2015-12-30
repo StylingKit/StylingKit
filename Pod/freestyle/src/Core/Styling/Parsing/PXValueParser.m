@@ -194,13 +194,13 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         lexer.source = source;
         [lexer increaseNesting];
-        PXStylesheetLexeme *lexeme = [lexer nextLexeme];
+        PXStylesheetLexeme *lexeme = lexer.nextLexeme;
 
         while (lexeme)
         {
             [lexemes addObject:lexeme];
 
-            lexeme = [lexer nextLexeme];
+            lexeme = lexer.nextLexeme;
         }
     }
 
@@ -251,7 +251,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 {
     [self clearErrors];
     [self setLexemes:lexemes];
-    [self advance];
+    self.advance;
 }
 
 #pragma mark - Setters
@@ -276,7 +276,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         while ([self isType:PXSS_COMMA])
         {
-            [self advance];
+            self.advance;
 
             [items addObject:[self parseAnimationInfo]];
         }
@@ -301,7 +301,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         while ([self isType:PXSS_COMMA])
         {
-            [self advance];
+            self.advance;
 
             [items addObject:[self parseTransitionInfo]];
         }
@@ -334,7 +334,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     if ([self isType:PXSS_IDENTIFIER] && ![KEYWORDS containsObject:currentLexeme.value])
     {
         info.animationName = currentLexeme.value;
-        [self advance];
+        self.advance;
     }
     if ([self isType:PXSS_TIME])
     {
@@ -354,7 +354,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         info.animationIterationCount = (int) number.floatValue;
 
-        [self advance];
+        self.advance;
     }
     if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_DIRECTION_MAP[currentLexeme.value] != nil))
     {
@@ -379,7 +379,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     if ([self isType:PXSS_IDENTIFIER] && (ANIMATION_TIMING_FUNCTION_MAP[currentLexeme.value] == nil))
     {
         info.animationName = currentLexeme.value;
-        [self advance];
+        self.advance;
     }
     if ([self isType:PXSS_TIME])
     {
@@ -408,7 +408,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_IDENTIFIER])
         {
             [items addObject:@(self.animationDirection)];
-            [self advance];
+            self.advance;
 
             while ([self isType:PXSS_COMMA])
             {
@@ -417,7 +417,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 if ([self isType:PXSS_IDENTIFIER])
                 {
                     [items addObject:@(self.animationDirection)];
-                    [self advance];
+                    self.advance;
                 }
                 else
                 {
@@ -445,7 +445,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_IDENTIFIER])
         {
             [items addObject:@(self.animationFillMode)];
-            [self advance];
+            self.advance;
 
             while ([self isType:PXSS_COMMA])
             {
@@ -454,7 +454,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 if ([self isType:PXSS_IDENTIFIER])
                 {
                     [items addObject:@(self.animationFillMode)];
-                    [self advance];
+                    self.advance;
                 }
                 else
                 {
@@ -482,7 +482,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_IDENTIFIER])
         {
             [items addObject:@(self.animationPlayState)];
-            [self advance];
+            self.advance;
 
             while ([self isType:PXSS_COMMA])
             {
@@ -491,7 +491,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 if ([self isType:PXSS_IDENTIFIER])
                 {
                     [items addObject:@(self.animationPlayState)];
-                    [self advance];
+                    self.advance;
                 }
                 else
                 {
@@ -519,7 +519,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_IDENTIFIER])
         {
             [items addObject:@(self.animationTimingFunction)];
-            [self advance];
+            self.advance;
 
             while ([self isType:PXSS_COMMA])
             {
@@ -528,7 +528,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 if ([self isType:PXSS_IDENTIFIER])
                 {
                     [items addObject:@(self.animationTimingFunction)];
-                    [self advance];
+                    self.advance;
                 }
                 else
                 {
@@ -595,7 +595,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_SLASH])
         {
             // advance over '/'
-            [self advance];
+            self.advance;
 
             PXOffsets *yRadii = self.parseOffsets;
 
@@ -697,7 +697,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 result = (PXBorderStyle) value.intValue;
             }
 
-            [self advance];
+            self.advance;
         }
     }
     @catch (NSException *e)
@@ -755,7 +755,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_NUMBER])
         {
             [items addObject:currentLexeme.value];
-            [self advance];
+            self.advance;
 
             while ([self isType:PXSS_COMMA])
             {
@@ -764,7 +764,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 if ([self isType:PXSS_NUMBER])
                 {
                     [items addObject:currentLexeme.value];
-                    [self advance];
+                    self.advance;
                 }
                 else
                 {
@@ -792,17 +792,17 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_IDENTIFIER])
         {
             [items addObject:currentLexeme.value];
-            [self advance];
+            self.advance;
 
             while ([self isType:PXSS_COMMA])
             {
                 // advance over ','
-                [self advance];
+                self.advance;
 
                 if ([self isType:PXSS_IDENTIFIER])
                 {
                     [items addObject:currentLexeme.value];
-                    [self advance];
+                    self.advance;
                 }
                 else
                 {
@@ -884,7 +884,7 @@ static NSString *ASSET_SCHEME = @"asset://";
             while ([self isType:PXSS_COMMA])
             {
                 // advance over comma, ','
-                [self advance];
+                self.advance;
 
                 [group addPaint:[self parseSinglePaint]];
             }
@@ -911,7 +911,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         if ([self isType:PXSS_TIME])
         {
             [items addObject:@(self.secondsValue)];
-            [self advance];
+            self.advance;
 
             while ([self isType:PXSS_COMMA])
             {
@@ -920,7 +920,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 if ([self isType:PXSS_TIME])
                 {
                     [items addObject:@(self.secondsValue)];
-                    [self advance];
+                    self.advance;
                 }
                 else
                 {
@@ -956,7 +956,7 @@ static NSString *ASSET_SCHEME = @"asset://";
             while ([self isType:PXSS_COMMA])
             {
                 // skip over ','
-                [self advance];
+                self.advance;
 
                 [group addShadowPaint:[self parseShadow]];
             }
@@ -979,7 +979,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     if ([self isIdentifierWithName:@"inset"])
     {
         result.inset = YES;
-        [self advance];
+        self.advance;
     }
 
     // grab required x-offset
@@ -1053,14 +1053,14 @@ static NSString *ASSET_SCHEME = @"asset://";
         {
             // NOTE: technically we should look for "none", but if we don't recognize the identifier, we'll want to
             // treat it as none anyway
-            [self advance];
+            self.advance;
         }
         else
         {
             [self assertType:PXSS_URL];
             NSString *unescapedPath = currentLexeme.value;
             NSString *path = [unescapedPath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [self advance];
+            self.advance;
 
             __block NSMutableArray *fullPaths = [[NSMutableArray alloc] init];
 
@@ -1274,7 +1274,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
             result.blendMode = (blendModeValue) ? blendModeValue.intValue : kCGBlendModeNormal;
 
-            [self advance];
+            self.advance;
         }
     }
     else
@@ -1302,7 +1302,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     else if ([self isIdentifierWithName:@"to"])
     {
         // advance over 'to'
-        [self advance];
+        self.advance;
 
         // look for direction indicator
         if ([self isType:PXSS_IDENTIFIER])
@@ -1311,19 +1311,19 @@ static NSString *ASSET_SCHEME = @"asset://";
 
             if ([@"left" isEqualToString:text])
             {
-                [self advance];
+                self.advance;
 
                 if ([self isIdentifierWithName:@"top"])
                 {
                     // advance over 'top'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToTopLeft;
                 }
                 else if ([self isIdentifierWithName:@"bottom"])
                 {
                     // advance over 'bottom'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToBottomLeft;
                 }
@@ -1334,19 +1334,19 @@ static NSString *ASSET_SCHEME = @"asset://";
             }
             else if ([@"right" isEqualToString:text])
             {
-                [self advance];
+                self.advance;
 
                 if ([self isIdentifierWithName:@"top"])
                 {
                     // advance over 'top'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToTopRight;
                 }
                 else if ([self isIdentifierWithName:@"bottom"])
                 {
                     // advance over 'bottom'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToBottomRight;
                 }
@@ -1357,19 +1357,19 @@ static NSString *ASSET_SCHEME = @"asset://";
             }
             else if ([@"top" isEqualToString:text])
             {
-                [self advance];
+                self.advance;
 
                 if ([self isIdentifierWithName:@"left"])
                 {
                     // advance over 'left'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToTopLeft;
                 }
                 else if ([self isIdentifierWithName:@"right"])
                 {
                     // advance over 'right'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToTopRight;
                 }
@@ -1380,19 +1380,19 @@ static NSString *ASSET_SCHEME = @"asset://";
             }
             else if ([@"bottom" isEqualToString:text])
             {
-                [self advance];
+                self.advance;
 
                 if ([self isIdentifierWithName:@"left"])
                 {
                     // advance over 'left'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToBottomLeft;
                 }
                 else if ([self isIdentifierWithName:@"right"])
                 {
                     // advance over 'right'
-                    [self advance];
+                    self.advance;
 
                     result.gradientDirection = PXLinearGradientDirectionToBottomRight;
                 }
@@ -1426,7 +1426,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
             CGFloat offset = percent.number / 100.0f;
 
-            [self advance];
+            self.advance;
 
             [result addColor:color withOffset:offset];
         }
@@ -1493,7 +1493,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
             result = number.floatValue / divisor;
 
-            [self advance];
+            self.advance;
         }
         else if ([self isType:PXSS_PERCENTAGE])
         {
@@ -1501,7 +1501,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
             result = percent / 100.0f;
 
-            [self advance];
+            self.advance;
         }
 
         [self advanceIfIsType:PXSS_COMMA];
@@ -1519,7 +1519,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
             result = number.floatValue / 360.0f;
 
-            [self advance];
+            self.advance;
         }
         else if ([self isType:PXSS_ANGLE])
         {
@@ -1527,7 +1527,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
             result = degrees.number / 360.0f;
 
-            [self advance];
+            self.advance;
         }
 
         [self advanceIfIsType:PXSS_COMMA];
@@ -1538,7 +1538,7 @@ static NSString *ASSET_SCHEME = @"asset://";
     switch (currentLexeme.type)
     {
         case PXSS_RGB:
-            [self advance];
+            self.advance;
             result = [UIColor colorWithRed:readByteOrPercent(255.0f)
                                      green:readByteOrPercent(255.0f)
                                       blue:readByteOrPercent(255.0f)
@@ -1550,14 +1550,14 @@ static NSString *ASSET_SCHEME = @"asset://";
         {
             CGFloat r, g, b, a;
 
-            [self advance];
+            self.advance;
 
             if ([self isType:PXSS_HEX_COLOR])
             {
                 UIColor *c = [UIColor colorWithHexString:currentLexeme.value];
 
                 [c getRed:&r green:&g blue:&b alpha:&a];
-                [self advance];
+                self.advance;
                 [self advanceIfIsType:PXSS_COMMA];
             }
             else if ([self isType:PXSS_IDENTIFIER])
@@ -1565,7 +1565,7 @@ static NSString *ASSET_SCHEME = @"asset://";
                 UIColor *c = [UIColor colorFromName:currentLexeme.value];
 
                 [c getRed:&r green:&g blue:&b alpha:&a];
-                [self advance];
+                self.advance;
                 [self advanceIfIsType:PXSS_COMMA];
             }
             else
@@ -1583,7 +1583,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         }
 
         case PXSS_HSL:
-            [self advance];
+            self.advance;
             result = [UIColor colorWithHue:readAngle()
                                 saturation:readByteOrPercent(255.0f)
                                  lightness:readByteOrPercent(255.0f)
@@ -1592,7 +1592,7 @@ static NSString *ASSET_SCHEME = @"asset://";
             break;
 
         case PXSS_HSLA:
-            [self advance];
+            self.advance;
             result = [UIColor colorWithHue:readAngle()
                                 saturation:readByteOrPercent(255.0f)
                                  lightness:readByteOrPercent(255.0f)
@@ -1601,7 +1601,7 @@ static NSString *ASSET_SCHEME = @"asset://";
             break;
 
         case PXSS_HSB:
-            [self advance];
+            self.advance;
             result = [UIColor colorWithHue:readAngle()
                                 saturation:readByteOrPercent(255.0f)
                                 brightness:readByteOrPercent(255.0f)
@@ -1610,7 +1610,7 @@ static NSString *ASSET_SCHEME = @"asset://";
             break;
 
         case PXSS_HSBA:
-            [self advance];
+            self.advance;
             result = [UIColor colorWithHue:readAngle()
                                 saturation:readByteOrPercent(255.0f)
                                 brightness:readByteOrPercent(255.0f)
@@ -1620,12 +1620,12 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         case PXSS_HEX_COLOR:
             result = [UIColor colorWithHexString:currentLexeme.value];
-            [self advance];
+            self.advance;
             break;
 
         case PXSS_IDENTIFIER:
             result = [UIColor colorFromName:currentLexeme.value];
-            [self advance];
+            self.advance;
             break;
 
         default:
@@ -1670,7 +1670,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:@"ANGLE lexeme did not have PXDimension value"];
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1694,7 +1694,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:@"Expected identifier for animation direction"];
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1718,7 +1718,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:@"Expected identifier for animation play state"];
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1742,7 +1742,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:@"Expected identifier for animation fill mode"];
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1766,7 +1766,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:@"Expected identifier for animation timing function"];
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1791,7 +1791,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         result = points.number;
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1815,7 +1815,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:@"PERCENTAGE lexeme did not have PXDimension value"];
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1856,7 +1856,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:@"TIME lexeme did not have PXDimension value"];
     }
 
-    [self advance];
+    self.advance;
 
     return result;
 }
@@ -1876,7 +1876,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         result = number.floatValue;
 
-        [self advance];
+        self.advance;
     }
     else if ([self isType:PXSS_LENGTH])
     {
@@ -1884,7 +1884,7 @@ static NSString *ASSET_SCHEME = @"asset://";
 
         result = length.points.number;
 
-        [self advance];
+        self.advance;
     }
 
     [self advanceIfIsType:PXSS_COMMA];

@@ -45,7 +45,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value CGRectValue];
+        return value.CGRectValue;
     }
     else
     {
@@ -61,7 +61,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value CGFloatValue];
+        return value.CGFloatValue;
     }
     else
     {
@@ -77,7 +77,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value CGColorRefValue];
+        return value.CGColorRefValue;
     }
     else
     {
@@ -94,7 +94,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value CGSizeValue];
+        return value.CGSizeValue;
     }
     else
     {
@@ -110,7 +110,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value BooleanValue];
+        return value.BooleanValue;
     }
     else
     {
@@ -126,7 +126,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value CGAffineTransformValue];
+        return value.CGAffineTransformValue;
     }
     else
     {
@@ -142,7 +142,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value UIEdgeInsetsValue];
+        return value.UIEdgeInsetsValue;
     }
     else
     {
@@ -158,7 +158,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
 
-        return [value NSLineBreakModeValue];
+        return value.NSLineBreakModeValue;
     }
     else
     {
@@ -174,7 +174,7 @@ void PXForceLoadNSDictionaryPXObject() {}
     {
         PXValue *value = object;
         
-        return [value NSTextAlignmentValue];
+        return value.NSTextAlignmentValue;
     }
     else
     {

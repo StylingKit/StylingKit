@@ -81,7 +81,7 @@
             PXShapeView *shapeView = [[PXShapeView alloc] initWithFrame:bounds];
 
             [shapeView loadSceneFromURL:context.shadowUrl];
-            context.shadowImage = [shapeView renderToImage];
+            context.shadowImage = shapeView.renderToImage;
         }
         else
         {

@@ -30,7 +30,7 @@
     }
     return resolvedFuture;
 #else
-    return [self resolveFuture];
+    return self.resolveFuture;
 #endif
 }
 
@@ -63,7 +63,7 @@
     if((self = [self init]))
     {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [self setFutureValue: block()];
+            self.futureValue = block();
         });
     }
     return self;
@@ -71,7 +71,7 @@
 
 - (id)resolveFuture
 {
-    return [self waitForFutureResolution];
+    return self.waitForFutureResolution;
 }
 
 @end
@@ -97,7 +97,7 @@
 - (id)resolveFuture
 {
     [_lock lock];
-    if(![self futureHasResolved])
+    if(!self.futureHasResolved)
     {
         [self setFutureValueUnlocked: _block()];
         [_block release];
@@ -112,13 +112,13 @@
 #undef MABackgroundFuture
 id MABackgroundFuture(id (^block)(void))
 {
-    return [[[_MABackgroundBlockFuture alloc] initWithBlock: block] autorelease];
+    return [[_MABackgroundBlockFuture alloc] initWithBlock: block].autorelease;
 }
 
 #undef MALazyFuture
 id MALazyFuture(id (^block)(void))
 {
-    return [[[_MALazyBlockFuture alloc] initWithBlock: block] autorelease];
+    return [[_MALazyBlockFuture alloc] initWithBlock: block].autorelease;
 }
 
 #pragma mark -
@@ -143,7 +143,7 @@ id MALazyFuture(id (^block)(void))
     BOOL newIsObserving = (countOfUsers == 0);
     if (newIsObserving && isManuallyStopped) {
         isManuallyStopped = NO;
-        if ([self futureHasResolved]) {
+        if (self.futureHasResolved) {
             // If future is resolved set isObserving back to YES.
             // Otherwise this will be set to YES just after resolving.
             [self setIsObservingUnlocked:YES];
@@ -151,7 +151,7 @@ id MALazyFuture(id (^block)(void))
     }
     else if (!newIsObserving && !isManuallyStopped) {
         isManuallyStopped = YES;
-        if ([self futureHasResolved]) {
+        if (self.futureHasResolved) {
             // If future is resolved set isObserving to NO.
             // Otherwise this is already set to NO.
             [self setIsObservingUnlocked:NO];
@@ -162,7 +162,7 @@ id MALazyFuture(id (^block)(void))
 
 
 - (id)futureValue {
-    return [[[super futureValue] retain] autorelease];
+    return [[super.futureValue retain] autorelease];
 }
 
 
@@ -189,7 +189,7 @@ id MALazyFuture(id (^block)(void))
 
 - (id)resolveFuture {
     [_lock lock];
-    if(![self futureHasResolved])
+    if(!self.futureHasResolved)
     {
         [self setFutureValueUnlocked: _block()];
         if (!isManuallyStopped) {
@@ -310,10 +310,10 @@ NSString* IKMemoryAwareFuturePath(id future) {
 
 - (id)resolveFuture {
     [_lock lock];
-    if(![self futureHasResolved])
+    if(!self.futureHasResolved)
     {
         // Try to decode object from file.
-        if (![self unarchiveValueUnlocked]) {
+        if (!self.unarchiveValueUnlocked) {
             // If cannot to decode object, create it.
             [self setFutureValueUnlocked: _block()];
         }
@@ -328,7 +328,7 @@ NSString* IKMemoryAwareFuturePath(id future) {
 
 
 - (void)processMemoryWarningUnlocked {
-    [self archiveValueUnlocked];
+    self.archiveValueUnlocked;
     [super processMemoryWarningUnlocked];
 }
 
@@ -356,7 +356,7 @@ NSString* IKMemoryAwareFuturePath(id future) {
         LOG(@"IKAAMAF: Cannot decode value at path \"%@\"", IKMemoryAwareFuturePath(self));
     }
 #endif
-    return [self futureHasResolved];
+    return self.futureHasResolved;
 }
 
 

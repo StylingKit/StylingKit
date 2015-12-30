@@ -51,26 +51,26 @@
 {
     LOG(@"forwardingTargetForSelector: %p %@", self, NSStringFromSelector(sel));
     
-    id value = [self futureValue];
+    id value = self.futureValue;
     if(value)
         return value;
     else if([self _canFutureSelector: sel])
         return nil;
     else
-        return [self resolveFuture];
+        return self.resolveFuture;
 }
 
 - (NSMethodSignature *)methodSignatureForSelector: (SEL)sel
 {
     LOG(@"methodSignatureForSelector: %p %@", self, NSStringFromSelector(sel));
     
-    NSMethodSignature *sig = [[self futureValue] methodSignatureForSelector: sel];
+    NSMethodSignature *sig = [self.futureValue methodSignatureForSelector: sel];
     
     if(!sig)
         sig = [[MAMethodSignatureCache sharedCache] cachedMethodSignatureForSelector: sel];
     
     if(!sig)
-        sig = [[self resolveFuture] methodSignatureForSelector: sel];
+        sig = [self.resolveFuture methodSignatureForSelector: sel];
     
     return sig;
 }
@@ -124,19 +124,19 @@
                     {
                         parameterDatas = [NSMutableArray array];
                         invocationFuture = [[_MALazyBlockFuture alloc] initWithBlock: ^{
-                            [invocation invokeWithTarget: [self resolveFuture]];
+                            [invocation invokeWithTarget: self.resolveFuture];
                             // keep all parameter datas alive until the invocation is resolved
                             // by capturing the variable
                             [parameterDatas self];
                             return (id)nil;
                         }];
-                        [invocationFuture autorelease];
+                        invocationFuture.autorelease;
                     }
                     [parameterDatas addObject: newParameterSpace];
                     
                     // create the compound future that we'll "return" in this argument
                     _MACompoundFuture *parameterFuture = [[_MACompoundFuture alloc] initWithBlock: ^{
-                        [invocationFuture resolveFuture];
+                        invocationFuture.resolveFuture;
                         // capture the NSMutableData to ensure that it stays live
                         // interior pointer problem
                         [newParameterSpace self];
@@ -147,7 +147,7 @@
                     *parameterValue = parameterFuture;
                     
                     // memory management
-                    [parameterFuture autorelease];
+                    parameterFuture.autorelease;
                 }
             }
         }
@@ -156,9 +156,9 @@
         _MACompoundFuture *returnFuture = [[_MACompoundFuture alloc] initWithBlock:^{
             id value = nil;
             if(invocationFuture)
-                [invocationFuture resolveFuture];
+                invocationFuture.resolveFuture;
             else
-                [invocation invokeWithTarget: [self resolveFuture]];
+                [invocation invokeWithTarget: self.resolveFuture];
             [invocation getReturnValue: &value];
             return value;
         }];
@@ -179,7 +179,7 @@ id MACompoundBackgroundFuture(id (^block)(void))
         return [blockFuture resolveFuture];
     }];
     
-    return [compoundFuture autorelease];
+    return compoundFuture.autorelease;
 }
 
 #undef MACompoundLazyFuture
@@ -187,5 +187,5 @@ id MACompoundLazyFuture(id (^block)(void))
 {
     _MACompoundFuture *compoundFuture = [[_MACompoundFuture alloc] initWithBlock: block];
     
-    return [compoundFuture autorelease];
+    return compoundFuture.autorelease;
 }

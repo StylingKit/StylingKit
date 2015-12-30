@@ -2,6 +2,7 @@
 //  PXTransformLexerTests.m
 //  PXShapeKit
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 7/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -37,7 +38,7 @@
 - (PXStylesheetLexeme *)assertLexemeType:(PXTransformTokens)type withSource:(NSString *)source
 {
     lexer.source = source;
-    PXStylesheetLexeme *lexeme = [lexer nextLexeme];
+    PXStylesheetLexeme *lexeme = lexer.nextLexeme;
 
     XCTAssertNotNil(lexeme, @"Expected lexeme");
 

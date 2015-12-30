@@ -73,7 +73,7 @@
 
 - (Class)class
 {
-    Class c = [[self resolveFuture] class];
+    Class c = [self.resolveFuture class];
     if([NSStringFromClass(c) hasPrefix: @"NSCF"])
         return [c superclass];
     else

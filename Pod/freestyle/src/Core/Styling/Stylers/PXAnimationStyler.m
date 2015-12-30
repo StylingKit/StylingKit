@@ -250,7 +250,7 @@
     // Add any additional user-provided property handlers
     if ([styleable respondsToSelector:@selector(animationPropertyHandlers)])
     {
-        [propertyHandlers addEntriesFromDictionary:[styleable animationPropertyHandlers]];
+        [propertyHandlers addEntriesFromDictionary:styleable.animationPropertyHandlers];
     }
     
     NSMutableDictionary *keyframes = [[NSMutableDictionary alloc] init];

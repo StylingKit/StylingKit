@@ -515,7 +515,7 @@ static const char viewDelegate;
     // Check to make sure this styleable has stylers we can use or if it has explictly asked
     // to not be styled
     BOOL preventStyling =
-        ([styleable respondsToSelector:@selector(preventStyling)] && [styleable preventStyling]) ||
+        ([styleable respondsToSelector:@selector(preventStyling)] && styleable.preventStyling) ||
         ([styleable respondsToSelector:@selector(viewStylers)] == NO);
     
     // We prevent nested styling of a styleable by checking to see if it is currently being styled

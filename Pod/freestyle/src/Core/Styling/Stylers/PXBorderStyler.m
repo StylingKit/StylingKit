@@ -172,10 +172,10 @@
             @"border-style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 NSArray *styles = declaration.borderStyleList;
 
-                context.boxModel.borderTopStyle = [(PXValue *)styles[0] PXBorderStyleValue];
-                context.boxModel.borderRightStyle = [(PXValue *)styles[1] PXBorderStyleValue];
-                context.boxModel.borderBottomStyle = [(PXValue *)styles[2] PXBorderStyleValue];
-                context.boxModel.borderLeftStyle = [(PXValue *)styles[3] PXBorderStyleValue];
+                context.boxModel.borderTopStyle = ((PXValue *)styles[0]).PXBorderStyleValue;
+                context.boxModel.borderRightStyle = ((PXValue *)styles[1]).PXBorderStyleValue;
+                context.boxModel.borderBottomStyle = ((PXValue *)styles[2]).PXBorderStyleValue;
+                context.boxModel.borderLeftStyle = ((PXValue *)styles[3]).PXBorderStyleValue;
             },
             @"border-top-style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 PXBorderStyle style = declaration.borderStyleValue;

@@ -427,7 +427,7 @@
     {
         [self popSource];
 
-        result = [self nextLexeme];
+        result = self.nextLexeme;
     }
 
     return result;

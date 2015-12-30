@@ -292,7 +292,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
     {
         callSuper1(SUPER_PREFIX, _cmd, attributedText);
 
-        if([self preventStyling] == NO)
+        if(self.preventStyling == NO)
         {
             [PXStyleUtils invalidateStyleableAndDescendants:self];
             [self updateStylesNonRecursively];

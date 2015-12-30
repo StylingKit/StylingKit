@@ -2,6 +2,7 @@
 //  PXStylesheetLexerTests.m
 //  PXSParser
 //
+//  Modified by Anton Matosov on 12/30/15.
 //  Created by Kevin Lindsey on 6/25/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -43,7 +44,7 @@
 - (PXStylesheetLexeme *)assertLexemeType:(PXStylesheetTokens)type withSource:(NSString *)source length:(NSInteger)length;
 {
     lexer.source = source;
-    PXStylesheetLexeme *lexeme = [lexer nextLexeme];
+    PXStylesheetLexeme *lexeme = lexer.nextLexeme;
 
     XCTAssertNotNil(lexeme, @"Expected lexeme");
 
@@ -269,9 +270,9 @@
 {
     NSString *source = @"{#abc";
     lexer.source = source;
-    PXStylesheetLexeme *lexeme = [lexer nextLexeme];
+    PXStylesheetLexeme *lexeme = lexer.nextLexeme;
 
-    lexeme = [lexer nextLexeme];
+    lexeme = lexer.nextLexeme;
     XCTAssertNotNil(lexeme, @"Expected lexeme");
 
     PXStylesheetTokens type = PXSS_HEX_COLOR;
@@ -287,9 +288,9 @@
 {
     NSString *source = @"{#aabbcc";
     lexer.source = source;
-    PXStylesheetLexeme *lexeme = [lexer nextLexeme];
+    PXStylesheetLexeme *lexeme = lexer.nextLexeme;
 
-    lexeme = [lexer nextLexeme];
+    lexeme = lexer.nextLexeme;
     XCTAssertNotNil(lexeme, @"Expected lexeme");
 
     PXStylesheetTokens type = PXSS_HEX_COLOR;
@@ -544,8 +545,8 @@
 - (void)testWhitespaceFlag
 {
     lexer.source = @"a b";
-    PXStylesheetLexeme *a = [lexer nextLexeme];
-    PXStylesheetLexeme *b = [lexer nextLexeme];
+    PXStylesheetLexeme *a = lexer.nextLexeme;
+    PXStylesheetLexeme *b = lexer.nextLexeme;
 
     XCTAssertNotNil(a, @"a should not be nil");
     XCTAssertNotNil(b, @"b should not be nil");
@@ -615,12 +616,12 @@
     NSString *source2 = @"green";
 
     lexer.source = source1;
-    PXStylesheetLexeme *lexeme1 = [lexer nextLexeme];
+    PXStylesheetLexeme *lexeme1 = lexer.nextLexeme;
 
     [lexer pushSource:source2];
-    PXStylesheetLexeme *lexeme2 = [lexer nextLexeme];
+    PXStylesheetLexeme *lexeme2 = lexer.nextLexeme;
 
-    PXStylesheetLexeme *lexeme3 = [lexer nextLexeme];
+    PXStylesheetLexeme *lexeme3 = lexer.nextLexeme;
 
     XCTAssertTrue(lexeme1.type == PXSS_IDENTIFIER, @"Expected IDENTIFIER: %@", lexeme1);
     XCTAssertTrue([@"red" isEqualToString:lexeme1.value], @"Expected 'red': %@", lexeme1.value);
