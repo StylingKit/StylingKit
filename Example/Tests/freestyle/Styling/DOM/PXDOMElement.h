@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "PXDOMNode.h"
 
-@interface PXDOMElement : NSObject <PXDOMNode>
+@interface PXDOMElement : NSObject <PXDOMNode, PXStyleable>
 
 @property (nonatomic, readonly) NSString *innerXML;
 

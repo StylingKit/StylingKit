@@ -27,7 +27,12 @@
 @synthesize namespacePrefix = namespacePrefix_;
 @synthesize name = name_;
 @synthesize parent = parent_;
+
+/// PXStyleable
 @synthesize styleMode;
+@synthesize styleClasses;
+@synthesize styleChangeable;
+
 
 #pragma mark - Initializers
 
@@ -383,6 +388,16 @@
 
         [self setAttributeValue:value forName:name];
     }
+}
+
+- (NSArray *)viewStylers
+{
+    return nil;
+}
+
+- (NSDictionary *)viewStylersByProperty
+{
+    return nil;
 }
 
 @end
