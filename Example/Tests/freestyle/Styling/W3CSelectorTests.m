@@ -22,8 +22,11 @@
 @end
 
 //#define WRITE_TO_DISK
+#define OVERWRITE_FILES YES
 
 @implementation W3CSelectorTests
+
+#ifdef WRITE_TO_DISK
 
 static NSString *tempFile;
 
@@ -33,16 +36,17 @@ static NSString *tempFile;
     {
         NSDictionary* env = [NSProcessInfo processInfo].environment;
         NSString *baseDirectory = env[@"PROJECT_DIRECTORY"];
-        NSString *relativePath = @"Frameworks/Pixate/PixateTests/Resources/W3C/Selectors Level 3/results";
+        NSString *relativePath = @"Example/Tests/freestyle/Resources/W3C/Selectors Level 3/results";
 
         if (!baseDirectory)
         {
-            baseDirectory = @"/Users/kevin/Documents/Projects/Pixate/pixate-ios-framework/";
+            baseDirectory = @"~/Develop/StylingKit";
         }
 
-        tempFile = [NSString pathWithComponents:@[ baseDirectory, relativePath ]];
+        tempFile = [NSString pathWithComponents:@[baseDirectory, relativePath]];
     }
 }
+#endif
 
 - (PXDOMElement *)loadXMLFromFilename:(NSString *)filename
 {
@@ -128,7 +132,7 @@ static NSString *tempFile;
             NSString *resultText = [NSString stringWithFormat:@"<test>\n\t%@\n\t%@\n\t%@\n</test>", titleNode, styleNode, bodyNode];
 
 #ifdef WRITE_TO_DISK
-            [self writeText:resultText withName:filename overwrite:NO];
+            [self writeText:resultText withName:filename overwrite:OVERWRITE_FILES];
 #else
             NSString *fileText = [self getTextForName:[NSString stringWithFormat:@"%@-result", filename]];
 
@@ -142,6 +146,7 @@ static NSString *tempFile;
     }
 }
 
+#ifdef WRITE_TO_DISK
 - (NSString *)localPathForName:(NSString *)name
 {
     return [NSString stringWithFormat:@"%@/%@-result.xml", tempFile, name];
@@ -160,6 +165,7 @@ static NSString *tempFile;
         [fileManager createFileAtPath:outputPath contents:data attributes:nil];
     }
 }
+#endif
 
 - (NSString *)getTextForName:(NSString *)name
 {
