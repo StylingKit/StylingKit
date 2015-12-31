@@ -675,8 +675,8 @@
 
 - (void)testLightenSolidPaint
 {
-    PXSolidPaint *paint1 = [[PXSolidPaint alloc] initWithColor:[UIColor colorWithRed:0.25 green:0.5 blue:0.25 alpha:1.0]];
-    PXSolidPaint *paint2 = [paint1 lightenByPercent:20];
+    id<PXPaint> paint1 = [[PXSolidPaint alloc] initWithColor:[UIColor colorWithRed:0.25 green:0.5 blue:0.25 alpha:1.0]];
+    id<PXPaint> paint2 = [paint1 lightenByPercent:20];
 
     PXRectangle *rectangle1 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 10, 80, 40)];
     PXRectangle *rectangle2 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 55, 80, 40)];
@@ -693,8 +693,8 @@
 
 - (void)testDarkenSolidPaint
 {
-    PXSolidPaint *paint1 = [[PXSolidPaint alloc] initWithColor:[UIColor colorWithRed:0.25 green:0.5 blue:0.25 alpha:1.0]];
-    PXSolidPaint *paint2 = [paint1 darkenByPercent:20];
+    id<PXPaint> paint1 = [[PXSolidPaint alloc] initWithColor:[UIColor colorWithRed:0.25 green:0.5 blue:0.25 alpha:1.0]];
+    id<PXPaint> paint2 = [paint1 darkenByPercent:20];
 
     PXRectangle *rectangle1 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 10, 80, 40)];
     PXRectangle *rectangle2 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 55, 80, 40)];
@@ -713,7 +713,7 @@
 {
     PXLinearGradient *paint1 = [PXLinearGradient gradientFromStartColor:[UIColor colorWithRed:0.25 green:0.5 blue:0.25 alpha:1.0]
                                                                endColor:[UIColor colorWithRed:0.5 green:0.75 blue:0.5 alpha:1.0]];
-    PXLinearGradient *paint2 = [paint1 lightenByPercent:20];
+    id<PXPaint> paint2 = [paint1 lightenByPercent:20];
 
     PXRectangle *rectangle1 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 10, 80, 40)];
     PXRectangle *rectangle2 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 55, 80, 40)];
@@ -732,7 +732,7 @@
 {
     PXLinearGradient *paint1 = [PXLinearGradient gradientFromStartColor:[UIColor colorWithRed:0.25 green:0.5 blue:0.25 alpha:1.0]
                                                                endColor:[UIColor colorWithRed:0.5 green:0.75 blue:0.5 alpha:1.0]];
-    PXLinearGradient *paint2 = [paint1 darkenByPercent:20];
+    id<PXPaint> paint2 = [paint1 darkenByPercent:20];
 
     PXRectangle *rectangle1 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 10, 80, 40)];
     PXRectangle *rectangle2 = [[PXRectangle alloc] initWithRect:CGRectMake(10, 55, 80, 40)];
