@@ -516,10 +516,12 @@ static const char viewDelegate;
     // to not be styled
     BOOL preventStyling =
         ([styleable respondsToSelector:@selector(preventStyling)] && styleable.preventStyling) ||
-        ([styleable respondsToSelector:@selector(viewStylers)] == NO);
+          ![styleable respondsToSelector:@selector(viewStylers)];
     
     // We prevent nested styling of a styleable by checking to see if it is currently being styled
-    if (![viewsBeingStyled containsObject:styleable] && !preventStyling && styleable.styleMode != PXStylingNone)
+    if (!preventStyling &&
+      styleable.styleMode != PXStylingNone &&
+      ![viewsBeingStyled containsObject:styleable])
     {
         // catch all exceptions to make sure we remove the current styleable from viewsBeingStyled
         @try
