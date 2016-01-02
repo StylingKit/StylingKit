@@ -16,7 +16,10 @@
 }
 
 @synthesize textValue = text_;
+
 @synthesize styleMode;
+@synthesize styleClasses;
+@synthesize styleChangeable;
 
 #pragma mark - Initializers
 
