@@ -11,6 +11,9 @@
 
 @interface StyleableView : UIView
 
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+
 - (instancetype)initWithElementName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 
 @end

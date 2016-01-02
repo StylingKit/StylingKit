@@ -205,7 +205,8 @@
         }
         else
         {
-            currentElement = currentElement.parent;
+            NSAssert([currentElement.parent isKindOfClass:[PXDOMElement class]], @"Invalid parent type. Should be subclass of PXDOMElement");
+            currentElement = (PXDOMElement *)currentElement.parent;
         }
     }
 
@@ -306,7 +307,8 @@
         }
         else
         {
-            currentElement = currentElement.parent;
+            NSAssert([currentElement.parent isKindOfClass:[PXDOMElement class]], @"Invalid parent type. Should be subclass of PXDOMElement");
+            currentElement = (PXDOMElement *)currentElement.parent;
         }
     }
 

@@ -18,7 +18,7 @@
 
 - (instancetype)initWithElementName:(NSString *)name
 {
-    if (self = [super init])
+    if (self = [super initWithFrame:CGRectZero])
     {
         self->elementName = name;
     }

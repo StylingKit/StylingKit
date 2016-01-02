@@ -20,6 +20,8 @@
                                           fontStyle:@""
                                                size:10.f
                                       isDefaultFont:YES];
+
+    XCTAssertNotNil(result);
 }
 
 @end

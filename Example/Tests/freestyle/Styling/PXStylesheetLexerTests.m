@@ -281,7 +281,7 @@
 
     XCTAssertTrue(lexeme.type == type, @"Expected %ld(%@) but found %d(%@)", (long)type, expectedType, lexeme.type, actualType);
     XCTAssertTrue(lexeme.range.location == 1, @"Lexeme does not start at offset one");
-    XCTAssertTrue(lexeme.range.length == source.length - 1, @"Expected %lu characters but found %d", source.length - 1, lexeme.range.length);
+    XCTAssertTrue(lexeme.range.length == source.length - 1, @"Expected %lu characters but found %lu", (unsigned long)source.length - 1, (unsigned long)lexeme.range.length);
 }
 
 - (void)test6DigitHexColor

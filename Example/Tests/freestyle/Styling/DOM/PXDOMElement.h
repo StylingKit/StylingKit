@@ -14,7 +14,9 @@
 
 @property (nonatomic, readonly) NSString *innerXML;
 
+- (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+
 - (void)addNamespaceURI:(NSString *)URI forPrefix:(NSString *)prefix;
 - (void)addChild:(id<PXDOMNode>)child;
 - (id)attributeValueForName:(NSString *)name withNamespace:(NSString *)namespace;

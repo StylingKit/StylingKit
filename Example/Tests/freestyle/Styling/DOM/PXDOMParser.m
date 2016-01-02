@@ -112,7 +112,8 @@ didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
 {
-    currentElement_ = currentElement_.parent;
+    NSAssert([currentElement_.parent isKindOfClass:[PXDOMElement class]], @"Invalid parent type. Should be subclass of PXDOMElement");
+    currentElement_ = (PXDOMElement *)currentElement_.parent;
 }
 
 #pragma mark - Character and Comment Parsing

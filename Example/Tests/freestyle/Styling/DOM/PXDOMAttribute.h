@@ -15,6 +15,8 @@
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, strong) id value;
 
+- (instancetype) init NS_UNAVAILABLE;
+
 - (instancetype) initWithName:(NSString *)name value:(id)value NS_DESIGNATED_INITIALIZER;
 
 @end

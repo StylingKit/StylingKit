@@ -249,9 +249,9 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     NSArray *offsets = linearGradient.offsets;
-    XCTAssertTrue(0 == [offsets count], @"Expected 0 offsets, but found %d", [offsets count]);
+    XCTAssertTrue(0 == [offsets count], @"Expected 0 offsets, but found %lu",   (unsigned long)[offsets count]);
 }
 
 - (void)testLinearGradientWithAngle
@@ -261,7 +261,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     CGFloat angle = linearGradient.cssAngle;
     XCTAssertTrue(12.0f == angle, @"Expected 12 degrees, but found %f", angle);
 }
@@ -273,9 +273,9 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     NSArray *offsets = linearGradient.offsets;
-    XCTAssertTrue(2 == [offsets count], @"Expected 2 offsets, but found %d", [offsets count]);
+    XCTAssertTrue(2 == [offsets count], @"Expected 2 offsets, but found %lu", (unsigned long)[offsets count]);
     CGFloat offset1 = ((NSNumber *)offsets[0]).floatValue;
     CGFloat offset2 = ((NSNumber *)offsets[1]).floatValue;
     XCTAssertEqual(offset1, 0.25f, @"Expected 0.25f");
@@ -289,7 +289,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToTop, @"Expected gradient direction to be to-top");
 }
 
@@ -300,7 +300,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToTopLeft, @"Expected gradient direction to be to-top-left");
 }
 
@@ -311,7 +311,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToTopLeft, @"Expected gradient direction to be to-top-left");
 }
 
@@ -322,7 +322,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToTopRight, @"Expected gradient direction to be to-top-right");
 }
 
@@ -333,7 +333,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToTopRight, @"Expected gradient direction to be to-top-right");
 }
 
@@ -344,7 +344,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToRight, @"Expected gradient direction to be to-right");
 }
 
@@ -355,7 +355,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToBottom, @"Expected gradient direction to be to-bottom");
 }
 
@@ -366,7 +366,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToBottomRight, @"Expected gradient direction to be to-bottom-right");
 }
 
@@ -377,7 +377,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToBottomRight, @"Expected gradient direction to be to-bottom-right");
 }
 
@@ -388,7 +388,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToBottomLeft, @"Expected gradient direction to be to-bottom-left");
 }
 
@@ -399,7 +399,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToBottomLeft, @"Expected gradient direction to be to-bottom-left");
 }
 
@@ -410,7 +410,7 @@
 
     XCTAssertTrue([paint isKindOfClass:[PXLinearGradient class]], @"Expected an instance of PXLinearGradient");
 
-    PXLinearGradient *linearGradient = paint;
+    PXLinearGradient *linearGradient = (PXLinearGradient *)paint;
     XCTAssertTrue(linearGradient.gradientDirection == PXLinearGradientDirectionToLeft, @"Expected gradient direction to be to-left");
 }
 
