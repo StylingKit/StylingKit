@@ -24,7 +24,7 @@
     [styler processDeclaration:declaration withContext:context];
 
     NSArray *infos = context.transitionInfos;
-    XCTAssertTrue(infos.count == 1, @"Expected one animation, but found %d", infos.count);
+    XCTAssertTrue(infos.count == 1, @"Expected one animation, but found %lu", (unsigned long)infos.count);
 
     PXAnimationInfo *info = infos[0];
     XCTAssertTrue([@"myProperty" isEqualToString:info.animationName], @"Expected 'myAnimation' as animation name, but found '%@'", info.animationName);
@@ -39,12 +39,12 @@
     [styler processDeclaration:declaration withContext:context];
 
     NSArray *infos = context.transitionInfos;
-    XCTAssertTrue(infos.count == 1, @"Expected one animation, but found %d", infos.count);
+    XCTAssertTrue(infos.count == 1, @"Expected one animation, but found %lu", (unsigned long)infos.count);
 
     PXAnimationInfo *info = infos[0];
     XCTAssertTrue([@"myProperty" isEqualToString:info.animationName], @"Expected 'myAnimation' as animation name, but found '%@'", info.animationName);
     XCTAssertTrue(info.animationDuration == 1.0f, @"Expected a 1s delay, but found %f", info.animationDuration);
-    XCTAssertTrue(info.animationTimingFunction == PXAnimationTimingFunctionLinear, @"Expected timing function %d, but found %d", PXAnimationTimingFunctionLinear, info.animationTimingFunction);
+    XCTAssertTrue(info.animationTimingFunction == PXAnimationTimingFunctionLinear, @"Expected timing function %d, but found %lu", PXAnimationTimingFunctionLinear, (unsigned long)info.animationTimingFunction);
 }
 
 @end

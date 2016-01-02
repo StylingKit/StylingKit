@@ -761,7 +761,7 @@
     XCTAssertTrue(errors.count == 0, @"Unexpected parse error");
 
     NSArray *mediaGroups = stylesheet.mediaGroups;
-    XCTAssertTrue(mediaGroups.count == 1, @"Expected 1 media group, found %d", mediaGroups.count);
+    XCTAssertTrue(mediaGroups.count == 1, @"Expected 1 media group, found %lu", (unsigned long)mediaGroups.count);
 }
 
 - (void)testMediaWithRatio
@@ -795,7 +795,7 @@
     PXStylesheet *stylesheet = [parser parseInlineCSS:source];
 
     NSArray *errors = parser.errors;
-    XCTAssertTrue(errors.count == 0, @"Unexpected parse error: %d", errors.count);
+    XCTAssertTrue(errors.count == 0, @"Unexpected parse error: %lu", (unsigned long)errors.count);
 
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected one rule set");
@@ -834,7 +834,7 @@
     // NOTE: If we get this far, we didn't crash :)
 
     NSArray *errors = parser.errors;
-    XCTAssertTrue(errors.count == 0, @"Unexpected parse error: %d", errors.count);
+    XCTAssertTrue(errors.count == 0, @"Unexpected parse error: %lu", (unsigned long)errors.count);
 
     NSArray *ruleSets = stylesheet.ruleSets;
     XCTAssertTrue(ruleSets.count == 1, @"Expected one rule set");
