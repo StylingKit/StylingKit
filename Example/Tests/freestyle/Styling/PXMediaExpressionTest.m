@@ -165,10 +165,6 @@
     XCTAssertTrue([maxCurrentStylesheet.ruleSets count] > 0 , @"ruleSets count %lu", (unsigned long)maxCurrentStylesheet.ruleSets.count);
 }
 
-
-
-
-
 - (void) testOSMediaQuery_StringVersion
 {
     NSString* mainVersion = [self _systemMainVersion];
