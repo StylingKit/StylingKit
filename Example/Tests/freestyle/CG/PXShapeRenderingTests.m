@@ -10,6 +10,7 @@
 #import "PXGraphics.h"
 #import "PXArrowRectangle.h"
 #import "PXBoxModel.h"
+#import "STKTestsCommon.h"
 
 //#define WRITE_TO_DISK
 
@@ -37,7 +38,7 @@
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 
 #ifdef WRITE_TO_DISK
-//        NSString *path = [NSString stringWithFormat:@"/Users/pcolton/Development/Pixate/products/pixate-freestyle-ios/src/pixate-freestyleTests/Resources/Rendering/%@.png", name];
+        NSString *path = [NSString stringWithFormat:FREESTYLE_TEST_RESOURCES_PATH @"/Rendering/%@.png", name];
         [self writeImage:image withPath:path overwrite:YES];
 #else
         NSString *tempName = @"temp";
