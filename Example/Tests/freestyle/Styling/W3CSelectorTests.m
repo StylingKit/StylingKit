@@ -42,6 +42,24 @@ static NSString *tempFile;
         }
 
         tempFile = [NSString pathWithComponents:@[baseDirectory, relativePath]];
+
+        [self removeFilesContaining:@"actual" inPath:tempFile];
+    }
+}
+
++ (void)removeFilesContaining:(NSString*)name
+                       inPath:(NSString*)path
+{
+    NSDirectoryEnumerator* filesEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:path];
+
+    NSString* file;
+    NSError* error;
+    while ((file = [filesEnumerator nextObject]))
+    {
+        if ([file containsString:name])
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:file] error:&error];
+        }
     }
 }
 
@@ -138,7 +156,7 @@ static NSString *tempFile;
 
             BOOL styleAppliedCorrectly = [resultText isEqualToString:fileText];
             XCTAssertTrue(styleAppliedCorrectly, @"\n%@\ndoes not equal\n%@", resultText, fileText);
-            if (styleAppliedCorrectly)
+            if (!styleAppliedCorrectly)
             {
                 [self writeText:resultText
                        withName:filename
