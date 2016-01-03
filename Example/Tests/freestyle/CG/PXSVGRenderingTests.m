@@ -11,6 +11,7 @@
 #import <XCTest/XCTest.h>
 #import "PXShapeView.h"
 #import "PXShapeGroup.h"
+#import "STKTestsCommon.h"
 
 //#define WRITE_SVG_TO_DISK
 
@@ -31,7 +32,7 @@
     UIImage *image = [self getSVGImageForName:name];
 
 #ifdef WRITE_SVG_TO_DISK
-    //NSString *path = [NSString stringWithFormat:@"/Users/pcolton/Development/Pixate/products/pixate-freestyle-ios/src/pixate-freestyleTests/Resources/SVG-Rendering/%@.png", name];
+    NSString *path = [NSString stringWithFormat:FREESTYLE_TEST_RESOURCES_PATH @"/SVG-Rendering/%@.png", name];
     [self writeImage:image withPath:path overwrite:YES];
 #else
     // save results to file system

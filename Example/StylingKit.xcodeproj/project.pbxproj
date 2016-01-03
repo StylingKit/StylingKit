@@ -1036,6 +1036,7 @@
 		A09424663B825913331693C4 /* css3-modsel-4-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-4-result.xml"; sourceTree = "<group>"; };
 		A0942471368BB3A16376863E /* relativeSmoothCubicBezierCommand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relativeSmoothCubicBezierCommand.png; sourceTree = "<group>"; };
 		A09424746A1C6A73BE755FF9 /* css3-modsel-156-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-156-result.xml"; sourceTree = "<group>"; };
+		A09424756D80F06A869B2823 /* STKTestsCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKTestsCommon.h; sourceTree = "<group>"; };
 		A0942475EAD724675EB75773 /* PXXPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXXPath.m; sourceTree = "<group>"; };
 		A0942477942B6D87DAD0B86A /* css3-modsel-3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-3.xml"; sourceTree = "<group>"; };
 		A094248C3815911BA5707070 /* css3-modsel-109.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-109.xml"; sourceTree = "<group>"; };
@@ -1680,6 +1681,7 @@
 				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				A0942BB9EDC834B329848562 /* freestyle */,
+				A09424756D80F06A869B2823 /* STKTestsCommon.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
