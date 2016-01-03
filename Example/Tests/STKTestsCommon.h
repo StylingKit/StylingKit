@@ -9,7 +9,7 @@
 #define FREESTYLE_TEST_RESOURCES_PATH @"/Users/anton.matosov/Develop/StylingKit/Example/Tests/freestyle/Resources"
 
 
-#define FEQUAL(lhs, rhs) (fabsf((lhs) - (rhs)) < 0.0001)
+#define FEQUAL(lhs, rhs) (fabs((lhs) - (rhs)) < 0.0001)
 
 
 
