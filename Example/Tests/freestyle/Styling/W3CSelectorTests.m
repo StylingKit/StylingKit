@@ -21,12 +21,10 @@
 @interface W3CSelectorTests : XCTestCase
 @end
 
-//#define WRITE_TO_DISK
-#define OVERWRITE_FILES YES
+//#define OVERWRITE_RESULTS_TO_DISK
 
 @implementation W3CSelectorTests
 
-#ifdef WRITE_TO_DISK
 
 static NSString *tempFile;
 
@@ -44,9 +42,26 @@ static NSString *tempFile;
         }
 
         tempFile = [NSString pathWithComponents:@[baseDirectory, relativePath]];
+
+        [self removeFilesContaining:@"actual" inPath:tempFile];
     }
 }
-#endif
+
++ (void)removeFilesContaining:(NSString*)name
+                       inPath:(NSString*)path
+{
+    NSDirectoryEnumerator* filesEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:path];
+
+    NSString* file;
+    NSError* error;
+    while ((file = [filesEnumerator nextObject]))
+    {
+        if ([file containsString:name])
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:file] error:&error];
+        }
+    }
+}
 
 - (PXDOMElement *)loadXMLFromFilename:(NSString *)filename
 {
@@ -131,31 +146,45 @@ static NSString *tempFile;
 
             NSString *resultText = [NSString stringWithFormat:@"<test>\n\t%@\n\t%@\n\t%@\n</test>", titleNode, styleNode, bodyNode];
 
-#ifdef WRITE_TO_DISK
-            [self writeText:resultText withName:filename overwrite:OVERWRITE_FILES];
+#ifdef OVERWRITE_RESULTS_TO_DISK
+            [self writeText:resultText
+                   withName:filename
+                 withSuffix:@"result"
+                  overwrite:YES];
 #else
             NSString *fileText = [self getTextForName:[NSString stringWithFormat:@"%@-result", filename]];
 
-            XCTAssertTrue([resultText isEqualToString:fileText], @"\n%@\ndoes not equal\n%@", resultText, fileText);
+            BOOL styleAppliedCorrectly = [resultText isEqualToString:fileText];
+            XCTAssertTrue(styleAppliedCorrectly, @"\n%@\ndoes not equal\n%@", resultText, fileText);
+            if (!styleAppliedCorrectly)
+            {
+                [self writeText:resultText
+                       withName:filename
+                     withSuffix:@"actual"
+                      overwrite:YES];
+            }
 #endif
         }
     }
     else
     {
-        XCTFail(@"Encountered %d parse errors, but expected %d: %@", stylesheet.errors.count, errorCount, [stylesheet.errors componentsJoinedByString:@"\n"]);
+        XCTFail(@"Encountered %lu parse errors, but expected %lu: %@", (unsigned long)stylesheet.errors.count,(unsigned long) (unsigned long)errorCount, [stylesheet.errors componentsJoinedByString:@"\n"]);
     }
 }
 
-#ifdef WRITE_TO_DISK
 - (NSString *)localPathForName:(NSString *)name
+                    withSuffix:(NSString *)suffix
 {
-    return [NSString stringWithFormat:@"%@/%@-result.xml", tempFile, name];
+    return [NSString stringWithFormat:@"%@/%@-%@.xml", tempFile, name, suffix];
 }
 
-- (void)writeText:(NSString *)text withName:(NSString *)name overwrite:(BOOL)overwrite
+- (void)writeText:(NSString *)text
+         withName:(NSString *)name
+         withSuffix:(NSString *)suffix
+        overwrite:(BOOL)overwrite
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *outputPath = [self localPathForName:name];
+    NSString *outputPath = [self localPathForName:name withSuffix:suffix];
 
     // only create file if it doesn't exist already
     if (overwrite || ![fileManager fileExistsAtPath:outputPath])
@@ -165,7 +194,6 @@ static NSString *tempFile;
         [fileManager createFileAtPath:outputPath contents:data attributes:nil];
     }
 }
-#endif
 
 - (NSString *)getTextForName:(NSString *)name
 {

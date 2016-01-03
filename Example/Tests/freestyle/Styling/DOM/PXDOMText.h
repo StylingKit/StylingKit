@@ -14,6 +14,8 @@
 
 @property (nonatomic, readonly) NSString *textValue;
 
+- (instancetype) init NS_UNAVAILABLE;
+
 - (instancetype) initWithText:(NSString *)text NS_DESIGNATED_INITIALIZER;
 
 @end

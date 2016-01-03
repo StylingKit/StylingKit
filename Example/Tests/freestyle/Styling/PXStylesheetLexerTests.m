@@ -53,7 +53,7 @@
 
     XCTAssertTrue(lexeme.type == type, @"Expected %d(%@) but found %d(%@)", (int)type, expectedType, lexeme.type, actualType);
     XCTAssertTrue(lexeme.range.location == 0, @"Lexeme does not start at offset zero");
-    XCTAssertTrue(lexeme.range.length == length, @"Expected %d characters but found %d: %@", length, lexeme.range.length, lexeme);
+    XCTAssertTrue(lexeme.range.length == length, @"Expected %ld characters but found%lu: %@",(long) (unsigned long)length, (unsigned long)lexeme.range.length, lexeme);
 
     return lexeme;
 }
@@ -279,9 +279,9 @@
     NSString *expectedType = [PXStylesheetTokenType typeNameForInt:type];
     NSString *actualType = [PXStylesheetTokenType typeNameForInt:lexeme.type];
 
-    XCTAssertTrue(lexeme.type == type, @"Expected %d(%@) but found %d(%@)", type, expectedType, lexeme.type, actualType);
+    XCTAssertTrue(lexeme.type == type, @"Expected %ld(%@) but found %d(%@)", (long)type, expectedType, lexeme.type, actualType);
     XCTAssertTrue(lexeme.range.location == 1, @"Lexeme does not start at offset one");
-    XCTAssertTrue(lexeme.range.length == source.length - 1, @"Expected %d characters but found %d", source.length - 1, lexeme.range.length);
+    XCTAssertTrue(lexeme.range.length == source.length - 1, @"Expected %lu characters but found %lu", (unsigned long)source.length - 1, (unsigned long)lexeme.range.length);
 }
 
 - (void)test6DigitHexColor
@@ -299,7 +299,7 @@
 
     XCTAssertTrue(lexeme.type == type, @"Expected %d(%@) but found %d(%@)", (int) type, expectedType, lexeme.type, actualType);
     XCTAssertTrue(lexeme.range.location == 1, @"Lexeme does not start at offset one");
-    XCTAssertTrue(lexeme.range.length == source.length - 1, @"Expected %d characters but found %d", source.length - 1, lexeme.range.length);
+    XCTAssertTrue(lexeme.range.length == source.length - 1, @"Expected %lu characters but found %lu", (unsigned long)(source.length - 1), (unsigned long)lexeme.range.length);
 }
 
 - (void)testEm
