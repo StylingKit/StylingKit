@@ -695,7 +695,9 @@
 
     // check expressions
     PXMediaGroup *mediaGroup = mediaGroups[0];
-    PXNamedMediaExpression *expression = mediaGroup.query;
+
+    XCTAssertTrue([mediaGroup.query isKindOfClass:[PXNamedMediaExpression class]], @"Expected class to be 'PXNamedMediaExpression'");
+    PXNamedMediaExpression *expression = (PXNamedMediaExpression *)mediaGroup.query;
     XCTAssertTrue([@"orientation" isEqualToString:expression.name], @"Expected name to be 'orientation'");
     XCTAssertTrue([@"portrait" isEqualToString:expression.value], @"Expected value to be 'portrait'");
 
@@ -715,7 +717,9 @@
 
     // check expressions
     PXMediaGroup *mediaGroup = mediaGroups[0];
-    PXMediaExpressionGroup *expressionGroup = mediaGroup.query;
+
+    XCTAssertTrue([mediaGroup.query isKindOfClass:[PXMediaExpressionGroup class]], @"Expected class to be 'PXMediaExpressionGroup'");
+    PXMediaExpressionGroup *expressionGroup = (PXMediaExpressionGroup *)mediaGroup.query;
     NSArray *expressions = expressionGroup.expressions;
     XCTAssertTrue(expressions.count == 2, @"Expected two query expressions");
 
@@ -743,7 +747,10 @@
 
     // check expressions
     PXMediaGroup *mediaGroup = mediaGroups[0];
-    PXNamedMediaExpression *expression = mediaGroup.query;
+
+
+    XCTAssertTrue([mediaGroup.query isKindOfClass:[PXNamedMediaExpression class]], @"Expected class to be 'PXNamedMediaExpression'");
+    PXNamedMediaExpression *expression = (PXNamedMediaExpression*)mediaGroup.query;
     XCTAssertNil(expression, @"Expected the media group query to be nil");
 
     // check rule sets
@@ -775,7 +782,9 @@
 
     // check expressions
     PXMediaGroup *mediaGroup = mediaGroups[0];
-    PXNamedMediaExpression *expression = mediaGroup.query;
+
+    XCTAssertTrue([mediaGroup.query isKindOfClass:[PXNamedMediaExpression class]], @"Expected class to be 'PXNamedMediaExpression'");
+    PXNamedMediaExpression *expression = (PXNamedMediaExpression *)mediaGroup.query;
     id value = expression.value;
     XCTAssertTrue([value isKindOfClass: [NSNumber class]], @"Expected device aspect ratio to be an NSNumber");
     NSNumber *number = (NSNumber *) value;
