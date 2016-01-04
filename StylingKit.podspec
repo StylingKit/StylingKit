@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
 
   # This code was moved to subspec as it uses MRR while the rest of the project uses ARC
   s.subspec 'MAFuture' do |ss|
-    ss.prefix_header_file = "Pod/freestyle/src/pixate-freestyle-Prefix.pch"
+    # ss.prefix_header_file = "Pod/freestyle/src/pixate-freestyle-Prefix.pch"
     ss.source_files = 'Pod/freestyle/Third-Party/MAFuture/*.{h,m}'
     ss.private_header_files = 'Pod/freestyle/Third-Party/MAFuture/*.h'
     ss.requires_arc = false
