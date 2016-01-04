@@ -338,7 +338,7 @@
 
 - (NSArray*)styleClasses
 {
-    return self.styleClass ? @[self.styleClass] : nil;
+    return [self.styleClass componentsSeparatedByString:@" "];
 }
 
 - (NSArray *)pxStyleChildren
