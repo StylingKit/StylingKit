@@ -30,7 +30,6 @@
 
 /// PXStyleable
 @synthesize styleMode;
-@synthesize styleClasses;
 @synthesize styleChangeable;
 
 
@@ -335,6 +334,11 @@
 - (void)setStyleClass:(NSString *)styleClass
 {
     [self setAttributeValue:styleClass forName:@"class"];
+}
+
+- (NSArray*)styleClasses
+{
+    return self.styleClass ? @[self.styleClass] : nil;
 }
 
 - (NSArray *)pxStyleChildren

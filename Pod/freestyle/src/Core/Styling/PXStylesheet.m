@@ -263,8 +263,7 @@ PX_DEFINE_CLASS_LOG_LEVEL
     if (element)
     {
         NSArray *candidateRuleSets = [self ruleSetsForStyleable:element];
-//        NSArray *candidateRuleSets = [self ruleSets];
-//        NSLog(@"%@ = %d", [PXStyleUtils descriptionForStyleable:element], candidateRuleSets.count);
+        DDLogDebug(@"%@ = %d", [PXStyleUtils descriptionForStyleable:element], candidateRuleSets.count);
 
         for (PXRuleSet *ruleSet in candidateRuleSets)
         {
