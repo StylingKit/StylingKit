@@ -28,7 +28,7 @@
 
 # import <CocoaLumberjack/CocoaLumberjack.h>
 
-static const DDLogLevel ddLogLevel = DDLogLevelInfo;
+static const DDLogLevel ddLogLevel = DDLogLevelWarning;
 
 # define PX_DEFINE_CLASS_LOG_LEVEL      \
   static int gLogLevel = ddLogLevel;    \
