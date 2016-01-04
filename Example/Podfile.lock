@@ -13,12 +13,10 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.0.7):
     - FBSnapshotTestCase/Core
   - Kiwi (2.4.0)
-  - StylingKit/All (0.1.1):
+  - StylingKit/All (0.2.0):
     - StylingKit/Freestyle
-  - StylingKit/Freestyle (0.1.1):
-    - StylingKit/MAFuture
-  - StylingKit/MAFuture (0.1.1)
-  - StylingKit/WithLogging (0.1.1):
+  - StylingKit/Freestyle (0.2.0)
+  - StylingKit/WithLogging (0.2.0):
     - CocoaLumberjack (~> 2.2.0)
     - StylingKit/All
 
@@ -35,6 +33,6 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: 23823c7c8ae3928e6bff56ceb8d74f3edcfb732b
+  StylingKit: 9d1a0cc15743f23848716b6234eb9d1c158faa5d
 
 COCOAPODS: 0.39.0
