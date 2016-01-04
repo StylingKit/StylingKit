@@ -7,7 +7,7 @@ table.t1 td { border : thin black solid }
 </style>
 	<div class="testText">
  <div>
-  <table border="1" class="t1">
+  <table class="t1" border="1">
    <tr>
     <td class="red" background-color="lime" border="thin black solid">green cell</td>
     <td class="red" background-color="lime" border="thin black solid">green cell</td>
