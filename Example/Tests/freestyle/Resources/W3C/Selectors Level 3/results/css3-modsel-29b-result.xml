@@ -56,7 +56,7 @@ table.t2 td:nth-last-child(3n+1) { background-color : red }</style>
 </tr>
 </table>
 <p/>
-<table border="1" class="t2">
+<table class="t2" border="1">
   <tr>
 <td>1.1</td>
 <td class="green" background-color="lime">green cell</td>

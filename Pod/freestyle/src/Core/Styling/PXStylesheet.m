@@ -50,19 +50,7 @@ static PXStylesheet *currentViewStylesheet = nil;
     NSMutableDictionary *keyframesByName_;
 }
 
-#ifdef PX_LOGGING
-static int ddLogLevel = LOG_LEVEL_WARN;
-
-+ (int)ddLogLevel
-{
-    return ddLogLevel;
-}
-
-+ (void)ddSetLogLevel:(int)logLevel
-{
-    ddLogLevel = logLevel;
-}
-#endif
+PX_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Static initializers
 
@@ -275,8 +263,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
     if (element)
     {
         NSArray *candidateRuleSets = [self ruleSetsForStyleable:element];
-//        NSArray *candidateRuleSets = [self ruleSets];
-//        NSLog(@"%@ = %d", [PXStyleUtils descriptionForStyleable:element], candidateRuleSets.count);
+        DDLogDebug(@"%@ = %lu", [PXStyleUtils descriptionForStyleable:element], (unsigned long)candidateRuleSets.count);
 
         for (PXRuleSet *ruleSet in candidateRuleSets)
         {

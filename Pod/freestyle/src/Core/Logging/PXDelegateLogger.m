@@ -42,11 +42,11 @@
 
 -(void)logMessage:(DDLogMessage *)logMessage
 {
-    NSString *logMsg = logMessage->logMsg;
+    NSString *logMsg = logMessage->_message;
     
     if (logMsg)
     {
-        [delegate_ logEntry:logMsg atLogLevel:logMessage->logLevel];
+        [delegate_ logEntry:logMsg atLogLevel:logMessage->_level];
     }
 }
 

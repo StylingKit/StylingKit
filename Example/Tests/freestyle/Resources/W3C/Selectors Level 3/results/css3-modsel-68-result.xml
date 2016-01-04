@@ -8,7 +8,7 @@ input:not(:enabled)  { background-color : lime }</style>
 <p>
  <button disabled="disabled" background-color="lime">A button (disabled) with green background</button>
  <br/>
- <input type="text" value="a text area (disabled) with green background" disabled="disabled" size="36" background-color="lime"/>
+ <input size="36" value="a text area (disabled) with green background" type="text" disabled="disabled" background-color="lime"/>
 </p>
 </div>
 </test>

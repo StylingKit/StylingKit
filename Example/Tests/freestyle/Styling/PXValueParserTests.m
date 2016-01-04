@@ -15,7 +15,32 @@
 #import "PXDimension.h"
 #import "PXMath.h"
 #import "PXLinearGradient.h"
+#import "STKTestsCommon.h"
 #import <XCTest/XCTest.h>
+
+@implementation UIColor (Compare)
+
+- (BOOL)isEqualToColor:(UIColor *)otherColor {
+
+    const CGFloat *(^toComponents)(UIColor*) = ^(UIColor *color) {
+
+        const CGFloat *components = CGColorGetComponents(color.CGColor);
+        if (CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor)) == kCGColorSpaceModelMonochrome) {
+            const CGFloat newComponents[4] = {components[0], components[0], components[0], components[1]};
+            components = newComponents;
+        }
+        return components;
+    };
+
+    const CGFloat *lhs = toComponents(self);
+    const CGFloat *rhs = toComponents(otherColor);
+    return FEQUAL(lhs[0], rhs[0]) &&
+      FEQUAL(lhs[1], rhs[1]) &&
+      FEQUAL(lhs[2], rhs[2]) &&
+      FEQUAL(lhs[3], rhs[3]);
+}
+
+@end
 
 @interface PXValueParserTests : XCTestCase
 
@@ -30,7 +55,7 @@
     UIColor *color = [self colorFromSource:source];
 
     XCTAssertTrue([color isKindOfClass:[UIColor class]], @"Expected an instance of UIColor");
-    XCTAssertTrue([color isEqual:expectedColor], @"Colors are not equal: %@ != %@", color, expectedColor);
+    XCTAssertTrue([color isEqualToColor:expectedColor], @"Colors are not equal: %@ != %@", color.debugDescription, expectedColor.debugDescription);
 }
 
 #pragma mark - Helper Methods
@@ -109,7 +134,7 @@
 
     PXDimension *degrees = dimension.degrees;
 
-    XCTAssertEqual(degrees.number, 180.0f * 0.9f, @"Angles do not match");
+    XCTAssertTrue(FEQUAL(degrees.number, 180.0f * 0.9f), @"Angles do not match");
 }
 
 - (void)testRadian

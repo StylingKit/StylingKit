@@ -11,7 +11,7 @@
  testG[*|attribute|="pass"] { color: green; }
 </style>
 	<div class="testText">
-  <tests xmlns:test="http://css.example.net/" xmlns="http://css.example.net/" display="block" color="red">
+  <tests xmlns="http://css.example.net/" xmlns:test="http://css.example.net/" display="block" color="red">
    <testA attribute="pass" color="green" display="block">This should be green.</testA>
    <testB attribute="pass" color="green" display="block">This should be green.</testB>
    <testC attribute="pass" color="green" display="block">This should be green.</testC>

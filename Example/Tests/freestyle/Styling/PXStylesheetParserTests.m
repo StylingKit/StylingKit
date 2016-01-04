@@ -747,11 +747,8 @@
 
     // check expressions
     PXMediaGroup *mediaGroup = mediaGroups[0];
-
-
-    XCTAssertTrue([mediaGroup.query isKindOfClass:[PXNamedMediaExpression class]], @"Expected class to be 'PXNamedMediaExpression'");
-    PXNamedMediaExpression *expression = (PXNamedMediaExpression*)mediaGroup.query;
-    XCTAssertNil(expression, @"Expected the media group query to be nil");
+    
+    XCTAssertNil(mediaGroup.query, @"Expected the media group query to be nil");
 
     // check rule sets
     NSArray *ruleSets = mediaGroup.ruleSets;
