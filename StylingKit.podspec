@@ -58,7 +58,6 @@ Pod::Spec.new do |s|
     ss.private_header_files = 'Pod/freestyle/src/**/*.h'
     ss.requires_arc = true
     ss.dependency 'StylingKit/MAFuture'
-    ss.dependency 'CocoaLumberjack', '~> 2.2.0'
 
     ss.frameworks = 'CoreText', 'QuartzCore', 'UIKit', 'Foundation', 'CoreGraphics'
   end
@@ -70,4 +69,10 @@ Pod::Spec.new do |s|
     ss.requires_arc = false
   end
 
+  s.subspec 'WithLogging' do |ss|
+    ss.dependency 'StylingKit/All'
+
+    ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'PX_LOGGING=1' }
+    ss.dependency 'CocoaLumberjack', '~> 2.2.0'
+  end
 end
