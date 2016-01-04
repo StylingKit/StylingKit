@@ -4,24 +4,10 @@
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
 
-#ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
-#endif
+#define PX_LOGGING
 
-#ifndef DEBUG
-#undef NSAssert
-#define NSAssert(condition, desc, ...)
-#endif
-
-#ifdef PX_LOGGING
 #ifdef __OBJC__
+
 #import "PXLog.h"
-#endif
-#else
-
-#define DDLogInfo(...)
-#define DDLogVerbose(...)
-#define DDLogError(...)
 
 #endif
