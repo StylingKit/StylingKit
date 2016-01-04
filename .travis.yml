@@ -3,6 +3,5 @@ language: objective-c
 
 script:
 - open -b com.apple.iphonesimulator #start simulator in advance as xcodebuild sometimes fails to do so
-- set -o pipefail && xcodebuild clean test -workspace Example/StylingKit.xcworkspace -scheme StylingKit -destination "platform=iOS Simulator,name=iPhone 6s" ONLY_ACTIVE_ARCH=NO | xcpretty
-- set -o pipefail && xcodebuild build -workspace Example/StylingKit.xcworkspace -scheme StylingKit-Example ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild clean build test -workspace Example/StylingKit.xcworkspace -scheme StylingKit-Example -destination "platform=iOS Simulator,name=iPhone 6s" ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
