@@ -33,3 +33,15 @@ static const DDLogLevel ddLogLevel = DDLogLevelInfo;
 static const DDLogLevel ddLogLevel = DDLogLevelOff;
 
 #endif
+
+#define PX_DEFINE_CLASS_LOG_LEVEL       \
+  static int gLogLevel = ddLogLevel;    \
+  + (int)ddLogLevel                     \
+  {                                     \
+    return gLogLevel;                   \
+  }                                     \
+                                        \
+  + (void)ddSetLogLevel:(int)logLevel   \
+  {                                     \
+    gLogLevel = logLevel;               \
+  }
