@@ -7,7 +7,7 @@ branches:
     - develop
 
 env:
- - workspace="Example/StylingKit.xcworkspace" scheme="StylingKit-Example" destination="platform=iOS Simulator,name=iPhone 6s"
+ - workspace="Example/StylingKit.xcworkspace" scheme="StylingKit-Example" destination="\"platform=iOS Simulator,name=iPhone 6s\""
 
 script:
 - open -b com.apple.iphonesimulator #start simulator in advance as xcodebuild sometimes fails to do so
