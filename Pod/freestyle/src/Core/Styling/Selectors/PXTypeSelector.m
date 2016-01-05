@@ -34,19 +34,7 @@
     NSMutableArray *attributeExpressions;
 }
 
-#ifdef PX_LOGGING
-static int ddLogLevel = LOG_LEVEL_WARN;
-
-+ (int)ddLogLevel
-{
-    return ddLogLevel;
-}
-
-+ (void)ddSetLogLevel:(int)logLevel
-{
-    ddLogLevel = logLevel;
-}
-#endif
+PX_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Initializers
 
@@ -207,7 +195,7 @@ static int ddLogLevel = LOG_LEVEL_WARN;
     // filter by type name
     if (result)
     {
-        if (self.hasUniversalType == NO)
+        if (!self.hasUniversalType)
         {
             result = ([_typeName isEqualToString:element.pxStyleElementName]);
         }

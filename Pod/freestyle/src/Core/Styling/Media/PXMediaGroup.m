@@ -69,7 +69,7 @@
     {
         for (PXRuleSet *ruleSet in ruleSetsByElementName_[elementName])
         {
-            if ([items containsObject:ruleSet] == NO)
+            if (![items containsObject:ruleSet])
             {
                 [result addObject:ruleSet];
                 [items addObject:ruleSet];
@@ -82,7 +82,7 @@
     {
         for (PXRuleSet *ruleSet in ruleSetsById_[styleId])
         {
-            if ([items containsObject:ruleSet] == NO)
+            if (![items containsObject:ruleSet])
             {
                 [result addObject:ruleSet];
                 [items addObject:ruleSet];
@@ -97,7 +97,7 @@
         {
             for (PXRuleSet *ruleSet in ruleSetsByClass_[aClass])
             {
-                if ([items containsObject:ruleSet] == NO)
+                if (![items containsObject:ruleSet])
                 {
                     [result addObject:ruleSet];
                     [items addObject:ruleSet];
@@ -113,7 +113,7 @@
         result = uncategorizedRuleSets_;
     }
 
-    return (result != nil) ? [NSArray arrayWithArray:result] : nil;
+    return result;
 }
 
 #pragma mark - Methods
@@ -162,7 +162,7 @@
         BOOL added = NO;
 
         // NOTE: nesting if-statements to avoid walking type selector expressions for id and classes when not needed
-        if (elementName != nil && [@"*" isEqualToString:elementName] == NO)
+        if (elementName != nil && ![@"*" isEqualToString:elementName])
         {
             if (ruleSetsByElementName_ == nil) ruleSetsByElementName_ = [NSMutableDictionary dictionary];
             [self addRuleSet:ruleSet toPartition:ruleSetsByElementName_ withKey:elementName];
@@ -190,7 +190,7 @@
 
         // if this wasn't added to any of our partitions, then we need to collect it into the uncategorized partition
         // and add it to all other partitions to preserve rule set order in those sets as well
-        if (added == NO)
+        if (!added)
         {
             if (uncategorizedRuleSets_ == nil) uncategorizedRuleSets_ = [NSMutableArray array];
             [uncategorizedRuleSets_ addObject:ruleSet];

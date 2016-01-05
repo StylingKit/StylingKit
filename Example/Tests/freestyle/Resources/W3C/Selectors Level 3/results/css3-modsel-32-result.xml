@@ -6,7 +6,7 @@ p > *:first-child { background-color : lime }
 </style>
 	<div class="testText">
 <div>
-<table border="1" class="t1">
+<table class="t1" border="1">
   <tr>
     <td class="red" background-color="lime">green cell</td>
     <td>1.2</td>

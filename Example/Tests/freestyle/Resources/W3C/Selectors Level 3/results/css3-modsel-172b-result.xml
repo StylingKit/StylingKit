@@ -12,7 +12,7 @@
  testG[|attribute|="fail"] { color: red; }
 </style>
 	<div class="testText">
-  <tests xmlns:test="http://css.example.net/" xmlns="http://css.example.net/" display="block" color="green">
+  <tests xmlns="http://css.example.net/" xmlns:test="http://css.example.net/" display="block" color="green">
    <testA test:attribute="fail" display="block" color="green">This should be green.</testA>
    <testB test:attribute="fail" display="block" color="green">This should be green.</testB>
    <testC test:attribute="fail" display="block" color="green">This should be green.</testC>
