@@ -27,14 +27,14 @@
 #import "PXLog.h"
 
 @protocol PXLoggingDelegate <NSObject>
-- (void)logEntry:(NSString *)logItem atLogLevel:(int)logLevel;
+- (void)logEntry:(NSString *)logItem atLogLevel:(DDLogLevel)logLevel;
 @end
 
 @interface PXLoggingUtils : NSObject
 
 + (void)enableLogging;
 + (void)enableLoggingToDirectoryPath:(NSString *)path;
-+ (void)setGlobalLoggingLevel:(int)logLevel;
++ (void)setGlobalLoggingLevel:(DDLogLevel)logLevel;
 + (void)addLoggingDelegate:(id <PXLoggingDelegate>)delegate;
 
 @end

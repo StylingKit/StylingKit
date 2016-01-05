@@ -18,18 +18,38 @@
 //  PXLog.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 1/4/16.
 //  Created by Paul Colton on 12/8/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import <CocoaLumberjack/CocoaLumberjack.h>
 
-#ifdef PX_LOGGING
+#if defined(PX_LOGGING) && (__has_include("CocoaLumberjack.h") || __has_include("CocoaLumberjack/CocoaLumberjack.h"))
 
-static const DDLogLevel ddLogLevel = DDLogLevelInfo;
+# import <CocoaLumberjack/CocoaLumberjack.h>
+
+static const DDLogLevel ddLogLevel = DDLogLevelWarning;
+
+# define PX_DEFINE_CLASS_LOG_LEVEL      \
+  static int gLogLevel = ddLogLevel;    \
+  + (int)ddLogLevel                     \
+  {                                     \
+    return gLogLevel;                   \
+  }                                     \
+                                        \
+  + (void)ddSetLogLevel:(int)logLevel   \
+  {                                     \
+    gLogLevel = logLevel;               \
+  }
+
 
 #else
 
-static const DDLogLevel ddLogLevel = DDLogLevelOff;
+# define PX_DEFINE_CLASS_LOG_LEVEL
+# define DDLogError(...)
+# define DDLogWarn(...)
+# define DDLogInfo(...)
+# define DDLogVerbose(...)
+# define DDLogDebug(...)
 
 #endif

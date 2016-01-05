@@ -55,19 +55,7 @@
     NSMutableArray *activeImports_;
 }
 
-#ifdef PX_LOGGING
-static int ddLogLevel = LOG_LEVEL_WARN;
-
-+ (int)ddLogLevel
-{
-    return ddLogLevel;
-}
-
-+ (void)ddSetLogLevel:(int)logLevel
-{
-    ddLogLevel = logLevel;
-}
-#endif
+PX_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Statics
 

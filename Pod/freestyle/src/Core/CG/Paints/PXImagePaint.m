@@ -25,7 +25,6 @@
 
 #import "PXImagePaint.h"
 #import "PXShapeView.h"
-#import "MAFuture.h"
 
 @implementation PXImagePaint
 
@@ -83,13 +82,6 @@
             }
             else
             {
-                // Use a background 'future' to load the data
-                NSData *data = MABackgroundFuture(^{
-                    NSData *result = [NSData dataWithContentsOfURL:_imageURL];
-                    // Shouldn't return nil from a future
-                    return result ? result : [[NSData alloc] init];
-                });
-
                 CGFloat scale;
 
                 if ([@"data" isEqualToString:_imageURL.scheme])
@@ -105,6 +97,7 @@
                 }
 
                 // grab image
+                NSData *data = [NSData dataWithContentsOfURL:_imageURL];
                 image = [[UIImage alloc] initWithData:data scale:scale];
                 
                 // log error

@@ -58,7 +58,7 @@ table.t1 td, table.t2 td { border : thin black solid }
 </tr>
 </table>
 <p/>
-<table border="1" class="t2">
+<table class="t2" border="1">
   <tr>
 <td class="green" border="thin black solid" background-color="lime">green cell</td>
 <td border="thin black solid">1.2</td>

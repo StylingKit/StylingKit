@@ -14,14 +14,14 @@
   <line type="" display="block">This line should be unstyled.</line>
   <line type="match" background="lime" display="block">This line should be green.</line>
   <line type="" display="block">This line should be unstyled.</line>
-  <line hidden="hidden" type="" display="none">This line should be unstyled.</line>
+  <line type="" hidden="hidden" display="none">This line should be unstyled.</line>
   <line type="match" background="lime" display="block">This line should be green.</line>
   <line type="" display="block">This line should be unstyled.</line>
   <line type="" display="block">This line should be unstyled.</line>
   <line type="match" background="lime" display="block">This line should be green.</line>
   <line type="" display="block">This line should be unstyled.</line>
-  <line hidden="hidden" type="" display="none">This line should be unstyled.</line>
-  <line hidden="hidden" type="match" background="lime" display="none">This line should be green.</line>
+  <line type="" hidden="hidden" display="none">This line should be unstyled.</line>
+  <line type="match" hidden="hidden" background="lime" display="none">This line should be green.</line>
   <line type="" display="block">This line should be unstyled.</line>
   <line type="" display="block">This line should be unstyled.</line>
   <line type="match" background="lime" display="block">This line should be green.</line>

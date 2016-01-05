@@ -24,8 +24,8 @@
 
 #ifdef PX_LOGGING
 #import "PXLoggingUtils.h"
-#import "DDFileLogger.h"
-#import "DDTTYLogger.h"
+#import "CocoaLumberjack/DDFileLogger.h"
+#import "CocoaLumberjack/DDTTYLogger.h"
 #import "PXFileFunctionLogFormatter.h"
 #import "PXDelegateLogger.h"
 
@@ -40,8 +40,8 @@
 
     // turn on colorized output and set info and verbose colors as well
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor greenColor] backgroundColor:nil forFlag:LOG_FLAG_INFO];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor yellowColor] backgroundColor:nil forFlag:LOG_FLAG_VERBOSE];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor greenColor] backgroundColor:nil forFlag:DDLogFlagInfo];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor yellowColor] backgroundColor:nil forFlag:DDLogFlagVerbose];
 
     // connect logger
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
@@ -67,20 +67,20 @@
 
         // turn on colorized output and set info and verbose colors as well
         [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
-        [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor greenColor] backgroundColor:nil forFlag:LOG_FLAG_INFO];
-        [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor yellowColor] backgroundColor:nil forFlag:LOG_FLAG_VERBOSE];
+        [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor greenColor] backgroundColor:nil forFlag:DDLogFlagInfo];
+        [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor yellowColor] backgroundColor:nil forFlag:DDLogFlagVerbose];
 
         // connect logger
         [DDLog addLogger:[DDTTYLogger sharedInstance]];
     }
 }
 
-+ (void)setGlobalLoggingLevel:(int)logLevel
++ (void)setGlobalLoggingLevel:(DDLogLevel)logLevel
 {
     // set default logging levels
-    for (id c in [DDLog registeredClasses])
+    for (Class c in [DDLog registeredClasses])
     {
-        [DDLog setLogLevel:logLevel forClass:c];
+        [DDLog setLevel:logLevel forClass:c];
     }
 }
 

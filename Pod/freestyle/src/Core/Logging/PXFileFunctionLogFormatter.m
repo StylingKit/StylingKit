@@ -49,11 +49,11 @@
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
     // build date/time string
-    NSString *dateAndTime = [dateFormatter_ stringFromDate:(logMessage->timestamp)];
+    NSString *dateAndTime = [dateFormatter_ stringFromDate:(logMessage->_timestamp)];
 
 #ifdef DEBUG
     // get full path to file and convert to NSString
-    NSString *file = [NSString stringWithCString:logMessage->file encoding:NSUTF8StringEncoding];
+    NSString *file = logMessage->_file;
 
     // grab the last segment in the path
     file = [file lastPathComponent];
@@ -62,11 +62,11 @@
     file = [file substringWithRange:NSMakeRange(0, file.length - 2)];
 
     // grab function name
-    NSString *function = [NSString stringWithCString:logMessage->function encoding:NSUTF8StringEncoding];
+    NSString *function = logMessage->_function;
 
-    return [NSString stringWithFormat:@"%@ [%@ %@]@%d: %@", dateAndTime, file, function, logMessage->lineNumber, logMessage->logMsg];
+    return [NSString stringWithFormat:@"%@ [%@ %@]@%lu: %@", dateAndTime, file, function, (unsigned long)logMessage->_line, logMessage->_message];
 #else
-    return [NSString stringWithFormat:@"%@: %@", dateAndTime, logMessage->logMsg];
+    return [NSString stringWithFormat:@"%@: %@", dateAndTime, logMessage->_message];
 #endif
 }
 
