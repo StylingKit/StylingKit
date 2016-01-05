@@ -11,6 +11,7 @@
 #import "PXArrowRectangle.h"
 #import "PXBoxModel.h"
 #import "STKTestsCommon.h"
+#import "PXImagePaint.h"
 
 //#define WRITE_TO_DISK
 
@@ -470,6 +471,22 @@
     shape.stroke = stroke;
 
     [self assertShape:shape equalsImageName:@"stroked-stroke"];
+}
+
+- (void)testImageStroke
+{
+    NSBundle *bundle = [NSBundle bundleForClass:self.class];
+    NSURL *url = [bundle URLForResource:@"icon1" withExtension:@"png"];
+
+    PXLine *shape = [[PXLine alloc] initX1:20.0f y1:50.0f x2:80.0f y2:50.0f];
+
+    PXStroke *stroke = [[PXStroke alloc] init];
+
+    stroke.width = 30.0f;
+    stroke.color = [[PXImagePaint alloc] initWithURL:url];
+    shape.stroke = stroke;
+
+    [self assertShape:shape equalsImageName:@"solid-image-stroke"];
 }
 
 #pragma mark - Shadow Tests
