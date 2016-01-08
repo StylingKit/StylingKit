@@ -116,8 +116,9 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
                  {
                      attrString = [[NSMutableAttributedString alloc] initWithString:context.transformedText attributes:dict];
                  }
-                 
-                 weakSelf.attributedText = attrString;
+
+                [self setAttributedText:attrString
+                     invalidateChildren:NO];
             }]
         ];
         
@@ -287,18 +288,26 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
 -(void)setAttributedText:(NSAttributedString *)attributedText
 {
+    [self setAttributedText:attributedText
+         invalidateChildren:YES];
+}
+
+-(void)setAttributedText:(NSAttributedString *)attributedText
+      invalidateChildren:(BOOL)invalidateChildren
+{
     if (self.attributedText != attributedText ||
       ![self.attributedText isEqualToAttributedString:attributedText])
     {
-        callSuper1(SUPER_PREFIX, _cmd, attributedText);
+        callSuper1(SUPER_PREFIX, @selector(setAttributedText:), attributedText);
 
-        if(self.preventStyling == NO)
+        if(invalidateChildren && !self.preventStyling)
         {
             [PXStyleUtils invalidateStyleableAndDescendants:self];
             [self updateStylesNonRecursively];
         }
     }
 }
+
 
 // Px Wrapped Only
 PX_PXWRAP_1(setText, text);

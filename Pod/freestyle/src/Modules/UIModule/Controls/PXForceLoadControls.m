@@ -56,6 +56,7 @@
 #import "PXUIView.h"
 #import "PXUIWebView.h"
 #import "PXUIWindow.h"
+#import "STK_UIAlertControllerView.h"
 
 @implementation PXForceLoadControls
 
@@ -93,6 +94,7 @@
     [PXUIView class];
     [PXUIWebView class];
     [PXUIWindow class];
+    [STK_UIAlertControllerView class];
 }
 
 @end

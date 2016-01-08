@@ -15,26 +15,27 @@
  */
 
 //
-//  Created by Anton Matosov on 12/08/2015.
+// Created by Anton Matosov on 1/5/16.
 //
 
-#import "STKViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface STKViewController ()
-
-@end
-
-@implementation STKViewController
-
-- (IBAction)showAlertView
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
-                                                        message:@"Message"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"OK", nil];
-
-    [alertView show];
-}
+/**
+ *
+ *  UIAlertView supports the following element name:
+ *
+ *  - alert-view
+ *
+ *  UIActionSheet supports the following properties:
+ *
+ *  - PXOpacityStyler
+ *  - PXShapeStyler
+ *  - PXFillStyler
+ *  - PXBorderStyler
+ *  - PXBoxShadowStyler
+ *  - PXAnimationStyler
+ *
+ */
+@interface STK_UIAlertControllerView : UIView
 
 @end
