@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * Copyright 2015-present StylingKit Development Team. All rights reserved.
+ * Copyright 2016-present StylingKit Development Team. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StylingKit : NSObject
+@interface Cloud : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
-
-/// Shared and only allowed instance of the StylingKit to be used in the app
-+ (instancetype)sharedKit;
-
-- (void)startStyling;
++ (instancetype)defaultCloud;
 
 @end

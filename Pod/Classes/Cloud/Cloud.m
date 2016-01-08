@@ -20,35 +20,20 @@
 // Created by Anton Matosov
 //
 
-#import "StylingKit.h"
-#import "PixateFreestyle.h"
+#import "Cloud.h"
 
-@implementation StylingKit
+@implementation Cloud
 
-+ (instancetype)sharedKit
++ (instancetype)defaultCloud
 {
     static id instance;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^
     {
-        instance = [[self alloc] initPrivate];
+        instance = [[self alloc] init];
     });
 
     return instance;
-}
-
-- (instancetype)initPrivate
-{
-    self = [super init];
-    if (self)
-    {
-    }
-
-    return self;
-}
-
-- (void)startStyling
-{
 }
 
 @end
