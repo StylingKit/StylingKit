@@ -1,0 +1,47 @@
+(lldb) 
+<_UIAlertControllerShimPresenterWindow: 0x7b74c0d0; frame = (0 0; 320 480); opaque = NO; autoresize = W+H; gestureRecognizers = <NSArray: 0x7b754a20>; layer = <UIWindowLayer: 0x7b74ebb0>>
+   | <UIView: 0x7c95ce10; frame = (0 0; 320 480); autoresize = W+H; layer = <CALayer: 0x7c95cd60>>
+   | <UITransitionView: 0x7ca50ee0; frame = (0 0; 320 480); autoresize = W+H; layer = <CALayer: 0x7ca51130>>
+   |    | <UIView: 0x7b766300; frame = (0 0; 0 0); layer = <CALayer: 0x7b75ca80>>
+   |    | <UIView: 0x7b6f1c90; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = <CALayer: 0x7b6686b0>>
+   |    | <_UIKeyboardLayoutAlignmentView: 0x7b6f1a90; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = <CALayer: 0x7b668680>>
+   |    | <_UIAlertControllerView: 0x7b6f1370; frame = (0 0; 270 128); gestureRecognizers = <NSArray: 0x7b696b30>; layer = <CALayer: 0x7b66f980>>
+   |    |    | <UIView: 0x7b6f1e60; frame = (0 0; 270 128); layer = <CALayer: 0x7b673c70>>
+   |    |    |    | <_UIDimmingKnockoutBackdropView: 0x7c971d60; frame = (0 0; 270 128); clipsToBounds = YES; layer = <CALayer: 0x7c971f60>>
+   |    |    |    |    | <UIView: 0x7ca4b5f0; frame = (0 0; 0 0); clipsToBounds = YES; layer = <CALayer: 0x7ca33eb0>>
+   |    |    |    |    | <UIVisualEffectView: 0x7c972180; frame = (0 0; 0 0); clipsToBounds = YES; layer = <CALayer: 0x7c972510>>
+   |    |    |    |    |    | <_UIVisualEffectBackdropView: 0x7ca39f90; frame = (0 0; 0 0); clipsToBounds = YES; opaque = NO; autoresize = W+H; userInteractionEnabled = NO; layer = <CABackdropLayer: 0x7ca2cfd0>>
+   |    |    |    |    |    | <_UIVisualEffectFilterView: 0x7ca41e70; frame = (0 0; 0 0); clipsToBounds = YES; opaque = NO; autoresize = W+H; userInteractionEnabled = NO; layer = <CALayer: 0x7ca44250>>
+   |    |    |    | <UIView: 0x7b6f1f20; frame = (0 0; 270 128); layer = <CALayer: 0x7b674330>>
+   |    |    |    |    | <UIView: 0x7b6f1fe0; frame = (0 0; 270 128); clipsToBounds = YES; layer = <CALayer: 0x7b672ef0>>
+   |    |    |    |    |    | <_UIAlertControllerShadowedScrollView: 0x7da98e00; frame = (0 0; 270 84); clipsToBounds = YES; gestureRecognizers = <NSArray: 0x7b675e30>; layer = <CALayer: 0x7b675740>; contentOffset: {0, 0}; contentSize: {0, 0}>
+   |    |    |    |    |    |    | <UIView: 0x7b6f2400; frame = (0 0; 0 0); layer = <CALayer: 0x7b67a190>>
+   |    |    |    |    |    |    |    | <UILabel: 0x7b6f24c0; frame = (0 0; 0 0); text = 'Title'; userInteractionEnabled = NO; layer = <_UILabelLayer: 0x7b67c9b0>>
+   |    |    |    |    |    |    |    | <UILabel: 0x7b6f25d0; frame = (0 0; 0 0); text = 'Message'; userInteractionEnabled = NO; layer = <_UILabelLayer: 0x7b6813d0>>
+   |    |    |    |    |    |    |    | <UIView: 0x7b6f27f0; frame = (0 0; 0 0); clipsToBounds = YES; layer = <CALayer: 0x7b685700>>
+   |    |    |    |    |    |    |    | <UIView: 0x7b6f28b0; frame = (0 0; 0 0); clipsToBounds = YES; layer = <CALayer: 0x7b685db0>>
+   |    |    |    |    |    |    | <UIImageView: 0x7b763690; frame = (-39 78.5; 36 2.5); alpha = 0; opaque = NO; autoresize = TM; userInteractionEnabled = NO; layer = <CALayer: 0x7b763990>>
+   |    |    |    |    |    |    | <UIImageView: 0x7b764440; frame = (264.5 -39; 2.5 36); alpha = 0; opaque = NO; autoresize = LM; userInteractionEnabled = NO; layer = <CALayer: 0x7b764570>>
+   |    |    |    |    |    | <UILabel: 0x7b6f26e0; frame = (16 0; 238 0); userInteractionEnabled = NO; layer = <_UILabelLayer: 0x7b683550>>
+   |    |    |    |    |    | <UICollectionView: 0x7dab4600; frame = (0 84; 270 44); clipsToBounds = YES; gestureRecognizers = <NSArray: 0x7b68c990>; layer = <CALayer: 0x7b68ae60>; contentOffset: {0, 0}; contentSize: {270, 44}> collection view layout: <_UIAlertControllerCollectionViewFlowLayout: 0x7b6f2970>
+   |    |    |    |    |    |    | <_UIAlertControllerCollectionViewCell: 0x7c984020; frame = (0 0.5; 135 44); layer = <CALayer: 0x7c984270>>
+   |    |    |    |    |    |    |    | <UIView: 0x7c984440; frame = (0 0; 135 44); gestureRecognizers = <NSArray: 0x7c984ac0>; layer = <CALayer: 0x7c984500>>
+   |    |    |    |    |    |    |    |    | <_UIAlertControllerActionView: 0x7b6f35f0; frame = (0 0; 135 44); Action = <UIAlertAction: 0x7b74b200 Title = "Cancel" Descriptive = "(null)" Image = 0x0>>
+   |    |    |    |    |    |    |    |    |    | <UIView: 0x7b6f3850; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = <CALayer: 0x7b620350>>
+   |    |    |    |    |    |    |    |    |    |    | <UILabel: 0x7b6f3910; frame = (0 0; 0 0); text = 'Cancel'; userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <_UILabelLayer: 0x7b620380>>
+   |    |    |    |    |    |    |    |    |    |    | <UILabel: 0x7b6f3a20; frame = (0 0; 0 0); userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <_UILabelLayer: 0x7b621ba0>>
+   |    |    |    |    |    |    |    |    |    | <UIImageView: 0x7b6f3b30; frame = (0 0; 0 0); userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <CALayer: 0x7b623000>>
+   |    |    |    |    |    |    |    |    |    | <UIImageView: 0x7c95d990; frame = (0 0; 0 0); hidden = YES; opaque = NO; userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <CALayer: 0x7c95d020>>
+   |    |    |    |    |    |    |    |    |    | <UIView: 0x7c95da70; frame = (0 0; 0 0); clipsToBounds = YES; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <CALayer: 0x7c95c8f0>>
+   |    |    |    |    |    |    | <_UIAlertControllerCollectionViewCell: 0x7c9946d0; frame = (135 0.5; 135 44); layer = <CALayer: 0x7c994480>>
+   |    |    |    |    |    |    |    | <UIView: 0x7c9944b0; frame = (0 0; 135 44); gestureRecognizers = <NSArray: 0x7c994d40>; layer = <CALayer: 0x7c9948f0>>
+   |    |    |    |    |    |    |    |    | <_UIAlertControllerActionView: 0x7c962650; frame = (0 0; 135 44); Action = <UIAlertAction: 0x7b753f20 Title = "OK" Descriptive = "(null)" Image = 0x0>>
+   |    |    |    |    |    |    |    |    |    | <UIView: 0x7c9627d0; frame = (0 0; 0 0); userInteractionEnabled = NO; layer = <CALayer: 0x7c962890>>
+   |    |    |    |    |    |    |    |    |    |    | <UILabel: 0x7c9628c0; frame = (0 0; 0 0); text = 'OK'; userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <_UILabelLayer: 0x7c962540>>
+   |    |    |    |    |    |    |    |    |    |    | <UILabel: 0x7c962bf0; frame = (0 0; 0 0); userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <_UILabelLayer: 0x7c962d00>>
+   |    |    |    |    |    |    |    |    |    | <UIImageView: 0x7c962eb0; frame = (0 0; 0 0); userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <CALayer: 0x7c962f90>>
+   |    |    |    |    |    |    |    |    |    | <UIImageView: 0x7c962fc0; frame = (0 0; 0 0); hidden = YES; opaque = NO; userInteractionEnabled = NO; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <CALayer: 0x7c9630a0>>
+   |    |    |    |    |    |    |    |    |    | <UIView: 0x7c9630d0; frame = (0 0; 0 0); clipsToBounds = YES; tintColor = UIDeviceRGBColorSpace 0 0.478431 1 1; layer = <CALayer: 0x7c963190>>
+   |    |    |    |    |    |    | <UIImageView: 0x7b6f47d0; frame = (264.5 -39; 2.5 36); alpha = 0; opaque = NO; autoresize = LM; userInteractionEnabled = NO; layer = <CALayer: 0x7b6325f0>>
+   |    |    |    |    |    |    | <UIImageView: 0x7b6f3df0; frame = (-39 38.5; 36 2.5); alpha = 0; opaque = NO; autoresize = TM; userInteractionEnabled = NO; layer = <CALayer: 0x7b62ea50>>
+
