@@ -16,13 +16,13 @@ PODS:
     - GCDWebServer/Core (= 3.3)
   - GCDWebServer/Core (3.3)
   - Kiwi (2.4.0)
-  - StylingKit/Cloud (0.2.0):
+  - StylingKit/Cloud (0.3.0):
     - GCDWebServer (~> 3)
     - StylingKit/Main
-  - StylingKit/Freestyle (0.2.0)
-  - StylingKit/Main (0.2.0):
+  - StylingKit/Freestyle (0.3.0)
+  - StylingKit/Main (0.3.0):
     - StylingKit/Freestyle
-  - StylingKit/WithLogging (0.2.0):
+  - StylingKit/WithLogging (0.3.0):
     - CocoaLumberjack (~> 2.2.0)
     - StylingKit/Main
 
@@ -41,6 +41,6 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
   GCDWebServer: 106463756391d814b6f506927bee0d6a75a0b427
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: 90e4d5f6dc8d8e02369949b0bbbd117457964b56
+  StylingKit: 9dc191a276c271adc2e5bb843f2e96545023988a
 
 COCOAPODS: 0.39.0

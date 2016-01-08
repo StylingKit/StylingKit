@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "StylingKit"
-  s.version          = "0.2.0"
+  s.version          = "0.3.0"
   s.summary          = "Style your iOS app with CSS, using 100% native code and no webviews." 
   s.description      = <<-DESC
                       StylingKit is an iOS framework that allows you to style your application using stylesheets and a CSS-like syntax. StylingKit lets you build  beautiful applications with less code and more flexibility by using familiar CSS markup to style native controls and components. Free up your team to focus on creating amazing user experiences throughout the design and development cycle.
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   
   s.default_subspec = 'Main'
   s.subspec 'Main' do |ss|
-    ss.source_files = 'Pod/Classes/**/*.{h,m,c}'
+    ss.source_files = 'Pod/Classes/Main/**/*.{h,m,c}'
     ss.resource_bundles = {
       'StylingKit' => ['Pod/Assets/*.png']
     }
@@ -52,9 +52,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Freestyle' do |ss|
-    ss.prefix_header_file = "Pod/freestyle/src/pixate-freestyle-Prefix.pch"
-    ss.source_files = 'Pod/freestyle/src/**/*.{h,m,c}'
-    ss.private_header_files = 'Pod/freestyle/src/**/*.h'
+    ss.prefix_header_file = "Pod/Classes/freestyle/src/pixate-freestyle-Prefix.pch"
+    ss.source_files = 'Pod/Classes/freestyle/src/**/*.{h,m,c}'
+    ss.private_header_files = 'Pod/Classes/freestyle/src/**/*.h'
   
     ss.frameworks = 'CoreText', 'QuartzCore', 'UIKit', 'Foundation', 'CoreGraphics'
   end
@@ -69,7 +69,7 @@ Pod::Spec.new do |s|
   s.subspec 'Cloud' do |ss|
     ss.dependency 'StylingKit/Main'
 
-    ss.source_files = 'Pod/Cloud/**/*.{h,m,c}'
+    ss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
     ss.dependency 'GCDWebServer', '~> 3'
   end
 end
