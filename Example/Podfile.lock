@@ -12,17 +12,24 @@ PODS:
   - FBSnapshotTestCase/Core (2.0.7)
   - FBSnapshotTestCase/SwiftSupport (2.0.7):
     - FBSnapshotTestCase/Core
+  - GCDWebServer (3.3):
+    - GCDWebServer/Core (= 3.3)
+  - GCDWebServer/Core (3.3)
   - Kiwi (2.4.0)
-  - StylingKit/All (0.2.0):
-    - StylingKit/Freestyle
+  - StylingKit/Cloud (0.2.0):
+    - GCDWebServer (~> 3)
+    - StylingKit/Main
   - StylingKit/Freestyle (0.2.0)
+  - StylingKit/Main (0.2.0):
+    - StylingKit/Freestyle
   - StylingKit/WithLogging (0.2.0):
     - CocoaLumberjack (~> 2.2.0)
-    - StylingKit/All
+    - StylingKit/Main
 
 DEPENDENCIES:
   - FBSnapshotTestCase
   - Kiwi
+  - StylingKit/Cloud (from `../`)
   - StylingKit/WithLogging (from `../`)
 
 EXTERNAL SOURCES:
@@ -32,7 +39,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
+  GCDWebServer: 106463756391d814b6f506927bee0d6a75a0b427
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: 9d1a0cc15743f23848716b6234eb9d1c158faa5d
+  StylingKit: 90e4d5f6dc8d8e02369949b0bbbd117457964b56
 
 COCOAPODS: 0.39.0

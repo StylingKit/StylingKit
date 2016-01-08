@@ -40,9 +40,9 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '8.1'
   
-  s.default_subspec = 'All'
-  s.subspec 'All' do |ss|
-    ss.source_files = 'Pod/Classes/**/*'
+  s.default_subspec = 'Main'
+  s.subspec 'Main' do |ss|
+    ss.source_files = 'Pod/Classes/**/*.{h,m,c}'
     ss.resource_bundles = {
       'StylingKit' => ['Pod/Assets/*.png']
     }
@@ -60,9 +60,16 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'WithLogging' do |ss|
-    ss.dependency 'StylingKit/All'
+    ss.dependency 'StylingKit/Main'
 
     ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'PX_LOGGING=1' }
     ss.dependency 'CocoaLumberjack', '~> 2.2.0'
+  end
+
+  s.subspec 'Cloud' do |ss|
+    ss.dependency 'StylingKit/Main'
+
+    ss.source_files = 'Pod/Cloud/**/*.{h,m,c}'
+    ss.dependency 'GCDWebServer', '~> 3'
   end
 end
