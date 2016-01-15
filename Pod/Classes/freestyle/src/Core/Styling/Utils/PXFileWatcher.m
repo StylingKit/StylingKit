@@ -79,10 +79,11 @@
                         //NSLog(@"handler called");
                         handler();
                         pending = NO;
+
+                        [[PXFileWatcher sharedInstance] watchFile:filePath handler:handler];
                     });
                 }
 
-                [[PXFileWatcher sharedInstance] watchFile:filePath handler:handler];
             }
 
         });

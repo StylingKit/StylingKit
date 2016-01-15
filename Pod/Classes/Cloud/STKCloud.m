@@ -24,16 +24,16 @@
 #import <StylingKit/PXStylesheet.h>
 #import <StylingKit/PXStylesheet-Private.h>
 
-#import "Cloud.h"
+#import "STKCloud.h"
 
-@interface Cloud ()
+@interface STKCloud ()
 
 @property(strong, nonatomic) GCDWebDAVServer* davServer;
 @property(readonly, strong, nonatomic) NSString* defaultDavFolder;
 
 @end
 
-@implementation Cloud
+@implementation STKCloud
 
 @synthesize defaultDavFolder = _defaultDavFolder;
 
@@ -50,6 +50,8 @@
 - (GCDWebDAVServer*)davServer {
   if (!_davServer) {
     _davServer = [[GCDWebDAVServer alloc] initWithUploadDirectory:self.defaultDavFolder];
+
+    [GCDWebServer setLogLevel:DDLogLevelWarning];
   }
   return _davServer;
 }
@@ -90,7 +92,8 @@
 
   if ([[NSFileManager defaultManager] fileExistsAtPath:davPath])
   {
-    [PXStylesheet styleSheetFromFilePath:davPath withOrigin:PXStylesheetOriginApplication];
+    PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:davPath withOrigin:PXStylesheetOriginApplication];
+    stylesheet.monitorChanges = YES;
   }
 }
 

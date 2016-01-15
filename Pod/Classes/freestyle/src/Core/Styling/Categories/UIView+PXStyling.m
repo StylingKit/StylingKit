@@ -484,10 +484,10 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 + (void)updateStyles:(id<PXStyleable>)styleable recursively:(bool)recurse
 {
-    if (styleable.styleMode == PXStylingNormal)
+    if (styleable.styleMode != PXStylingNone)
     {
         // If not recursive, style virtual children only (not subviews)
-        if(recurse == NO)
+        if(!recurse)
         {
             for (id<PXStyleable> child in styleable.pxStyleChildren)
             {

@@ -72,8 +72,7 @@ PX_DEFINE_CLASS_LOG_LEVEL
 {
     PXStylesheet *result = nil;
 
-    // TODO: maybe the following can be more intelligent and only remove cache entries that reference the stylesheet
-    // being replaced
+    // TODO: maybe the following can be more intelligent and only remove cache entries that reference the stylesheet being replaced
 
     // clear style cache
     [PixateFreestyle clearStyleCache];

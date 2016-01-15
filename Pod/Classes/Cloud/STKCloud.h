@@ -26,7 +26,7 @@ static NSString* const kDefaultStylesheetName = @"default";
 
 static NSString* const kStylesheetExt = @"css";
 
-@interface Cloud : NSObject
+@interface STKCloud : NSObject
 
 + (instancetype)defaultCloud;
 
