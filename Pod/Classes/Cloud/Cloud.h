@@ -22,8 +22,14 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString* const kDefaultStylesheetName = @"default";
+
+static NSString* const kStylesheetExt = @"css";
+
 @interface Cloud : NSObject
 
 + (instancetype)defaultCloud;
+
+- (void)startLocalServer;
 
 @end

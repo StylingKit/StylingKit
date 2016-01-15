@@ -12,35 +12,49 @@ PODS:
   - FBSnapshotTestCase/Core (2.0.7)
   - FBSnapshotTestCase/SwiftSupport (2.0.7):
     - FBSnapshotTestCase/Core
-  - GCDWebServer (3.3):
-    - GCDWebServer/Core (= 3.3)
-  - GCDWebServer/Core (3.3)
+  - GCDWebServer/CocoaLumberjack (3.3.1):
+    - CocoaLumberjack (~> 2)
+    - GCDWebServer/Core
+  - GCDWebServer/Core (3.3.1)
+  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.1):
+    - GCDWebServer/CocoaLumberjack
+    - GCDWebServer/WebDAV/Core
+  - GCDWebServer/WebDAV/Core (3.3.1):
+    - GCDWebServer/Core
   - Kiwi (2.4.0)
   - StylingKit/Cloud (0.3.0):
-    - GCDWebServer (~> 3)
+    - GCDWebServer/WebDAV/CocoaLumberjack (~> 3)
     - StylingKit/Main
   - StylingKit/Freestyle (0.3.0)
   - StylingKit/Main (0.3.0):
     - StylingKit/Freestyle
   - StylingKit/WithLogging (0.3.0):
-    - CocoaLumberjack (~> 2.2.0)
+    - CocoaLumberjack (~> 2)
     - StylingKit/Main
 
 DEPENDENCIES:
   - FBSnapshotTestCase
+  - GCDWebServer/WebDAV/CocoaLumberjack (from `https://github.com/anton-matosov/GCDWebServer.git`)
   - Kiwi
   - StylingKit/Cloud (from `../`)
   - StylingKit/WithLogging (from `../`)
 
 EXTERNAL SOURCES:
+  GCDWebServer:
+    :git: https://github.com/anton-matosov/GCDWebServer.git
   StylingKit:
     :path: "../"
+
+CHECKOUT OPTIONS:
+  GCDWebServer:
+    :commit: 95231b1a66fa2ac3677ae0d87a2235f1da561c1a
+    :git: https://github.com/anton-matosov/GCDWebServer.git
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
-  GCDWebServer: 106463756391d814b6f506927bee0d6a75a0b427
+  GCDWebServer: 852ed5c1056df2f1ab3b32ec54a81d9730bd227f
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: 3944d4d2cba29f60ace19395d14cdf724a40c8de
+  StylingKit: dd7d2b839c11c7c9b68d289b5664e02af7c3c47f
 
 COCOAPODS: 0.39.0

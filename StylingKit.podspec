@@ -63,13 +63,13 @@ Pod::Spec.new do |s|
     ss.dependency 'StylingKit/Main'
 
     ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'PX_LOGGING=1' }
-    ss.dependency 'CocoaLumberjack', '~> 2.2.0'
+    ss.dependency 'CocoaLumberjack', '~> 2'
   end
 
   s.subspec 'Cloud' do |ss|
     ss.dependency 'StylingKit/Main'
 
     ss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
-    ss.dependency 'GCDWebServer', '~> 3'
+    ss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
   end
 end
