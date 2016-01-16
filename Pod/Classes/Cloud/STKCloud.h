@@ -22,10 +22,6 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString* const kDefaultStylesheetName = @"default";
-
-static NSString* const kStylesheetExt = @"css";
-
 @interface STKCloud : NSObject
 
 /**

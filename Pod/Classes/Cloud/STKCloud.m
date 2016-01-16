@@ -26,6 +26,9 @@
 
 #import "STKCloud.h"
 
+static NSString* const kDefaultStylesheetName = @"default";
+static NSString* const kStylesheetExt = @"css";
+
 @interface STKCloud ()
 
 @property(strong, nonatomic) GCDWebDAVServer* davServer;
