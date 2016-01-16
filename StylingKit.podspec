@@ -67,7 +67,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Cloud' do |ss|
-    s.default_subspec = 'Main'
+    ss.default_subspec = 'Main'
 
     ss.subspec 'Main' do |sss|
       sss.dependency 'StylingKit/Main'
