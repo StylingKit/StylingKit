@@ -3,7 +3,7 @@
 set -e
 
 if [ -z $(which brew) ] ;then
-	echo "Installing homebrew package manager"
+	echo "== Installing homebrew package manager"
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
@@ -13,10 +13,10 @@ brew_install()
     brew outdated $1 || brew upgrade $1
 }
 
-echo "Updating homebrew database"
+echo "== Updating homebrew database"
 brew update
 
-echo "Updating tools"
+echo "== Updating tools"
 
 brew_install ruby # must have for El Capitan
 brew_install carthage
@@ -27,7 +27,10 @@ which gem
 which ruby
 
 gem install cocoapods --version 0.39.0
-pod setup --silent # update local specs
+
+echo "== Updating cocoapods master repo"
+pod setup --silent
+echo "== Done"
 
 gem install fastlane
 
