@@ -41,6 +41,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "PXUITableViewCell.h"
+#import "PixateFreestyle-Private.h"
 
 static const char hash;
 static const char itemIndex;
@@ -512,6 +513,12 @@ static const char viewDelegate;
         viewsBeingStyled = [NSMutableSet set];
     });
 
+    if (styleable.styleMode == PXStylingNone
+      || [PixateFreestyle configuration].styleMode == PXStylingNone)
+    {
+        return;
+    }
+
     // Check to make sure this styleable has stylers we can use or if it has explictly asked
     // to not be styled
     BOOL preventStyling =
@@ -520,7 +527,6 @@ static const char viewDelegate;
     
     // We prevent nested styling of a styleable by checking to see if it is currently being styled
     if (!preventStyling &&
-      styleable.styleMode != PXStylingNone &&
       ![viewsBeingStyled containsObject:styleable])
     {
         // catch all exceptions to make sure we remove the current styleable from viewsBeingStyled
