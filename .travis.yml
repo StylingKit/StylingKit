@@ -9,6 +9,9 @@ branches:
 before_install:
  - ./scripts/before_install
 
+install:
+ - ./scripts/bootstrap
+
 env:
  - workspace="Example/StylingKit.xcworkspace" scheme="StylingKit-Example" destination="platform=iOS Simulator,name=iPhone 6s"
 
