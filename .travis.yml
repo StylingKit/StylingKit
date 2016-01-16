@@ -9,6 +9,7 @@ branches:
 before_install:
  - brew update
  - brew install carthage
+ - pod setup
 
 env:
  - workspace="Example/StylingKit.xcworkspace" scheme="StylingKit-Example" destination="platform=iOS Simulator,name=iPhone 6s"
