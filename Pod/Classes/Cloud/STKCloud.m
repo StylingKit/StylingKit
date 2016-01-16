@@ -65,9 +65,22 @@
   return _defaultDavFolder;
 }
 
+- (NSURL*)serverURL {
+  return self.davServer.serverURL;
+}
+
+- (NSURL*)bonjourServerURL {
+  return self.davServer.bonjourServerURL;
+}
+
+- (NSURL*)publicServerURL {
+  return self.davServer.publicServerURL;
+}
+
 - (void)startLocalServer {
   [self.davServer start];
-  NSLog(@"Visit %@ in your WebDAV client", self.davServer.serverURL);
+
+  NSLog(@"Visit %@ in your WebDAV client", self.serverURL);
 
   [self prv_switchStylysheetToDocsFolder];
 }

@@ -28,6 +28,31 @@ static NSString* const kStylesheetExt = @"css";
 
 @interface STKCloud : NSObject
 
+/**
+ *  Returns the server's URL.
+ *
+ *  @warning This property is only valid if the server is running.
+ */
+@property(nonatomic, readonly) NSURL* serverURL;
+
+/**
+ *  Returns the server's Bonjour URL.
+ *
+ *  @warning This property is only valid if the server is running and Bonjour
+ *  registration has successfully completed, which can take up to a few seconds.
+ *  Also be aware this property will not automatically update if the Bonjour hostname
+ *  has been dynamically changed after the server started running (this should be rare).
+ */
+@property(nonatomic, readonly) NSURL* bonjourServerURL;
+
+/**
+ *  Returns the server's public URL.
+ *
+ *  @warning This property is only valid if the server is running and NAT port
+ *  mapping is active.
+ */
+@property(nonatomic, readonly) NSURL* publicServerURL;
+
 + (instancetype)defaultCloud;
 
 - (void)startLocalServer;
