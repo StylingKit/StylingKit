@@ -24,7 +24,9 @@
 //
 
 
-#if defined(PX_LOGGING) && (__has_include("CocoaLumberjack.h") || __has_include("CocoaLumberjack/CocoaLumberjack.h"))
+#if defined(STK_LOGGING) && (__has_include("CocoaLumberjack.h") || __has_include("CocoaLumberjack/CocoaLumberjack.h"))
+
+#define PX_LOGGING STK_LOGGING
 
 # import <CocoaLumberjack/CocoaLumberjack.h>
 

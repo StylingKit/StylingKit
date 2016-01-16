@@ -62,7 +62,7 @@ Pod::Spec.new do |s|
   s.subspec 'WithLogging' do |ss|
     ss.dependency 'StylingKit/Main'
 
-    ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'PX_LOGGING=1' }
+    ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'STK_LOGGING=1' }
     ss.dependency 'CocoaLumberjack', '~> 2'
   end
 

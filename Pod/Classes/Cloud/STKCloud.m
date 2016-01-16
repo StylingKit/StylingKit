@@ -51,7 +51,9 @@
   if (!_davServer) {
     _davServer = [[GCDWebDAVServer alloc] initWithUploadDirectory:self.defaultDavFolder];
 
+#if STK_LOGGING
     [GCDWebServer setLogLevel:DDLogLevelWarning];
+#endif
   }
   return _davServer;
 }
