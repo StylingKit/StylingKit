@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 if [ -z $(which brew) ] ;then
 	echo "== Installing homebrew package manager"
@@ -18,8 +19,10 @@ brew update
 
 echo "== Updating tools"
 
-brew_install "homebrew/versions/ruby22" # must have for El Capitan
-brew switch ruby 2.2.4 # the latest version compatible with cocoapods 0.38.2 and 0.39.0 (latest to date)
+if [[ $TRAVIS != true ]]; then
+	brew_install "homebrew/versions/ruby22" # must have for El Capitan
+	brew switch ruby 2.2.4 # the latest version compatible with cocoapods 0.38.2 and 0.39.0 (latest to date)
+fi
 
 which gem
 which ruby
