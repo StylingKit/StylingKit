@@ -67,9 +67,18 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Cloud' do |ss|
-    ss.dependency 'StylingKit/Main'
+    s.default_subspec = 'Main'
 
-    ss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
-    ss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
+    ss.subspec 'Main' do |sss|
+      sss.dependency 'StylingKit/Main'
+      sss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
+      sss.dependency 'GCDWebServer/WebDAV', '~> 3'
+    end
+
+    # ss.subspec 'WithLogging' do |sss|
+    #   sss.dependency 'Cloud/Main'
+    #   sss.dependency 'StylingKit/WithLogging'
+    #   sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
+    # end
   end
 end
