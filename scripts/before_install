@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+if [ -z $(which brew) ] ;then
+	echo "Installing homebrew package manager"
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+brew_install()
+{
+    brew list $1 > /dev/null || brew install $1
+    brew outdated $1 || brew upgrade $1
+}
+
+echo "Updating homebrew database"
+brew update
+
+echo "Updating tools"
+
+brew_install ruby # must have for El Capitan
+brew_install carthage
+
+brew switch ruby 2.2.4 # the latest version compatible with cocoapods 0.38.2 and 0.39.0 (latest to date)
+
+which gem
+which ruby
+
+gem install cocoapods --version 0.39.0
+pod setup --silent # update local specs
+
+gem install fastlane
+
+gem install sass
+
