@@ -6,6 +6,10 @@ branches:
     - master
     - develop
 
+before_install:
+ - brew update
+ - brew install carthage
+
 env:
  - workspace="Example/StylingKit.xcworkspace" scheme="StylingKit-Example" destination="platform=iOS Simulator,name=iPhone 6s"
 
