@@ -15,6 +15,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[StylingKit sharedKit] startStyling];
+    [[STKCloud defaultCloud] startLocalServer];
 
     return YES;
 }

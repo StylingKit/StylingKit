@@ -28,13 +28,29 @@
 
 - (IBAction)showAlertView
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
-                                                        message:@"Message"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"OK", nil];
 
-    [alertView show];
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
+//                                                        message:@"Message"
+//                                                       delegate:nil
+//                                              cancelButtonTitle:@"Cancel"
+//                                              otherButtonTitles:@"OK", nil];
+//
+//    [alertView show];
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title"
+                                                                             message:@"Message"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil]];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil]];
+
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 @end

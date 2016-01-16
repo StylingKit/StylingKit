@@ -6,11 +6,11 @@ platform :ios, '8.1'
 use_frameworks!
 
 target 'StylingKit_Example', :exclusive => true do
-  pod "StylingKit/WithLogging", :path => "../"
+  pod "StylingKit/Cloud/WithLogging", :path => "../"
 end
 
 target 'StylingKit_Tests', :exclusive => true do
-  pod "StylingKit/WithLogging", :path => "../"
+  pod "StylingKit/Cloud/WithLogging", :path => "../"
 
   pod 'Kiwi', :inhibit_warnings => true
   pod 'FBSnapshotTestCase', :inhibit_warnings => true

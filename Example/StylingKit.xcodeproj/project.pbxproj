@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		7CE29D1B1C49501300D843E7 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 7CE29D1A1C49501300D843E7 /* default.css */; };
 		7CF7A4CC1C3A772E00B3BD16 /* solid-image-stroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF7A4CA1C3A770800B3BD16 /* solid-image-stroke.png */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A09420033B649B7D9AD59FB1 /* css3-modsel-27a.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09423FEC94613E597EDF987 /* css3-modsel-27a.xml */; };
@@ -814,6 +815,7 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		63689FED0D061E19FA6CBDF8 /* Pods_StylingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CE29D1A1C49501300D843E7 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		7CF7A4CA1C3A770800B3BD16 /* solid-image-stroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solid-image-stroke.png"; sourceTree = "<group>"; };
 		807B21C1BB0379A0297AC2F8 /* Pods-StylingKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1654,6 +1656,7 @@
 		6003F593195388D20070C39A /* Example for StylingKit */ = {
 			isa = PBXGroup;
 			children = (
+				7CE29D1A1C49501300D843E7 /* default.css */,
 				6003F59C195388D20070C39A /* STKAppDelegate.h */,
 				6003F59D195388D20070C39A /* STKAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -2754,6 +2757,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				7CE29D1B1C49501300D843E7 /* default.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
