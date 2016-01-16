@@ -1,35 +1,57 @@
 PODS:
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
   - FBSnapshotTestCase (2.0.7):
     - FBSnapshotTestCase/SwiftSupport (= 2.0.7)
   - FBSnapshotTestCase/Core (2.0.7)
   - FBSnapshotTestCase/SwiftSupport (2.0.7):
     - FBSnapshotTestCase/Core
-  - GCDWebServer/Core (3.3)
-  - GCDWebServer/WebDAV (3.3):
+  - GCDWebServer/CocoaLumberjack (3.3.1):
+    - CocoaLumberjack (~> 2)
+    - GCDWebServer/Core
+  - GCDWebServer/Core (3.3.1)
+  - GCDWebServer/WebDAV (3.3.1):
+    - GCDWebServer/WebDAV/Core (= 3.3.1)
+  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.1):
+    - GCDWebServer/CocoaLumberjack
+    - GCDWebServer/WebDAV/Core
+  - GCDWebServer/WebDAV/Core (3.3.1):
     - GCDWebServer/Core
   - Kiwi (2.4.0)
-  - StylingKit/Cloud (0.3.0):
-    - StylingKit/Cloud/Main (= 0.3.0)
   - StylingKit/Cloud/Main (0.3.0):
     - GCDWebServer/WebDAV (~> 3)
     - StylingKit/Main
+  - StylingKit/Cloud/WithLogging (0.3.0):
+    - GCDWebServer/WebDAV/CocoaLumberjack (~> 3)
+    - StylingKit/Cloud/Main
+    - StylingKit/WithLogging
   - StylingKit/Freestyle (0.3.0)
   - StylingKit/Main (0.3.0):
     - StylingKit/Freestyle
+  - StylingKit/WithLogging (0.3.0):
+    - CocoaLumberjack (~> 2)
+    - StylingKit/Main
 
 DEPENDENCIES:
   - FBSnapshotTestCase
   - Kiwi
-  - StylingKit/Cloud (from `../`)
+  - StylingKit/Cloud/WithLogging (from `../`)
 
 EXTERNAL SOURCES:
   StylingKit:
     :path: "../"
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
-  GCDWebServer: 106463756391d814b6f506927bee0d6a75a0b427
+  GCDWebServer: 852ed5c1056df2f1ab3b32ec54a81d9730bd227f
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: c51d1a2f3ef44059a31a7dc66613382a259cf6b0
+  StylingKit: fd7d1e424d2a258a953eadeac8682b126e6af49d
 
 COCOAPODS: 0.39.0

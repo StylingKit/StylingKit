@@ -75,10 +75,10 @@ Pod::Spec.new do |s|
       sss.dependency 'GCDWebServer/WebDAV', '~> 3'
     end
 
-    # ss.subspec 'WithLogging' do |sss|
-    #   sss.dependency 'Cloud/Main'
-    #   sss.dependency 'StylingKit/WithLogging'
-    #   sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
-    # end
+    ss.subspec 'WithLogging' do |sss|
+      sss.dependency 'StylingKit/Cloud/Main'
+      sss.dependency 'StylingKit/WithLogging'
+      sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
+    end
   end
 end
