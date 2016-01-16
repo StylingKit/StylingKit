@@ -18,13 +18,13 @@ brew update
 
 echo "== Updating tools"
 
-brew_install ruby # must have for El Capitan
-brew_install carthage
-
+brew_install "homebrew/versions/ruby22" # must have for El Capitan
 brew switch ruby 2.2.4 # the latest version compatible with cocoapods 0.38.2 and 0.39.0 (latest to date)
 
 which gem
 which ruby
+
+brew_install carthage
 
 gem install cocoapods --version 0.39.0
 
