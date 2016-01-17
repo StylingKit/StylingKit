@@ -31,9 +31,9 @@ brew_install carthage
 
 gem install cocoapods --version 0.39.0
 
-# echo "== Updating cocoapods master repo"
-# pod setup --silent
-# echo "== Done"
+echo "== Updating cocoapods master repo"
+pod setup --silent
+echo "== Done"
 
 gem install fastlane
 
