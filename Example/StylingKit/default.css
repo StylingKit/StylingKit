@@ -29,7 +29,7 @@
 
 stylingkit-config {
   image-count: 400;
-  enabled: false;
+  enabled: true;
 }
 
 /* Containers */
