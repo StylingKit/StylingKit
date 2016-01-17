@@ -53,6 +53,8 @@ PX_DEFINE_CLASS_LOG_LEVEL
         _imageCacheCount = 10;
         _imageCacheSize = 0;
         _styleCacheCount = 10;
+
+        _styleMode = PXStylingNormal;
     }
 
     return self;
