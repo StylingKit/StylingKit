@@ -163,15 +163,6 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         // set logging level for all classes
         //[PXLoggingUtils setGlobalLoggingLevel:LOG_LEVEL_VERBOSE];
 #endif
-        // Load default stylesheets and send notification
-        NSString* defaultPath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"css"];
-        [PXStylesheet styleSheetFromFilePath:defaultPath withOrigin:PXStylesheetOriginApplication];
-
-        NSString* userPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"css"];
-        [PXStylesheet styleSheetFromFilePath:userPath withOrigin:PXStylesheetOriginUser];
-        
-        // Set default styling mode of any UIView to 'normal' (i.e. stylable)
-        [UIView appearance].styleMode = PXStylingNormal;
     }
 }
 
