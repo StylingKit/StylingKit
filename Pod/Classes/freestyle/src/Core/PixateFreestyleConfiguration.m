@@ -53,6 +53,8 @@ PX_DEFINE_CLASS_LOG_LEVEL
         _imageCacheCount = 10;
         _imageCacheSize = 0;
         _styleCacheCount = 10;
+
+        _styleMode = PXStylingNormal;
     }
 
     return self;
@@ -151,7 +153,7 @@ PX_DEFINE_CLASS_LOG_LEVEL
 
 - (NSString *)pxStyleElementName
 {
-    return @"pixate-config";
+    return @"stylingkit-config";
 }
 
 - (id)pxStyleParent
@@ -204,11 +206,11 @@ PX_DEFINE_CLASS_LOG_LEVEL
                     PixateFreestyle.configuration.cacheStylesType = declaration.cacheStylesTypeValue;
 
                     // clear caches if they are off
-                    if (PixateFreestyle.configuration.cacheImages == NO)
+                    if (!PixateFreestyle.configuration.cacheImages)
                     {
                         [PixateFreestyle clearImageCache];
                     }
-                    if (PixateFreestyle.configuration.cacheStyles == NO)
+                    if (!PixateFreestyle.configuration.cacheStyles)
                     {
                         [PixateFreestyle clearStyleCache];
                     }
@@ -227,7 +229,12 @@ PX_DEFINE_CLASS_LOG_LEVEL
                     NSString *value = declaration.stringValue;
 
                     PixateFreestyle.configuration.styleCacheCount = value.integerValue;
-                }
+                },
+              @"enabled" : ^(PXDeclaration* declaration, PXStylerContext* context) {
+                  BOOL value = declaration.booleanValue;
+
+                  PixateFreestyle.configuration.styleMode = value ? PXStylingNormal : PXStylingNone;
+              }
             }]
         ];
     });

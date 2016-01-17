@@ -2724,11 +2724,6 @@
 				CLASSPREFIX = STK;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Anton Matosov";
-				TargetAttributes = {
-					6003F5AD195388D20070C39A = {
-						TestTargetID = 6003F589195388D20070C39A;
-					};
-				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "StylingKit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3787,7 +3782,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 807B21C1BB0379A0297AC2F8 /* Pods-StylingKit_Tests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -3805,7 +3799,6 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StylingKit_Example.app/StylingKit_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -3814,7 +3807,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 88BF13EECBAD6971EE9DB355 /* Pods-StylingKit_Tests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -3828,7 +3820,6 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StylingKit_Example.app/StylingKit_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

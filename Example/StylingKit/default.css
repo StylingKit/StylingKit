@@ -26,6 +26,12 @@
  * Base styles
  * --------------------------------
  */
+
+stylingkit-config {
+  image-count: 400;
+  enabled: true;
+}
+
 /* Containers */
 .container {
   border: 1px solid #d8d9dc; }
@@ -237,8 +243,6 @@ collection-view .icon {
  * Icons
  * --------------------------------
  */
-pixate-config {
-  image-count: 400; }
 
 .icon {
   size: 25 25;
