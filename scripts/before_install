@@ -19,13 +19,17 @@ brew update
 
 echo "== Updating tools"
 
+which ruby
+ruby --version
+
 if [[ $TRAVIS != true ]]; then
 	brew_install "homebrew/versions/ruby22" # must have for El Capitan
 	brew switch ruby 2.2.4 # the latest version compatible with cocoapods 0.38.2 and 0.39.0 (latest to date)
-fi
 
-which gem
-which ruby
+	echo "Ruby version after update"
+	which ruby
+	ruby --version
+fi
 
 brew_install carthage
 
@@ -36,6 +40,7 @@ pod setup --silent
 echo "== Done"
 
 gem install fastlane
+gem install match
 
 gem install sass
 
