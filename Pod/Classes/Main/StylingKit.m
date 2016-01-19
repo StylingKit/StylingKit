@@ -61,7 +61,6 @@
     self = [super init];
     if (self)
     {
-        [STKThemesRegistry loadThemes];
     }
 
     return self;
@@ -71,16 +70,22 @@
 {
     @autoreleasepool
     {
-        STKTheme* appTheme = [self registerThemeNamed:@"default"
-                                             inBundle:[NSBundle mainBundle]];
+        [STKThemesRegistry loadThemes];
+
+        STKTheme* defaultAppTheme = [self registerThemeNamed:@"default"
+                                                    inBundle:[NSBundle mainBundle]];
+        defaultAppTheme.optional = YES;
 
         STKTheme* userTheme = [self registerThemeNamed:@"user"
                                               inBundle:[NSBundle mainBundle]];
         userTheme.stylesheetFileName = userTheme.name;
+        userTheme.optional = YES;
         userTheme.origin = PXStylesheetOriginUser;
 
-        [appTheme activate];
-        [userTheme activate];
+        for (STKTheme* theme in self.themes.allValues)
+        {
+            [theme activate];
+        }
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
         [UIView appearance].styleMode = PXStylingNormal;

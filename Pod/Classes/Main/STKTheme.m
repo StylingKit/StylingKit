@@ -43,20 +43,20 @@
 
 - (void)activate
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource:self.stylesheetFileName
-                                                     ofType:@"css"];
+    NSString* path = [self.bundle pathForResource:self.stylesheetFileName
+                                           ofType:@"css"];
 
     if (path.length > 0)
     {
         [PXStylesheet styleSheetFromFilePath:path
                                   withOrigin:(PXStylesheetOrigin)self.origin];
     }
-    else
+    else if (!self.optional)
     {
         DDLogWarn(@"Stylesheet \"%@.css\" for theme \"%@\" not found in bundle \"%@\"",
                   self.stylesheetFileName,
                   self.name,
-                  self.bundle);
+                  self.bundle.bundlePath.lastPathComponent);
     }
 }
 

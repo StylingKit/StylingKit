@@ -9,6 +9,7 @@
 @property(strong, nonatomic) NSString* name;
 @property(strong, nonatomic) NSString* stylesheetFileName;
 @property(strong, nonatomic) NSBundle* bundle;
+@property(assign, nonatomic) BOOL optional;
 
 @property(assign, nonatomic) NSUInteger origin; // TODO: get rid of this once full themes support is implemented
 
