@@ -1,3 +1,8 @@
 [submodule "Example/Pods"]
 	path = Example/Pods
 	url = https://github.com/StylingKit/StylingKit.Pods.git
+	branch = master
+[submodule "Example/themes"]
+	path = Example/themes
+	url = https://github.com/StylingKit/StylingKitThemes.git
+	branch = master
