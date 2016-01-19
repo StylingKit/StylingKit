@@ -47,7 +47,16 @@ void PXForceLoadQueueAdditions() {}
 
 - (void)enqueue:(id)object
 {
-    [self addObject:object];
+    [self addObjectIfNotNil:object];
 }
 
+- (BOOL)addObjectIfNotNil:(id)object
+{
+    if (object)
+    {
+        [self addObject:object];
+        return YES;
+    }
+    return NO;
+}
 @end
