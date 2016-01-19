@@ -40,79 +40,96 @@ static NSString* const kStylesheetExt = @"css";
 
 @synthesize defaultDavFolder = _defaultDavFolder;
 
-+ (instancetype)defaultCloud {
-  static id instance;
-  static dispatch_once_t predicate;
-  dispatch_once(&predicate, ^{
-      instance = [[self alloc] init];
-  });
++ (instancetype)defaultCloud
+{
+    static id instance;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^
+    {
+        instance = [[self alloc] init];
+    });
 
-  return instance;
+    return instance;
 }
 
-- (GCDWebDAVServer*)davServer {
-  if (!_davServer) {
-    _davServer = [[GCDWebDAVServer alloc] initWithUploadDirectory:self.defaultDavFolder];
+- (GCDWebDAVServer*)davServer
+{
+    if (!_davServer)
+    {
+        _davServer = [[GCDWebDAVServer alloc] initWithUploadDirectory:self.defaultDavFolder];
 
 #if STK_LOGGING
-    [GCDWebServer setLogLevel:DDLogLevelWarning];
+        [GCDWebServer setLogLevel:DDLogLevelWarning];
 #endif
-  }
-  return _davServer;
+    }
+    return _davServer;
 }
 
-- (NSString*)defaultDavFolder {
-  if (!_defaultDavFolder) {
-    _defaultDavFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                             NSUserDomainMask,
-                                                             YES) firstObject];
-  }
-  return _defaultDavFolder;
+- (NSString*)defaultDavFolder
+{
+    if (!_defaultDavFolder)
+    {
+        _defaultDavFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask,
+                                                                 YES) firstObject];
+    }
+    return _defaultDavFolder;
 }
 
-- (NSURL*)serverURL {
-  return self.davServer.serverURL;
+- (NSURL*)serverURL
+{
+    return self.davServer.serverURL;
 }
 
-- (NSURL*)bonjourServerURL {
-  return self.davServer.bonjourServerURL;
+- (NSURL*)bonjourServerURL
+{
+    return self.davServer.bonjourServerURL;
 }
 
-- (NSURL*)publicServerURL {
-  return self.davServer.publicServerURL;
+- (NSURL*)publicServerURL
+{
+    return self.davServer.publicServerURL;
 }
 
-- (void)startLocalServer {
-  [self.davServer start];
+- (void)startLocalServer
+{
+    [self.davServer start];
 
-  NSLog(@"Visit %@ in your WebDAV client", self.serverURL);
+    NSLog(@"Visit %@ in your WebDAV client", self.serverURL);
 
-  [self prv_switchStylysheetToDocsFolder];
+    [self prv_switchStylysheetToDocsFolder];
 }
 
 // TODO: Switch user.css to WebDAV folder as well
-- (void)prv_switchStylysheetToDocsFolder {
-  NSString* defaultPath = [[NSBundle mainBundle] pathForResource:kDefaultStylesheetName ofType:kStylesheetExt];
-
-  NSString* davPath = [self.defaultDavFolder stringByAppendingPathComponent:defaultPath.lastPathComponent];
-
-  if (![[NSFileManager defaultManager] fileExistsAtPath:davPath])
-  {
-    NSError *error;
-    [[NSFileManager defaultManager] copyItemAtPath:defaultPath
-                                            toPath:davPath
-                                             error:&error];
-    if (error)
+- (void)prv_switchStylysheetToDocsFolder
+{
+    NSString* defaultPath = [[NSBundle mainBundle] pathForResource:kDefaultStylesheetName
+                                                            ofType:kStylesheetExt];
+    if (!defaultPath)
     {
-      DDLogError(@"Unable to copy %@ to %@ for the WebDAV sharing", defaultPath, davPath);
+        return;
     }
-  }
 
-  if ([[NSFileManager defaultManager] fileExistsAtPath:davPath])
-  {
-    PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:davPath withOrigin:PXStylesheetOriginApplication];
-    stylesheet.monitorChanges = YES;
-  }
+    NSString* davPath = [self.defaultDavFolder stringByAppendingPathComponent:defaultPath.lastPathComponent];
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:davPath])
+    {
+        NSError* error;
+        [[NSFileManager defaultManager] copyItemAtPath:defaultPath
+                                                toPath:davPath
+                                                 error:&error];
+        if (error)
+        {
+            DDLogError(@"Unable to copy %@ to %@ for the WebDAV sharing", defaultPath, davPath);
+        }
+    }
+
+    if (defaultPath && [[NSFileManager defaultManager] fileExistsAtPath:davPath])
+    {
+        PXStylesheet* stylesheet = [PXStylesheet styleSheetFromFilePath:davPath
+                                                             withOrigin:PXStylesheetOriginApplication];
+        stylesheet.monitorChanges = YES;
+    }
 }
 
 @end
