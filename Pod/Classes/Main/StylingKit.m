@@ -24,6 +24,7 @@
 #import "PixateFreestyle.h"
 #import "PXStylesheet-Private.h"
 #import "STKTheme.h"
+#import "STKThemesRegistry.h"
 
 @interface StylingKit ()
 
@@ -60,6 +61,7 @@
     self = [super init];
     if (self)
     {
+        [STKThemesRegistry loadThemes];
     }
 
     return self;
