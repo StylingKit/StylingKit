@@ -23,6 +23,13 @@
 #import "StylingKit.h"
 #import "PixateFreestyle.h"
 #import "PXStylesheet-Private.h"
+#import "STKTheme.h"
+
+@interface StylingKit ()
+
+@property(strong, nonatomic) NSMutableDictionary* themes;
+
+@end
 
 @implementation StylingKit
 
@@ -38,6 +45,16 @@
     return instance;
 }
 
+- (NSMutableDictionary*)themes
+{
+    if (!_themes)
+    {
+        _themes = [NSMutableDictionary new];
+    }
+    return _themes;
+}
+
+
 - (instancetype)initPrivate
 {
     self = [super init];
@@ -52,22 +69,33 @@
 {
     @autoreleasepool
     {
-        // Load default stylesheets and send notification
-        NSString* defaultPath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"css"];
-        [PXStylesheet styleSheetFromFilePath:defaultPath withOrigin:PXStylesheetOriginApplication];
+        STKTheme* appTheme = [self registerThemeNamed:@"default"
+                                             inBundle:[NSBundle mainBundle]];
 
-        NSString* userPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"css"];
-        [PXStylesheet styleSheetFromFilePath:userPath withOrigin:PXStylesheetOriginUser];
+        STKTheme* userTheme = [self registerThemeNamed:@"user"
+                                              inBundle:[NSBundle mainBundle]];
+        userTheme.origin = PXStylesheetOriginUser;
+
+        [appTheme activate];
+        [userTheme activate];
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
         [UIView appearance].styleMode = PXStylingNormal;
     };
 }
 
-- (void)registerThemeNamed:(NSString*)themeName inBundle:(NSBundle*)bundle
+- (STKTheme*)registerThemeNamed:(NSString*)themeName
+                       inBundle:(NSBundle*)bundle
 {
+    if (self.themes[themeName])
+    {
+        DDLogWarn(@"Theme with name %@ already registered. %@", themeName, self.themes[themeName]);
+    }
+    STKTheme* theme = [STKTheme themeWithName:themeName
+                                       bundle:bundle];
+    self.themes[themeName] = theme;
 
+    return theme;
 }
-
 
 @end

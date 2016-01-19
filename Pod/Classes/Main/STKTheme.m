@@ -2,7 +2,9 @@
 // Created by Anton Matosov on 1/18/16.
 //
 
+#import <StylingKit/PXStylesheet.h>
 #import "STKTheme.h"
+#import "PXStylesheet-Private.h"
 
 @implementation STKTheme
 
@@ -13,9 +15,10 @@
     self = [super init];
     if (self)
     {
-        self.name = name;
-        self.stylesheetFileName = stylesheetFileName ?: @"default";
-        self.bundle = bundle;
+        _name = name;
+        _stylesheetFileName = stylesheetFileName.length ? stylesheetFileName : @"default";
+        _bundle = bundle;
+        _origin = PXStylesheetOriginApplication;
     }
 
     return self;
@@ -30,13 +33,31 @@
                                bundle:bundle];
 }
 
-
 + (instancetype)themeWithName:(NSString*)name
                        bundle:(NSBundle*)bundle
 {
     return [[self alloc] initWithName:name
                    stylesheetFileName:nil
                                bundle:bundle];
+}
+
+- (void)activate
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:self.stylesheetFileName
+                                                     ofType:@"css"];
+
+    if (path.length > 0)
+    {
+        [PXStylesheet styleSheetFromFilePath:path
+                                  withOrigin:(PXStylesheetOrigin)self.origin];
+    }
+    else
+    {
+        DDLogWarn(@"Stylesheet \"%@.css\" for theme \"%@\" not found in bundle \"%@\"",
+                  self.stylesheetFileName,
+                  self.name,
+                  self.bundle);
+    }
 }
 
 @end

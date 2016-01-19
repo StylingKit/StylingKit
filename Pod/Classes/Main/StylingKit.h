@@ -22,6 +22,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class STKTheme;
+
 @interface StylingKit : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -31,9 +33,8 @@
 
 - (void)startStyling;
 
-- (void)registerThemeNamed:(NSString* )themeName
-                  inBundle:(NSBundle* )bundle;
-
+- (STKTheme*)registerThemeNamed:(NSString*)themeName
+                       inBundle:(NSBundle*)bundle;
 
 
 @end
