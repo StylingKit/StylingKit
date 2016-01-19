@@ -280,10 +280,14 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
         ![self.text isEqualToString:text])
     {
         callSuper1(SUPER_PREFIX, _cmd, text);
-    }
 
-    // Setting plain text can't change style
-    // Layout change is handled explicitly by layoutSubviews override
+        // Setting plain text can change applicability of child selectors like :empty or :first-line
+        if(!self.preventStyling)
+        {
+            [PXStyleUtils invalidateStyleableAndDescendants:self];
+            [self updateStylesNonRecursively];
+        }
+    }
 }
 
 -(void)setAttributedText:(NSAttributedString *)attributedText
