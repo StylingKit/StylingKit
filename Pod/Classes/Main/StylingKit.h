@@ -31,4 +31,9 @@
 
 - (void)startStyling;
 
+- (void)registerThemeNamed:(NSString* )themeName
+                  inBundle:(NSBundle* )bundle;
+
+
+
 @end
