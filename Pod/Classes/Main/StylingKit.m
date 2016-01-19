@@ -74,6 +74,7 @@
 
         STKTheme* userTheme = [self registerThemeNamed:@"user"
                                               inBundle:[NSBundle mainBundle]];
+        userTheme.stylesheetFileName = userTheme.name;
         userTheme.origin = PXStylesheetOriginUser;
 
         [appTheme activate];
