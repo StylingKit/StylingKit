@@ -61,6 +61,6 @@ SPEC CHECKSUMS:
   GCDWebServer: 852ed5c1056df2f1ab3b32ec54a81d9730bd227f
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   StylingKit: fd7d1e424d2a258a953eadeac8682b126e6af49d
-  StylingKitThemes: 0774b5f1a6f31a526229e25b4c5eaaf5d8d32952
+  StylingKitThemes: f8a4e11e4aa170b010a7b02d1cc61fbcd7fd2be0
 
 COCOAPODS: 0.39.0
