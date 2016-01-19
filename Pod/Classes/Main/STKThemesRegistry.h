@@ -15,26 +15,14 @@
  * limitations under the License.
  *
  ****************************************************************************/
-
 //
-// Created by Anton Matosov
+// Created by Anton Matosov on 1/18/16.
 //
 
 #import <Foundation/Foundation.h>
 
-@class STKTheme;
+@interface STKThemesRegistry : NSObject
 
-@interface StylingKit : NSObject
-
-- (instancetype)init NS_UNAVAILABLE;
-
-/// Shared and only allowed instance of the StylingKit to be used in the app
-+ (instancetype)sharedKit;
-
-- (void)startStyling;
-
-- (STKTheme*)registerThemeNamed:(NSString*)themeName
-                       inBundle:(NSBundle*)bundle;
-
++ (void)loadThemes;
 
 @end

@@ -15,26 +15,27 @@
  * limitations under the License.
  *
  ****************************************************************************/
-
 //
-// Created by Anton Matosov
+// Created by Anton Matosov on 1/18/16.
 //
 
 #import <Foundation/Foundation.h>
 
-@class STKTheme;
+@interface STKTheme : NSObject
 
-@interface StylingKit : NSObject
+@property(strong, nonatomic) NSString* name;
+@property(strong, nonatomic) NSString* stylesheetFileName;
+@property(strong, nonatomic) NSBundle* bundle;
+@property(assign, nonatomic) BOOL optional;
 
-- (instancetype)init NS_UNAVAILABLE;
+@property(assign, nonatomic) NSUInteger origin; // TODO: get rid of this once full themes support is implemented
 
-/// Shared and only allowed instance of the StylingKit to be used in the app
-+ (instancetype)sharedKit;
++ (instancetype)themeWithName:(NSString*)name
+                       bundle:(NSBundle*)bundle;
++ (instancetype)themeWithName:(NSString*)name
+           stylesheetFileName:(NSString*)stylesheetFileName
+                       bundle:(NSBundle*)bundle;
 
-- (void)startStyling;
-
-- (STKTheme*)registerThemeNamed:(NSString*)themeName
-                       inBundle:(NSBundle*)bundle;
-
+- (void)activate;
 
 @end

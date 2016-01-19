@@ -23,6 +23,14 @@
 #import "StylingKit.h"
 #import "PixateFreestyle.h"
 #import "PXStylesheet-Private.h"
+#import "STKTheme.h"
+#import "STKThemesRegistry.h"
+
+@interface StylingKit ()
+
+@property(strong, nonatomic) NSMutableDictionary* themes;
+
+@end
 
 @implementation StylingKit
 
@@ -38,6 +46,16 @@
     return instance;
 }
 
+- (NSMutableDictionary*)themes
+{
+    if (!_themes)
+    {
+        _themes = [NSMutableDictionary new];
+    }
+    return _themes;
+}
+
+
 - (instancetype)initPrivate
 {
     self = [super init];
@@ -52,16 +70,40 @@
 {
     @autoreleasepool
     {
-        // Load default stylesheets and send notification
-        NSString* defaultPath = [[NSBundle mainBundle] pathForResource:@"default" ofType:@"css"];
-        [PXStylesheet styleSheetFromFilePath:defaultPath withOrigin:PXStylesheetOriginApplication];
+        [STKThemesRegistry loadThemes];
 
-        NSString* userPath = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"css"];
-        [PXStylesheet styleSheetFromFilePath:userPath withOrigin:PXStylesheetOriginUser];
+        STKTheme* defaultAppTheme = [self registerThemeNamed:@"default"
+                                                    inBundle:[NSBundle mainBundle]];
+        defaultAppTheme.optional = YES;
+
+        STKTheme* userTheme = [self registerThemeNamed:@"user"
+                                              inBundle:[NSBundle mainBundle]];
+        userTheme.stylesheetFileName = userTheme.name;
+        userTheme.optional = YES;
+        userTheme.origin = PXStylesheetOriginUser;
+
+        for (STKTheme* theme in self.themes.allValues)
+        {
+            [theme activate];
+        }
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
         [UIView appearance].styleMode = PXStylingNormal;
     };
+}
+
+- (STKTheme*)registerThemeNamed:(NSString*)themeName
+                       inBundle:(NSBundle*)bundle
+{
+    if (self.themes[themeName])
+    {
+        DDLogWarn(@"Theme with name %@ already registered. %@", themeName, self.themes[themeName]);
+    }
+    STKTheme* theme = [STKTheme themeWithName:themeName
+                                       bundle:bundle];
+    self.themes[themeName] = theme;
+
+    return theme;
 }
 
 @end

@@ -24,7 +24,7 @@
 
 #import "PixateFreestyle.h"
 #import "PixateFreestyle-Private.h"
-#import "Version.h"
+#import "Freestyle-Version.h"
 
 #import "PXStylesheet.h"
 #import "PXStylesheet-Private.h"

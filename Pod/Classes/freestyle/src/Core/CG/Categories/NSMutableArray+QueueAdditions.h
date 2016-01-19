@@ -18,6 +18,7 @@
 //  NSMutableArray+QueueAdditions.h
 //  Pixate
 //
+//  Modified by Anton Matosov on 1/18/16.
 //  Created by Kevin Lindsey on 6/30/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
@@ -40,5 +41,7 @@
  *  @param object The item to queue
  */
 - (void)enqueue:(id)object;
+
+- (BOOL)addObjectIfNotNil:(id)object;
 
 @end
