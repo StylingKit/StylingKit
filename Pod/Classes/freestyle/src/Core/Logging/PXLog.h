@@ -54,4 +54,6 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
 # define DDLogVerbose(...)
 # define DDLogDebug(...)
 
+typedef enum{} DDLogLevel;
+
 #endif
