@@ -1,8 +1,12 @@
-[![CI Status](http://img.shields.io/travis/StylingKit/StylingKit.svg?style=flat)](https://travis-ci.org/StylingKit/StylingKit)
+Master: [![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=master)](https://travis-ci.org/StylingKit/StylingKit)
+[![GitHub release](https://img.shields.io/github/release/StylingKit/StylingKit.svg)](https://github.com/StylingKit/StylingKit/releases)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 [![License](https://img.shields.io/cocoapods/l/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 [![Platform](https://img.shields.io/cocoapods/p/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
+
+Develop: 
+[![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=develop)](https://travis-ci.org/StylingKit/StylingKit)
 
 # StylingKit
 
