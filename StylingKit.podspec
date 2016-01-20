@@ -43,12 +43,11 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Main'
   s.subspec 'Main' do |ss|
     ss.source_files = 'Pod/Classes/Main/**/*.{h,m,c}'
-    ss.resource_bundles = {
-      'StylingKit' => ['Pod/Assets/*.png']
-    }
 
     ss.preserve_path = "NOTICE"
     ss.dependency 'StylingKit/Freestyle'
+
+    ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => "STK_VERSION=\"#{s.version.to_s}\"" }
   end
 
   s.subspec 'Freestyle' do |ss|
@@ -73,6 +72,8 @@ Pod::Spec.new do |s|
       sss.dependency 'StylingKit/Main'
       sss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
       sss.dependency 'GCDWebServer/WebDAV', '~> 3'
+
+      sss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'STK_CLOUD=1' }
     end
 
     ss.subspec 'WithLogging' do |sss|
