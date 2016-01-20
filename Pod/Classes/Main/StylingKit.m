@@ -26,6 +26,10 @@
 #import "STKTheme.h"
 #import "STKThemesRegistry.h"
 
+#if STK_CLOUD
+#   import "STKCloud.h"
+#endif
+
 @interface StylingKit ()
 
 @property(strong, nonatomic) NSMutableDictionary* themes;
@@ -44,6 +48,15 @@
     });
 
     return instance;
+}
+
+- (STKCloud*)cloud
+{
+#if STK_CLOUD
+    return [STKCloud defaultCloud];
+#else
+    return nil;
+#endif
 }
 
 - (NSMutableDictionary*)themes
