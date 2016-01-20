@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+script_dir="$(dirname "$0")"
+. "$script_dir/before_install"
+
+echo "Bootstrapping your checkout"
+
+(cd Example && pod install)
+
+
+
