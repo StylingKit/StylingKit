@@ -44,16 +44,26 @@ PODS:
   - StylingKitThemes/icons (0.1.0)
 
 DEPENDENCIES:
+  - CocoaLumberjack (from `https://github.com/anton-matosov/CocoaLumberjack.git`,
+    branch `master`)
   - FBSnapshotTestCase
   - Kiwi
   - StylingKit/Cloud/WithLogging (from `../`)
   - StylingKitThemes/blue/css (from `./themes`)
 
 EXTERNAL SOURCES:
+  CocoaLumberjack:
+    :branch: master
+    :git: https://github.com/anton-matosov/CocoaLumberjack.git
   StylingKit:
     :path: "../"
   StylingKitThemes:
     :path: "./themes"
+
+CHECKOUT OPTIONS:
+  CocoaLumberjack:
+    :commit: fa6e8f50224c0fc98050eaed33d22c6bf19faabb
+    :git: https://github.com/anton-matosov/CocoaLumberjack.git
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
