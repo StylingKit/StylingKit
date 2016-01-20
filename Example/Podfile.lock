@@ -12,16 +12,16 @@ PODS:
   - FBSnapshotTestCase/Core (2.0.7)
   - FBSnapshotTestCase/SwiftSupport (2.0.7):
     - FBSnapshotTestCase/Core
-  - GCDWebServer/CocoaLumberjack (3.3.1):
+  - GCDWebServer/CocoaLumberjack (3.3.2):
     - CocoaLumberjack (~> 2)
     - GCDWebServer/Core
-  - GCDWebServer/Core (3.3.1)
-  - GCDWebServer/WebDAV (3.3.1):
-    - GCDWebServer/WebDAV/Core (= 3.3.1)
-  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.1):
+  - GCDWebServer/Core (3.3.2)
+  - GCDWebServer/WebDAV (3.3.2):
+    - GCDWebServer/WebDAV/Core (= 3.3.2)
+  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.2):
     - GCDWebServer/CocoaLumberjack
     - GCDWebServer/WebDAV/Core
-  - GCDWebServer/WebDAV/Core (3.3.1):
+  - GCDWebServer/WebDAV/Core (3.3.2):
     - GCDWebServer/Core
   - Kiwi (2.4.0)
   - StylingKit/Cloud/Main (0.3.0):
@@ -58,7 +58,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
-  GCDWebServer: 852ed5c1056df2f1ab3b32ec54a81d9730bd227f
+  GCDWebServer: 2a375ec42839a41d7187d04e5b688d32fa5c4cd5
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   StylingKit: fd7d1e424d2a258a953eadeac8682b126e6af49d
   StylingKitThemes: f8a4e11e4aa170b010a7b02d1cc61fbcd7fd2be0
