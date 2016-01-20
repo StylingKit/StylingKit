@@ -23,8 +23,6 @@
 //
 
 #import "PXLoggingUtils.h"
-#import "CocoaLumberjack/DDFileLogger.h"
-#import "CocoaLumberjack/DDTTYLogger.h"
 #import "PXFileFunctionLogFormatter.h"
 #import "PXDelegateLogger.h"
 

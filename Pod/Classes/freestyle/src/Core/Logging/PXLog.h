@@ -48,12 +48,13 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
 #else
 
 # define PX_DEFINE_CLASS_LOG_LEVEL
+
 # define DDLogError(...)
 # define DDLogWarn(...)
 # define DDLogInfo(...)
 # define DDLogVerbose(...)
 # define DDLogDebug(...)
 
-typedef enum{} DDLogLevel;
+typedef enum{DDLogLevelNone} DDLogLevel;
 
 #endif
