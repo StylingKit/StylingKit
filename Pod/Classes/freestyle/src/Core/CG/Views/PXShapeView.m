@@ -22,6 +22,7 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
+#import <StylingKit/PixateFreestyle.h>
 #import "PXShapeView.h"
 #import "PXShapeGroup.h"
 #import "PXSVGLoader.h"
@@ -103,10 +104,35 @@
     return result;
 }
 
+// TODO: this has been exposed and when used directly, resourcePath will keep it's old value
 - (void)loadSceneFromURL:(NSURL *)URL
 {
-    // TODO: this has been exposed and when used directly, resourcePath will keep it's old value
-    self.document = [PXSVGLoader loadFromURL:URL];
+    static NSCache * shapeCache;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        shapeCache = [[NSCache alloc] init];
+        shapeCache.name = @"StylingKit Shape Cache";
+
+        shapeCache.countLimit = PixateFreestyle.configuration.imageCacheCount;
+    });
+
+    id key = URL;
+    self.document = (key != nil) ? [shapeCache objectForKey:key] : nil;
+
+    if (self.document == nil)
+    {
+        self.document = [PXSVGLoader loadFromURL:URL];
+    }
+
+    if (self.document)
+    {
+        // estimate cost as number of pixels times 4 bytes per pixel. This is probably lower than actual
+//        NSUInteger cost = self.bounds.size.width * self.bounds.size.height * 4;
+
+        [shapeCache setObject:self.document
+                       forKey:key
+                         cost:0];
+    }
 }
 
 - (void)applyBoundsToScene
