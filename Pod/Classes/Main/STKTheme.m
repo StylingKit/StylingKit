@@ -65,8 +65,12 @@
 
     if (path.length > 0)
     {
-        [PXStylesheet styleSheetFromFilePath:path
-                                  withOrigin:(PXStylesheetOrigin)self.origin];
+
+        NSLog(@"\n\n\nsubl \"%@\"\n\n\n", path);
+
+        PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:path
+                                                             withOrigin:(PXStylesheetOrigin)self.origin];
+        stylesheet.monitorChanges = YES;
     }
     else if (!self.optional)
     {
