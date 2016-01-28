@@ -59,7 +59,9 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
         return;
     
     [self swizzleMethod:@selector(setDelegate:) withMethod:@selector(px_setDelegate:)];
-    [self swizzleMethod:@selector(setDataSource:) withMethod:@selector(px_setDataSource:)];
+
+    // TOOD: Find the reason of the crash and fix it
+//    [self swizzleMethod:@selector(setDataSource:) withMethod:@selector(px_setDataSource:)];
 
 }
 
