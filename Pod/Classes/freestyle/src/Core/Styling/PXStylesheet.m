@@ -215,7 +215,7 @@ PX_DEFINE_CLASS_LOG_LEVEL
 
                 // update all views
                 [PixateFreestyle updateStylesForAllViews];
-                
+
             }];
         }
         else

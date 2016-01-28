@@ -85,16 +85,6 @@
     {
         [STKThemesRegistry loadThemes];
 
-        STKTheme* defaultAppTheme = [self registerThemeNamed:@"default"
-                                                    inBundle:[NSBundle mainBundle]];
-        defaultAppTheme.optional = YES;
-
-        STKTheme* userTheme = [self registerThemeNamed:@"user"
-                                              inBundle:[NSBundle mainBundle]];
-        userTheme.stylesheetFileName = userTheme.name;
-        userTheme.optional = YES;
-        userTheme.origin = PXStylesheetOriginUser;
-
         for (STKTheme* theme in self.themes.allValues)
         {
             [theme activate];
