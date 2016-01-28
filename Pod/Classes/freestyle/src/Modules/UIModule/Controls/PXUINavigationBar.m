@@ -179,9 +179,21 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
         /// title
 
         PXVirtualStyleableControl *title = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"title"];
-        
+
         title.viewStylers = @[
-                              
+            [[PXGenericStyler alloc] initWithHandlers:@{
+                @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context)
+                {
+
+                    NSString *newTitle = [declaration transformString:weakSelf.topItem.title];
+
+                    if (![newTitle isEqualToString:weakSelf.topItem.title])
+                    {
+                        weakSelf.topItem.title = newTitle;
+                    }
+                }
+            }],
+
             [[PXTextShadowStyler alloc] initWithCompletionBlock:^(PXVirtualStyleableControl *view, PXTextShadowStyler *styler, PXStylerContext *context) {
                PXShadow *shadow = context.textShadow;
                NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:weakSelf.titleTextAttributes];
