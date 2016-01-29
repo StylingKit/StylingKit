@@ -27,6 +27,7 @@
 
 @interface StylingKit : NSObject
 
+@property (readonly, nonatomic) STKTheme *currentTheme;
 @property(readonly, nonatomic) STKCloud *cloud;
 
 /// Shared and only allowed instance of the StylingKit to be used in the app

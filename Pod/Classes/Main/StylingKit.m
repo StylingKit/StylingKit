@@ -87,7 +87,11 @@
 
         for (STKTheme* theme in self.themes.allValues)
         {
-            [theme activate];
+            if ([theme activate])
+            {
+                _currentTheme = theme;
+                break;
+            }
         }
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)

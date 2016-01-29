@@ -28,6 +28,7 @@
 @property(strong, nonatomic) NSBundle* bundle;
 @property(assign, nonatomic) BOOL optional;
 
+@property (readonly, nonatomic) NSString *loadedFromPath;
 @property(assign, nonatomic) NSUInteger origin; // TODO: get rid of this once full themes support is implemented
 
 + (instancetype)themeWithName:(NSString*)name
@@ -36,6 +37,6 @@
            stylesheetFileName:(NSString*)stylesheetFileName
                        bundle:(NSBundle*)bundle;
 
-- (void)activate;
+- (BOOL)activate;
 
 @end

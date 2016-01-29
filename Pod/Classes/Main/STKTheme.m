@@ -58,19 +58,20 @@
                                bundle:bundle];
 }
 
-- (void)activate
+- (BOOL)activate
 {
+    BOOL result = NO;
     NSString* path = [self.bundle pathForResource:self.stylesheetFileName
                                            ofType:@"css"];
 
     if (path.length > 0)
     {
-
-        NSLog(@"\n\n\nsubl \"%@\"\n\n\n", path);
-
         PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:path
                                                              withOrigin:(PXStylesheetOrigin)self.origin];
         stylesheet.monitorChanges = YES;
+
+        result = YES;
+        _loadedFromPath = path;
     }
     else if (!self.optional)
     {
@@ -79,6 +80,8 @@
                   self.name,
                   self.bundle.bundlePath.lastPathComponent);
     }
+
+    return result;
 }
 
 @end
