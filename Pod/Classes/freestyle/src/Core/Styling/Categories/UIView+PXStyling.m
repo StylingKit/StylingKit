@@ -381,6 +381,13 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 {
     // make sure we have a string - needed to filter bad input from IB
     aClass = aClass.description;
+
+#if 1
+    if (aClass.length)
+    {
+        aClass = [NSString stringWithFormat:@"%@ debug", aClass];
+    }
+#endif
 	
 	// reduce white spaces and duplicates
 	NSMutableSet *mutSet = [NSMutableSet new];
