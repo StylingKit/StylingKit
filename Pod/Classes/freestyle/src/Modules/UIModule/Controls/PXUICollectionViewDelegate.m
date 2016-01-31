@@ -65,11 +65,6 @@
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return [((PXProxy *)collectionView.dataSource).baseObject collectionView:collectionView numberOfItemsInSection:section];
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -81,7 +76,7 @@
     }
     
     // Make sure the base object has implemented the call
-    if([baseObject respondsToSelector:@selector(collectionView:cellForItemAtIndexPath:)] == NO)
+    if(![baseObject respondsToSelector:@selector(collectionView:cellForItemAtIndexPath:)])
     {
         return nil;
     }
@@ -95,7 +90,7 @@
     }
     
     // Check to see if it's been subclassed yet
-    if([UIView subclassIfNeeded:[PXUICollectionViewCell class] object:cell] == YES)
+    if([UIView subclassIfNeeded:[PXUICollectionViewCell class] object:cell])
     {
         cell.styleMode = PXStylingNormal;
     }
