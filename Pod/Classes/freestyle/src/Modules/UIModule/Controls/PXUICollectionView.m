@@ -67,37 +67,28 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
 
 -(void)px_setDelegate:(id<UICollectionViewDelegate>)delegate
 {
-    if(delegate)
-    {
-        id delegateProxy = [self pxDelegateProxy];
-        [delegateProxy setBaseObject:delegate];
-        [self px_setDelegate:delegateProxy];
-    }
-    else
-    {
-        [self px_setDelegate:delegate];
-    }
+    id proxy = [self stk_makeProxyFor:delegate withAssocObjectAddress:&PX_DELEGATE_PROXY];
+    [self px_setDelegate:proxy];
 }
 
 -(void)px_setDataSource:(id<UICollectionViewDataSource>)dataSource
 {
-    if(dataSource)
-    {
-        id datasourceProxy = [self pxDatasourceProxy];
-        [datasourceProxy setBaseObject:dataSource];
-        [self px_setDataSource:datasourceProxy];
-    }
-    else
-    {
-        [self px_setDataSource:dataSource];
-    }
+    id proxy = [self stk_makeProxyFor:dataSource withAssocObjectAddress:&PX_DATASOURCE_PROXY];
+    [self px_setDataSource:proxy];
 }
 
 #pragma mark - Delegate and DataSource proxy methods
 
-//
-// Internal methods for proxys
-//
+- (id <UICollectionViewDataSource>)stk_makeProxyFor:(id)dataSource withAssocObjectAddress:(const void *)variableAddress
+{
+    id proxy = dataSource ? [[PXProxy alloc] initWithBaseOject:dataSource overridingObject:[self pxDelegate]] : nil;
+    if (proxy)
+    {
+        objc_setAssociatedObject(self, variableAddress, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+
+    return proxy;
+}
 
 - (PXUICollectionViewDelegate *)pxDelegate
 {
@@ -110,25 +101,6 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
     }
 
     return delegate;
-}
-
-- (id<UICollectionViewDelegate>)pxDelegateProxy
-{
-    id proxy = [[PXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
-    // keep reference to proxy as delegate is stored as weak by collection view
-    objc_setAssociatedObject(self, &PX_DELEGATE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
-    return proxy;
-}
-
-- (id<UICollectionViewDataSource>)pxDatasourceProxy
-{
-    id proxy = [[PXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
-    // keep reference to proxy as data source is stored as weak by collection view
-    objc_setAssociatedObject(self, &PX_DATASOURCE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
-    
-    return proxy;
 }
 
 @end
