@@ -46,7 +46,7 @@ void PXForceLoadNSObjectPXSubclass() {}
 
 // object is the instance of a UIView that we need to 'subclass' (e.g. UIButton)
 // 'self' here is Pixate class (e.g. PXUIButton)
-+ (void)subclassInstance:(id)object
++ (void)subclassInstance:(id<NSObject>)object
 {
     // Safety check for nil
     if (object == nil)
@@ -55,21 +55,33 @@ void PXForceLoadNSObjectPXSubclass() {}
     }
     
     // Grab the object's class (??? why 'superclass')
-    Class superClass = object_getClass(object);
+    Class baseClass = object_getClass(object);
+    Class statedClass = object.class;
+
+    if (baseClass != statedClass)
+    {
+        DDLogWarn(@"Class already dynamicly subclassed. baseClass:%@ != statedClass:%@", NSStringFromClass(baseClass), NSStringFromClass(statedClass));
+
+        if ([NSStringFromClass(baseClass) containsString:@"KVO"])
+        {
+            DDLogWarn(@"KVO was installed before StylingKit was able to subclass: %@", NSStringFromClass(baseClass));
+        }
+    }
+
 
     // Return if we have already dynamically subclassed this class (by checking for our pxClass method)
-    if (class_getInstanceMethod(superClass, @selector(pxClass)) != NULL) {
+    if (class_getInstanceMethod(baseClass, @selector(pxClass)) != NULL) {
         return;
     }
 
     // 'self' is a Pixate class, so we're checking that the object passed in is not a Pixate class
 	if (![object isKindOfClass:[self superclass]]) {
-		NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [superClass description]);
+		NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [baseClass description]);
 		return;
 	}
 
     // creating the new classname by prefixing with the Pixate class name
-	const char *className = [NSString stringWithFormat:@"%@_%@", [self description], [superClass description]].UTF8String;
+	const char *className = [NSString stringWithFormat:@"%@_%@", [self description], [baseClass description]].UTF8String;
 
     // Check to see if the new Pixate class as already been created
 	Class newClass = objc_getClass(className);
@@ -81,7 +93,7 @@ void PXForceLoadNSObjectPXSubclass() {}
         size_t extraSize = 64;
 
         // Create the new class
-        newClass = objc_allocateClassPair(superClass, className, extraSize);
+        newClass = objc_allocateClassPair(baseClass, className, extraSize);
 
         // Copy all of the methods from the Pixate class over to the newly created 'newClass'
         unsigned int mcount = 0;
@@ -94,7 +106,7 @@ void PXForceLoadNSObjectPXSubclass() {}
         free(methods);
 
         // Add a 'class' method to new class to override the NSObject implementation
-		Method classMethod = class_getInstanceMethod(superClass, @selector(class));
+		Method classMethod = class_getInstanceMethod(baseClass, @selector(class));
 		IMP classMethodIMP = imp_implementationWithBlock(IMPL_BLOCK_CAST(^(id _self, SEL _sel){
             return class_getSuperclass(object_getClass(_self));
         }));
@@ -102,24 +114,24 @@ void PXForceLoadNSObjectPXSubclass() {}
 
         // pxClass
         IMP pxClassMethodIMP = imp_implementationWithBlock(IMPL_BLOCK_CAST(^(id _self, SEL _sel){
-            return superClass;
+            return baseClass;
         }));
         class_addMethod(newClass, @selector(pxClass), pxClassMethodIMP, method_getTypeEncoding(classMethod));
 
 		// respondsToSelector:
-        Method respondsToSelectorMethod = class_getInstanceMethod(superClass, @selector(respondsToSelector:));
+        Method respondsToSelectorMethod = class_getInstanceMethod(baseClass, @selector(respondsToSelector:));
         class_addMethod(newClass, method_getName(respondsToSelectorMethod), (IMP)respondsToSelectorIMP, method_getTypeEncoding(respondsToSelectorMethod));
 
         // Registers a class that was allocated using objc_allocateClassPair
         objc_registerClassPair(newClass);
 
         // Copy any extra indexed ivars (see objc_allocateClassPair)
-        copyIndexedIvars(superClass, newClass, extraSize);
+        copyIndexedIvars(baseClass, newClass, extraSize);
 
         // Check to make sure that the two classes (new and original) are the same size
-        if (class_getInstanceSize(superClass) != class_getInstanceSize(newClass))
+        if (class_getInstanceSize(baseClass) != class_getInstanceSize(newClass))
         {
-            NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [superClass description]);
+            NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [baseClass description]);
             return;
         }
     }
