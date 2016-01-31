@@ -176,7 +176,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)stk_subclassIfNeeded
 {
-// Grabbing Pixate's subclass of this instance
+    // Grabbing Pixate's subclass of this instance
     Class viewDynamicSubclass = SubclassForViewWithClass(self, nil);
 
     if(viewDynamicSubclass)
