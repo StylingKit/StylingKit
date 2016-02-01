@@ -65,14 +65,19 @@
 
 #pragma mark - UICollectionViewDataSource
 
+/// This is required protocol method, so keep it as simple forward
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [((PXProxy *)collectionView.dataSource).baseObject collectionView:collectionView numberOfItemsInSection:section];
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     id baseObject = collectionView.dataSource;
-    
     if([baseObject isProxy])
     {
-        baseObject = ((PXProxy *) collectionView.dataSource).baseObject;
+        baseObject = ((PXProxy *)baseObject).baseObject;
     }
     
     // Make sure the base object has implemented the call
