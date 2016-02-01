@@ -31,6 +31,7 @@
 #import "UIView+PXStyling-Private.h"
 #import "PXStylingMacros.h"
 #import "PXUICollectionViewCell.h"
+#import "UICollectionViewCell+STKStyling.h"
 
 @implementation CGSizeWithFlag
 
@@ -85,7 +86,7 @@
     {
         return nil;
     }
-    
+
     UICollectionViewCell *cell = [baseObject collectionView:collectionView cellForItemAtIndexPath:indexPath];
 
     // See if we got a cell
@@ -93,16 +94,13 @@
     {
         return nil;
     }
-    
-    // Check to see if it's been subclassed yet
-    if([UIView subclassIfNeeded:[PXUICollectionViewCell class] object:cell])
-    {
-        cell.styleMode = PXStylingNormal;
-    }
+
+    cell.pxStyleParent = collectionView;
 
     [PXStyleUtils setItemIndex:indexPath forObject:cell];
-    
-    [UIView updateStyles:cell recursively:YES];
+
+    // This will call update styles if styling is still enabled
+    cell.styleMode = PXStylingNormal;
 
     [PXStyleUtils setItemIndex:nil forObject:cell];
     

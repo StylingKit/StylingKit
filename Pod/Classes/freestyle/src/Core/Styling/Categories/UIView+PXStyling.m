@@ -42,6 +42,7 @@
 #import "PXStylingMacros.h"
 #import "UIView+PXStyling-Private.h"
 #import "NSObject+PXSwizzle.h"
+#import "STK_UIAlertControllerView.h"
 
 static const char STYLE_ELEMENT_NAME_KEY;
 static const char STYLE_CLASS_KEY;
@@ -265,12 +266,19 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     // Check 'do not subclass' list
     //
     if(mode != PXStylingNone
-       && [UIView pxHasAncestor:[UIDatePicker class] forView:self]
+       && ([UIView pxHasAncestor:[UIDatePicker class] forView:self]
+       ||  [UIView pxHasAncestor:[STK_UIAlertControllerView targetSuperclass]
+                   forView:self])
        )
     {
         //NSLog(@"Found child of UIDatePicker %@", [[self class] description]);
         mode = PXStylingNone;
     }
+
+//    if ([NSStringFromClass([self class]) isEqualToString:@"CAMFlipButton"])
+//    {
+//        mode = PXStylingNone;
+//    }
 
     //
     // Set the styling mode value on the object
@@ -310,7 +318,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     }
     
     // Walk up the hiearchy now
-    UIView *parent = view.superview;
+    UIView *parent = view.superview ?: view.pxStyleParent;
     
     while(parent != nil)
     {
@@ -318,7 +326,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         {
             return YES;
         }
-        parent = parent.superview;
+        parent = parent.superview ?: parent.pxStyleParent;
     }
     
     return NO;
