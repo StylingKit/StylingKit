@@ -110,11 +110,11 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Set a default value in case we find nothing (per apple docs)
+    // Set a default value of UICollectionViewFlowLayout (per apple docs)
     CGSize itemSize = CGSizeMake(50, 50);
 
     id baseObject = collectionView.delegate;
-    
+
     if([baseObject isProxy])
     {
         baseObject = ((PXProxy *) collectionView.delegate).baseObject;
@@ -138,5 +138,22 @@
     return self.itemSize.isSet ? self.itemSize.size : itemSize;
 }
 
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    if (aSelector == @selector(collectionView:layout:sizeForItemAtIndexPath:) &&
+        !self.itemSize.isSet)
+    {
+        id baseObject = self.collectionView.delegate;
+        if ([baseObject isProxy])
+        {
+            baseObject = ((PXProxy*)baseObject).baseObject;
+        }
+        if (![baseObject respondsToSelector:@selector(collectionView:layout:sizeForItemAtIndexPath:)])
+        {
+            return NO;
+        }
+    }
+    return [super respondsToSelector:aSelector];
+}
 
 @end

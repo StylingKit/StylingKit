@@ -59,10 +59,7 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
         return;
     
     [self swizzleMethod:@selector(setDelegate:) withMethod:@selector(px_setDelegate:)];
-
-    // TOOD: Find the reason of the crash and fix it
     [self swizzleMethod:@selector(setDataSource:) withMethod:@selector(px_setDataSource:)];
-
 }
 
 -(void)px_setDelegate:(id<UICollectionViewDelegate>)delegate
@@ -92,11 +89,12 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
 
 - (PXUICollectionViewDelegate *)pxDelegate
 {
-    id delegate = objc_getAssociatedObject(self, &PX_DELEGATE);
+    PXUICollectionViewDelegate *delegate = objc_getAssociatedObject(self, &PX_DELEGATE);
 
     if(delegate == nil)
     {
         delegate = [[PXUICollectionViewDelegate alloc] init];
+        delegate.collectionView = self;
         objc_setAssociatedObject(self, &PX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 
