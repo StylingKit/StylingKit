@@ -39,6 +39,9 @@
 + (NSArray*)prv_findStylingKitThemes
 {
     NSMutableArray* result = [NSMutableArray new];
+
+    [result addObjectIfNotNil:[self prv_themeBundleAtURL:[NSBundle mainBundle].bundleURL]];
+
     for (NSBundle* bundle in [NSBundle allBundles])
     {
         [result addObjectIfNotNil:[self prv_themeBundleAtURL:bundle.bundleURL]];
