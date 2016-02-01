@@ -15,7 +15,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[StylingKit sharedKit] startStyling];
-    [[StylingKit sharedKit].cloud startLocalServer];
+//    [[StylingKit sharedKit].cloud startLocalServer];
+
+    NSLog(@"Activated theme: %@", [StylingKit sharedKit].currentTheme);
 
     return YES;
 }
