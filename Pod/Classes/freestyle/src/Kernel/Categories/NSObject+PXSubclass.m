@@ -40,6 +40,8 @@ void PXForceLoadNSObjectPXSubclass() {}
 
 @implementation NSObject (PXSubclass)
 
+STK_DEFINE_CLASS_LOG_LEVEL
+
 // object is the instance of a UIView that we need to 'subclass' (e.g. UIButton)
 // 'self' here is Pixate class (e.g. PXUIButton)
 + (void)subclassInstance:(id<NSObject>)object

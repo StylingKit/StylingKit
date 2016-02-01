@@ -30,6 +30,8 @@
 
 @synthesize blendMode = _blendMode;
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 #pragma mark - Initializers
 
 - (instancetype)initWithURL:(NSURL *)url

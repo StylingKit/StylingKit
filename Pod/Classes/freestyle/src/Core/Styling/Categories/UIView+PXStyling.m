@@ -63,6 +63,9 @@ void PXForceLoadUIViewPXStyling() {}
 @dynamic bounds;
 @dynamic frame;
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
+
 static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 #pragma mark - Static Methods

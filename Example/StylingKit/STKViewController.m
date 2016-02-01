@@ -47,6 +47,10 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
                                                         style:UIAlertActionStyleDefault
                                                       handler:nil]];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"folder name";
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
+    }];
 
     [self presentViewController:alertController
                        animated:YES

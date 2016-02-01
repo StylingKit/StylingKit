@@ -39,6 +39,8 @@
     NSMutableDictionary *stylersByState_;
 }
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 #pragma mark - Static Methods
 
 + (PXStyleInfo *)styleInfoForStyleable:(id<PXStyleable>)styleable

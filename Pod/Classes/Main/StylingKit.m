@@ -28,6 +28,8 @@
 
 #if STK_CLOUD
 #   import "STKCloud.h"
+#import "PXLoggingUtils.h"
+
 #endif
 
 @interface StylingKit ()
@@ -37,6 +39,9 @@
 @end
 
 @implementation StylingKit
+
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 
 + (instancetype)sharedKit
 {

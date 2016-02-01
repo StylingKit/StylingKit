@@ -31,7 +31,7 @@
 
 @synthesize expression = _expression;
 
-PX_DEFINE_CLASS_LOG_LEVEL
+STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Initializers
 
