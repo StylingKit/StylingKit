@@ -38,5 +38,6 @@
                        bundle:(NSBundle*)bundle;
 
 - (BOOL)activate;
+- (NSString*)description;
 
 @end

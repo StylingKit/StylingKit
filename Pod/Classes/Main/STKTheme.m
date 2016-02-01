@@ -87,4 +87,25 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return result;
 }
 
+- (NSString*)description
+{
+    NSMutableString* description = [NSMutableString stringWithFormat:@"<%@: ",
+                                                                     NSStringFromClass([self class])];
+    [description appendFormat:@"name=%@",
+                              self.name];
+    [description appendFormat:@", stylesheetFileName=%@",
+                              self.stylesheetFileName];
+    [description appendFormat:@", bundle=%@",
+                              self.bundle.bundleIdentifier];
+    [description appendFormat:@", optional=%d",
+                              self.optional];
+    [description appendFormat:@", origin=%u",
+                              self.origin];
+    [description appendFormat:@", loadedFromPath=%@",
+                              self.loadedFromPath];
+    [description appendString:@">"];
+    return description;
+}
+
+
 @end
