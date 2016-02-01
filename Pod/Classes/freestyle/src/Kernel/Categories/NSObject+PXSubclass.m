@@ -26,13 +26,9 @@
 #import "NSObject+PXSubclass.h"
 #import "NSObject+PXClass.h"
 #import <objc/runtime.h>
-#import <objc/message.h>
 #import "objc.h"
-#include "TargetConditionals.h"
 
-static BOOL respondsToSelectorIMP(id self, SEL _cmd, SEL selector);
-
-#define ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR (TARGET_IPHONE_SIMULATOR && TARGET_CPU_X86_64)
+static void STKSwizzleRespondsToSelector(Class class);
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_5_1
 #define IMPL_BLOCK_CAST	(__bridge void *)
@@ -118,9 +114,7 @@ void PXForceLoadNSObjectPXSubclass() {}
         }));
         class_addMethod(newClass, @selector(pxClass), pxClassMethodIMP, method_getTypeEncoding(classMethod));
 
-		// respondsToSelector:
-        Method respondsToSelectorMethod = class_getInstanceMethod(baseClass, @selector(respondsToSelector:));
-        class_addMethod(newClass, method_getName(respondsToSelectorMethod), (IMP)respondsToSelectorIMP, method_getTypeEncoding(respondsToSelectorMethod));
+        STKSwizzleRespondsToSelector(newClass);
 
         // Registers a class that was allocated using objc_allocateClassPair
         objc_registerClassPair(newClass);
@@ -143,7 +137,11 @@ void PXForceLoadNSObjectPXSubclass() {}
     object_setClass(object, newClass);
 }
 
-static BOOL classRespondsToSelectorRAW(Class class, SEL selector)
+
+@end
+
+
+static BOOL STKClassRespondsToSelectorRAW(Class class, SEL selector)
 {
     if (class != Nil)
     {
@@ -152,48 +150,33 @@ static BOOL classRespondsToSelectorRAW(Class class, SEL selector)
     return NO;
 }
 
-static BOOL respondsToSelectorRAW(id self, SEL selector)
+static BOOL STKRespondsToSelectorRAW(id self, SEL selector)
 {
     if (self)
     {
-        return classRespondsToSelectorRAW(object_getClass(self), selector);
+        return STKClassRespondsToSelectorRAW(object_getClass(self), selector);
     }
     return NO;
 }
 
-#if ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR
-
-static BOOL classHierarchyRespondsToSelector(Class class, SEL selector)
+// Based on RACSwizzleRespondsToSelector from ReactiveCocoa library
+static void STKSwizzleRespondsToSelector(Class class)
 {
-    if (class)
+    SEL respondsToSelectorSEL = @selector(respondsToSelector:);
+
+    // Preserve existing implementation of -respondsToSelector:.
+    Method respondsToSelectorMethod = class_getInstanceMethod(class, respondsToSelectorSEL);
+    BOOL (* originalRespondsToSelector)(id, SEL, SEL) = (__typeof__(originalRespondsToSelector))method_getImplementation(
+        respondsToSelectorMethod);
+
+    id newRespondsToSelector = ^BOOL(id self, SEL selector)
     {
-        if (classRespondsToSelectorRAW(class, selector))
-        {
-            return YES;
-        }
-        else
-        {
-            return classHierarchyRespondsToSelector(class_getSuperclass(class), selector);
-        }
-    }
+        return originalRespondsToSelector(self, respondsToSelectorSEL, selector)
+            || STKRespondsToSelectorRAW(self, selector);
+    };
 
-    return NO;
+    class_replaceMethod(class,
+                        respondsToSelectorSEL,
+                        imp_implementationWithBlock(newRespondsToSelector),
+                        method_getTypeEncoding(respondsToSelectorMethod));
 }
-#endif
-
-
-static BOOL respondsToSelectorIMP(id self, SEL _cmd, SEL selector)
-{
-    // iOS 9 x64 simulators crashes with UITextFiled styling
-    // For more detail see https://github.com/Pixate/pixate-freestyle-ios/issues/186
-#if ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR
-    // Use RAW implementation
-    BOOL pxClassRespondsToSelector = classHierarchyRespondsToSelector([self pxClass], selector);
-#else
-    BOOL pxClassRespondsToSelector = ((BOOL)callSuper1v(self, [self pxClass], _cmd, selector));
-#endif
-
-    return pxClassRespondsToSelector || respondsToSelectorRAW(self, selector);
-}
-
-@end
