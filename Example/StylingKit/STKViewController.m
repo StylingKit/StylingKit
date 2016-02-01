@@ -28,18 +28,32 @@
 
 - (IBAction)showAlertView
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Title"
                                                         message:@"UIAlertView"
                                                        delegate:nil
                                               cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"OK", nil];
+                                              otherButtonTitles:@"OK",
+                                                                nil];
 
     [alertView show];
 }
 
+- (IBAction)showActionSheet
+{
+    UIActionSheet* alertView = [[UIActionSheet alloc] initWithTitle:@"Title"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                             destructiveButtonTitle:@"Destroy"
+                                                  otherButtonTitles:@"OK",
+                                                                    nil];
+
+    [alertView showInView:self.view];
+}
+
+
 - (IBAction)showAlertControllerAlert
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title"
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Title"
                                                                              message:@"UIAlertController"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
@@ -50,7 +64,8 @@
                                                         style:UIAlertActionStyleDefault
                                                       handler:nil]];
 
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField* textField)
+    {
         textField.placeholder = @"placeholder text";
         textField.keyboardType = UIKeyboardTypeASCIICapable;
     }];
@@ -64,7 +79,7 @@
 - (IBAction)showAlertControllerActionSheet
 {
 
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title"
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Title"
                                                                              message:@"Message"
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
