@@ -4,5 +4,6 @@
 
   @import Kiwi;
   @import FBSnapshotTestCase;
+  @import Expecta;
 
 #endif

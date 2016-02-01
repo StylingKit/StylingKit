@@ -19,6 +19,8 @@ end
 target 'StylingKit_Tests', :exclusive => true do
   common_pods
 
+  pod "ReactiveCocoa", "~> 2.5"
+  pod 'Expecta', :inhibit_warnings => true
   pod 'Kiwi', :inhibit_warnings => true
   pod 'FBSnapshotTestCase', :inhibit_warnings => true
 end
