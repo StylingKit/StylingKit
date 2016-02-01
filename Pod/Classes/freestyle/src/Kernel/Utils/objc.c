@@ -27,12 +27,27 @@
 
 #define __bridge
 
+SEL preprocessSEL(SEL _cmd)
+{
+	const char* name = sel_getName(_cmd);
+	static const char rac_prefix[] = "rac_alias_";
+	static const size_t rac_prefix_length = 10;
+	
+	if (strncmp(name, rac_prefix, rac_prefix_length) == 0)
+	{
+		name += rac_prefix_length;
+		_cmd = sel_registerName(name);
+	}
+	return _cmd;
+}
+
+
 void* callSuper0(id self, Class superClass, SEL _cmd)
 {
 	struct objc_super super;
 	super.receiver = (__bridge void *)self;
 	super.class = superClass != NULL ? superClass : class_getSuperclass(object_getClass(self));
-	return objc_msgSendSuper(&super, _cmd);
+	return objc_msgSendSuper(&super, preprocessSEL(_cmd));
 }
 
 void* callSuper1(id self, Class superClass, SEL _cmd, id arg1)
@@ -43,7 +58,7 @@ void* callSuper1(id self, Class superClass, SEL _cmd, id arg1)
     
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, void *arg1) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, arg1);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), arg1);
 }
 
 void* callSuper1b(id self, Class superClass, SEL _cmd, BOOL arg1)
@@ -54,7 +69,7 @@ void* callSuper1b(id self, Class superClass, SEL _cmd, BOOL arg1)
     
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, BOOL arg1) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, arg1);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), arg1);
 }
 
 
@@ -66,7 +81,7 @@ void* callSuper1v(id self, Class superClass, SEL _cmd, void *arg1)
     
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, void *arg1) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, arg1);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), arg1);
 }
 
 void* callSuper2(id self, Class superClass, SEL _cmd, id arg1, id arg2)
@@ -77,7 +92,7 @@ void* callSuper2(id self, Class superClass, SEL _cmd, id arg1, id arg2)
     
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, id arg1, void * arg2) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, arg1, arg2);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), arg1, arg2);
 }
 
 void* callSuper2v(id self, Class superClass, SEL _cmd, id arg1, void *arg2)
@@ -88,7 +103,7 @@ void* callSuper2v(id self, Class superClass, SEL _cmd, id arg1, void *arg2)
     
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, void *arg1, void *arg2) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, arg1, arg2);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), arg1, arg2);
 }
 
 // The two arg params are cast to CGFloat and 'int', respectively
@@ -103,7 +118,7 @@ void* callSuper2vv(id self, Class superClass, SEL _cmd, void *arg1, void *arg2)
     // Need to cast it to the the appropriate type signatures so the float comes in correctly
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, CGFloat val1, int val2) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, *arg1_ref, (int) arg2);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), *arg1_ref, (int) arg2);
 }
 
 void* callSuper3v(id self, Class superClass, SEL _cmd, id arg1, void *arg2, void *arg3)
@@ -114,7 +129,7 @@ void* callSuper3v(id self, Class superClass, SEL _cmd, id arg1, void *arg2, void
     
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, void *arg1, void *arg2, void *arg3) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, arg1, arg2, arg3);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), arg1, arg2, arg3);
 }
 
 void* callSuper4v(id self, Class superClass, SEL _cmd, id arg1, void *arg2, void *arg3, void *arg4)
@@ -125,7 +140,7 @@ void* callSuper4v(id self, Class superClass, SEL _cmd, id arg1, void *arg2, void
     
     void* (*objc_msgSendSuperTyped)(id self, SEL _cmd, void *arg1, void *arg2, void *arg3, void *arg4) = (void*)objc_msgSendSuper;
 
-	return objc_msgSendSuperTyped((id) &super, _cmd, arg1, arg2, arg3, arg4);
+	return objc_msgSendSuperTyped((id) &super, preprocessSEL(_cmd), arg1, arg2, arg3, arg4);
 }
 
 
