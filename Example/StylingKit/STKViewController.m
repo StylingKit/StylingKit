@@ -28,17 +28,19 @@
 
 - (IBAction)showAlertView
 {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
+                                                        message:@"UIAlertView"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
 
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
-//                                                        message:@"Message"
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"Cancel"
-//                                              otherButtonTitles:@"OK", nil];
-//
-//    [alertView show];
+    [alertView show];
+}
 
+- (IBAction)showAlertControllerAlert
+{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title"
-                                                                             message:@"Message"
+                                                                             message:@"UIAlertController"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
                                                         style:UIAlertActionStyleDefault
@@ -47,11 +49,31 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
                                                         style:UIAlertActionStyleDefault
                                                       handler:nil]];
+
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"folder name";
+        textField.placeholder = @"placeholder text";
         textField.keyboardType = UIKeyboardTypeASCIICapable;
     }];
 
+
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
+}
+
+- (IBAction)showAlertControllerActionSheet
+{
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title"
+                                                                             message:@"Message"
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil]];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil]];
     [self presentViewController:alertController
                        animated:YES
                      completion:nil];
