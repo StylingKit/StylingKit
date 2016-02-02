@@ -97,10 +97,10 @@ STK_DEFINE_CLASS_LOG_LEVEL;
                               self.stylesheetFileName];
     [description appendFormat:@", bundle=%@",
                               self.bundle.bundleIdentifier];
-    [description appendFormat:@", optional=%d",
-                              self.optional];
-    [description appendFormat:@", origin=%u",
-                              self.origin];
+    [description appendFormat:@", optional=%@",
+                              self.optional ? @"YES" : @"NO"];
+    [description appendFormat:@", origin=%lu",
+                              (unsigned long)self.origin];
     [description appendFormat:@", loadedFromPath=%@",
                               self.loadedFromPath];
     [description appendString:@">"];
