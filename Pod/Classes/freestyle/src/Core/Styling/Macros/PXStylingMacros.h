@@ -45,7 +45,7 @@
 #define PX_LAYOUT_SUBVIEWS_IMP(RECURSE) \
 - (void)layoutSubviews	\
 {	\
-    callSuper0(SUPER_PREFIX, _cmd);	\
+    callSuper0(SUPER_PREFIX, @selector(layoutSubviews));	\
     \
     if(RECURSE) { \
         [self updateStyles]; \

@@ -525,7 +525,7 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 // This will allow for the dynamically added content to style, like the UINavigationItems
 -(void)addSubview:(UIView *)view
 {
-    callSuper1(SUPER_PREFIX, _cmd, view);
+    callSuper1(SUPER_PREFIX, @selector(addSubview:), view);
     
     // invalidate the navbar when new views get added (primarily to catch new top level views sliding in)
     [PXStyleUtils invalidateStyleableAndDescendants:self];
