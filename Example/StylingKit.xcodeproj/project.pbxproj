@@ -579,6 +579,7 @@
 		A0942C25CBFDAF4373BD2E7D /* css3-modsel-78b-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09424B45201A555B5592915 /* css3-modsel-78b-result.xml */; };
 		A0942C2A63DD7934624FD0E4 /* relativeQuadraticBezierCommand.svg in Resources */ = {isa = PBXBuildFile; fileRef = A0942CFF9E2F630A2DD05034 /* relativeQuadraticBezierCommand.svg */; };
 		A0942C2D09E0252386F9ED15 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = A0942E13B396AD7F1DE477E9 /* people.png */; };
+		A0942C35C23116B81B2E4DC5 /* TestSuperProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A09421B06A28AAF224028D3D /* TestSuperProxy.m */; };
 		A0942C4316B257BFE7942725 /* css3-modsel-155a.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09425D44DA5E1CAD0875DDA /* css3-modsel-155a.xml */; };
 		A0942C44F43DB7C5F2220EC9 /* icon3.svg in Resources */ = {isa = PBXBuildFile; fileRef = A094207185725F03B1D3008A /* icon3.svg */; };
 		A0942C4BD579A3361C8A4375 /* css3-modsel-142.xml in Resources */ = {isa = PBXBuildFile; fileRef = A094217ACC7A795901F6D72E /* css3-modsel-142.xml */; };
@@ -912,6 +913,7 @@
 		A09421A76B61834D2FC15EA5 /* css3-modsel-43.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-43.xml"; sourceTree = "<group>"; };
 		A09421AB5E089018B92F3E5F /* dash-offset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dash-offset.png"; sourceTree = "<group>"; };
 		A09421AE6678B0A6CFDA11DD /* css3-modsel-151.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-151.xml"; sourceTree = "<group>"; };
+		A09421B06A28AAF224028D3D /* TestSuperProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSuperProxy.m; sourceTree = "<group>"; };
 		A09421B70B1C5A48531D5439 /* css3-modsel-166a-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-166a-result.xml"; sourceTree = "<group>"; };
 		A09421BB93478AB684ED26CF /* css3-modsel-173a.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-173a.xml"; sourceTree = "<group>"; };
 		A09421C34918DC49E5B98D42 /* css3-modsel-14e.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-14e.xml"; sourceTree = "<group>"; };
@@ -1690,6 +1692,7 @@
 				A0942BB9EDC834B329848562 /* freestyle */,
 				A09424756D80F06A869B2823 /* STKTestsCommon.h */,
 				A0942AA6B51CDE0434DC1D14 /* TestUITextFieldSubclassing.m */,
+				A09421B06A28AAF224028D3D /* TestSuperProxy.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -3636,6 +3639,7 @@
 				A09421C9B0633385333F7239 /* PXTransitionStylerTests.m in Sources */,
 				A0942C1E641CA6F34DB67001 /* SelectorPerformanceTests.m in Sources */,
 				A0942EBC603FC22683A7EB48 /* TestUITextFieldSubclassing.m in Sources */,
+				A0942C35C23116B81B2E4DC5 /* TestSuperProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
