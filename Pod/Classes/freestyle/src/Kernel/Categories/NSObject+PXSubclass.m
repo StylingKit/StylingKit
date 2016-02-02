@@ -36,6 +36,49 @@ static void STKSwizzleRespondsToSelector(Class class);
 #define IMPL_BLOCK_CAST
 #endif
 
+
+@interface STK_SuperProxy : NSProxy
+
+@property(weak, nonatomic) id object;
+
+- (id)initWithObject:(id<NSObject>)object;
+@end
+
+@implementation STK_SuperProxy
+
+- (id)initWithObject:(id<NSObject>)object
+{
+    self.object = object;
+    return self;
+}
+
+
+- (void)forwardInvocation:(NSInvocation*)invocation
+{
+    NSMethodSignature *signature = invocation.methodSignature;
+    switch (signature.numberOfArguments - 2)
+    {
+        case 0:
+            callSuper0(self.object, [self.object pxClass], invocation.selector);
+
+            break;
+        default:
+            NSAssert(NO, @"Not implemented");
+            break;
+    }
+}
+
+- (NSMethodSignature*)methodSignatureForSelector:(SEL)sel {
+    return [self.object methodSignatureForSelector:sel];
+}
+
+//- (BOOL)respondsToSelector:(SEL)aSelector {
+//    return [self.object respondsToSelector:aSelector];
+//}
+
+@end
+
+
 void PXForceLoadNSObjectPXSubclass() {}
 
 @implementation NSObject (PXSubclass)
@@ -115,6 +158,14 @@ STK_DEFINE_CLASS_LOG_LEVEL
             return baseClass;
         }));
         class_addMethod(newClass, @selector(pxClass), pxClassMethodIMP, method_getTypeEncoding(classMethod));
+
+        STK_SuperProxy *superProxy = [[STK_SuperProxy alloc] initWithObject:object];
+
+        // pxSuper
+        IMP pxSuperMethodIMP = imp_implementationWithBlock(IMPL_BLOCK_CAST(^(id _self, SEL _sel){
+            return superProxy;
+        }));
+        class_addMethod(newClass, @selector(pxSuper), pxSuperMethodIMP, method_getTypeEncoding(classMethod));
 
         STKSwizzleRespondsToSelector(newClass);
 

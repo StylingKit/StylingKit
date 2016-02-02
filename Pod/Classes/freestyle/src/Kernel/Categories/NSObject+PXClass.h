@@ -26,5 +26,6 @@
 @interface NSObject (PXClass)
 
 @property (nonatomic, readonly) Class pxClass;
+@property (nonatomic, readonly) id pxSuper;
 
 @end
