@@ -625,11 +625,6 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 
 - (void)prepareForReuse
 {
-    callSuper0(SUPER_PREFIX, @selector(prepareForReuse));
-//#define STK_SUPER0(x) callSuper0(self, [self pxClass], @selector(x));
-//    STK_SUPER0(prepareForReuse);
-
-#define STK_super self.pxSuper
     [STK_super prepareForReuse];
 
     [PXStyleUtils invalidateStyleableAndDescendants:self];

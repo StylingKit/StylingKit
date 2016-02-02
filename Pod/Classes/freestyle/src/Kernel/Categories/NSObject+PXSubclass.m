@@ -38,8 +38,10 @@ static void STKSwizzleRespondsToSelector(Class class);
 
 
 @interface STK_SuperProxy : NSProxy
-
-@property(weak, nonatomic) id object;
+{
+@public
+    __weak id _object;
+}
 
 - (id)initWithObject:(id<NSObject>)object;
 @end
@@ -48,16 +50,16 @@ static void STKSwizzleRespondsToSelector(Class class);
 
 - (id)initWithObject:(id<NSObject>)object
 {
-    self.object = object;
+    self->_object = object;
     return self;
 }
 
 - (struct objc_super)superStruct
 {
-    Class superClass = [self.object pxClass];
+    Class superClass = [self->_object pxClass];
     struct objc_super superObj;
-    superObj.receiver = self.object;
-    superObj.super_class = superClass != NULL ? superClass : class_getSuperclass(object_getClass(self.object));
+    superObj.receiver = self->_object;
+    superObj.super_class = superClass != NULL ? superClass : class_getSuperclass(object_getClass(self->_object));
 
     return superObj;
 }
@@ -81,11 +83,7 @@ typedef void* (*FnCallSuper6)(struct objc_super* super, SEL _cmd, void*, void*, 
                         atIndex:index + firstArgumentOffset];
     }
 
-//    struct objc_super objcSuper = self.superStruct;
-    Class superClass = [self.object pxClass];
-    struct objc_super objcSuper;
-    objcSuper.receiver = self.object;
-    objcSuper.super_class = superClass != NULL ? superClass : class_getSuperclass(object_getClass(self.object));
+    struct objc_super objcSuper = self.superStruct;
 
     void* result = 0;
     switch (numberOfArguments) {
@@ -146,12 +144,8 @@ typedef void* (*FnCallSuper6)(struct objc_super* super, SEL _cmd, void*, void*, 
 }
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)sel {
-    return [self.object methodSignatureForSelector:sel];
+    return [self->_object methodSignatureForSelector:sel];
 }
-
-//- (BOOL)respondsToSelector:(SEL)aSelector {
-//    return [self.object respondsToSelector:aSelector];
-//}
 
 @end
 
@@ -240,8 +234,8 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
         // pxSuper
         IMP pxSuperMethodIMP = imp_implementationWithBlock(IMPL_BLOCK_CAST(^(id _self, SEL _sel){
-            // it is safe to update it here, 
-            superProxy.object = _self;
+            // it is safe to update it here as UIKit is single threaded
+            superProxy->_object = _self;
             return superProxy;
         }));
         class_addMethod(newClass, @selector(stkSuper), pxSuperMethodIMP, method_getTypeEncoding(classMethod));
