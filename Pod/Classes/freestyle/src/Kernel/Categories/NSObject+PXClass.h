@@ -26,6 +26,8 @@
 @interface NSObject (PXClass)
 
 @property (nonatomic, readonly) Class pxClass;
-@property (nonatomic, readonly) id pxSuper;
+@property (nonatomic, readonly) id stkSuper;
 
 @end
+
+#define STK_super self.stkSuper
