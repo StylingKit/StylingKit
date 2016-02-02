@@ -29,15 +29,6 @@
 
 SEL preprocessSEL(SEL _cmd)
 {
-	const char* name = sel_getName(_cmd);
-	static const char rac_prefix[] = "rac_alias_";
-	static const size_t rac_prefix_length = 10;
-
-//	if (strncmp(name, rac_prefix, rac_prefix_length) == 0)
-//	{
-//		name += rac_prefix_length;
-//		_cmd = sel_registerName(name);
-//	}
 	return _cmd;
 }
 
