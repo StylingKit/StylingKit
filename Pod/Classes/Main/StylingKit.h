@@ -27,6 +27,7 @@
 
 @interface StylingKit : NSObject
 
+@property (readonly, nonatomic) STKTheme *currentTheme;
 @property(readonly, nonatomic) STKCloud *cloud;
 
 /// Shared and only allowed instance of the StylingKit to be used in the app
@@ -38,5 +39,14 @@
                        inBundle:(NSBundle*)bundle;
 
 - (instancetype)init NS_UNAVAILABLE;
+
+@end
+
+
+@interface UIView (StylingKit)
+
+@property (nonatomic, copy) IBInspectable NSString *styleId;
+@property (nonatomic, copy) IBInspectable NSString *styleClass;
+@property (nonatomic, copy) IBInspectable NSString *styleCSS;
 
 @end

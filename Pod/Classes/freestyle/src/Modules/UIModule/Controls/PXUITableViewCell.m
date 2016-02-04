@@ -625,7 +625,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 
 - (void)prepareForReuse
 {
-    callSuper0(SUPER_PREFIX, _cmd);
+    callSuper0(SUPER_PREFIX, @selector(prepareForReuse));
     [PXStyleUtils invalidateStyleableAndDescendants:self];
 }
 

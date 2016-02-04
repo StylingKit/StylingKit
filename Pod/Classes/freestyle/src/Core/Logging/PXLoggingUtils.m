@@ -38,8 +38,6 @@
 + (void)enablePrettyLogFormatting
 {
 #ifdef STK_LOGGING
-    [self enablePrettyLogFormatting];
-
     // create a custom formatter
     PXFileFunctionLogFormatter *formatter = [[PXFileFunctionLogFormatter alloc] init];
 

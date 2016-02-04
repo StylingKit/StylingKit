@@ -179,9 +179,21 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
         /// title
 
         PXVirtualStyleableControl *title = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"title"];
-        
+
         title.viewStylers = @[
-                              
+            [[PXGenericStyler alloc] initWithHandlers:@{
+                @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context)
+                {
+
+                    NSString *newTitle = [declaration transformString:weakSelf.topItem.title];
+
+                    if (![newTitle isEqualToString:weakSelf.topItem.title])
+                    {
+                        weakSelf.topItem.title = newTitle;
+                    }
+                }
+            }],
+
             [[PXTextShadowStyler alloc] initWithCompletionBlock:^(PXVirtualStyleableControl *view, PXTextShadowStyler *styler, PXStylerContext *context) {
                PXShadow *shadow = context.textShadow;
                NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:weakSelf.titleTextAttributes];
@@ -513,7 +525,7 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 // This will allow for the dynamically added content to style, like the UINavigationItems
 -(void)addSubview:(UIView *)view
 {
-    callSuper1(SUPER_PREFIX, _cmd, view);
+    callSuper1(SUPER_PREFIX, @selector(addSubview:), view);
     
     // invalidate the navbar when new views get added (primarily to catch new top level views sliding in)
     [PXStyleUtils invalidateStyleableAndDescendants:self];

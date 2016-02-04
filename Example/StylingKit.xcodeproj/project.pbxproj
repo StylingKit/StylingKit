@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		7CDD775A1C5FB7E900F8C8EF /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 7CE29D1A1C49501300D843E7 /* default.css */; };
 		7CF7A4CC1C3A772E00B3BD16 /* solid-image-stroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF7A4CA1C3A770800B3BD16 /* solid-image-stroke.png */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A09420033B649B7D9AD59FB1 /* css3-modsel-27a.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09423FEC94613E597EDF987 /* css3-modsel-27a.xml */; };
@@ -719,6 +720,7 @@
 		A0942EB7F3439EB3F6083ADE /* css3-modsel-68-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09425819B297782281A6216 /* css3-modsel-68-result.xml */; };
 		A0942EB89890EE0F7D7C2950 /* css3-modsel-140.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942FCA11A232C8FAD47AB1 /* css3-modsel-140.xml */; };
 		A0942EBB01F8E7F2677B8D3C /* css3-modsel-41-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942225E9FB99EE4625BE84 /* css3-modsel-41-result.xml */; };
+		A0942EBC603FC22683A7EB48 /* TestUITextFieldSubclassing.m in Sources */ = {isa = PBXBuildFile; fileRef = A0942AA6B51CDE0434DC1D14 /* TestUITextFieldSubclassing.m */; };
 		A0942EC0838E2FF6960A7D2A /* css3-modsel-23.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942B38E6E52A6BFA9AEBF1 /* css3-modsel-23.xml */; };
 		A0942ECAA6CA6B8D5096334C /* css3-modsel-74b-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942FA355E11662265FB682 /* css3-modsel-74b-result.xml */; };
 		A0942ECF5CB4AD519E9C5C97 /* css3-modsel-91.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09423684BB440DE51EA0333 /* css3-modsel-91.xml */; };
@@ -1307,6 +1309,7 @@
 		A0942A76A68BDA393D24B162 /* css3-modsel-83-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-83-result.xml"; sourceTree = "<group>"; };
 		A0942A995A032AD76C1E3863 /* css3-modsel-75-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-75-result.xml"; sourceTree = "<group>"; };
 		A0942A9E8A72267CDA8DD67A /* PXLexemeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXLexemeTests.m; sourceTree = "<group>"; };
+		A0942AA6B51CDE0434DC1D14 /* TestUITextFieldSubclassing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUITextFieldSubclassing.m; sourceTree = "<group>"; };
 		A0942AA7E63414B6CB21BB53 /* PXTransformLexerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTransformLexerTests.m; sourceTree = "<group>"; };
 		A0942AA8A23AC34B343C5733 /* toucan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toucan.png; sourceTree = "<group>"; };
 		A0942AAA4966A31957EDE97C /* lineCommand.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = lineCommand.svg; sourceTree = "<group>"; };
@@ -1686,6 +1689,7 @@
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				A0942BB9EDC834B329848562 /* freestyle */,
 				A09424756D80F06A869B2823 /* STKTestsCommon.h */,
+				A0942AA6B51CDE0434DC1D14 /* TestUITextFieldSubclassing.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -2751,6 +2755,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				7CDD775A1C5FB7E900F8C8EF /* default.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3630,6 +3635,7 @@
 				A09429A3A8E9BD8CBD8EA4DC /* PXStylesheetParserTests.m in Sources */,
 				A09421C9B0633385333F7239 /* PXTransitionStylerTests.m in Sources */,
 				A0942C1E641CA6F34DB67001 /* SelectorPerformanceTests.m in Sources */,
+				A0942EBC603FC22683A7EB48 /* TestUITextFieldSubclassing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

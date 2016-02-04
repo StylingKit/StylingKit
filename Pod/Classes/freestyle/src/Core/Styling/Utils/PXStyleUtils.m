@@ -49,6 +49,8 @@ static const char viewDelegate;
 
 @implementation PXStyleUtils
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 + (NSArray *)elementChildrenOfStyleable:(id<PXStyleable>)styleable
 {
     NSMutableArray *children = [[NSMutableArray alloc] init];

@@ -40,6 +40,9 @@
 #import "NSObject+PXClass.h"
 #import "NSObject+PXStyling.h"
 #import "PXStylingMacros.h"
+#import "UIView+PXStyling-Private.h"
+#import "NSObject+PXSwizzle.h"
+#import "STK_UIAlertControllerView.h"
 
 static const char STYLE_ELEMENT_NAME_KEY;
 static const char STYLE_CLASS_KEY;
@@ -60,6 +63,9 @@ void PXForceLoadUIViewPXStyling() {}
 
 @dynamic bounds;
 @dynamic frame;
+
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 
 static NSMutableArray *DYNAMIC_SUBCLASSES;
 
@@ -136,17 +142,6 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     }
 }
 
-+ (BOOL)subclassIfNeeded:(Class)superClass object:(NSObject *)object
-{
-    if([object respondsToSelector:@selector(pxClass)] == NO)
-    {
-        [superClass subclassInstance:object];
-        return YES;
-    }
-    
-    return NO;
-}
-
 #pragma mark - Dynamic subclassing initializer and property
 
 + (void)initialize
@@ -163,7 +158,61 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         // set logging level for all classes
         //[PXLoggingUtils setGlobalLoggingLevel:LOG_LEVEL_VERBOSE];
 #endif
+
+        [self swizzleMethod:@selector(initWithFrame:) withMethod:@selector(stk_initWithFrame:)];
+        [self swizzleMethod:@selector(initWithCoder:) withMethod:@selector(stk_initWithCoder:)];
     }
+}
+
+- (instancetype)stk_initWithFrame:(CGRect)frame
+{
+    [self stk_initWithFrame:frame];
+    [self stk_subclassIfNeeded];
+    return self;
+}
+
+- (instancetype)stk_initWithCoder:(NSCoder *)aDecoder
+{
+    [self stk_initWithCoder:aDecoder];
+    [self stk_subclassIfNeeded];
+    return self;
+}
+
+- (void)stk_subclassIfNeeded
+{
+    // Grabbing Pixate's subclass of this instance
+    Class viewDynamicSubclass = SubclassForViewWithClass(self, nil);
+
+    if(viewDynamicSubclass)
+    {
+        //NSLog(@"%@ (%p): %@ -> %@", [self class], self, [[self class] superclass], c);
+
+        // We are subclassing 'self' with the Pixate class 'c' we found above
+        [viewDynamicSubclass subclassInstance:self];
+
+        // Register for notification center events
+        static char Notification;
+        if (!objc_getAssociatedObject(self, &Notification))
+        {
+            objc_setAssociatedObject(self, &Notification, @(YES), OBJC_ASSOCIATION_COPY_NONATOMIC);
+
+            if ([self respondsToSelector:@selector(registerNotifications)])
+            {
+                [self performSelector:@selector(registerNotifications)];
+            }
+        }
+    }
+}
+
++ (BOOL)subclassIfNeeded:(Class)superClass object:(NSObject *)object
+{
+    if([object respondsToSelector:@selector(pxClass)] == NO)
+    {
+        [superClass subclassInstance:object];
+        return YES;
+    }
+
+    return NO;
 }
 
 #pragma mark - Styling methods for appearance api
@@ -217,12 +266,19 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     // Check 'do not subclass' list
     //
     if(mode != PXStylingNone
-       && [UIView pxHasAncestor:[UIDatePicker class] forView:self]
+       && ([UIView pxHasAncestor:[UIDatePicker class] forView:self]
+       ||  [UIView pxHasAncestor:[STK_UIAlertControllerView targetSuperclass]
+                   forView:self])
        )
     {
         //NSLog(@"Found child of UIDatePicker %@", [[self class] description]);
         mode = PXStylingNone;
     }
+
+//    if ([NSStringFromClass([self class]) isEqualToString:@"CAMFlipButton"])
+//    {
+//        mode = PXStylingNone;
+//    }
 
     //
     // Set the styling mode value on the object
@@ -236,29 +292,8 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     //
     if (mode == PXStylingNormal)
     {
-        // Grabbing Pixate's subclass of this instance
-        Class c = SubclassForViewWithClass(self, nil);
+        [self stk_subclassIfNeeded];
 
-        if(c)
-        {
-            //NSLog(@"%@ (%p): %@ -> %@", [self class], self, [[self class] superclass], c);
-            
-            // We are subclassing 'self' with the Pixate class 'c' we found above
-            [c subclassInstance:self];
-
-            // Register for notification center events
-            static char Notification;
-            if (objc_getAssociatedObject(self, &Notification) == nil)
-            {
-                objc_setAssociatedObject(self, &Notification, @(YES), OBJC_ASSOCIATION_COPY_NONATOMIC);
-
-                if ([self respondsToSelector:@selector(registerNotifications)])
-                {
-                    [self performSelector:@selector(registerNotifications)];
-                }
-            }
-        }
-        
         // List of classes that should not receive styling now (they should style in layoutSubviews or equiv)
         BOOL shouldStyle = !(
                            [self isKindOfClass:[UITableViewCell class]]
@@ -283,7 +318,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     }
     
     // Walk up the hiearchy now
-    UIView *parent = view.superview;
+    UIView *parent = view.superview ?: view.pxStyleParent;
     
     while(parent != nil)
     {
@@ -291,7 +326,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         {
             return YES;
         }
-        parent = parent.superview;
+        parent = parent.superview ?: parent.pxStyleParent;
     }
     
     return NO;
@@ -381,6 +416,13 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 {
     // make sure we have a string - needed to filter bad input from IB
     aClass = aClass.description;
+
+#if 1
+    if (aClass.length)
+    {
+        aClass = [NSString stringWithFormat:@"%@ debug", aClass];
+    }
+#endif
 	
 	// reduce white spaces and duplicates
 	NSMutableSet *mutSet = [NSMutableSet new];

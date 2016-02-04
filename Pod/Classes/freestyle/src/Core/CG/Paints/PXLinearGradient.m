@@ -39,6 +39,8 @@ typedef NS_ENUM(unsigned int, PXAngleType) {
     PXAngleType angleType_;
 }
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 #pragma mark - Static Methods
 
 + (PXLinearGradient *)gradientFromStartColor:(UIColor *)startColor endColor:(UIColor *)endColor

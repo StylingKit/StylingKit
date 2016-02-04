@@ -50,7 +50,7 @@ static PXStylesheet *currentViewStylesheet = nil;
     NSMutableDictionary *keyframesByName_;
 }
 
-PX_DEFINE_CLASS_LOG_LEVEL
+STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Static initializers
 
@@ -215,7 +215,7 @@ PX_DEFINE_CLASS_LOG_LEVEL
 
                 // update all views
                 [PixateFreestyle updateStylesForAllViews];
-                
+
             }];
         }
         else

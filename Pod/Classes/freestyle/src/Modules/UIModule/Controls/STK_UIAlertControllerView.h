@@ -38,4 +38,6 @@
  */
 @interface STK_UIAlertControllerView : UIView
 
++ (Class)targetSuperclass;
+
 @end

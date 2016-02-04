@@ -442,28 +442,28 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 
 -(void)setText:(NSString *)text
 {
-    callSuper1(SUPER_PREFIX, _cmd, text);
+    callSuper1(SUPER_PREFIX, @selector(setText:), text);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setAttributedText:(NSAttributedString *)attributedText
 {
-    callSuper1(SUPER_PREFIX, _cmd, attributedText);
+    callSuper1(SUPER_PREFIX, @selector(setAttributedText:), attributedText);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setPlaceholder:(NSString *)placeholder
 {
-    callSuper1(SUPER_PREFIX, _cmd, placeholder);
+    callSuper1(SUPER_PREFIX, @selector(setPlaceholder:), placeholder);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder
 {
-    callSuper1(SUPER_PREFIX, _cmd, attributedPlaceholder);
+    callSuper1(SUPER_PREFIX, @selector(setAttributedPlaceholder:), attributedPlaceholder);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }

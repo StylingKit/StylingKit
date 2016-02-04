@@ -26,13 +26,9 @@
 #import "NSObject+PXSubclass.h"
 #import "NSObject+PXClass.h"
 #import <objc/runtime.h>
-#import <objc/message.h>
 #import "objc.h"
-#include "TargetConditionals.h"
 
-static BOOL respondsToSelectorIMP(id self, SEL _cmd, SEL selector);
-
-#define ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR (TARGET_IPHONE_SIMULATOR && TARGET_CPU_X86_64)
+static void STKSwizzleRespondsToSelector(Class class);
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_5_1
 #define IMPL_BLOCK_CAST	(__bridge void *)
@@ -44,9 +40,11 @@ void PXForceLoadNSObjectPXSubclass() {}
 
 @implementation NSObject (PXSubclass)
 
+STK_DEFINE_CLASS_LOG_LEVEL
+
 // object is the instance of a UIView that we need to 'subclass' (e.g. UIButton)
 // 'self' here is Pixate class (e.g. PXUIButton)
-+ (void)subclassInstance:(id)object
++ (void)subclassInstance:(id<NSObject>)object
 {
     // Safety check for nil
     if (object == nil)
@@ -55,21 +53,33 @@ void PXForceLoadNSObjectPXSubclass() {}
     }
     
     // Grab the object's class (??? why 'superclass')
-    Class superClass = object_getClass(object);
+    Class baseClass = object_getClass(object);
+    Class statedClass = object.class;
+
+    if (baseClass != statedClass)
+    {
+        DDLogWarn(@"Class already dynamicly subclassed. baseClass:%@ != statedClass:%@", NSStringFromClass(baseClass), NSStringFromClass(statedClass));
+
+        if ([NSStringFromClass(baseClass) containsString:@"KVO"])
+        {
+            DDLogWarn(@"KVO was installed before StylingKit was able to subclass: %@", NSStringFromClass(baseClass));
+        }
+    }
+
 
     // Return if we have already dynamically subclassed this class (by checking for our pxClass method)
-    if (class_getInstanceMethod(superClass, @selector(pxClass)) != NULL) {
+    if (class_getInstanceMethod(baseClass, @selector(pxClass)) != NULL) {
         return;
     }
 
     // 'self' is a Pixate class, so we're checking that the object passed in is not a Pixate class
 	if (![object isKindOfClass:[self superclass]]) {
-		NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [superClass description]);
+		NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [baseClass description]);
 		return;
 	}
 
     // creating the new classname by prefixing with the Pixate class name
-	const char *className = [NSString stringWithFormat:@"%@_%@", [self description], [superClass description]].UTF8String;
+	const char *className = [NSString stringWithFormat:@"%@_%@", [self description], [baseClass description]].UTF8String;
 
     // Check to see if the new Pixate class as already been created
 	Class newClass = objc_getClass(className);
@@ -81,7 +91,7 @@ void PXForceLoadNSObjectPXSubclass() {}
         size_t extraSize = 64;
 
         // Create the new class
-        newClass = objc_allocateClassPair(superClass, className, extraSize);
+        newClass = objc_allocateClassPair(baseClass, className, extraSize);
 
         // Copy all of the methods from the Pixate class over to the newly created 'newClass'
         unsigned int mcount = 0;
@@ -94,7 +104,7 @@ void PXForceLoadNSObjectPXSubclass() {}
         free(methods);
 
         // Add a 'class' method to new class to override the NSObject implementation
-		Method classMethod = class_getInstanceMethod(superClass, @selector(class));
+		Method classMethod = class_getInstanceMethod(baseClass, @selector(class));
 		IMP classMethodIMP = imp_implementationWithBlock(IMPL_BLOCK_CAST(^(id _self, SEL _sel){
             return class_getSuperclass(object_getClass(_self));
         }));
@@ -102,24 +112,22 @@ void PXForceLoadNSObjectPXSubclass() {}
 
         // pxClass
         IMP pxClassMethodIMP = imp_implementationWithBlock(IMPL_BLOCK_CAST(^(id _self, SEL _sel){
-            return superClass;
+            return baseClass;
         }));
         class_addMethod(newClass, @selector(pxClass), pxClassMethodIMP, method_getTypeEncoding(classMethod));
 
-		// respondsToSelector:
-        Method respondsToSelectorMethod = class_getInstanceMethod(superClass, @selector(respondsToSelector:));
-        class_addMethod(newClass, method_getName(respondsToSelectorMethod), (IMP)respondsToSelectorIMP, method_getTypeEncoding(respondsToSelectorMethod));
+        STKSwizzleRespondsToSelector(newClass);
 
         // Registers a class that was allocated using objc_allocateClassPair
         objc_registerClassPair(newClass);
 
         // Copy any extra indexed ivars (see objc_allocateClassPair)
-        copyIndexedIvars(superClass, newClass, extraSize);
+        copyIndexedIvars(baseClass, newClass, extraSize);
 
         // Check to make sure that the two classes (new and original) are the same size
-        if (class_getInstanceSize(superClass) != class_getInstanceSize(newClass))
+        if (class_getInstanceSize(baseClass) != class_getInstanceSize(newClass))
         {
-            NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [superClass description]);
+            NSAssert(NO, @"Class %@ doesn't fit for subclassing.", [baseClass description]);
             return;
         }
     }
@@ -131,7 +139,11 @@ void PXForceLoadNSObjectPXSubclass() {}
     object_setClass(object, newClass);
 }
 
-static BOOL classRespondsToSelectorRAW(Class class, SEL selector)
+
+@end
+
+
+static BOOL STKClassRespondsToSelectorRAW(Class class, SEL selector)
 {
     if (class != Nil)
     {
@@ -140,48 +152,33 @@ static BOOL classRespondsToSelectorRAW(Class class, SEL selector)
     return NO;
 }
 
-static BOOL respondsToSelectorRAW(id self, SEL selector)
+static BOOL STKRespondsToSelectorRAW(id self, SEL selector)
 {
     if (self)
     {
-        return classRespondsToSelectorRAW(object_getClass(self), selector);
+        return STKClassRespondsToSelectorRAW(object_getClass(self), selector);
     }
     return NO;
 }
 
-#if ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR
-
-static BOOL classHierarchyRespondsToSelector(Class class, SEL selector)
+// Based on RACSwizzleRespondsToSelector from ReactiveCocoa library
+static void STKSwizzleRespondsToSelector(Class class)
 {
-    if (class)
+    SEL respondsToSelectorSEL = @selector(respondsToSelector:);
+
+    // Preserve existing implementation of -respondsToSelector:.
+    Method respondsToSelectorMethod = class_getInstanceMethod(class, respondsToSelectorSEL);
+    BOOL (* originalRespondsToSelector)(id, SEL, SEL) = (__typeof__(originalRespondsToSelector))method_getImplementation(
+        respondsToSelectorMethod);
+
+    id newRespondsToSelector = ^BOOL(id self, SEL selector)
     {
-        if (classRespondsToSelectorRAW(class, selector))
-        {
-            return YES;
-        }
-        else
-        {
-            return classHierarchyRespondsToSelector(class_getSuperclass(class), selector);
-        }
-    }
+        return originalRespondsToSelector(self, respondsToSelectorSEL, selector)
+            || STKRespondsToSelectorRAW(self, selector);
+    };
 
-    return NO;
+    class_replaceMethod(class,
+                        respondsToSelectorSEL,
+                        imp_implementationWithBlock(newRespondsToSelector),
+                        method_getTypeEncoding(respondsToSelectorMethod));
 }
-#endif
-
-
-static BOOL respondsToSelectorIMP(id self, SEL _cmd, SEL selector)
-{
-    // iOS 9 x64 simulators crashes with UITextFiled styling
-    // For more detail see https://github.com/Pixate/pixate-freestyle-ios/issues/186
-#if ENABLE_X64_SIMULATOR_WORKAROUND_FOR_SELECTOR
-    // Use RAW implementation
-    BOOL pxClassRespondsToSelector = classHierarchyRespondsToSelector([self pxClass], selector);
-#else
-    BOOL pxClassRespondsToSelector = ((BOOL)callSuper1v(self, [self pxClass], _cmd, selector));
-#endif
-
-    return pxClassRespondsToSelector || respondsToSelectorRAW(self, selector);
-}
-
-@end

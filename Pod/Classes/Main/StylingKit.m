@@ -28,6 +28,8 @@
 
 #if STK_CLOUD
 #   import "STKCloud.h"
+#import "PXLoggingUtils.h"
+
 #endif
 
 @interface StylingKit ()
@@ -37,6 +39,9 @@
 @end
 
 @implementation StylingKit
+
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 
 + (instancetype)sharedKit
 {
@@ -85,19 +90,13 @@
     {
         [STKThemesRegistry loadThemes];
 
-        STKTheme* defaultAppTheme = [self registerThemeNamed:@"default"
-                                                    inBundle:[NSBundle mainBundle]];
-        defaultAppTheme.optional = YES;
-
-        STKTheme* userTheme = [self registerThemeNamed:@"user"
-                                              inBundle:[NSBundle mainBundle]];
-        userTheme.stylesheetFileName = userTheme.name;
-        userTheme.optional = YES;
-        userTheme.origin = PXStylesheetOriginUser;
-
         for (STKTheme* theme in self.themes.allValues)
         {
-            [theme activate];
+            if ([theme activate])
+            {
+                _currentTheme = theme;
+                break;
+            }
         }
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
