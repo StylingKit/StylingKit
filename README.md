@@ -1,4 +1,4 @@
-Master: [![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=master)](https://travis-ci.org/StylingKit/StylingKit)
+[![Slack Status](https://stylingkit-slackin.herokuapp.com/badge.svg)](stylingkit-slackin.herokuapp.com) [![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=master)](https://travis-ci.org/StylingKit/StylingKit)
 [![GitHub release](https://img.shields.io/github/release/StylingKit/StylingKit.svg)](https://github.com/StylingKit/StylingKit/releases)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
@@ -92,7 +92,9 @@ StylingKit project uses the following versioning scheme {Major}.{Sprint}.{Patch}
 
 ## Discussions, Help and Support
 
-All discussion are happening on the [public Slack channel](https://stylingkit.slack.com).
+Join our community on Slack: <script async defer src="https://stylingkit-slackin.herokuapp.com/slackin.js"></script> 
+
+All discussion are happening on [the public Slack organization](https://stylingkit.slack.com). 
 
 ## Authors
 
