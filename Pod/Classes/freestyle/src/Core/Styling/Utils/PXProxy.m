@@ -27,6 +27,13 @@
 
 #import "PXProxy.h"
 
+@interface PXProxy ()
+
+@property (strong, nonatomic) NSMutableDictionary *respondsToSelectorCache;
+@property (strong, nonatomic) NSMutableDictionary *methodSignatureForSelectorCache;
+
+@end
+
 @implementation PXProxy
 
 #pragma mark - Initializer
@@ -42,15 +49,22 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {
-    NSMethodSignature *signature;
-    
-    signature = [self.overridingObject methodSignatureForSelector:sel];
-    
-    if (signature) return signature;
-    
-    signature = [self.baseObject methodSignatureForSelector:sel];
-    
-    return signature;
+    NSString* sels = NSStringFromSelector(sel);
+    id signature = self.methodSignatureForSelectorCache[sels];
+
+    if (!signature)
+    {
+        signature = [self.overridingObject methodSignatureForSelector:sel];
+        self.methodSignatureForSelectorCache[sels] = signature ?: [NSNull null];
+    }
+
+    if (!signature)
+    {
+        signature = [self.baseObject methodSignatureForSelector:sel];
+        self.methodSignatureForSelectorCache[sels] = signature ?: [NSNull null];
+    }
+
+    return signature == [NSNull null] ? nil : signature;
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
@@ -58,8 +72,8 @@
     NSString *returnType = @(invocation.methodSignature.methodReturnType);
     
     BOOL voidReturnType = [returnType isEqualToString:@"v"];
-    
-    if (self.overridingObject && [self.overridingObject respondsToSelector:invocation.selector])
+
+    if ([self respondsToSelectorOverride:invocation.selector])
     {
         [invocation invokeWithTarget:self.overridingObject];
         
@@ -76,9 +90,23 @@
     }
 }
 
+- (BOOL)respondsToSelectorOverride:(SEL)sel
+{
+    NSString* sels = NSStringFromSelector(sel);
+    NSNumber *respondsToSelector = self.respondsToSelectorCache[sels];
+    BOOL responds = respondsToSelector.boolValue;
+
+    if (!respondsToSelector)
+    {
+        responds = [self.overridingObject respondsToSelector:sel];
+        self.respondsToSelectorCache[sels] = @(responds);
+    }
+    return responds;
+}
+
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
-    if ([self.overridingObject respondsToSelector:aSelector]) return YES;
+    if ([self respondsToSelectorOverride:aSelector]) return YES;
     if ([self.baseObject respondsToSelector:aSelector]) return YES;
     return NO;
 }
@@ -108,5 +136,24 @@
 {
     return [self.baseObject isEqual:object];
 }
+
+- (NSMutableDictionary *)respondsToSelectorCache
+{
+    if (!_respondsToSelectorCache)
+    {
+        _respondsToSelectorCache = [NSMutableDictionary new];
+    }
+    return _respondsToSelectorCache;
+}
+
+- (NSMutableDictionary *)methodSignatureForSelectorCache
+{
+    if (!_methodSignatureForSelectorCache)
+    {
+        _methodSignatureForSelectorCache = [NSMutableDictionary new];
+    }
+    return _methodSignatureForSelectorCache;
+}
+
 
 @end
