@@ -29,6 +29,7 @@
 #if STK_CLOUD
 #   import "STKCloud.h"
 #import "PXLoggingUtils.h"
+#import "STK_UIAlertControllerView.h"
 
 #endif
 
@@ -99,9 +100,27 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             }
         }
 
+        //
+        // Check 'do not subclass' list
+        //
+//        if(mode != PXStylingNone
+//            && ([UIView pxHasAncestor:[UIDatePicker class] forView:self]
+//            ||  [UIView pxHasAncestor:[STK_UIAlertControllerView targetSuperclass]
+//                              forView:self]
+//            || [NSStringFromClass([self class]) isEqualToString:@"CAMFlipButton"])
+//            )
+//        {
+//            //NSLog(@"Found child of UIDatePicker %@", [[self class] description]);
+//            mode = PXStylingNone;
+//        }
+
+        [UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = PXStylingNone;
+        Class<UIAppearance> cla = NSClassFromString([NSString stringWithFormat:@"%@%@%@", @"CAM", @"Flip", @"Button" ]);
+        ((UIView*)[cla appearance]).styleMode = PXStylingNone;
+
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
-        [UIView appearance].styleMode = PXStylingNormal;
-    };
+//        [UIView appearance].styleMode = PXStylingNormal;
+    }
 }
 
 - (STKTheme*)registerThemeNamed:(NSString*)themeName

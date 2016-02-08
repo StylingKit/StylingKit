@@ -230,38 +230,19 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)setStyleMode:(PXStylingMode) mode
 {
-
-    //
-    // Check 'do not subclass' list
-    //
-    if(mode != PXStylingNone
-       && ([UIView pxHasAncestor:[UIDatePicker class] forView:self]
-       ||  [UIView pxHasAncestor:[STK_UIAlertControllerView targetSuperclass]
-                   forView:self])
-       )
+    if (self.styleMode == mode)
     {
-        //NSLog(@"Found child of UIDatePicker %@", [[self class] description]);
-        mode = PXStylingNone;
+        return;
     }
 
-//    if ([NSStringFromClass([self class]) isEqualToString:@"CAMFlipButton"])
-//    {
-//        mode = PXStylingNone;
-//    }
-
-    //
-    // Set the styling mode value on the object
-    //
     objc_setAssociatedObject(self, &STYLE_MODE_KEY, @(mode), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    
-    //NSLog(@"Found: %@ (%p)", [self class], self);
 
     //
     // Perform styling operations
     //
     if (mode == PXStylingNormal)
     {
-        [self stk_subclassIfNeeded];
+//        [self stk_subclassIfNeeded];
 
         // List of classes that should not receive styling now (they should style in layoutSubviews or equiv)
         BOOL shouldStyle = !(
@@ -273,7 +254,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
         if (shouldStyle)
         {
-            [self updateStyles];
+//            [self updateStyles];
         }
     }
 }
@@ -418,7 +399,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     
 	if (aClass.length)
     {
-        self.styleMode = PXStylingNormal;
+//        self.styleMode = PXStylingNormal;
 	}
 
 //    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
