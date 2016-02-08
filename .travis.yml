@@ -7,6 +7,8 @@ branches:
     - develop
 
 before_install:
+ - sysctl -n machdep.cpu.brand_string
+ - sysctl hw
  - ./scripts/before_install
 
 install:
