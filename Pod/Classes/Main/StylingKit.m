@@ -119,7 +119,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         ((UIView*)[cla appearance]).styleMode = PXStylingNone;
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
-//        [UIView appearance].styleMode = PXStylingNormal;
+        [UIView appearance].styleMode = PXStylingNormal;
     }
 }
 
