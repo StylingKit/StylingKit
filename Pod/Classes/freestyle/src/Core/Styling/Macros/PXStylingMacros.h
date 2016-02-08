@@ -46,12 +46,7 @@
 - (void)layoutSubviews	\
 {	\
     callSuper0(SUPER_PREFIX, @selector(layoutSubviews));	\
-    \
-    if(RECURSE) { \
-        [self updateStyles]; \
-    } else { \
-        [self updateStylesNonRecursively]; \
-    } \
+    [self stkUpdateStylesFromLayoutSubviewsRecursively:RECURSE]; \
 }
 
 #endif // Pixate_PXStylingMacros_h

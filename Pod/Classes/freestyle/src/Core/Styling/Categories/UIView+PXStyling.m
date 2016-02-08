@@ -620,6 +620,11 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 	}
 }
 
+- (void)stkUpdateStylesFromLayoutSubviewsRecursively:(BOOL)recursively
+{
+    [UIView updateStyles:self recursively:recursively];
+}
+
 @end
 
 #pragma mark - Static Functions
