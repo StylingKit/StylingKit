@@ -205,7 +205,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 + (BOOL)subclassIfNeeded:(Class)superClass object:(NSObject *)object
 {
-    if([object respondsToSelector:@selector(pxClass)] == NO)
+    if(![object respondsToSelector:@selector(pxClass)])
     {
         [superClass subclassInstance:object];
         return YES;
@@ -222,7 +222,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
     if(modeVal)
     {
-        return modeVal.intValue;
+        return (PXStylingMode)modeVal.intValue;
     }
 
     return PXStylingUndefined;
