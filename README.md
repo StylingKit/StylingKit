@@ -92,8 +92,7 @@ StylingKit project uses the following versioning scheme {Major}.{Sprint}.{Patch}
 
 ## Discussions, Help and Support
 
-Join our community on Slack: 
-<script async defer src="https://stylingkit-slackin.herokuapp.com/slackin.js"></script> 
+Join our community on Slack: [![Slack Status](https://stylingkit-slackin.herokuapp.com/badge.svg)](https://stylingkit-slackin.herokuapp.com)
 
 All discussion are happening on [the public Slack organization](https://stylingkit.slack.com). 
 
