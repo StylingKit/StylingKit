@@ -30,26 +30,22 @@
 
 + (PXOpacityStyler *)sharedInstance
 {
-	static __strong PXOpacityStyler *sharedInstance = nil;
-	static dispatch_once_t onceToken;
+    static __strong PXOpacityStyler *sharedInstance = nil;
+    static dispatch_once_t onceToken;
 
-	dispatch_once(&onceToken, ^{
-		sharedInstance = [[PXOpacityStyler alloc] initWithCompletionBlock:[PXOpacityStyler AdjustAlphaCompletionBlock]];
-	});
-
-	return sharedInstance;
-}
-
-
-+ (PXStylerCompletionBlock)AdjustAlphaCompletionBlock
-{
-    return ^(id<PXStyleable> view, PXOpacityStyler *styler, PXStylerContext *context)
+    dispatch_once(&onceToken, ^
     {
-        if([view isKindOfClass:NSClassFromString(@"UIView")])
-        {
-            ((UIView *)view).alpha = context.opacity;
-        }
-    };
+        sharedInstance = [[PXOpacityStyler alloc]
+            initWithCompletionBlock:^(id <PXStyleable> view, PXOpacityStyler *styler, PXStylerContext *context)
+            {
+                if ([view isKindOfClass:NSClassFromString(@"UIView")])
+                {
+                    ((UIView *)view).alpha = context.opacity;
+                }
+            }];
+    });
+
+    return sharedInstance;
 }
 
 #pragma mark - Methods
@@ -59,9 +55,11 @@
     static __strong NSDictionary *handlers = nil;
     static dispatch_once_t onceToken;
 
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&onceToken, ^
+    {
         handlers = @{
-            @"opacity" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+            @"opacity" : ^(PXDeclaration *declaration, PXStylerContext *context)
+            {
                 context.opacity = declaration.floatValue;
             }
         };

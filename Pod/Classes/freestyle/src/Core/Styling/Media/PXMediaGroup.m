@@ -91,17 +91,14 @@
     }
 
     // find relevant ruleSets by class
-    if (styleClasses.count > 0)
+    for (NSString *aClass in styleClasses)
     {
-        for (NSString *aClass in styleClasses)
+        for (PXRuleSet *ruleSet in ruleSetsByClass_[aClass])
         {
-            for (PXRuleSet *ruleSet in ruleSetsByClass_[aClass])
+            if (![items containsObject:ruleSet])
             {
-                if (![items containsObject:ruleSet])
-                {
-                    [result addObject:ruleSet];
-                    [items addObject:ruleSet];
-                }
+                [result addObject:ruleSet];
+                [items addObject:ruleSet];
             }
         }
     }

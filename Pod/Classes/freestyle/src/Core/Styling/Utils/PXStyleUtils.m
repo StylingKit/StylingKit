@@ -582,14 +582,16 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     {
         if (recurse)
         {
-            [PXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<PXStyleable> obj, BOOL *stop, BOOL *stopDescending) {
-                [PXStyleUtils updateStyleForStyleable:obj];
+            [PXStyleUtils enumerateStyleableAndDescendants:styleable
+                                                usingBlock:^(id <PXStyleable> obj, BOOL *stop, BOOL *stopDescending)
+                                                {
+                                                    [PXStyleUtils updateStyleForStyleable:obj];
 
-                if (PixateFreestyle.configuration.cacheStyles)
-                {
-                    *stopDescending = [obj isKindOfClass:[UITableViewCell class]];
-                }
-            }];
+                                                    if (PixateFreestyle.configuration.cacheStyles)
+                                                    {
+                                                        *stopDescending = [obj isKindOfClass:[UITableViewCell class]];
+                                                    }
+                                                }];
         }
         else
         {

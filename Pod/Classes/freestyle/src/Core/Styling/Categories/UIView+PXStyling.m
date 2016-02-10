@@ -472,25 +472,34 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         // If not recursive, style virtual children only (not subviews)
         if(!recurse)
         {
-            for (id<PXStyleable> child in styleable.pxStyleChildren)
-            {
-                if ([child conformsToProtocol:@protocol(PXVirtualControl)] && child.styleMode == PXStylingNormal)
-                {
-                    [PXStyleUtils enumerateStyleableDescendants:child usingBlock:^(id<PXStyleable> styleable, BOOL *stop, BOOL *stopDescending)
-                    {
-                        if ([styleable conformsToProtocol:@protocol(PXVirtualControl)] && styleable.styleMode == PXStylingNormal)
-                        {
-                            [PXStyleUtils updateStyleForStyleable:styleable];
-                        }
-                    }];
-                    
-                    [PXStyleUtils updateStyleForStyleable:child];
-                }
-            }
+            [self prv_updateStylesForVirtualChildrenOfStylable:styleable];
         }
         
         // Style the styleable and optionally ALL the children (including virtual children)
-        [PXStyleUtils updateStylesForStyleable:styleable andDescendants:recurse];
+        [PXStyleUtils updateStylesForStyleable:styleable
+                                andDescendants:recurse];
+    }
+}
+
++ (void)prv_updateStylesForVirtualChildrenOfStylable:(id <PXStyleable>)styleable
+{
+    for (id<PXStyleable> child in styleable.pxStyleChildren)
+    {
+        if (child.styleMode == PXStylingNormal
+            && [child conformsToProtocol:@protocol(PXVirtualControl)])
+        {
+            [PXStyleUtils enumerateStyleableDescendants:child
+                                             usingBlock:^(id <PXStyleable> childStyleable, BOOL *stop, BOOL *stopDescending)
+                                             {
+                                                 if (childStyleable.styleMode == PXStylingNormal
+                                                     && [childStyleable conformsToProtocol:@protocol(PXVirtualControl)])
+                                                 {
+                                                     [PXStyleUtils updateStyleForStyleable:childStyleable];
+                                                 }
+                                             }];
+
+            [PXStyleUtils updateStyleForStyleable:child];
+        }
     }
 }
 
