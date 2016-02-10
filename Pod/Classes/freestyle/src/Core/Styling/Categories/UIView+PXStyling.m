@@ -315,6 +315,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     return objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
 }
 
+// FIXME: styleClasses should be NSSet, not array. As used as: `element.styleClasses containsObject:className_`
 - (NSArray *)styleClasses
 {
     return objc_getAssociatedObject(self, &STYLE_CLASSES_KEY);
