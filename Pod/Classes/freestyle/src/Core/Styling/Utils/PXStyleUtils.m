@@ -429,6 +429,11 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
     return ruleSetsForPseudoElement;
 }
+NSUInteger STKHashFromCGRect(CGRect rect)
+{
+    return (*(NSUInteger *)&rect.origin.x << 10 ^ *(NSUInteger *)&rect.origin.y)
+        + (*(NSUInteger *)&rect.size.width << 10 ^ *(NSUInteger *)&rect.size.height);
+}
 
 + (BOOL)stylesOfStyleable:(id<PXStyleable>)styleable matchDeclarations:(NSArray *)declarations state:(NSString *)state
 {
@@ -451,13 +456,12 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         NSValue *cachedHashValue = cachedHashValues[stateNameKey];
 
         // calculate active declarations hash
-        CGRect bounds = styleable.bounds;
-        NSString *boundsString = [NSString stringWithFormat:@"%f,%f,%f,%f", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height];
-        __block NSUInteger activeDeclarationsHash = boundsString.hash;
+        NSUInteger activeDeclarationsHash = STKHashFromCGRect(styleable.bounds);
 
-        [declarations enumerateObjectsUsingBlock:^(PXDeclaration *declaration, NSUInteger idx, BOOL *stop) {
+        for (PXDeclaration *declaration in declarations)
+        {
             activeDeclarationsHash = activeDeclarationsHash * 31 + declaration.hash;
-        }];
+        }
 
         // if we had a previous hash, then see if it matches our new hash
         if (cachedHashValue)
