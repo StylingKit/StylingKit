@@ -117,10 +117,10 @@
 #pragma mark - Properties
 
 -(void)setStyleClass:(NSString *)styleClass {
-    _styleClass = styleClass;
+    _styleClass = [styleClass.description stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     //Precalculate classes array for performance gain
-    NSArray *classes = [styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSArray *classes = [_styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     _styleClasses = [NSSet setWithArray:classes];
 }
 

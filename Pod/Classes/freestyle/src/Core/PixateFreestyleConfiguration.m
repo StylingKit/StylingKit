@@ -142,9 +142,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     // trim leading and trailing whitespace
     _styleClass = [aClass stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSArray *classes = [_styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    _styleClasses = [classes sortedArrayUsingComparator:^NSComparisonResult(NSString *class1, NSString *class2) {
-        return [class1 compare:class2];
-    }];
+    _styleClasses = [NSSet setWithArray:classes];
 }
 
 - (NSSet *)styleClasses {

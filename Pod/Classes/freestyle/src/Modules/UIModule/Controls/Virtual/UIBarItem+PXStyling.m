@@ -141,7 +141,6 @@ void PXForceLoadUIBarItemPXStyling() {}
 
     // trim leading and trailing whitespace
     aClass = [aClass stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
     objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
     

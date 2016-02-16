@@ -365,7 +365,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 - (void)setStyleClass:(NSString *)aClass
 {
     // make sure we have a string - needed to filter bad input from IB
-    aClass = aClass.description;
+    aClass = [aClass.description stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
 #if 0
     if (aClass.length)
@@ -373,34 +373,39 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         aClass = [NSString stringWithFormat:@"%@ debug", aClass];
     }
 #endif
-	
-	// reduce white spaces and duplicates
-	NSMutableSet *mutSet = [NSMutableSet setWithArray:[aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 
-    NSAssert(![mutSet containsObject:@""], @"Empty string object in whitespace separated set");
-	[mutSet removeObject:@""];
+    objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-    //Precalculate classes array for performance gain
-    NSArray *classes = mutSet.allObjects;
+    NSArray *classes = [aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSMutableSet *styleClasses = [NSMutableSet setWithArray:classes];
+    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, styleClasses, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
-	aClass = [classes componentsJoinedByString:@" "];
-	
-	NSString *previousClass = objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
-	if((!aClass && !previousClass) || [aClass isEqualToString:previousClass]){
-		// no change
-		return;
-	}
-	
-	objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
-	
-    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, mutSet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-	if (aClass.length)
-    {
-//        self.styleMode = PXStylingNormal;
-	}
-
-//    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
+//
+//	// reduce white spaces and duplicates
+//	NSMutableSet *mutSet = [NSMutableSet setWithArray:[aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+//	[mutSet removeObject:@""];
+//
+//    //Precalculate classes array for performance gain
+//    NSArray *classes = mutSet.allObjects;
+//
+//	aClass = [classes componentsJoinedByString:@" "];
+//
+//	NSString *previousClass = objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
+//	if((!aClass && !previousClass) || [aClass isEqualToString:previousClass]){
+//		// no change
+//		return;
+//	}
+//
+//	objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
+//
+//    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, mutSet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//
+//	if (aClass.length)
+//    {
+////        self.styleMode = PXStylingNormal;
+//	}
+//
+////    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
 }
 
 - (void)setStyleId:(NSString *)anId
@@ -585,18 +590,14 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)removeStyleClass:(NSString *)styleClass
 {
-    styleClass = styleClass.description;
-    NSMutableSet *mutSet = [NSMutableSet new];
-	[mutSet addObjectsFromArray:[styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-	[mutSet removeObject:@""];
-    NSArray *classesToRemove = mutSet.allObjects;
-	NSSet *currentClasses = self.styleClasses;
-    mutSet = [currentClasses mutableCopy];
-    for (NSString *classToRemove in classesToRemove){
-        [mutSet removeObject:classToRemove];
-    }
-    NSArray *classes = mutSet.allObjects;
-	self.styleClass = [classes componentsJoinedByString:@" "];
+    styleClass = [styleClass.description stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    NSArray *toRemove = [styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    NSMutableSet *newClasses = self.styleClasses.mutableCopy;
+    [newClasses minusSet:[NSSet setWithArray:toRemove]];
+
+	self.styleClass = [newClasses.allObjects componentsJoinedByString:@" "];
 }
 
 - (void)styleClassed:(NSString *)styleClass enabled:(bool)enabled
