@@ -230,56 +230,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)setStyleMode:(PXStylingMode) mode
 {
-    if (self.styleMode == mode)
-    {
-        return;
-    }
-
     objc_setAssociatedObject(self, &STYLE_MODE_KEY, @(mode), OBJC_ASSOCIATION_COPY_NONATOMIC);
-
-    //
-    // Perform styling operations
-    //
-    if (mode == PXStylingNormal)
-    {
-//        [self stk_subclassIfNeeded];
-
-        // List of classes that should not receive styling now (they should style in layoutSubviews or equiv)
-        BOOL shouldStyle = !(
-                           [self isKindOfClass:[UITableViewCell class]]
-                        || [self isKindOfClass:[UICollectionViewCell class]]
-                        );
-
-        //NSLog(@"found %@ - Styling: %@", [self class], shouldStyle ? @"YES" : @"NO");
-
-        if (shouldStyle)
-        {
-//            [self updateStyles];
-        }
-    }
-}
-
-+ (BOOL)pxHasAncestor:(Class)acenstorClass forView:(UIView *)view
-{
-    // Test to see if 'view' is an acesntorClass already
-    if([view class] == acenstorClass)
-    {
-        return YES;
-    }
-    
-    // Walk up the hiearchy now
-    UIView *parent = view.superview ?: view.pxStyleParent;
-    
-    while(parent != nil)
-    {
-        if([parent class] == acenstorClass)
-        {
-            return YES;
-        }
-        parent = parent.superview ?: parent.pxStyleParent;
-    }
-    
-    return NO;
 }
 
 #pragma mark - Styling properties on UIView
