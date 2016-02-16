@@ -236,7 +236,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
 + (NSString *)styleKeyFromStyleable:(id<PXStyleable>)styleable
 {
-    return [[self.class description] stringByAppendingPathComponent:[PXStyleUtils selectorFromStyleable:styleable]];
+    return [[styleable.class description] stringByAppendingPathComponent:[PXStyleUtils selectorFromStyleable:styleable]];
 }
 
 + (NSString *)selectorFromStyleable:(id<PXStyleable>)styleable
