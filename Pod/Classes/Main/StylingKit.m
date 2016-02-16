@@ -20,18 +20,17 @@
 // Created by Anton Matosov
 //
 
+#if STK_CLOUD
+#   import "STKCloud.h"
+#endif
+
 #import "StylingKit.h"
 #import "PixateFreestyle.h"
 #import "PXStylesheet-Private.h"
 #import "STKTheme.h"
 #import "STKThemesRegistry.h"
-
-#if STK_CLOUD
-#   import "STKCloud.h"
-#import "PXLoggingUtils.h"
 #import "STK_UIAlertControllerView.h"
-
-#endif
+#import "PXLoggingUtils.h"
 
 @interface StylingKit ()
 
