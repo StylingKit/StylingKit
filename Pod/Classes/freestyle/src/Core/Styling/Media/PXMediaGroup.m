@@ -59,7 +59,7 @@
     // gather keys
     NSString *elementName = styleable.pxStyleElementName;
     NSString *styleId = styleable.styleId;
-    NSArray *styleClasses = styleable.styleClasses;
+    NSSet *styleClasses = styleable.styleClasses;
 
     NSArray *ruleSetsForElement = ruleSetsByElementName_[elementName];
     NSArray *ruleSetsForStyle = ruleSetsById_[styleId];
@@ -162,7 +162,7 @@
         // the default to be true when typeSelector is nil
         NSString *elementName = (typeSelector == nil || typeSelector.hasUniversalType) ? nil : typeSelector.typeName;
         NSString *styleId = (typeSelector == nil) ? nil : typeSelector.styleId;
-        NSArray *styleClasses = (typeSelector == nil) ? nil : typeSelector.styleClasses;
+        NSSet *styleClasses = (typeSelector == nil) ? nil : typeSelector.styleClasses;
         BOOL added = NO;
 
         // NOTE: nesting if-statements to avoid walking type selector expressions for id and classes when not needed

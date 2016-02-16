@@ -76,7 +76,7 @@
 /**
  *  The style classes associated with this selector. This may be nil
  */
-@property (readonly, nonatomic) NSArray *styleClasses;
+@property (readonly, nonatomic) NSSet *styleClasses;
 
 /**
  *  Initialize a new instance with the specified element name

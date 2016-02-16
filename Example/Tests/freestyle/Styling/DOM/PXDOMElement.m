@@ -336,9 +336,9 @@
     [self setAttributeValue:styleClass forName:@"class"];
 }
 
-- (NSArray*)styleClasses
+- (NSSet*)styleClasses
 {
-    return [self.styleClass componentsSeparatedByString:@" "];
+    return [NSSet setWithArray:[self.styleClass componentsSeparatedByString:@" "]];
 }
 
 - (NSArray *)pxStyleChildren

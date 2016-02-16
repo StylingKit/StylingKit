@@ -33,7 +33,7 @@
 @implementation PixateFreestyleConfiguration
 {
     NSMutableDictionary *properties_;
-    NSArray *_styleClasses;
+    NSSet *_styleClasses;
 }
 
 @synthesize styleChangeable;
@@ -147,7 +147,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     }];
 }
 
-- (NSArray *)styleClasses {
+- (NSSet *)styleClasses {
     return _styleClasses;
 }
 

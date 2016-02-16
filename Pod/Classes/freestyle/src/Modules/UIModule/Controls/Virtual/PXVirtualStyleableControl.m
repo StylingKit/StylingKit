@@ -30,7 +30,7 @@
 {
     PXViewStyleUpdaterBlock _block;
     NSString *_styleClass;
-    NSArray *_styleClasses;
+    NSSet *_styleClasses;
 }
 
 // synthesize properties coming from PXStyleable protocol
@@ -121,17 +121,14 @@
     
     //Precalculate classes array for performance gain
     NSArray *classes = [styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    classes = [classes sortedArrayUsingComparator:^NSComparisonResult(NSString *class1, NSString *class2) {
-        return [class1 compare:class2];
-    }];
-    _styleClasses = classes;
+    _styleClasses = [NSSet setWithArray:classes];
 }
 
 - (NSString *)styleClass {
     return _styleClass;
 }
 
-- (NSArray *)styleClasses {
+- (NSSet *)styleClasses {
     return _styleClasses;
 }
 

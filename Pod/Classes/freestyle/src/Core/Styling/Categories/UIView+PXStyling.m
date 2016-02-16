@@ -315,8 +315,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     return objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
 }
 
-// FIXME: styleClasses should be NSSet, not array. As used as: `element.styleClasses containsObject:className_`
-- (NSArray *)styleClasses
+- (NSSet *)styleClasses
 {
     return objc_getAssociatedObject(self, &STYLE_CLASSES_KEY);
 }
@@ -368,7 +367,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     // make sure we have a string - needed to filter bad input from IB
     aClass = aClass.description;
 
-#if 1
+#if 0
     if (aClass.length)
     {
         aClass = [NSString stringWithFormat:@"%@ debug", aClass];
@@ -376,16 +375,14 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 #endif
 	
 	// reduce white spaces and duplicates
-	NSMutableSet *mutSet = [NSMutableSet new];
-	[mutSet addObjectsFromArray:[aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+	NSMutableSet *mutSet = [NSMutableSet setWithArray:[aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+
+    NSAssert(![mutSet containsObject:@""], @"Empty string object in whitespace separated set");
 	[mutSet removeObject:@""];
 
     //Precalculate classes array for performance gain
     NSArray *classes = mutSet.allObjects;
-    classes = [classes sortedArrayUsingComparator:^NSComparisonResult(NSString *class1, NSString *class2) {
-        return [class1 compare:class2];
-    }];
-	
+
 	aClass = [classes componentsJoinedByString:@" "];
 	
 	NSString *previousClass = objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
@@ -396,7 +393,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 	
 	objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
 	
-    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, classes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, mutSet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
 	if (aClass.length)
     {
@@ -593,8 +590,8 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 	[mutSet addObjectsFromArray:[styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 	[mutSet removeObject:@""];
     NSArray *classesToRemove = mutSet.allObjects;
-	NSArray *currentClasses = objc_getAssociatedObject(self, &STYLE_CLASSES_KEY);
-    mutSet = [[NSMutableSet alloc] initWithArray:currentClasses];
+	NSSet *currentClasses = self.styleClasses;
+    mutSet = [currentClasses mutableCopy];
     for (NSString *classToRemove in classesToRemove){
         [mutSet removeObject:classToRemove];
     }

@@ -245,7 +245,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     if (styleable.styleId) [parts addObject:[NSString stringWithFormat:@"#%@", styleable.styleId]];
 
     // add classes
-    NSArray *classes = styleable.styleClasses;
+    NSSet *classes = styleable.styleClasses;
 
     for (NSString *className in classes)
     {
