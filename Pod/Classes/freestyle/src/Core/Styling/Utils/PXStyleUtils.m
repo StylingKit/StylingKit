@@ -556,7 +556,8 @@ NSUInteger STKHashFromCGRect(CGRect rect)
                     // save for later
                     if (cache.cached)
                     {
-                        [PXCacheManager setStyleTreeInfo:cache forKey:styleKey];
+                        [PXCacheManager setStyleTreeInfo:cache
+                                                  forKey:styleKey];
                     }
                 }
 
