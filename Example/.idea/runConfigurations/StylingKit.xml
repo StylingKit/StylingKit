@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="StylingKit" type="AppleRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="Pods" TARGET_NAME="StylingKit" CONFIG_NAME="Debug" SCHEME_NAME="StylingKit" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+  <configuration default="false" name="StylingKit" type="AppleRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Pods" TARGET_NAME="StylingKit" CONFIG_NAME="Debug" SCHEME_NAME="StylingKit" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
     <envs />
     <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
       <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
