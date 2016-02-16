@@ -51,7 +51,7 @@
 
 - (NSArray *)ruleSets
 {
-    return (ruleSets_) ? [NSArray arrayWithArray:ruleSets_] : nil;
+    return ruleSets_;
 }
 
 - (NSArray *)ruleSetsForStyleable:(id<PXStyleable>)styleable

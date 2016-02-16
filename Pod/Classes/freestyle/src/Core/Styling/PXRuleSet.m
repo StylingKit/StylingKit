@@ -101,14 +101,7 @@
 
 - (NSArray *)selectors
 {
-    NSArray *result = nil;
-
-    if (selectors)
-    {
-        result = [NSArray arrayWithArray:selectors];
-    }
-
-    return result;
+    return selectors;
 }
 
 - (PXTypeSelector *)targetTypeSelector

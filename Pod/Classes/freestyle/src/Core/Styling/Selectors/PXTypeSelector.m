@@ -73,7 +73,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (NSArray *)attributeExpressions
 {
-    return [NSArray arrayWithArray:attributeExpressions];
+    return attributeExpressions;
 }
 
 - (BOOL)hasPseudoClasses

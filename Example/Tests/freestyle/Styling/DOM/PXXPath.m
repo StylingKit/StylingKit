@@ -62,7 +62,7 @@
         }
     }];
 
-    return [NSArray arrayWithArray:result];
+    return result;
 }
 
 - (NSArray *)collectDescendantsForNode:(id<PXDOMNode>)node
@@ -83,7 +83,7 @@
         [queue addObjectsFromArray:currentNode.children];
     }
 
-    return [NSArray arrayWithArray:result];
+    return result;
 }
 
 - (NSMutableArray *)filterList:(NSMutableArray *)set withElementName:(NSString *)elementName

@@ -700,9 +700,7 @@ didStartElement:(NSString *)elementName
 
     if (strokeDashArray)
     {
-        NSMutableArray *dashes = [self numberArrayFromString:strokeDashArray];
-
-        stroke.dashArray = [NSArray arrayWithArray:dashes];
+        stroke.dashArray = [self numberArrayFromString:strokeDashArray];
     }
 
     stroke.dashOffset = [self numberFromString:attributeDict[@"stroke-dashoffset"]];
@@ -710,7 +708,7 @@ didStartElement:(NSString *)elementName
     stroke.lineJoin = [self lineJoinFromString:attributeDict[@"stroke-linejoin"]];
 
     NSString *miterLimit = attributeDict[@"stroke-miterlimit"];
-    stroke.miterLimit = (miterLimit) ? [self numberFromString:miterLimit] : 4.0;
+    stroke.miterLimit = (miterLimit) ? [self numberFromString:miterLimit] : 4.0f;
 
     shape.stroke = stroke;
 
@@ -863,7 +861,7 @@ didStartElement:(NSString *)elementName
         [points addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
     }
 
-    return [[PXPolygon alloc] initWithPoints:[NSArray arrayWithArray:points]];
+    return [[PXPolygon alloc] initWithPoints:points];
 }
 
 - (id<PXPaint>)paintFromString:(NSString *)attributeValue withOpacityString:(NSString *)opacityValue

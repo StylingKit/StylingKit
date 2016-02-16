@@ -47,7 +47,7 @@
 
 - (NSArray *)blocks
 {
-    return [NSArray arrayWithArray:blocks_];
+    return blocks_;
 }
 
 #pragma mark - Methods

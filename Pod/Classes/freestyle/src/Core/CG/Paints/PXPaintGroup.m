@@ -50,7 +50,7 @@
 
 - (NSArray *)paints
 {
-    return (paints_ != nil) ? [NSArray arrayWithArray:paints_] : nil;
+    return paints_;
 }
 
 #pragma mark - Methods

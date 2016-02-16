@@ -336,7 +336,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 + (NSMutableArray *)matchingRuleSetsForStyleable:(id<PXStyleable>)styleable
 {
     // find matching rule sets, regardless of any supported or specified pseudo-classes
-    NSMutableArray *ruleSets = [NSMutableArray arrayWithArray:[[PXStylesheet currentApplicationStylesheet] ruleSetsMatchingStyleable:styleable]];
+    NSMutableArray *ruleSets = [[PXStylesheet currentApplicationStylesheet] ruleSetsMatchingStyleable:styleable].mutableCopy;
     [ruleSets addObjectsFromArray:[[PXStylesheet currentUserStylesheet] ruleSetsMatchingStyleable:styleable]];
     [ruleSets addObjectsFromArray:[[PXStylesheet currentViewStylesheet] ruleSetsMatchingStyleable:styleable]];
 
