@@ -433,7 +433,7 @@
         }
     }
 
-    return [NSArray arrayWithArray:result];
+    return result;
 }
 
 - (StyleableView *)newClassWithId:(NSString *)identifer;

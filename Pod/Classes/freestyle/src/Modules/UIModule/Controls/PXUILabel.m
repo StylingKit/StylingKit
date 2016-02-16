@@ -282,11 +282,6 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
         callSuper1(SUPER_PREFIX, @selector(setText:), text);
 
         // Setting plain text can change applicability of child selectors like :empty or :first-line
-        if(!self.preventStyling)
-        {
-            [PXStyleUtils invalidateStyleableAndDescendants:self];
-            [self updateStylesNonRecursively];
-        }
     }
 }
 

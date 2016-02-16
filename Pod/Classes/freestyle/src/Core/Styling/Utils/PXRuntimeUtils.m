@@ -52,7 +52,7 @@
     // We're responsible for free'ing the array returned by backtrace_symbols
     free(strs);
 
-    return [NSArray arrayWithArray:callers];
+    return callers;
 }
 
 @end

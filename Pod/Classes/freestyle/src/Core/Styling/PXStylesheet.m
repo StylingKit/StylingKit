@@ -176,7 +176,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (NSArray *)mediaGroups
 {
-    return (mediaGroups_) ? [NSArray arrayWithArray:mediaGroups_] : nil;
+    return mediaGroups_;
 }
 
 + (PXStylesheet *)currentApplicationStylesheet
@@ -275,7 +275,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
         }
     }
 
-    return [NSArray arrayWithArray:result];
+    return result;
 }
 
 - (void)setURI:(NSString *)uri forNamespacePrefix:(NSString *)prefix

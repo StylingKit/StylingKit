@@ -20,17 +20,17 @@
 // Created by Anton Matosov
 //
 
+#if STK_CLOUD
+#   import "STKCloud.h"
+#endif
+
 #import "StylingKit.h"
 #import "PixateFreestyle.h"
 #import "PXStylesheet-Private.h"
 #import "STKTheme.h"
 #import "STKThemesRegistry.h"
-
-#if STK_CLOUD
-#   import "STKCloud.h"
+#import "STK_UIAlertControllerView.h"
 #import "PXLoggingUtils.h"
-
-#endif
 
 @interface StylingKit ()
 
@@ -99,9 +99,13 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             }
         }
 
+        [UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = PXStylingNone;
+        Class<UIAppearance> cla = NSClassFromString([NSString stringWithFormat:@"%@%@%@", @"CAM", @"Flip", @"Button" ]);
+        ((UIView*)[cla appearance]).styleMode = PXStylingNone;
+
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
         [UIView appearance].styleMode = PXStylingNormal;
-    };
+    }
 }
 
 - (STKTheme*)registerThemeNamed:(NSString*)themeName

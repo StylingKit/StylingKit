@@ -143,7 +143,10 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return (result.states.count > 0) ? result : nil;
 }
 
-+ (void)setStyleInfo:(PXStyleInfo *)styleInfo withRuleSets:(NSArray *)ruleSets styleable:(id<PXStyleable>)styleable stateName:(NSString *)stateName
++ (void)setStyleInfo:(PXStyleInfo *)styleInfo
+        withRuleSets:(NSArray *)ruleSets
+           styleable:(id<PXStyleable>)styleable
+           stateName:(NSString *)stateName
 {
     // merge all rule sets into a single rule set based on origin and weight/specificity
     PXRuleSet *mergedRuleSet = [PXRuleSet ruleSetWithMergedRuleSets:ruleSets];
@@ -263,7 +266,8 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     for (NSString *stateName in self.states)
     {
         // NOTE: if a styleable does not contain canStylePseudoClass, we assume that if it did, the method would return YES
-        if ([styleable respondsToSelector:@selector(canStylePseudoClass:)] && [styleable canStylePseudoClass:stateName] == NO)
+        if ([styleable respondsToSelector:@selector(canStylePseudoClass:)]
+            && ![styleable canStylePseudoClass:stateName])
         {
             //NSLog(@"skipping state '%@' for styleable: %@", stateName, [PXStyleUtils descriptionForStyleable:styleable]);
 
@@ -278,7 +282,9 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             [PXStyleUtils invalidateStyleable:styleable];
         }
 
-        if (![PXStyleUtils stylesOfStyleable:styleable matchDeclarations:activeDeclarations state:stateName])
+        if (![PXStyleUtils stylesOfStyleable:styleable
+                           matchDeclarations:activeDeclarations
+                                       state:stateName])
         {
             NSSet *activeStylers = [self stylersForState:stateName];
 

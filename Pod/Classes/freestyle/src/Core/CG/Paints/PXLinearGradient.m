@@ -346,7 +346,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
     // copy PXGradient properties, but not colors
     result.transform = self.transform;
-    result.offsets = [NSMutableArray arrayWithArray:self.offsets];
+    result.offsets = self.offsets.mutableCopy;
 
     return result;
 }

@@ -204,7 +204,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         }
     }
 
-    return [NSArray arrayWithArray:lexemes];
+    return lexemes;
 }
 
 + (NSString *)documentsFilePath
@@ -286,7 +286,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (NSArray *)parseTransitionInfos:(NSArray *)lexemes
@@ -311,7 +311,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self errorWithMessage:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (PXAnimationInfo *)parseAnimationInfo
@@ -431,7 +431,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self addError:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (NSArray *)parseAnimationFillModeList:(NSArray *)lexemes
@@ -468,7 +468,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self addError:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (NSArray *)parseAnimationPlayStateList:(NSArray *)lexemes
@@ -505,7 +505,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self addError:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (NSArray *)parseAnimationTimingFunctionList:(NSArray *)lexemes
@@ -542,7 +542,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self addError:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (PXBorderInfo *)parseBorder:(NSArray *)lexemes
@@ -778,7 +778,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self addError:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (NSArray *)parseNameList:(NSArray *)lexemes
@@ -816,7 +816,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self addError:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (NSArray *)parsePaints:(NSArray *)lexemes
@@ -934,7 +934,7 @@ static NSString *ASSET_SCHEME = @"asset://";
         [self addError:e.description];
     }
 
-    return [NSArray arrayWithArray:items];
+    return items;
 }
 
 - (id<PXShadowPaint>)parseShadow:(NSArray *)lexemes

@@ -55,7 +55,6 @@ static const char KVC_DICTIONARY;
 static const char KVC_SET;
 
 static Class SubclassForViewWithClass(UIView *view, Class viewClass);
-static void getMonthDayYear(NSDate *date, NSInteger *month_p, NSInteger *day_p, NSInteger *year_p);
 
 void PXForceLoadUIViewPXStyling() {}
 
@@ -206,7 +205,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 + (BOOL)subclassIfNeeded:(Class)superClass object:(NSObject *)object
 {
-    if([object respondsToSelector:@selector(pxClass)] == NO)
+    if(![object respondsToSelector:@selector(pxClass)])
     {
         [superClass subclassInstance:object];
         return YES;
@@ -223,7 +222,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
     if(modeVal)
     {
-        return modeVal.intValue;
+        return (PXStylingMode)modeVal.intValue;
     }
 
     return PXStylingUndefined;
@@ -231,105 +230,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)setStyleMode:(PXStylingMode) mode
 {
-    //
-    // Print version info on first run (and check for Titanium mode)
-    //
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken,
-                  ^{
-                      NSInteger month, day, year;
-
-                      // Get main info dictionary that keeps plist properties
-                      NSDictionary *infoDictionary = [NSBundle mainBundle].infoDictionary;
-
-                      // Check for Titanium mode
-                      if(infoDictionary && infoDictionary[@"PXTitanium"])
-                      {
-                          [PixateFreestyle sharedInstance].titaniumMode =
-                                [infoDictionary[@"PXTitanium"] boolValue];
-                      }
-
-                      getMonthDayYear([PixateFreestyle sharedInstance].buildDate, &month, &day, &year);
-
-                      // Print build info
-                      DDLogVerbose(@"Pixate Freestyle v%@ (API %d) %@- Build %ld/%02ld/%02ld",
-                            [PixateFreestyle sharedInstance].version,
-                            [PixateFreestyle sharedInstance].apiVersion,
-                            [PixateFreestyle sharedInstance].titaniumMode ? @"Titanium " : @"",
-                            (long) year, (long) month, (long) day);
-
-
-                  });
-
-
-    //
-    // Check 'do not subclass' list
-    //
-    if(mode != PXStylingNone
-       && ([UIView pxHasAncestor:[UIDatePicker class] forView:self]
-       ||  [UIView pxHasAncestor:[STK_UIAlertControllerView targetSuperclass]
-                   forView:self])
-       )
-    {
-        //NSLog(@"Found child of UIDatePicker %@", [[self class] description]);
-        mode = PXStylingNone;
-    }
-
-//    if ([NSStringFromClass([self class]) isEqualToString:@"CAMFlipButton"])
-//    {
-//        mode = PXStylingNone;
-//    }
-
-    //
-    // Set the styling mode value on the object
-    //
     objc_setAssociatedObject(self, &STYLE_MODE_KEY, @(mode), OBJC_ASSOCIATION_COPY_NONATOMIC);
-    
-    //NSLog(@"Found: %@ (%p)", [self class], self);
-
-    //
-    // Perform styling operations
-    //
-    if (mode == PXStylingNormal)
-    {
-        [self stk_subclassIfNeeded];
-
-        // List of classes that should not receive styling now (they should style in layoutSubviews or equiv)
-        BOOL shouldStyle = !(
-                           [self isKindOfClass:[UITableViewCell class]]
-                        || [self isKindOfClass:[UICollectionViewCell class]]
-                        );
-
-        //NSLog(@"found %@ - Styling: %@", [self class], shouldStyle ? @"YES" : @"NO");
-
-        if (shouldStyle)
-        {
-            [self updateStyles];
-        }
-    }
-}
-
-+ (BOOL)pxHasAncestor:(Class)acenstorClass forView:(UIView *)view
-{
-    // Test to see if 'view' is an acesntorClass already
-    if([view class] == acenstorClass)
-    {
-        return YES;
-    }
-    
-    // Walk up the hiearchy now
-    UIView *parent = view.superview ?: view.pxStyleParent;
-    
-    while(parent != nil)
-    {
-        if([parent class] == acenstorClass)
-        {
-            return YES;
-        }
-        parent = parent.superview ?: parent.pxStyleParent;
-    }
-    
-    return NO;
 }
 
 #pragma mark - Styling properties on UIView
@@ -365,7 +266,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     return objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
 }
 
-- (NSArray *)styleClasses
+- (NSSet *)styleClasses
 {
     return objc_getAssociatedObject(self, &STYLE_CLASSES_KEY);
 }
@@ -409,50 +310,53 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)setStyleClass:(NSString *)aClass
 {
     // make sure we have a string - needed to filter bad input from IB
-    aClass = aClass.description;
+    aClass = [aClass.description stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-#if 1
+#if 0
     if (aClass.length)
     {
         aClass = [NSString stringWithFormat:@"%@ debug", aClass];
     }
 #endif
-	
-	// reduce white spaces and duplicates
-	NSMutableSet *mutSet = [NSMutableSet new];
-	[mutSet addObjectsFromArray:[aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-	[mutSet removeObject:@""];
 
-    //Precalculate classes array for performance gain
-    NSArray *classes = mutSet.allObjects;
-    classes = [classes sortedArrayUsingComparator:^NSComparisonResult(NSString *class1, NSString *class2) {
-        return [class1 compare:class2];
-    }];
-	
-	aClass = [classes componentsJoinedByString:@" "];
-	
-	NSString *previousClass = objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
-	if((!aClass && !previousClass) || [aClass isEqualToString:previousClass]){
-		// no change
-		return;
-	}
-	
-	objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
-	
-    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, classes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-	if (aClass.length)
-    {
-        self.styleMode = PXStylingNormal;
-	}
+    objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-//    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
+    NSArray *classes = [aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSMutableSet *styleClasses = [NSMutableSet setWithArray:classes];
+    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, styleClasses, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+//
+//	// reduce white spaces and duplicates
+//	NSMutableSet *mutSet = [NSMutableSet setWithArray:[aClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+//	[mutSet removeObject:@""];
+//
+//    //Precalculate classes array for performance gain
+//    NSArray *classes = mutSet.allObjects;
+//
+//	aClass = [classes componentsJoinedByString:@" "];
+//
+//	NSString *previousClass = objc_getAssociatedObject(self, &STYLE_CLASS_KEY);
+//	if((!aClass && !previousClass) || [aClass isEqualToString:previousClass]){
+//		// no change
+//		return;
+//	}
+//
+//	objc_setAssociatedObject(self, &STYLE_CLASS_KEY, aClass, OBJC_ASSOCIATION_COPY_NONATOMIC);
+//
+//    objc_setAssociatedObject(self, &STYLE_CLASSES_KEY, mutSet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//
+//	if (aClass.length)
+//    {
+////        self.styleMode = PXStylingNormal;
+//	}
+//
+////    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
 }
 
 - (void)setStyleId:(NSString *)anId
@@ -522,25 +426,34 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         // If not recursive, style virtual children only (not subviews)
         if(!recurse)
         {
-            for (id<PXStyleable> child in styleable.pxStyleChildren)
-            {
-                if ([child conformsToProtocol:@protocol(PXVirtualControl)] && child.styleMode == PXStylingNormal)
-                {
-                    [PXStyleUtils enumerateStyleableDescendants:child usingBlock:^(id<PXStyleable> styleable, BOOL *stop, BOOL *stopDescending)
-                    {
-                        if ([styleable conformsToProtocol:@protocol(PXVirtualControl)] && styleable.styleMode == PXStylingNormal)
-                        {
-                            [PXStyleUtils updateStyleForStyleable:styleable];
-                        }
-                    }];
-                    
-                    [PXStyleUtils updateStyleForStyleable:child];
-                }
-            }
+            [self prv_updateStylesForVirtualChildrenOfStylable:styleable];
         }
         
         // Style the styleable and optionally ALL the children (including virtual children)
-        [PXStyleUtils updateStylesForStyleable:styleable andDescendants:recurse];
+        [PXStyleUtils updateStylesForStyleable:styleable
+                                andDescendants:recurse];
+    }
+}
+
++ (void)prv_updateStylesForVirtualChildrenOfStylable:(id <PXStyleable>)styleable
+{
+    for (id<PXStyleable> child in styleable.pxStyleChildren)
+    {
+        if (child.styleMode == PXStylingNormal
+            && [child conformsToProtocol:@protocol(PXVirtualControl)])
+        {
+            [PXStyleUtils enumerateStyleableDescendants:child
+                                             usingBlock:^(id <PXStyleable> childStyleable, BOOL *stop, BOOL *stopDescending)
+                                             {
+                                                 if (childStyleable.styleMode == PXStylingNormal
+                                                     && [childStyleable conformsToProtocol:@protocol(PXVirtualControl)])
+                                                 {
+                                                     [PXStyleUtils updateStyleForStyleable:childStyleable];
+                                                 }
+                                             }];
+
+            [PXStyleUtils updateStyleForStyleable:child];
+        }
     }
 }
 
@@ -628,18 +541,14 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)removeStyleClass:(NSString *)styleClass
 {
-    styleClass = styleClass.description;
-    NSMutableSet *mutSet = [NSMutableSet new];
-	[mutSet addObjectsFromArray:[styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-	[mutSet removeObject:@""];
-    NSArray *classesToRemove = mutSet.allObjects;
-	NSArray *currentClasses = objc_getAssociatedObject(self, &STYLE_CLASSES_KEY);
-    mutSet = [[NSMutableSet alloc] initWithArray:currentClasses];
-    for (NSString *classToRemove in classesToRemove){
-        [mutSet removeObject:classToRemove];
-    }
-    NSArray *classes = mutSet.allObjects;
-	self.styleClass = [classes componentsJoinedByString:@" "];
+    styleClass = [styleClass.description stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    NSArray *toRemove = [styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    NSMutableSet *newClasses = self.styleClasses.mutableCopy;
+    [newClasses minusSet:[NSSet setWithArray:toRemove]];
+
+	self.styleClass = [newClasses.allObjects componentsJoinedByString:@" "];
 }
 
 - (void)styleClassed:(NSString *)styleClass enabled:(bool)enabled
@@ -651,19 +560,15 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 	}
 }
 
+- (void)stkUpdateStylesFromLayoutSubviewsRecursively:(BOOL)recursively
+{
+    [UIView updateStyles:self recursively:recursively];
+}
+
 @end
 
 #pragma mark - Static Functions
 
-static void getMonthDayYear(NSDate *date, NSInteger *month_p, NSInteger *day_p, NSInteger *year_p)
-{
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
-
-    *month_p = components.month;
-    *day_p   = components.day;
-    *year_p  = components.year;
-}
 
 static Class SubclassForViewWithClass(UIView *view, Class viewClass)
 {

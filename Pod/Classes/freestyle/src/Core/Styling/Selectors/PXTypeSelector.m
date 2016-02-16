@@ -73,7 +73,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (NSArray *)attributeExpressions
 {
-    return [NSArray arrayWithArray:attributeExpressions];
+    return attributeExpressions;
 }
 
 - (BOOL)hasPseudoClasses
@@ -109,9 +109,9 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return result;
 }
 
-- (NSArray *)styleClasses
+- (NSSet *)styleClasses
 {
-    NSMutableArray *result = nil;
+    NSMutableSet *result = nil;
 
     for (id<PXSelector> expression in attributeExpressions)
     {
@@ -121,14 +121,14 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
             if (result == nil)
             {
-                result = [NSMutableArray array];
+                result = [NSMutableSet setWithCapacity:attributeExpressions.count];
             }
 
             [result addObject:classSelector.className];
         }
     }
 
-    return (result != nil) ? [NSArray arrayWithArray:result] : nil;
+    return (result != nil) ? result : nil;
 }
 
 #pragma mark - Methods

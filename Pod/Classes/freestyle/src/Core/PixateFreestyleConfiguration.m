@@ -33,7 +33,7 @@
 @implementation PixateFreestyleConfiguration
 {
     NSMutableDictionary *properties_;
-    NSArray *_styleClasses;
+    NSSet *_styleClasses;
 }
 
 @synthesize styleChangeable;
@@ -142,12 +142,10 @@ STK_DEFINE_CLASS_LOG_LEVEL
     // trim leading and trailing whitespace
     _styleClass = [aClass stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSArray *classes = [_styleClass componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    _styleClasses = [classes sortedArrayUsingComparator:^NSComparisonResult(NSString *class1, NSString *class2) {
-        return [class1 compare:class2];
-    }];
+    _styleClasses = [NSSet setWithArray:classes];
 }
 
-- (NSArray *)styleClasses {
+- (NSSet *)styleClasses {
     return _styleClasses;
 }
 
@@ -178,7 +176,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)setBounds:(CGRect)bounds

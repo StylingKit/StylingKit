@@ -39,8 +39,6 @@
   [UIView registerDynamicSubclass:self
                          forClass:[self targetSuperclass]
                   withElementName:@"alert-view"];
-
-//  [UIView appearanceWhenContainedIn:[self targetSuperclass], nil].styleMode = PXStylingNone;
 }
 
 + (Class)targetSuperclass
