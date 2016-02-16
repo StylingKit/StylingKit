@@ -115,7 +115,7 @@ void PXForceLoadUINavigationItemPXStyling() {}
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (CGRect)bounds

@@ -310,7 +310,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)setStyleClass:(NSString *)aClass

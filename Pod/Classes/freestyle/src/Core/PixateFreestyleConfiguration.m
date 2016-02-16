@@ -176,7 +176,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)setBounds:(CGRect)bounds

@@ -104,7 +104,7 @@
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (NSDictionary *)viewStylersByProperty

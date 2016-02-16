@@ -119,7 +119,7 @@
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 #pragma mark - Overrides

@@ -234,6 +234,11 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return [parts componentsJoinedByString:@""];
 }
 
++ (NSString *)styleKeyFromStyleable:(id<PXStyleable>)styleable
+{
+    return [[self.class description] stringByAppendingPathComponent:[PXStyleUtils selectorFromStyleable:styleable]];
+}
+
 + (NSString *)selectorFromStyleable:(id<PXStyleable>)styleable
 {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
