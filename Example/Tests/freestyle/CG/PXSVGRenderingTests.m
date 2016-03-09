@@ -86,6 +86,17 @@
     return shapeView.renderToImage;
 }
 
+#pragma mark - Negative loading tests
+
+- (void)testLoadingOfNilURL
+{
+    PXShapeView *shapeView = [[PXShapeView alloc] init];
+
+    [shapeView loadSceneFromURL:nil];
+
+    XCTAssertNil(shapeView.document, @"Loading of nil URL should give nil document");
+}
+
 #pragma mark - Element Tests
 
 - (void)testLine

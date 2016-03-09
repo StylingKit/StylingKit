@@ -104,10 +104,9 @@
     return result;
 }
 
-// TODO: this has been exposed and when used directly, resourcePath will keep it's old value
-- (void)loadSceneFromURL:(NSURL *)URL
+- (NSCache *)prv_shapeCache
 {
-    static NSCache * shapeCache;
+    static NSCache *shapeCache;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         shapeCache = [[NSCache alloc] init];
@@ -115,24 +114,22 @@
 
         shapeCache.countLimit = PixateFreestyle.configuration.imageCacheCount;
     });
+    return shapeCache;
+}
 
-    id key = URL;
-    self.document = (key != nil) ? [shapeCache objectForKey:key] : nil;
+// TODO: this has been exposed and when used directly, resourcePath will keep it's old value
+- (void)loadSceneFromURL:(NSURL*)URL
+{
+    id cacheKey = URL.absoluteURL;
+    self.document = [[self prv_shapeCache] objectForKey:cacheKey];
 
     if (self.document == nil)
     {
         self.document = [PXSVGLoader loadFromURL:URL];
     }
 
-    if (self.document)
-    {
-        // estimate cost as number of pixels times 4 bytes per pixel. This is probably lower than actual
-//        NSUInteger cost = self.bounds.size.width * self.bounds.size.height * 4;
-
-        [shapeCache setObject:self.document
-                       forKey:key
-                         cost:0];
-    }
+    [[self prv_shapeCache] setObject:self.document
+                              forKey:cacheKey];
 }
 
 - (void)applyBoundsToScene
