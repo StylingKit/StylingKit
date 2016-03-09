@@ -97,7 +97,7 @@ static PXValueParser *VALUE_PARSER;
     // test the result
     if (!success)
     {
-        //        [parser logErrorMessageWithFormat:@"Error parsing document: %@", URL];
+        [parser logErrorMessageWithFormat:@"Error parsing SVG document from URL: %@", URL];
     }
     
     PXShapeDocument *document = parser->document;
@@ -124,7 +124,7 @@ static PXValueParser *VALUE_PARSER;
     // test the result
     if (!success)
     {
-//        [parser logErrorMessageWithFormat:@"Error parsing document: %@", URL];
+        [parser logErrorMessageWithFormat:@"Error parsing SVG document from data"];
     }
 
     PXShapeDocument *document = parser->document;
