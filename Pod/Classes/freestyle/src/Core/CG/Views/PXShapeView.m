@@ -104,32 +104,10 @@
     return result;
 }
 
-- (NSCache *)prv_shapeCache
-{
-    static NSCache *shapeCache;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        shapeCache = [[NSCache alloc] init];
-        shapeCache.name = @"StylingKit Shape Cache";
-
-        shapeCache.countLimit = PixateFreestyle.configuration.imageCacheCount;
-    });
-    return shapeCache;
-}
-
-// TODO: this has been exposed and when used directly, resourcePath will keep it's old value
 - (void)loadSceneFromURL:(NSURL*)URL
 {
-    id cacheKey = URL.absoluteURL;
-    self.document = [[self prv_shapeCache] objectForKey:cacheKey];
-
-    if (self.document == nil)
-    {
-        self.document = [PXSVGLoader loadFromURL:URL];
-    }
-
-    [[self prv_shapeCache] setObject:self.document
-                              forKey:cacheKey];
+    _resourcePath = URL.absoluteString;
+    self.document = [PXSVGLoader loadFromURL:URL];
 }
 
 - (void)applyBoundsToScene
