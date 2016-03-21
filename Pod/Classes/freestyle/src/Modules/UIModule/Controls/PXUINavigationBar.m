@@ -248,7 +248,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
          {
              [UIBarButtonItem UpdateStyleWithRuleSetHandler:ruleSet
                                                     context:context
-                                                     target:[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]];
+                                                     target:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]];
          }];
         
         barButtons.supportedPseudoClasses = BUTTONS_PSEUDOCLASS_MAP.allKeys;
@@ -261,12 +261,12 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
             PXShapeStyler.sharedInstance,
             PXBoxShadowStyler.sharedInstance,
 
-            [[PXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]]],
+            [[PXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
             
-            [[PXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem PXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]]],
+            [[PXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem PXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
 
             [[PXGenericStyler alloc] initWithHandlers: @{
-                @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]]
+                @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]
                 }],
             ];
         
@@ -283,7 +283,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
              {
                  UIImage *image = context.backgroundImage;
                  
-                 [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+                 [[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]
                       setBackButtonBackgroundImage:image
                       forState:[context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP]
                       barMetrics:UIBarMetricsDefault];
