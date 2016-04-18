@@ -66,8 +66,6 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Cloud' do |ss|
-    ss.default_subspec = 'StylingKit/Cloud/Main'
-
     ss.subspec 'Main' do |sss|
       sss.dependency 'StylingKit/Main'
       sss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
