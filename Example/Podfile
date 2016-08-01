@@ -2,7 +2,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 
 platform :ios, '8.1'
-
 use_frameworks!
 
 def common_pods
@@ -12,11 +11,11 @@ def common_pods
   pod "StylingKit/Cloud/WithLogging", :path => "../"
 end
 
-target 'StylingKit_Example', :exclusive => true do
+target 'StylingKit_Example' do
   common_pods
 end
 
-target 'StylingKit_Tests', :exclusive => true do
+target 'StylingKit_Tests' do
   common_pods
 
   pod "ReactiveCocoa", "~> 2.5"

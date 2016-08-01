@@ -8,21 +8,22 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - Expecta (1.0.5)
-  - FBSnapshotTestCase (2.0.7):
-    - FBSnapshotTestCase/SwiftSupport (= 2.0.7)
-  - FBSnapshotTestCase/Core (2.0.7)
-  - FBSnapshotTestCase/SwiftSupport (2.0.7):
+  - FBSnapshotTestCase (2.1.2):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
+  - FBSnapshotTestCase/Core (2.1.2)
+  - FBSnapshotTestCase/SwiftSupport (2.1.2):
     - FBSnapshotTestCase/Core
-  - GCDWebServer/CocoaLumberjack (3.3.2):
+  - GCDWebServer/CocoaLumberjack (3.3.3):
     - CocoaLumberjack (~> 2)
     - GCDWebServer/Core
-  - GCDWebServer/Core (3.3.2)
-  - GCDWebServer/WebDAV (3.3.2):
-    - GCDWebServer/WebDAV/Core (= 3.3.2)
-  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.2):
+  - GCDWebServer/Core (3.3.3)
+  - GCDWebServer/WebDAV (3.3.3):
+    - GCDWebServer/WebDAV/CocoaLumberjack (= 3.3.3)
+    - GCDWebServer/WebDAV/Core (= 3.3.3)
+  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.3):
     - GCDWebServer/CocoaLumberjack
     - GCDWebServer/WebDAV/Core
-  - GCDWebServer/WebDAV/Core (3.3.2):
+  - GCDWebServer/WebDAV/Core (3.3.3):
     - GCDWebServer/Core
   - Kiwi (2.4.0)
   - ReactiveCocoa (2.5):
@@ -32,28 +33,33 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - StylingKit/Cloud/Main (0.4.0):
+  - StylingKit/Cloud/Main (0.4.1):
     - GCDWebServer/WebDAV (~> 3)
     - StylingKit/Main
-  - StylingKit/Cloud/WithLogging (0.4.0):
+  - StylingKit/Cloud/WithLogging (0.4.1):
     - GCDWebServer/WebDAV/CocoaLumberjack (~> 3)
     - StylingKit/Cloud/Main
     - StylingKit/WithLogging
-  - StylingKit/Freestyle (0.4.0)
-  - StylingKit/Main (0.4.0):
+  - StylingKit/Freestyle (0.4.1)
+  - StylingKit/Main (0.4.1):
     - StylingKit/Freestyle
-  - StylingKit/WithLogging (0.4.0):
+  - StylingKit/WithLogging (0.4.1):
     - CocoaLumberjack (~> 2)
     - StylingKit/Main
-  - StylingKitThemes/blue/css (0.1.0):
+  - StylingKitThemes/blue/css (0.1.3):
     - StylingKitThemes/Core
-    - StylingKitThemes/icons
-  - StylingKitThemes/Core (0.1.0)
-  - StylingKitThemes/icons (0.1.0)
+  - StylingKitThemes/Core (0.1.3):
+    - StylingKitThemes/Core/All (= 0.1.3)
+    - StylingKitThemes/Core/Icons (= 0.1.3)
+    - StylingKitThemes/Core/Scripts (= 0.1.3)
+  - StylingKitThemes/Core/All (0.1.3):
+    - StylingKitThemes/Core/Icons
+    - StylingKitThemes/Core/Scripts
+  - StylingKitThemes/Core/Icons (0.1.3)
+  - StylingKitThemes/Core/Scripts (0.1.3)
 
 DEPENDENCIES:
-  - CocoaLumberjack (from `https://github.com/anton-matosov/CocoaLumberjack.git`,
-    branch `master`)
+  - CocoaLumberjack (from `https://github.com/anton-matosov/CocoaLumberjack.git`, branch `master`)
   - Expecta
   - FBSnapshotTestCase
   - Kiwi
@@ -78,11 +84,13 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
-  FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
-  GCDWebServer: 2a375ec42839a41d7187d04e5b688d32fa5c4cd5
+  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
+  GCDWebServer: 1c39a1f0763e4eb492bee021e4270fce097d3555
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  StylingKit: 27251582281026038d4170cda4ddbdbaeb054a91
-  StylingKitThemes: f8a4e11e4aa170b010a7b02d1cc61fbcd7fd2be0
+  StylingKit: d079992d107232ba0bf1e0a329861ff9bcb42060
+  StylingKitThemes: aa44797406ab67bd8a765265731d37363d40554a
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: d724561f9eb30b0008c28a766d8c4658545395ee
+
+COCOAPODS: 1.0.1

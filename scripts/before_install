@@ -14,8 +14,10 @@ brew_install()
     brew outdated $1 || brew upgrade $1
 }
 
-echo "== Updating homebrew database"
-brew update
+if [[ $TRAVIS != true ]]; then
+	echo "== Updating homebrew database"
+	brew update
+fi
 
 echo "== Updating tools"
 
@@ -29,16 +31,17 @@ if [[ $TRAVIS != true ]]; then
 	echo "Ruby version after update"
 	which ruby
 	ruby --version
+
+
+	echo "== Updating cocoapods master repo"
+	pod setup --silent
+	echo "== Done"
 fi
 
 brew_install carthage
 
-gem install cocoapods --version 0.39.0
-
-echo "== Updating cocoapods master repo"
-pod setup --silent
-echo "== Done"
-
+gem install cocoapods
+	
 gem install fastlane
 gem install match
 
