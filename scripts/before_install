@@ -32,7 +32,6 @@ if [[ $TRAVIS != true ]]; then
 	which ruby
 	ruby --version
 
-	gem install cocoapods
 
 	echo "== Updating cocoapods master repo"
 	pod setup --silent
@@ -41,6 +40,8 @@ fi
 
 brew_install carthage
 
+gem install cocoapods
+	
 gem install fastlane
 gem install match
 
