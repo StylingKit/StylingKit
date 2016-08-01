@@ -25,13 +25,20 @@ which ruby
 ruby --version
 
 if [[ $TRAVIS != true ]]; then
-	brew_install "homebrew/versions/ruby22" # must have for El Capitan
-	brew switch ruby 2.2.4 # the latest version compatible with cocoapods 0.38.2 and 0.39.0 (latest to date)
+	brew_install rbenv ruby-build
 
-	echo "Ruby version after update"
-	which ruby
-	ruby --version
+	RUBY_VERSION="2.2.4"
 
+	# Add rbenv to bash so that it loads every time you open a terminal
+	RBENV_CONF='if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'
+	if ! grep -xq "$RBENV_CONF" ~/.bash_profile; then
+		echo "$RBENV_CONF" >> ~/.bash_profile
+		source ~/.bash_profile
+	fi
+
+	# Install Ruby
+	rbenv install "$RUBY_VERSION" --skip-existing
+	rbenv global "$RUBY_VERSION" --skip-existing
 
 	echo "== Updating cocoapods master repo"
 	pod setup --silent
@@ -41,7 +48,7 @@ fi
 brew_install carthage
 
 gem install cocoapods
-	
+
 gem install fastlane
 gem install match
 
