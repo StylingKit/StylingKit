@@ -2,11 +2,15 @@
 
 set -e
 
-open -b com.apple.iphonesimulator #start simulator in advance as xcodebuild sometimes fails to do so
+workspace="Example/StylingKit.xcworkspace"
+scheme="StylingKit-Example"
+destination="platform=iOS Simulator,name=iPhone 6s"
+
+# open -b com.apple.iphonesimulator #start simulator in advance as xcodebuild sometimes fails to do so
 set -o pipefail && xcodebuild clean build -workspace "$workspace" -scheme "$scheme" -destination "$destination" ONLY_ACTIVE_ARCH=NO | xcpretty
 set -o pipefail && xcodebuild test -workspace "$workspace" -scheme "$scheme" -destination "$destination" | xcpretty
 carthage build --no-skip-current
-pod lib lint
+pod lib lint --verbose # to prevent travis of killing build because of no output
 
 
 
