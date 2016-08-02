@@ -8,10 +8,15 @@ if [ -z $(which brew) ] ;then
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew_install()
+function brew_install()
 {
     brew list $1 > /dev/null || brew install $1
     brew outdated $1 || brew upgrade $1
+}
+
+function gem_install()
+{
+	gem install "$@" --no-document
 }
 
 if [[ $TRAVIS != true ]]; then
@@ -24,7 +29,7 @@ echo "== Updating tools"
 which ruby
 ruby --version
 
-gem install cocoapods
+gem_install cocoapods
 pod --version
 
 if [[ $TRAVIS != true ]]; then
@@ -51,8 +56,8 @@ fi
 brew_install carthage
 
 
-gem install fastlane
-gem install match
+gem_install fastlane
+gem_install match
 
-gem install sass
+gem_install sass
 
