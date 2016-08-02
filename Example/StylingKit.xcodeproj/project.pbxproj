@@ -3798,7 +3798,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PODS_ROOT}/Headers/Private/StylingKit",
+					"${SRCROOT}/../Pod/Classes/freestyle/src/**",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
@@ -3819,7 +3819,7 @@
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PODS_ROOT}/Headers/Private/StylingKit",
+					"${SRCROOT}/../Pod/Classes/freestyle/src/**",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
