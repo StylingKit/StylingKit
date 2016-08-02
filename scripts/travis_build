@@ -10,7 +10,7 @@ destination="platform=iOS Simulator,name=iPhone 6s"
 set -o pipefail && xcodebuild clean build -workspace "$workspace" -scheme "$scheme" -destination "$destination" ONLY_ACTIVE_ARCH=NO | xcpretty
 set -o pipefail && xcodebuild test -workspace "$workspace" -scheme "$scheme" -destination "$destination" | xcpretty
 carthage build --no-skip-current
-pod lib lint --verbose # to prevent travis of killing build because of no output
+pod lib lint --verbose | xcpretty # use verbose to prevent travis of killing build because of no output
 
 
 
