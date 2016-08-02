@@ -24,6 +24,9 @@ echo "== Updating tools"
 which ruby
 ruby --version
 
+gem install cocoapods
+pod --version
+
 if [[ $TRAVIS != true ]]; then
 	brew_install rbenv ruby-build
 
@@ -40,15 +43,13 @@ if [[ $TRAVIS != true ]]; then
 	rbenv install "$RUBY_VERSION" --skip-existing
 	rbenv global "$RUBY_VERSION" --skip-existing
 
+	echo "== Updating cocoapods master repo"
+	pod setup --silent
+	echo "== Done"
 fi
 
 brew_install carthage
 
-gem install cocoapods
-pod --version
-echo "== Updating cocoapods master repo"
-pod setup --silent
-echo "== Done"
 
 gem install fastlane
 gem install match
