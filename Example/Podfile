@@ -10,13 +10,13 @@ end
 
 target 'StylingKit_Example' do
   common_pods
-end
 
-target 'StylingKit_Tests' do
-  common_pods
-
-  pod "ReactiveCocoa", "~> 2.5"
-  pod 'Expecta', :inhibit_warnings => true
-  pod 'Kiwi', :inhibit_warnings => true
-  pod 'FBSnapshotTestCase', :inhibit_warnings => true
+  target 'StylingKit_Tests' do
+    inherit! :search_paths
+  
+    pod "ReactiveCocoa", "~> 2.5"
+    pod 'Expecta', :inhibit_warnings => true
+    pod 'Kiwi', :inhibit_warnings => true
+    pod 'FBSnapshotTestCase', :inhibit_warnings => true
+  end
 end
