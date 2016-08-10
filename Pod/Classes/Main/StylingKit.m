@@ -100,8 +100,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         }
 
         [UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = PXStylingNone;
-        Class<UIAppearance> cla = NSClassFromString([NSString stringWithFormat:@"%@%@%@", @"CAM", @"Flip", @"Button" ]);
-        ((UIView*)[cla appearance]).styleMode = PXStylingNone;
+
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
         [UIView appearance].styleMode = PXStylingNormal;
