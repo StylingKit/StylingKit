@@ -1,0 +1,20 @@
+PODS:
+  - StylingKit (0.4.1):
+    - StylingKit/Main (= 0.4.1)
+  - StylingKit/Freestyle (0.4.1)
+  - StylingKit/Main (0.4.1):
+    - StylingKit/Freestyle
+
+DEPENDENCIES:
+  - StylingKit (from `../`)
+
+EXTERNAL SOURCES:
+  StylingKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  StylingKit: d079992d107232ba0bf1e0a329861ff9bcb42060
+
+PODFILE CHECKSUM: ae2ef3915345a87a57991193b1d05fb26f15e968
+
+COCOAPODS: 1.0.1

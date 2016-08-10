@@ -1,0 +1,6 @@
+framework module StylingKit {
+  umbrella header "StylingKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
