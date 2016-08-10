@@ -1,0 +1,18 @@
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#endif
+
+//
+//  Prefix header
+//  Modified by Anton Matosov on 4/1/16.
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+// #define PX_LOGGING
+
+#ifdef __OBJC__
+
+#import "PXLog.h"
+
+#endif
