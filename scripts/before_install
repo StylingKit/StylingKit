@@ -32,9 +32,11 @@ ruby --version
 gem_install cocoapods
 pod --version
 
-echo "== Updating cocoapods master repo"
-pod setup --silent
-echo "== Done"
+if [[ $TRAVIS != true ]]; then
+	echo "== Updating cocoapods master repo"
+	pod setup --silent
+	echo "== Done"
+fi
 
 if [[ $TRAVIS != true ]]; then
 	brew_install rbenv ruby-build
