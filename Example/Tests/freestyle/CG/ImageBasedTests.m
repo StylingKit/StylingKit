@@ -60,8 +60,6 @@
 
         for (size_t row = 0; row < CGImageGetHeight(cgImage1); row++)
         {
-            BOOL exitTest = NO;
-
             for (size_t column = 0; column < CGImageGetWidth(cgImage1); column++)
             {
                 size_t columnOffset = column * bytesPerPixel;
@@ -77,18 +75,10 @@
 
                     if (byte1 != byte2)
                     {
-                        // NOTE: yuck
-                        exitTest = YES;
-                        break;
+                        return;
                     }
                 }
-
-                // NOTE: yuck
-                if (exitTest) break;
             }
-
-            // NOTE: yuck
-            if (exitTest) break;
 
             offset1 += bytesPerRow1;
             offset2 += bytesPerRow2;
