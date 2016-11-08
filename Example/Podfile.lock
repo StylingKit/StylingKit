@@ -8,11 +8,6 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - Expecta (1.0.5)
-  - FBSnapshotTestCase (2.1.2):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
-  - FBSnapshotTestCase/Core (2.1.2)
-  - FBSnapshotTestCase/SwiftSupport (2.1.2):
-    - FBSnapshotTestCase/Core
   - GCDWebServer/CocoaLumberjack (3.3.3):
     - CocoaLumberjack (~> 2)
     - GCDWebServer/Core
@@ -61,7 +56,6 @@ PODS:
 DEPENDENCIES:
   - CocoaLumberjack (from `https://github.com/anton-matosov/CocoaLumberjack.git`, branch `master`)
   - Expecta
-  - FBSnapshotTestCase
   - Kiwi
   - ReactiveCocoa (~> 2.5)
   - StylingKit/Cloud/WithLogging (from `../`)
@@ -84,13 +78,12 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
-  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
   GCDWebServer: 1c39a1f0763e4eb492bee021e4270fce097d3555
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   StylingKit: d079992d107232ba0bf1e0a329861ff9bcb42060
   StylingKitThemes: aa44797406ab67bd8a765265731d37363d40554a
 
-PODFILE CHECKSUM: 5b8852dd254b87a477ccb56c5d8dd31f2ba9e773
+PODFILE CHECKSUM: 8ae85d557dcdde83adece775f95251b844f87b73
 
 COCOAPODS: 1.0.1
