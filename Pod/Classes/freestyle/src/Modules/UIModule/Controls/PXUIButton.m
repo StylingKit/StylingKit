@@ -315,7 +315,7 @@ static const char STYLE_CHILDREN;
 
 - (CGSize) intrinsicContentSize
 {
-    CGSize result = [super intrinsicContentSize]; 
+    CGSize result = ((CGSize(*)(id, Class, SEL))callSuper0)(SUPER_PREFIX, @selector(intrinsicContentSize));
 
     if ([PXUtils isBeforeIOS7O])
     {
