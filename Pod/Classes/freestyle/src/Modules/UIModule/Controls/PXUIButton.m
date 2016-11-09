@@ -315,7 +315,12 @@ static const char STYLE_CHILDREN;
 
 - (CGSize) intrinsicContentSize
 {
-    CGSize result = ((CGSize(*)(id, Class, SEL))callSuper0)(SUPER_PREFIX, @selector(intrinsicContentSize));
+    struct objc_super superObj;
+    superObj.receiver = self;
+    superObj.super_class = [self pxClass];
+    
+    typedef CGSize(*callT)(struct objc_super*, SEL);
+    CGSize result = ((callT)objc_msgSendSuper_stret)(&superObj, @selector(intrinsicContentSize));
 
     if ([PXUtils isBeforeIOS7O])
     {
