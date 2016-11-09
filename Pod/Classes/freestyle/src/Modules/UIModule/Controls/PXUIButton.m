@@ -65,6 +65,12 @@
 static NSDictionary *PSEUDOCLASS_MAP;
 static const char STYLE_CHILDREN;
 
+// if on ARM64, then we can't/don't need to use 'objc_msgSendSuper_stret'
+#if defined(__arm64__)
+#define objc_msgSendSuper_stret objc_msgSendSuper
+#endif
+
+
 @implementation PXUIButton
 
 #pragma mark - Static methods
@@ -321,7 +327,7 @@ static const char STYLE_CHILDREN;
     
     typedef CGSize(*callT)(struct objc_super*, SEL);
     CGSize result = ((callT)objc_msgSendSuper_stret)(&superObj, @selector(intrinsicContentSize));
-
+    
     if ([PXUtils isBeforeIOS7O])
     {
         Class roundedButton = NSClassFromString(@"UIRoundedRectButton");
