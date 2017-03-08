@@ -68,3 +68,4 @@ atlassian-ide-plugin.xml
 fastlane/report.xml
 fastlane/test_output
 
+.sass-cache
