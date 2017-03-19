@@ -9,7 +9,7 @@ destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
 
 # open -b com.apple.iphonesimulator #start simulator in advance as xcodebuild sometimes fails to do so
 set -o pipefail && xcodebuild clean build -workspace "$workspace" -scheme "$scheme" -destination "$destination" ONLY_ACTIVE_ARCH=NO | xcpretty
-set -o pipefail && xcodebuild test -workspace "$workspace" -scheme "$scheme" -destination "$destination" | xcpretty
+set -o pipefail && travis_retry xcodebuild test -workspace "$workspace" -scheme "$scheme" -destination "$destination" | xcpretty
 carthage build --no-skip-current
 pod lib lint --verbose | xcpretty # use verbose to prevent travis of killing build because of no output
 
