@@ -59,7 +59,6 @@ brew_install carthage
 
 gem_install xcpretty
 gem_install fastlane
-gem_install match
 
 gem_install sass
 
