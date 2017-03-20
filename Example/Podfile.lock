@@ -1,11 +1,9 @@
 PODS:
-  - CocoaLumberjack (2.2.0):
-    - CocoaLumberjack/Default (= 2.2.0)
-    - CocoaLumberjack/Extensions (= 2.2.0)
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
+  - CocoaLumberjack (3.1.0):
+    - CocoaLumberjack/Default (= 3.1.0)
+    - CocoaLumberjack/Extensions (= 3.1.0)
+  - CocoaLumberjack/Default (3.1.0)
+  - CocoaLumberjack/Extensions (3.1.0):
     - CocoaLumberjack/Default
   - Expecta (1.0.5)
   - FBSnapshotTestCase (2.1.4):
@@ -13,8 +11,10 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
+  - GCDWebServer (3.3.3):
+    - GCDWebServer/Core (= 3.3.3)
   - GCDWebServer/CocoaLumberjack (3.3.3):
-    - CocoaLumberjack (~> 2)
+    - CocoaLumberjack (~> 3)
     - GCDWebServer/Core
   - GCDWebServer/Core (3.3.3)
   - GCDWebServer/WebDAV (3.3.3):
@@ -44,7 +44,7 @@ PODS:
   - StylingKit/Main (0.4.1):
     - StylingKit/Freestyle
   - StylingKit/WithLogging (0.4.1):
-    - CocoaLumberjack (~> 2)
+    - CocoaLumberjack (~> 3.0)
     - StylingKit/Main
   - StylingKitThemes/blue/css (0.1.3):
     - StylingKitThemes/Core
@@ -59,38 +59,39 @@ PODS:
   - StylingKitThemes/Core/Scripts (0.1.3)
 
 DEPENDENCIES:
-  - CocoaLumberjack (from `https://github.com/anton-matosov/CocoaLumberjack.git`, branch `master`)
+  - CocoaLumberjack (~> 3.0)
   - Expecta
   - FBSnapshotTestCase
+  - GCDWebServer (from `https://github.com/StylingKit/GCDWebServer.git`, branch `3.3.3-patched`)
   - Kiwi
   - ReactiveCocoa (~> 2.5)
   - StylingKit/Cloud/WithLogging (from `../`)
   - StylingKitThemes/blue/css (from `./themes`)
 
 EXTERNAL SOURCES:
-  CocoaLumberjack:
-    :branch: master
-    :git: https://github.com/anton-matosov/CocoaLumberjack.git
+  GCDWebServer:
+    :branch: 3.3.3-patched
+    :git: https://github.com/StylingKit/GCDWebServer.git
   StylingKit:
     :path: "../"
   StylingKitThemes:
     :path: "./themes"
 
 CHECKOUT OPTIONS:
-  CocoaLumberjack:
-    :commit: fa6e8f50224c0fc98050eaed33d22c6bf19faabb
-    :git: https://github.com/anton-matosov/CocoaLumberjack.git
+  GCDWebServer:
+    :commit: 1c61d79f652b6c58e8060a577e67c8789797adf1
+    :git: https://github.com/StylingKit/GCDWebServer.git
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  GCDWebServer: 1c39a1f0763e4eb492bee021e4270fce097d3555
+  GCDWebServer: e3d585846e35c0cd1e028c704010056cc0724a93
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  StylingKit: d079992d107232ba0bf1e0a329861ff9bcb42060
+  StylingKit: b8d90d8f432dbefd6282a067f2052aa79ae97d98
   StylingKitThemes: aa44797406ab67bd8a765265731d37363d40554a
 
-PODFILE CHECKSUM: 1444ef01ef0be76bdeb2c4577b0e9686015127d4
+PODFILE CHECKSUM: 6bef3a7511fdc53f08ea1de67fa53a31354027cd
 
 COCOAPODS: 1.2.0
