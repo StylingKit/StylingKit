@@ -2,7 +2,7 @@ platform :ios, '8.1'
 use_frameworks!
 
 def common_pods
-  pod 'CocoaLumberjack', '~> 3.0'
+  pod 'CocoaLumberjack', '~> 3'
 
   pod "StylingKitThemes/blue/css", :path => "./themes"
   pod "StylingKit/Cloud/WithLogging", :path => "../"
