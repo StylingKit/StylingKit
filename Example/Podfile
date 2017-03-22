@@ -6,7 +6,7 @@ def common_pods
 
   pod "StylingKitThemes/blue/css", :path => "./themes"
   pod "StylingKit/Cloud/WithLogging", :path => "../"
-  pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git", :branch => "3.3.3-patched"
+  pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
 end
 
 target 'StylingKit_Example' do

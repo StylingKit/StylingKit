@@ -11,19 +11,19 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - GCDWebServer (3.3.3):
-    - GCDWebServer/Core (= 3.3.3)
-  - GCDWebServer/CocoaLumberjack (3.3.3):
+  - GCDWebServer (3.3.4):
+    - GCDWebServer/Core (= 3.3.4)
+  - GCDWebServer/CocoaLumberjack (3.3.4):
     - CocoaLumberjack (~> 3)
     - GCDWebServer/Core
-  - GCDWebServer/Core (3.3.3)
-  - GCDWebServer/WebDAV (3.3.3):
-    - GCDWebServer/WebDAV/CocoaLumberjack (= 3.3.3)
-    - GCDWebServer/WebDAV/Core (= 3.3.3)
-  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.3):
+  - GCDWebServer/Core (3.3.4)
+  - GCDWebServer/WebDAV (3.3.4):
+    - GCDWebServer/WebDAV/CocoaLumberjack (= 3.3.4)
+    - GCDWebServer/WebDAV/Core (= 3.3.4)
+  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.4):
     - GCDWebServer/CocoaLumberjack
     - GCDWebServer/WebDAV/Core
-  - GCDWebServer/WebDAV/Core (3.3.3):
+  - GCDWebServer/WebDAV/Core (3.3.4):
     - GCDWebServer/Core
   - Kiwi (2.4.0)
   - ReactiveCocoa (2.5):
@@ -62,7 +62,7 @@ DEPENDENCIES:
   - CocoaLumberjack (~> 3.0)
   - Expecta
   - FBSnapshotTestCase
-  - GCDWebServer (from `https://github.com/StylingKit/GCDWebServer.git`, branch `3.3.3-patched`)
+  - GCDWebServer (from `https://github.com/StylingKit/GCDWebServer.git`)
   - Kiwi
   - ReactiveCocoa (~> 2.5)
   - StylingKit/Cloud/WithLogging (from `../`)
@@ -70,7 +70,6 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   GCDWebServer:
-    :branch: 3.3.3-patched
     :git: https://github.com/StylingKit/GCDWebServer.git
   StylingKit:
     :path: "../"
@@ -79,19 +78,19 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GCDWebServer:
-    :commit: 1c61d79f652b6c58e8060a577e67c8789797adf1
+    :commit: fa72609ea6cc6ba5c09186413c4f674fbc1eff2e
     :git: https://github.com/StylingKit/GCDWebServer.git
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  GCDWebServer: e3d585846e35c0cd1e028c704010056cc0724a93
+  GCDWebServer: a22fd03dbc4da25be0e0fa1a8d9144da614f19d6
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   StylingKit: b8d90d8f432dbefd6282a067f2052aa79ae97d98
   StylingKitThemes: aa44797406ab67bd8a765265731d37363d40554a
 
-PODFILE CHECKSUM: 6bef3a7511fdc53f08ea1de67fa53a31354027cd
+PODFILE CHECKSUM: c0b39857757f180e09b297324b8c4bf7421e6b18
 
 COCOAPODS: 1.2.0

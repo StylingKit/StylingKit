@@ -78,6 +78,10 @@ Pod::Spec.new do |s|
       sss.dependency 'StylingKit/Cloud/Main'
       sss.dependency 'StylingKit/WithLogging'
       sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
+
+      # Required in your podfile
+      # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git", :branch => "3.3.3-patched"
+      # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
     end
   end
 end
