@@ -59,7 +59,7 @@ PODS:
   - StylingKitThemes/Core/Scripts (0.1.3)
 
 DEPENDENCIES:
-  - CocoaLumberjack (~> 3.0)
+  - CocoaLumberjack (~> 3)
   - Expecta
   - FBSnapshotTestCase
   - GCDWebServer (from `https://github.com/StylingKit/GCDWebServer.git`)
@@ -91,6 +91,6 @@ SPEC CHECKSUMS:
   StylingKit: b8d90d8f432dbefd6282a067f2052aa79ae97d98
   StylingKitThemes: aa44797406ab67bd8a765265731d37363d40554a
 
-PODFILE CHECKSUM: c0b39857757f180e09b297324b8c4bf7421e6b18
+PODFILE CHECKSUM: 7f9d058749ddb300fbd180caf38388a9ed4b1b00
 
 COCOAPODS: 1.2.0
