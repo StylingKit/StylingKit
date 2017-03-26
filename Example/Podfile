@@ -2,10 +2,11 @@ platform :ios, '8.1'
 use_frameworks!
 
 def common_pods
-  pod 'CocoaLumberjack', :git => "https://github.com/anton-matosov/CocoaLumberjack.git", :branch => "master"
+  pod 'CocoaLumberjack', '~> 3'
 
   pod "StylingKitThemes/blue/css", :path => "./themes"
-  pod "StylingKit/Cloud/WithLogging", :path => "../"
+  pod "StylingKit/Cloud", :path => "../"
+  # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
 end
 
 target 'StylingKit_Example' do
@@ -15,6 +16,7 @@ end
 target 'StylingKit_Tests' do
   common_pods
 
+  pod 'FBSnapshotTestCase'
   pod "ReactiveCocoa", "~> 2.5"
   pod 'Expecta', :inhibit_warnings => true
   pod 'Kiwi', :inhibit_warnings => true

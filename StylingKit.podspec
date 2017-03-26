@@ -62,22 +62,27 @@ Pod::Spec.new do |s|
     ss.dependency 'StylingKit/Main'
 
     ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'STK_LOGGING=1' }
-    ss.dependency 'CocoaLumberjack', '~> 2'
+    ss.dependency 'CocoaLumberjack', '~> 3.0'
   end
 
   s.subspec 'Cloud' do |ss|
     ss.subspec 'Main' do |sss|
       sss.dependency 'StylingKit/Main'
       sss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
-      sss.dependency 'GCDWebServer/WebDAV', '~> 3'
+      sss.dependency 'GCDWebServer/WebDAV/Core', '~> 3'
 
       sss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'STK_CLOUD=1' }
     end
 
-    ss.subspec 'WithLogging' do |sss|
-      sss.dependency 'StylingKit/Cloud/Main'
-      sss.dependency 'StylingKit/WithLogging'
-      sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
-    end
+    # Disabled due to conflict in CocoaLumberjack versions
+    # ss.subspec 'WithLogging' do |sss|
+    #   sss.dependency 'StylingKit/Cloud/Main'
+    #   sss.dependency 'StylingKit/WithLogging'
+    #   sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
+
+    #   # Required in your podfile
+    #   # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git", :branch => "3.3.3-patched"
+    #   # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
+    # end
   end
 end

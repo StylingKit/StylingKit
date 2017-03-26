@@ -29,6 +29,39 @@ echo "== Updating tools"
 which ruby
 ruby --version
 
+if [[ $TRAVIS != true ]]; then
+	brew_install rbenv
+	brew_install ruby-build
+	# brew_install openssl
+	# brew_install homebrew/dupes/apple-gcc42
+
+	RUBY_VERSION="2.2.6"
+
+# export CC=/usr/local/bin/gcc-4.2
+# export CFLAGS='-g -O2'
+# export RUBY_CONFIGURE_OPTS=--with-openssl-dir=`brew --prefix openssl`
+# export CONFIGURE_OPTS=--with-openssl-dir=`brew --prefix openssl`
+
+
+	# Install Ruby
+	rbenv install "$RUBY_VERSION" --skip-existing
+	rbenv global "$RUBY_VERSION" --skip-existing
+
+	# Add rbenv to bash so that it loads every time you open a terminal
+	RBENV_CONF='if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'
+	if ! grep -xq "$RBENV_CONF" ~/.bash_profile; then
+		echo "$RBENV_CONF" >> ~/.bash_profile
+		source ~/.bash_profile
+	fi
+fi
+
+brew_install carthage
+
+gem_install xcpretty
+gem_install fastlane
+
+gem_install sass
+
 gem_install cocoapods
 pod --version
 
@@ -37,30 +70,3 @@ if [[ $TRAVIS != true ]]; then
 	pod setup --silent
 	echo "== Done"
 fi
-
-if [[ $TRAVIS != true ]]; then
-	brew_install rbenv ruby-build
-
-	RUBY_VERSION="2.2.4"
-
-	# Add rbenv to bash so that it loads every time you open a terminal
-	RBENV_CONF='if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'
-	if ! grep -xq "$RBENV_CONF" ~/.bash_profile; then
-		echo "$RBENV_CONF" >> ~/.bash_profile
-		source ~/.bash_profile
-	fi
-
-	# Install Ruby
-	rbenv install "$RUBY_VERSION" --skip-existing
-	rbenv global "$RUBY_VERSION" --skip-existing
-
-fi
-
-brew_install carthage
-
-
-gem_install fastlane
-gem_install match
-
-gem_install sass
-
