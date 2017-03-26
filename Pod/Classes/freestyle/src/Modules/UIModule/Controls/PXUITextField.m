@@ -60,7 +60,7 @@ static const char STYLE_CHILDREN;
 static const char STATE_KEY;
 
 // Private PX_PositionCursorDelegate class
-@interface PX_PositionCursorDelegate : NSObject
+@interface PX_PositionCursorDelegate : NSObject <CAAnimationDelegate>
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype) initWithTextField:(UITextField *)textField NS_DESIGNATED_INITIALIZER;
 @end
