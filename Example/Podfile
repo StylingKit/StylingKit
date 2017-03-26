@@ -5,8 +5,8 @@ def common_pods
   pod 'CocoaLumberjack', '~> 3'
 
   pod "StylingKitThemes/blue/css", :path => "./themes"
-  pod "StylingKit/Cloud/WithLogging", :path => "../"
-  pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
+  pod "StylingKit/Cloud", :path => "../"
+  # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
 end
 
 target 'StylingKit_Example' do
