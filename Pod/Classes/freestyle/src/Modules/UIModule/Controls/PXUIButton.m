@@ -318,11 +318,7 @@ static const char STYLE_CHILDREN;
     struct objc_super superObj;
     superObj.receiver = self;
     superObj.super_class = [self pxClass];
-    
-    int s1 = sizeof(CGSize);
-    int s2 = sizeof(float);
-    int s4 = sizeof(CGRect);
-    
+        
     typedef CGSize(*callT)(struct objc_super*, SEL);
 #if defined(__arm64__) || defined(__x86_64__) || defined(__i386__)
     callT sendSuper = (callT)objc_msgSendSuper;
