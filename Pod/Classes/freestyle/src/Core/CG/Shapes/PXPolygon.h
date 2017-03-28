@@ -22,12 +22,12 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShape.h"
+#import "STKShape.h"
 
 /**
  *  A PXShape sub-class used to render open and closed polygons
  */
-@interface PXPolygon : PXShape
+@interface PXPolygon : STKShape
 
 /**
  *  A flag indicating whether this polygon should be closed or not

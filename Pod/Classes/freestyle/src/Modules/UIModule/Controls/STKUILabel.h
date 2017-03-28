@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUILabel.h
+//  STKUILabel.h
 //  Pixate
 //
 //  Created by Paul Colton on 9/18/12.
@@ -70,6 +70,6 @@ extern NSString *const kDefaultCacheLabelText;
  *  - PXAttributedTextStyler 
  *
  */
-@interface PXUILabel : UILabel
+@interface STKUILabel : UILabel
 
 @end

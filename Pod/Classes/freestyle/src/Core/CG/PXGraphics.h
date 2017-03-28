@@ -52,13 +52,13 @@
 #import "PXEllipse.h"
 #import "PXLine.h"
 #import "PXPaintable.h"
-#import "PXPath.h"
+#import "STKPath.h"
 #import "PXPie.h"
 #import "PXPolygon.h"
 #import "PXRectangle.h"
 #import "PXRenderable.h"
 #import "PXShapeDocument.h"
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXShapeGroup.h"
 #ifdef PXTEXT_SUPPORT
 #import "PXText.h"
@@ -72,4 +72,4 @@
 #import "PXStrokeStroke.h"
 
 // views
-#import "PXShapeView.h"
+#import "STKShapeView.h"

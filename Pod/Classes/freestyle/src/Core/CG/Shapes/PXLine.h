@@ -22,12 +22,12 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShape.h"
+#import "STKShape.h"
 
 /**
  *  A PXShape sub-class used to render lines
  */
-@interface PXLine : PXShape
+@interface PXLine : STKShape
 
 /**
  *  A point indicating the location of the start of this line.

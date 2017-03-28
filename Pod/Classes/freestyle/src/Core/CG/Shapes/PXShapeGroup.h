@@ -23,7 +23,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXRenderable.h"
 
 typedef enum {
@@ -47,7 +47,7 @@ typedef enum {
 /**
  *  A PXShape sub-class used to render collections of shapes
  */
-@interface PXShapeGroup : PXShape
+@interface PXShapeGroup : STKShape
 
 /**
  *  The width of this shape group.

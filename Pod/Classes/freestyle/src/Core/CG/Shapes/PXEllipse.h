@@ -22,13 +22,13 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXBoundable.h"
 
 /**
  *  A PXShape sub-class used to render ellipses
  */
-@interface PXEllipse : PXShape <PXBoundable>
+@interface PXEllipse : STKShape <PXBoundable>
 
 /**
  *  A point indicating the location of the center of this ellipse.

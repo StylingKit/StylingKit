@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIImageView.h
+//  STKUIImageView.h
 //  Pixate
 //
 //  Created by Paul Colton on 9/18/12.
@@ -49,6 +49,6 @@
  *  - -ios-rendering-mode: original | template | automatic  // iOS 7 or later
  *
  */
-@interface PXUIImageView : UIImageView
+@interface STKUIImageView : UIImageView
 
 @end

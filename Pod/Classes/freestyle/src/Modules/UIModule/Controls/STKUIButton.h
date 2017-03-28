@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIButton.h
+//  STKUIButton.h
 //  Pixate
 //
 //  Created by Paul Colton on 9/13/12.
@@ -86,6 +86,6 @@
  *  - PXAttributedTextStyler
  *
  */
-@interface PXUIButton : UIButton
+@interface STKUIButton : UIButton
 
 @end

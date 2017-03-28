@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPath.m
+//  STKPath.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,23 +23,23 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXPath.h"
+#import "STKPath.h"
 #import "PXEllipticalArc.h"
 #import "NSScanner+PXFloat.h"
 #import "PixateFreestyle.h"
 #import "PXMath.h"
 #import "PXVector.h"
 
-@implementation PXPath
+@implementation STKPath
 {
     CGMutablePathRef pathPath;
 }
 
 #pragma mark - Static Methods
 
-+ (PXPath *)createPathFromPathData:(NSString *)data
++ (STKPath *)createPathFromPathData:(NSString *)data
 {
-    PXPath *path = [[PXPath alloc] init];
+    STKPath *path = [[STKPath alloc] init];
 
     NSScanner *scanner = [NSScanner scannerWithString:data];
     NSCharacterSet *skipSet = [NSCharacterSet characterSetWithCharactersInString:@" \r\n,"];
