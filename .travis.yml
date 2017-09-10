@@ -1,4 +1,4 @@
-osx_image: xcode8.2 # update destination iOS when upgrade
+osx_image: xcode8.3 # update destination iOS when upgrade
 language: objective-c
 
 rvm: 2.2
