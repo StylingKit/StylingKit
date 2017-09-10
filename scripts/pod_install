@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+script_dir="$(dirname "$0")"
+
+pod repo update
+(cd Example && pod install)
+(cd CarthageProj && pod install)
+
+
+

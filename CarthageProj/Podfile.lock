@@ -1,8 +1,8 @@
 PODS:
-  - StylingKit (0.4.2):
-    - StylingKit/Main (= 0.4.2)
-  - StylingKit/Freestyle (0.4.2)
-  - StylingKit/Main (0.4.2):
+  - StylingKit (0.4.3):
+    - StylingKit/Main (= 0.4.3)
+  - StylingKit/Freestyle (0.4.3)
+  - StylingKit/Main (0.4.3):
     - StylingKit/Freestyle
 
 DEPENDENCIES:
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  StylingKit: cb4f82b8a34c5ccd83ffdba7d7fbc926d64f3ead
+  StylingKit: c7be8dbff3fd1ef3190cd86302412fbd852e2e66
 
 PODFILE CHECKSUM: ae2ef3915345a87a57991193b1d05fb26f15e968
 

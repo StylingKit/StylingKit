@@ -1,5 +1,5 @@
 CONFIGURATION_BUILD_DIR = $PODS_CONFIGURATION_BUILD_DIR/StylingKit
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 STK_VERSION="0.4.2"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 STK_VERSION="0.4.3"
 HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public"
 OTHER_LDFLAGS = -framework "CoreGraphics" -framework "CoreText" -framework "Foundation" -framework "QuartzCore" -framework "UIKit"
 PODS_BUILD_DIR = $BUILD_DIR
