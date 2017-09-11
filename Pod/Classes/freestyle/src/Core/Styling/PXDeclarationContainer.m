@@ -88,7 +88,7 @@
 
 - (NSArray *)declarations
 {
-    return [NSArray arrayWithArray:declarations_];
+    return declarations_;
 }
 
 - (BOOL)hasDeclarationForName:(NSString *)name

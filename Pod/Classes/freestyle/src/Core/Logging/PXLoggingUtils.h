@@ -22,7 +22,6 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#ifdef PX_LOGGING
 #import <Foundation/Foundation.h>
 #import "PXLog.h"
 
@@ -33,9 +32,9 @@
 @interface PXLoggingUtils : NSObject
 
 + (void)enableLogging;
++ (void)enablePrettyLogFormatting;
 + (void)enableLoggingToDirectoryPath:(NSString *)path;
 + (void)setGlobalLoggingLevel:(DDLogLevel)logLevel;
 + (void)addLoggingDelegate:(id <PXLoggingDelegate>)delegate;
 
 @end
-#endif

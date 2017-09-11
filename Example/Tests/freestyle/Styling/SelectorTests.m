@@ -316,7 +316,8 @@
 
     // build selector
     PXTypeSelector *childSelector = [[PXTypeSelector alloc] initWithTypeName:@"child"];
-    PXPseudoClassFunction *nthChild = [[PXPseudoClassFunction alloc] initWithFunctionType:PXPseudoClassFunctionNthChild modulus:1 remainder:2];
+    // Considering virtual 'layer' child of root, we nth will be 3
+    PXPseudoClassFunction *nthChild = [[PXPseudoClassFunction alloc] initWithFunctionType:PXPseudoClassFunctionNthChild modulus:1 remainder:3];
     [childSelector addAttributeExpression:nthChild];
 
     [self assertMatches:@[child2] onElement:root withSelector:childSelector];
@@ -432,7 +433,7 @@
         }
     }
 
-    return [NSArray arrayWithArray:result];
+    return result;
 }
 
 - (StyleableView *)newClassWithId:(NSString *)identifer;

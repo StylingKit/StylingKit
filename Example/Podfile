@@ -1,18 +1,22 @@
-source 'https://github.com/CocoaPods/Specs.git'
-
-
 platform :ios, '8.1'
-
 use_frameworks!
 
-target 'StylingKit_Example', :exclusive => true do
+def common_pods
+  pod 'CocoaLumberjack', '~> 3'
+
   pod "StylingKitThemes/blue/css", :path => "./themes"
-  pod "StylingKit/Cloud/WithLogging", :path => "../"
+  pod "StylingKit/Cloud", :path => "../"
+  # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
 end
 
-target 'StylingKit_Tests', :exclusive => true do
-  pod "StylingKit/Cloud/WithLogging", :path => "../"
+target 'StylingKit_Example' do
+  common_pods
+end
 
+target 'StylingKit_Tests' do
+  common_pods
+
+  pod 'FBSnapshotTestCase'
+  pod 'Expecta', :inhibit_warnings => true
   pod 'Kiwi', :inhibit_warnings => true
-  pod 'FBSnapshotTestCase', :inhibit_warnings => true
 end

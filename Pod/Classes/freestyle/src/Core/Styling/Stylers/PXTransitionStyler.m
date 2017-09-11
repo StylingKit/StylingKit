@@ -37,7 +37,7 @@
     dispatch_once(&onceToken, ^{
         handlers = @{
              @"transition" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                 context.transitionInfos = [NSMutableArray arrayWithArray:declaration.transitionInfoList];
+                 context.transitionInfos = declaration.transitionInfoList.mutableCopy;
              },
              @"transition-property" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *names = declaration.nameListValue;

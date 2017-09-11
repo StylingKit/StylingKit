@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "StylingKit"
-  s.version          = "0.3.0"
+  s.version          = "0.4.3"
   s.summary          = "Style your iOS app with CSS, using 100% native code and no webviews." 
   s.description      = <<-DESC
                       StylingKit is an iOS framework that allows you to style your application using stylesheets and a CSS-like syntax. StylingKit lets you build  beautiful applications with less code and more flexibility by using familiar CSS markup to style native controls and components. Free up your team to focus on creating amazing user experiences throughout the design and development cycle.
@@ -43,12 +43,11 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Main'
   s.subspec 'Main' do |ss|
     ss.source_files = 'Pod/Classes/Main/**/*.{h,m,c}'
-    ss.resource_bundles = {
-      'StylingKit' => ['Pod/Assets/*.png']
-    }
 
     ss.preserve_path = "NOTICE"
     ss.dependency 'StylingKit/Freestyle'
+
+    ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => "STK_VERSION=\"#{s.version.to_s}\"" }
   end
 
   s.subspec 'Freestyle' do |ss|
@@ -63,22 +62,27 @@ Pod::Spec.new do |s|
     ss.dependency 'StylingKit/Main'
 
     ss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'STK_LOGGING=1' }
-    ss.dependency 'CocoaLumberjack', '~> 2'
+    ss.dependency 'CocoaLumberjack', '~> 3.0'
   end
 
   s.subspec 'Cloud' do |ss|
-    ss.default_subspec = 'Main'
-
     ss.subspec 'Main' do |sss|
       sss.dependency 'StylingKit/Main'
       sss.source_files = 'Pod/Classes/Cloud/**/*.{h,m,c}'
-      sss.dependency 'GCDWebServer/WebDAV', '~> 3'
+      sss.dependency 'GCDWebServer/WebDAV/Core', '~> 3'
+
+      sss.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'STK_CLOUD=1' }
     end
 
-    ss.subspec 'WithLogging' do |sss|
-      sss.dependency 'StylingKit/Cloud/Main'
-      sss.dependency 'StylingKit/WithLogging'
-      sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
-    end
+    # Disabled due to conflict in CocoaLumberjack versions
+    # ss.subspec 'WithLogging' do |sss|
+    #   sss.dependency 'StylingKit/Cloud/Main'
+    #   sss.dependency 'StylingKit/WithLogging'
+    #   sss.dependency 'GCDWebServer/WebDAV/CocoaLumberjack', '~> 3'
+
+    #   # Required in your podfile
+    #   # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git", :branch => "3.3.3-patched"
+    #   # pod "GCDWebServer", :git => "https://github.com/StylingKit/GCDWebServer.git"
+    # end
   end
 end

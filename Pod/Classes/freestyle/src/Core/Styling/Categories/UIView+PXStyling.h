@@ -59,6 +59,7 @@
 - (void)removeStyleClass:(NSString *)styleClass;
 - (void)styleClassed:(NSString *)styleClass enabled:(bool)enabled;
 
+- (void)stkUpdateStylesFromLayoutSubviewsRecursively:(BOOL)recursively;
 + (void)updateStyles:(id<PXStyleable>)styleable recursively:(bool)recurse;
 
 @end

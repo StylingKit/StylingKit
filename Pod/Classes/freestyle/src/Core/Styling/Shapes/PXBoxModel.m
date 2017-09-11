@@ -24,7 +24,7 @@
 //
 
 #import "PXBoxModel.h"
-#import "PXPath.h"
+#import "STKPath.h"
 #import "PXStroke.h"
 
 @implementation PXBoxModel
@@ -33,10 +33,10 @@
     PXBorderInfo *borderRight_;
     PXBorderInfo *borderBottom_;
     PXBorderInfo *borderLeft_;
-    PXPath *borderPathTop_;
-    PXPath *borderPathRight_;
-    PXPath *borderPathBottom_;
-    PXPath *borderPathLeft_;
+    STKPath *borderPathTop_;
+    STKPath *borderPathRight_;
+    STKPath *borderPathBottom_;
+    STKPath *borderPathLeft_;
 }
 
 @synthesize bounds = _bounds;
@@ -387,7 +387,7 @@
     // top
     if (borderTop_.hasContent)
     {
-        borderPathTop_ = [[PXPath alloc] init];
+        borderPathTop_ = [[STKPath alloc] init];
 
         switch (borderTop_.style)
         {
@@ -451,7 +451,7 @@
     // right
     if (borderRight_.hasContent)
     {
-        borderPathRight_ = [[PXPath alloc] init];
+        borderPathRight_ = [[STKPath alloc] init];
 
         switch (borderRight_.style)
         {
@@ -512,7 +512,7 @@
     // bottom
     if (borderBottom_.hasContent)
     {
-        borderPathBottom_ = [[PXPath alloc] init];
+        borderPathBottom_ = [[STKPath alloc] init];
 
         switch (borderBottom_.style)
         {
@@ -573,7 +573,7 @@
     // left
     if (borderLeft_.hasContent)
     {
-        borderPathLeft_ = [[PXPath alloc] init];
+        borderPathLeft_ = [[STKPath alloc] init];
 
         switch (borderLeft_.style)
         {

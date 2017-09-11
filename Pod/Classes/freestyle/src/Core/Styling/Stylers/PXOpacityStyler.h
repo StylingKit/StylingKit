@@ -35,9 +35,4 @@
  */
 + (PXOpacityStyler *)sharedInstance;
 
-/*
- *  A completion block that applies the generated opacity to a view's alpha property
- */
-+ (PXStylerCompletionBlock)AdjustAlphaCompletionBlock;
-
 @end

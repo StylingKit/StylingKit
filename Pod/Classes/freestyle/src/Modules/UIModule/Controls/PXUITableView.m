@@ -320,4 +320,6 @@ PX_WRAP_1s(setContentSize,   CGSize,       size);
 PX_WRAP_1s(setContentOffset, CGPoint,      size);
 PX_WRAP_1s(setContentInset,  UIEdgeInsets, insets);
 
+PX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
+
 @end

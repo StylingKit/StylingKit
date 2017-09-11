@@ -60,84 +60,45 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
     
     [self swizzleMethod:@selector(setDelegate:) withMethod:@selector(px_setDelegate:)];
     [self swizzleMethod:@selector(setDataSource:) withMethod:@selector(px_setDataSource:)];
-
 }
 
 -(void)px_setDelegate:(id<UICollectionViewDelegate>)delegate
 {
-    if(delegate)
-    {
-        id delegateProxy = [self pxDelegateProxy];
-        if ([delegateProxy baseObject])
-            [self px_setDelegate:nil];
-        [delegateProxy setBaseObject:delegate];
-        [self px_setDelegate:delegateProxy];
-    }
-    else
-    {
-        [self px_setDelegate:delegate];
-    }
+    id proxy = [self stk_makeProxyFor:delegate withAssocObjectAddress:&PX_DELEGATE_PROXY];
+    [self px_setDelegate:proxy];
 }
 
 -(void)px_setDataSource:(id<UICollectionViewDataSource>)dataSource
 {
-    if(dataSource)
-    {
-        id datasourceProxy = [self pxDatasourceProxy];
-        if ([datasourceProxy baseObject])
-            [self px_setDataSource:nil];
-        [datasourceProxy setBaseObject:dataSource];
-        [self px_setDataSource:datasourceProxy];
-    }
-    else
-    {
-        [self px_setDataSource:dataSource];
-    }
+    id proxy = [self stk_makeProxyFor:dataSource withAssocObjectAddress:&PX_DATASOURCE_PROXY];
+    [self px_setDataSource:proxy];
 }
 
 #pragma mark - Delegate and DataSource proxy methods
 
-//
-// Internal methods for proxys
-//
+- (id <UICollectionViewDataSource>)stk_makeProxyFor:(id)dataSource withAssocObjectAddress:(const void *)variableAddress
+{
+    id proxy = dataSource ? [[PXProxy alloc] initWithBaseOject:dataSource overridingObject:[self pxDelegate]] : nil;
+    if (proxy)
+    {
+        objc_setAssociatedObject(self, variableAddress, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+
+    return proxy;
+}
 
 - (PXUICollectionViewDelegate *)pxDelegate
 {
-    id delegate = objc_getAssociatedObject(self, &PX_DELEGATE);
-    
+    PXUICollectionViewDelegate *delegate = objc_getAssociatedObject(self, &PX_DELEGATE);
+
     if(delegate == nil)
     {
         delegate = [[PXUICollectionViewDelegate alloc] init];
+        delegate.collectionView = self;
         objc_setAssociatedObject(self, &PX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    
+
     return delegate;
-}
-
-- (id<UICollectionViewDelegate>)pxDelegateProxy
-{
-    id proxy = objc_getAssociatedObject(self, &PX_DELEGATE_PROXY);
-    
-    if(proxy == nil)
-    {
-        proxy = [[PXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
-        objc_setAssociatedObject(self, &PX_DELEGATE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    
-    return proxy;
-}
-
-- (id<UICollectionViewDataSource>)pxDatasourceProxy
-{
-    id proxy = objc_getAssociatedObject(self, &PX_DATASOURCE_PROXY);
-    
-    if(proxy == nil)
-    {
-        proxy = [[PXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
-        objc_setAssociatedObject(self, &PX_DATASOURCE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    
-    return proxy;
 }
 
 @end
@@ -263,5 +224,7 @@ PX_WRAP_PROP(UIView, backgroundView);
 
 PX_WRAP_1(setBackgroundColor, color);
 PX_WRAP_1(setBackgroundView, view);
+
+PX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
 
 @end

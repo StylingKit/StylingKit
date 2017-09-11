@@ -137,13 +137,11 @@
             [cgColorArray addObject:(__bridge id)cref];
         }
 
-        NSArray *colorArray = [NSArray arrayWithArray:cgColorArray];
-
         // create color space
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 
         // create gradient
-        _gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colorArray, locations);
+        _gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) cgColorArray, locations);
 
         // release color space
         CGColorSpaceRelease(colorSpace);

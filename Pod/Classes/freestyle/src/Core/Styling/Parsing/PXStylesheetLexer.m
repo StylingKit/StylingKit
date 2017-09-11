@@ -213,7 +213,7 @@
         ];
         [tokenList addObject:[[PXCharacterMatcher alloc] initWithCharactersInString:operators withTypes:operatorTypes]];
 
-        tokens_ = [NSArray arrayWithArray:tokenList];
+        tokens_ = tokenList;
     }
 
     return self;

@@ -23,12 +23,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXShape.h"
+#import "STKShape.h"
 
 /**
  *  A PXShape sub-class used to render circles
  */
-@interface PXCircle : PXShape
+@interface PXCircle : STKShape
 
 /**
  *  A point indicating the location of the center of this circle.

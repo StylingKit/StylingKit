@@ -30,7 +30,7 @@
 #import "PXShadow.h"
 #import "PXShadowGroup.h"
 #import "PXStroke.h"
-#import "PXShapeView.h"
+#import "STKShapeView.h"
 #import "PXSolidPaint.h"
 #import "PXFontRegistry.h"
 #import "PXImagePaint.h"

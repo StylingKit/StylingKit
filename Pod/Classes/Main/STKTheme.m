@@ -25,6 +25,9 @@
 
 @implementation STKTheme
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
+
 - (instancetype)initWithName:(NSString*)name
           stylesheetFileName:(NSString*)stylesheetFileName
                       bundle:(NSBundle*)bundle
@@ -58,15 +61,20 @@
                                bundle:bundle];
 }
 
-- (void)activate
+- (BOOL)activate
 {
+    BOOL result = NO;
     NSString* path = [self.bundle pathForResource:self.stylesheetFileName
                                            ofType:@"css"];
 
     if (path.length > 0)
     {
-        [PXStylesheet styleSheetFromFilePath:path
-                                  withOrigin:(PXStylesheetOrigin)self.origin];
+        PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:path
+                                                             withOrigin:(PXStylesheetOrigin)self.origin];
+        stylesheet.monitorChanges = YES;
+
+        result = YES;
+        _loadedFromPath = path;
     }
     else if (!self.optional)
     {
@@ -75,6 +83,29 @@
                   self.name,
                   self.bundle.bundlePath.lastPathComponent);
     }
+
+    return result;
 }
+
+- (NSString*)description
+{
+    NSMutableString* description = [NSMutableString stringWithFormat:@"<%@: ",
+                                                                     NSStringFromClass([self class])];
+    [description appendFormat:@"name=%@",
+                              self.name];
+    [description appendFormat:@", stylesheetFileName=%@",
+                              self.stylesheetFileName];
+    [description appendFormat:@", bundle=%@",
+                              self.bundle.bundleIdentifier];
+    [description appendFormat:@", optional=%@",
+                              self.optional ? @"YES" : @"NO"];
+    [description appendFormat:@", origin=%lu",
+                              (unsigned long)self.origin];
+    [description appendFormat:@", loadedFromPath=%@",
+                              self.loadedFromPath];
+    [description appendString:@">"];
+    return description;
+}
+
 
 @end

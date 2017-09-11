@@ -25,7 +25,7 @@
 
 #import "PXRuleSet.h"
 #import "PXSourceWriter.h"
-#import "PXShapeView.h"
+#import "STKShapeView.h"
 #import "PXFontRegistry.h"
 #import "PXCombinator.h"
 
@@ -101,14 +101,7 @@
 
 - (NSArray *)selectors
 {
-    NSArray *result = nil;
-
-    if (selectors)
-    {
-        result = [NSArray arrayWithArray:selectors];
-    }
-
-    return result;
+    return selectors;
 }
 
 - (PXTypeSelector *)targetTypeSelector

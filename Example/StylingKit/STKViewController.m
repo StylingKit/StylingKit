@@ -28,17 +28,33 @@
 
 - (IBAction)showAlertView
 {
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Title"
+                                                        message:@"UIAlertView"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK",
+                                                                nil];
 
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
-//                                                        message:@"Message"
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"Cancel"
-//                                              otherButtonTitles:@"OK", nil];
-//
-//    [alertView show];
+    [alertView show];
+}
 
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title"
-                                                                             message:@"Message"
+- (IBAction)showActionSheet
+{
+    UIActionSheet* alertView = [[UIActionSheet alloc] initWithTitle:@"Title"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                             destructiveButtonTitle:@"Destroy"
+                                                  otherButtonTitles:@"OK",
+                                                                    nil];
+
+    [alertView showInView:self.view];
+}
+
+
+- (IBAction)showAlertControllerAlert
+{
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Title"
+                                                                             message:@"UIAlertController"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
                                                         style:UIAlertActionStyleDefault
@@ -48,6 +64,31 @@
                                                         style:UIAlertActionStyleDefault
                                                       handler:nil]];
 
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField* textField)
+    {
+        textField.placeholder = @"placeholder text";
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
+    }];
+
+
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
+}
+
+- (IBAction)showAlertControllerActionSheet
+{
+
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Title"
+                                                                             message:@"Message"
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil]];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil]];
     [self presentViewController:alertController
                        animated:YES
                      completion:nil];

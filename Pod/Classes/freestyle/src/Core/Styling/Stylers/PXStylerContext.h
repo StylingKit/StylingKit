@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PXStyleable.h"
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXPaint.h"
 #import "PXShadowPaint.h"
 #import "PXShadowGroup.h"
@@ -41,7 +41,7 @@
 @property (nonatomic, strong) NSString *activeStateName;
 @property (nonatomic) NSUInteger styleHash;
 
-@property (nonatomic, strong) PXShape *shape;
+@property (nonatomic, strong) STKShape *shape;
 
 // This group of properties is for PXLayoutStyler
 @property (nonatomic) CGFloat top;
@@ -161,7 +161,7 @@
 /**
  * Add decoration attribute to attributed text attributes dictionary based on CSS decoration value (strike-through, underline).
  * @param decoration CSS decoration value (for text-decoration)
- @ @param attribute attributedString attributes dictionary.
+ @ @param attributes attributedString attributes dictionary.
  */
 + (void)addDecoration:(NSString *)decoration toAttributes:(NSMutableDictionary *)attributes;
 
@@ -177,6 +177,6 @@
  *  @param defaultText The text to be used if there is no text set in the css (the source of this can vary on states and components)
  *  @param defaultColor The color to be used if there is no color set in the css (the source of this can vary on states and components)
  */
-- (NSMutableDictionary *) attributedTextAttributes:(UIView *)view withDefaultText:(NSString *)text andColor:(UIColor *)defaultColor;
+- (NSMutableDictionary *) attributedTextAttributes:(UIView *)view withDefaultText:(NSString *)defaultText andColor:(UIColor *)defaultColor;
 
 @end

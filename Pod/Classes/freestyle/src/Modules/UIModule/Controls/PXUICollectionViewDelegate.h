@@ -25,10 +25,14 @@
 #import <Foundation/Foundation.h>
 
 @interface CGSizeWithFlag : NSObject
-    @property (nonatomic) BOOL isSet;
-    @property (nonatomic) CGSize size;
+
+@property(nonatomic) BOOL isSet;
+@property(nonatomic) CGSize size;
 @end
 
-@interface PXUICollectionViewDelegate : NSObject <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-    @property (nonatomic, strong) CGSizeWithFlag *itemSize;
+@interface PXUICollectionViewDelegate : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property(nonatomic, strong) CGSizeWithFlag* itemSize;
+@property(weak, nonatomic) UICollectionView* collectionView;
+
 @end

@@ -39,6 +39,8 @@ typedef NS_ENUM(unsigned int, PXAngleType) {
     PXAngleType angleType_;
 }
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 #pragma mark - Static Methods
 
 + (PXLinearGradient *)gradientFromStartColor:(UIColor *)startColor endColor:(UIColor *)endColor
@@ -344,7 +346,7 @@ typedef NS_ENUM(unsigned int, PXAngleType) {
 
     // copy PXGradient properties, but not colors
     result.transform = self.transform;
-    result.offsets = [NSMutableArray arrayWithArray:self.offsets];
+    result.offsets = self.offsets.mutableCopy;
 
     return result;
 }

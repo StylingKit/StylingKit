@@ -20,11 +20,17 @@
 // Created by Anton Matosov
 //
 
+#if STK_CLOUD
+#   import "STKCloud.h"
+#endif
+
 #import "StylingKit.h"
 #import "PixateFreestyle.h"
 #import "PXStylesheet-Private.h"
 #import "STKTheme.h"
 #import "STKThemesRegistry.h"
+#import "STK_UIAlertControllerView.h"
+#import "PXLoggingUtils.h"
 
 @interface StylingKit ()
 
@@ -33,6 +39,9 @@
 @end
 
 @implementation StylingKit
+
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 
 + (instancetype)sharedKit
 {
@@ -44,6 +53,15 @@
     });
 
     return instance;
+}
+
+- (STKCloud*)cloud
+{
+#if STK_CLOUD
+    return [STKCloud defaultCloud];
+#else
+    return nil;
+#endif
 }
 
 - (NSMutableDictionary*)themes
@@ -72,24 +90,21 @@
     {
         [STKThemesRegistry loadThemes];
 
-        STKTheme* defaultAppTheme = [self registerThemeNamed:@"default"
-                                                    inBundle:[NSBundle mainBundle]];
-        defaultAppTheme.optional = YES;
-
-        STKTheme* userTheme = [self registerThemeNamed:@"user"
-                                              inBundle:[NSBundle mainBundle]];
-        userTheme.stylesheetFileName = userTheme.name;
-        userTheme.optional = YES;
-        userTheme.origin = PXStylesheetOriginUser;
-
         for (STKTheme* theme in self.themes.allValues)
         {
-            [theme activate];
+            if ([theme activate])
+            {
+                _currentTheme = theme;
+                break;
+            }
         }
+
+        [UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = PXStylingNone;
+
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
         [UIView appearance].styleMode = PXStylingNormal;
-    };
+    }
 }
 
 - (STKTheme*)registerThemeNamed:(NSString*)themeName

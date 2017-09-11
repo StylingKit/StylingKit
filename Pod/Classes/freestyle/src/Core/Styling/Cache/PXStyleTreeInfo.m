@@ -71,22 +71,25 @@
         [styleableStyleInfo_ applyToStyleable:styleable];
     }
 
-    for (NSIndexPath *indexPath in childStyleInfo_.keyEnumerator)
+    [childStyleInfo_ enumerateKeysAndObjectsUsingBlock:^(NSIndexPath *indexPath, PXStyleInfo *styleInfo, BOOL *stop)
     {
-        id<PXStyleable> child = [self findDescendantOfStyleable:styleable fromIndexPath:indexPath];
+        id<PXStyleable> child = [self findDescendantOfStyleable:styleable
+                                                  fromIndexPath:indexPath];
 
         if (child != nil)
         {
-            PXStyleInfo *styleInfo = childStyleInfo_[indexPath];
             if (styleInfo.changeable)
+            {
                 styleInfo = [PXStyleInfo styleInfoForStyleable:child];
+            }
 
             [styleInfo applyToStyleable:child];
         }
-    }
+    }];
 }
 
-- (id<PXStyleable>)findDescendantOfStyleable:(id<PXStyleable>)styleable fromIndexPath:(NSIndexPath *)indexPath
+- (id<PXStyleable>)findDescendantOfStyleable:(id<PXStyleable>)styleable
+                               fromIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger indexes[indexPath.length];
     [indexPath getIndexes:indexes];

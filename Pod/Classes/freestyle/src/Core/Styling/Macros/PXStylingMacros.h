@@ -45,13 +45,8 @@
 #define PX_LAYOUT_SUBVIEWS_IMP(RECURSE) \
 - (void)layoutSubviews	\
 {	\
-    callSuper0(SUPER_PREFIX, _cmd);	\
-    \
-    if(RECURSE) { \
-        [self updateStyles]; \
-    } else { \
-        [self updateStylesNonRecursively]; \
-    } \
+    callSuper0(SUPER_PREFIX, @selector(layoutSubviews));	\
+    [self stkUpdateStylesFromLayoutSubviewsRecursively:RECURSE]; \
 }
 
 #endif // Pixate_PXStylingMacros_h

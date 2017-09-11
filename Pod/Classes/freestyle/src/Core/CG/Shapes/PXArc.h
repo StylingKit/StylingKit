@@ -22,12 +22,12 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShape.h"
+#import "STKShape.h"
 
 /**
  *  A PXShape subclass used to render arcs
  */
-@interface PXArc : PXShape
+@interface PXArc : STKShape
 
 /**
  *  A point indicating the location of the center of this arc.

@@ -130,7 +130,7 @@
 /**
  *  Convert the lexeme array to a list of names, each separated by a comma
  *
- *  @param lexeme An Array of lexemes to convert
+ *  @param lexemes An Array of lexemes to convert
  */
 - (NSArray *)parseNameList:(NSArray *)lexemes;
 

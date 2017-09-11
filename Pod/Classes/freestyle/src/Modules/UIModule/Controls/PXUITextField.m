@@ -60,7 +60,7 @@ static const char STYLE_CHILDREN;
 static const char STATE_KEY;
 
 // Private PX_PositionCursorDelegate class
-@interface PX_PositionCursorDelegate : NSObject
+@interface PX_PositionCursorDelegate : NSObject <CAAnimationDelegate>
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype) initWithTextField:(UITextField *)textField NS_DESIGNATED_INITIALIZER;
 @end
@@ -442,28 +442,28 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 
 -(void)setText:(NSString *)text
 {
-    callSuper1(SUPER_PREFIX, _cmd, text);
+    callSuper1(SUPER_PREFIX, @selector(setText:), text);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setAttributedText:(NSAttributedString *)attributedText
 {
-    callSuper1(SUPER_PREFIX, _cmd, attributedText);
+    callSuper1(SUPER_PREFIX, @selector(setAttributedText:), attributedText);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setPlaceholder:(NSString *)placeholder
 {
-    callSuper1(SUPER_PREFIX, _cmd, placeholder);
+    callSuper1(SUPER_PREFIX, @selector(setPlaceholder:), placeholder);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder
 {
-    callSuper1(SUPER_PREFIX, _cmd, attributedPlaceholder);
+    callSuper1(SUPER_PREFIX, @selector(setAttributedPlaceholder:), attributedPlaceholder);
     [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }

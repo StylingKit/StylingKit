@@ -41,6 +41,7 @@ typedef struct {
 
 + (NSString *)descriptionForStyleable:(id<PXStyleable>)styleable;
 + (NSString *)selectorFromStyleable:(id<PXStyleable>)styleable;
++ (NSString *)styleKeyFromStyleable:(id<PXStyleable>)styleable;
 
 + (void)enumerateStyleableAndDescendants:(id<PXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block;
 + (void)enumerateStyleableDescendants:(id<PXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block;

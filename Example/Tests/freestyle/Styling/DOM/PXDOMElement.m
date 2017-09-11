@@ -336,9 +336,9 @@
     [self setAttributeValue:styleClass forName:@"class"];
 }
 
-- (NSArray*)styleClasses
+- (NSSet*)styleClasses
 {
-    return [self.styleClass componentsSeparatedByString:@" "];
+    return [NSSet setWithArray:[self.styleClass componentsSeparatedByString:@" "]];
 }
 
 - (NSArray *)pxStyleChildren
@@ -382,7 +382,7 @@
 }
 - (NSString *)styleKey
 {
-    return [PXStyleUtils selectorFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context

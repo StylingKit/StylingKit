@@ -23,12 +23,12 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShape.h"
+#import "STKShape.h"
 
 /**
  *  A PXShape sub-class used to render text
  */
-@interface PXText : PXShape
+@interface PXText : STKShape
 
 /**
  *  A point indicating the location of the top of this text region

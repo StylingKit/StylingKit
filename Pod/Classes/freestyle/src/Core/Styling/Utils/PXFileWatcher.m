@@ -76,11 +76,14 @@
                     pending = YES;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC),
                                    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        //NSLog(@"handler called");
-                        handler();
-                        pending = NO;
 
-                        [[PXFileWatcher sharedInstance] watchFile:filePath handler:handler];
+                            dispatch_async(dispatch_get_main_queue(), ^
+                            {
+                                handler();
+                                pending = NO;
+
+                                [[PXFileWatcher sharedInstance] watchFile:filePath handler:handler];
+                            });
                     });
                 }
 

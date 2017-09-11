@@ -46,7 +46,7 @@
 
 - (NSArray *)expressions
 {
-    return (_expressions) ? [NSArray arrayWithArray:_expressions] : nil;
+    return _expressions;
 }
 
 - (void)clearCache

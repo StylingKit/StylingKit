@@ -56,7 +56,7 @@
 
 
 #import "NSObject+PXSubclass.h"
-#import "PXUILabel.h"
+#import "STKUILabel.h"
 
 static NSDictionary *PSEUDOCLASS_MAP;
 static NSDictionary *LABEL_PSEUDOCLASS_MAP;
@@ -625,7 +625,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 
 - (void)prepareForReuse
 {
-    callSuper0(SUPER_PREFIX, _cmd);
+    callSuper0(SUPER_PREFIX, @selector(prepareForReuse));
     [PXStyleUtils invalidateStyleableAndDescendants:self];
 }
 
