@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPath.h
+//  STKPath.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/31/12.
@@ -23,12 +23,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXShape.h"
+#import "STKShape.h"
 
 /**
  *  A PXShape sub-class used to render paths
  */
-@interface PXPath : PXShape
+@interface STKPath : STKShape
 
 /**
  *  Generate a new PXPath instance using the specified data
@@ -39,7 +39,7 @@
  *  @param data A string of path data
  *  @returns A newly allocated PXPath instance
  */
-+ (PXPath *)createPathFromPathData:(NSString *)data;
++ (STKPath *)createPathFromPathData:(NSString *)data;
 
 /**
  *  Add a close command to the current path

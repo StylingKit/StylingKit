@@ -15,18 +15,18 @@
  */
 
 //
-//  PXShapeView.m
+//  STKShapeView.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/30/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShapeView.h"
+#import "STKShapeView.h"
 #import "PXShapeGroup.h"
 #import "PXSVGLoader.h"
 
-@implementation PXShapeView
+@implementation STKShapeView
 
 #pragma mark - Setters
 

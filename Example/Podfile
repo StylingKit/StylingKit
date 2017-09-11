@@ -17,7 +17,6 @@ target 'StylingKit_Tests' do
   common_pods
 
   pod 'FBSnapshotTestCase'
-  pod "ReactiveCocoa", "~> 2.5"
   pod 'Expecta', :inhibit_warnings => true
   pod 'Kiwi', :inhibit_warnings => true
 end

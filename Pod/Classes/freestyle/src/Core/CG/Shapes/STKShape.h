@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShape.h
+//  STKShape.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -34,7 +34,7 @@
  *  A PXShape must implement the PXRenderable protocol and the PXPaintable protocol. This class can be used to cache the
  *  geometry of the shape it describes.
  */
-@interface PXShape : NSObject <PXRenderable,PXPaintable>
+@interface STKShape : NSObject <PXRenderable,PXPaintable>
 
 /**
  *  A read-only property of the path data associated with this shape instance.

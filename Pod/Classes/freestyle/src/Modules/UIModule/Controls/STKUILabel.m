@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUILabel.m
+//  STKUILabel.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,7 +23,7 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXUILabel.h"
+#import "STKUILabel.h"
 
 #import "UIView+PXStyling.h"
 #import "UIView+PXStyling-Private.h"
@@ -64,11 +64,11 @@ NSString *const kDefaultCacheLabelText = @"label.text";
 NSString *const kDefaultCacheLabelTextAlignment = @"label.textAlignment";
 NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
-@implementation PXUILabel
+@implementation STKUILabel
 
 + (void)initialize
 {
-    if (self != PXUILabel.class)
+    if (self != STKUILabel.class)
         return;
     
     [UIView registerDynamicSubclass:self withElementName:@"label"];
@@ -85,7 +85,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 {
     if (!objc_getAssociatedObject(self, &STYLE_CHILDREN))
     {
-        __weak PXUILabel *weakSelf = self;
+        __weak STKUILabel *weakSelf = self;
         
         // attributed text
         PXVirtualStyleableControl *attributedText =
@@ -184,18 +184,18 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
             PXBoxShadowStyler.sharedInstance,
 
-            [[PXTextShadowStyler alloc] initWithCompletionBlock:^(PXUILabel *view, PXTextShadowStyler *styler, PXStylerContext *context) {
+            [[PXTextShadowStyler alloc] initWithCompletionBlock:^(STKUILabel *view, PXTextShadowStyler *styler, PXStylerContext *context) {
                 PXShadow *shadow = context.textShadow;
 
                 [view px_setShadowColor: shadow.color];
                 [view px_setShadowOffset: CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset)];
             }],
             
-            [[PXFontStyler alloc] initWithCompletionBlock:^(PXUILabel *view, PXFontStyler *styler, PXStylerContext *context) {
+            [[PXFontStyler alloc] initWithCompletionBlock:^(STKUILabel *view, PXFontStyler *styler, PXStylerContext *context) {
                 [view px_setFont:context.font];
             }],
             
-            [[PXPaintStyler alloc] initWithCompletionBlock:^(PXUILabel *view, PXPaintStyler *styler, PXStylerContext *context) {
+            [[PXPaintStyler alloc] initWithCompletionBlock:^(STKUILabel *view, PXPaintStyler *styler, PXStylerContext *context) {
                 UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
                 
                 if(color)
@@ -211,23 +211,23 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
                 }
             }],
             
-            [[PXTextContentStyler alloc] initWithCompletionBlock:^(PXUILabel *view, PXTextContentStyler *styler, PXStylerContext *context) {
+            [[PXTextContentStyler alloc] initWithCompletionBlock:^(STKUILabel *view, PXTextContentStyler *styler, PXStylerContext *context) {
                 [view px_setText:context.text];
             }],
                 
             [[PXGenericStyler alloc] initWithHandlers: @{
                  @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                    PXUILabel *view = (PXUILabel *)context.styleable;
+                    STKUILabel *view = (STKUILabel *)context.styleable;
                     
                     [view px_setText:[declaration transformString:view.text]];
                 },
                  @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                    PXUILabel *view = (PXUILabel *)context.styleable;
+                    STKUILabel *view = (STKUILabel *)context.styleable;
 
                     [view px_setTextAlignment:declaration.textAlignmentValue];
                 },
                  @"text-overflow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                    PXUILabel *view = (PXUILabel *)context.styleable;
+                    STKUILabel *view = (STKUILabel *)context.styleable;
 
                     [view px_setLineBreakMode:declaration.lineBreakModeValue];
                 }

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8AFEEBF7E02A93DE057FD9A59899C287"
+               BlueprintIdentifier = "BEEB5323B6547E77053724710CF7112A"
                BuildableName = "StylingKit.framework"
                BlueprintName = "StylingKit"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShape.m
+//  STKShape.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,11 +23,11 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShape.h"
-#import "PXShapeView.h"
+#import "STKShape.h"
+#import "STKShapeView.h"
 #import "PXShadow.h"
 
-@implementation PXShape
+@implementation STKShape
 
 @synthesize parent = _parent;
 @synthesize owningDocument = _owningDocument;
@@ -157,7 +157,7 @@
     }
 }
 
-- (void)setClippingPath:(PXShape *)clippingPath
+- (void)setClippingPath:(STKShape *)clippingPath
 {
     if (self->_clippingPath != clippingPath)
     {

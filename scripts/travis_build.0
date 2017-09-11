@@ -5,13 +5,9 @@ set -x
 
 workspace="Example/StylingKit.xcworkspace"
 scheme="StylingKit-Example"
-destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
+destination="platform=iOS Simulator,name=iPhone 6s,OS=10.3.1"
 
 # open -b com.apple.iphonesimulator #start simulator in advance as xcodebuild sometimes fails to do so
 set -o pipefail && xcodebuild build build-for-testing -workspace "$workspace" -scheme "$scheme" -destination "$destination" | xcpretty
 set -o pipefail && xcodebuild test-without-building -workspace "$workspace" -scheme "$scheme" -destination "$destination" | xcpretty
-carthage build --no-skip-current
-pod lib lint --verbose | xcpretty # use verbose to prevent travis of killing build because of no output
-
-
 

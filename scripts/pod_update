@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+script_dir="$(dirname "$0")"
+
+pod repo update
+(cd "$script_dir/../Example" && pod update)
+(cd "$script_dir/../CarthageProj" && pod update)
+
+
+

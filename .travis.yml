@@ -1,4 +1,4 @@
-osx_image: xcode8.2 # update destination iOS when upgrade
+osx_image: xcode8.3 # update destination iOS when upgrade
 language: objective-c
 
 rvm: 2.2
@@ -9,14 +9,23 @@ branches:
     - develop
 
 before_install:
- - sysctl -n machdep.cpu.brand_string
- - sysctl hw
+  - sysctl -n machdep.cpu.brand_string
+  - sysctl hw
 
 install:
- - ./scripts/bootstrap
+  - ./scripts/bootstrap
 
 env:
- - workspace="Example/StylingKit.xcworkspace" scheme="StylingKit-Example" destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
+  global:
+    - workspace="Example/StylingKit.xcworkspace"
+    - scheme="StylingKit-Example"
+    - destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
+
+  matrix:
+    - CURRENT_STAGE=0
+    - CURRENT_STAGE=1
+    - CURRENT_STAGE=2
 
 script:
- - ./scripts/travis_build
+  - ./scripts/travis_build.${CURRENT_STAGE}
+

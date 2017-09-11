@@ -1,0 +1,8 @@
+#! /bin/sh
+
+set -e
+set -x
+
+pod lib lint --verbose --fail-fast | xcpretty # use verbose to prevent travis of killing build because of no output
+
+
