@@ -16,16 +16,16 @@ install:
   - ./scripts/bootstrap
 
 env:
-  - workspace: "Example/StylingKit.xcworkspace"
-  - scheme: "StylingKit-Example"
-  - destination: "platform=iOS Simulator,name=iPhone 6s,OS=10.1"
+  global:
+    - workspace = "Example/StylingKit.xcworkspace"
+    - scheme = "StylingKit-Example"
+    - destination = "platform=iOS Simulator,name=iPhone 6s,OS=10.1"
 
-matrix:
-  - include:
-    - env: CURRENT_STAGE=0
-    - env: CURRENT_STAGE=1
-    - env: CURRENT_STAGE=2
-    
+  matrix:
+    - CURRENT_STAGE=0
+    - CURRENT_STAGE=1
+    - CURRENT_STAGE=2
+
 script:
   - ./scripts/travis_build.${CURRENT_STAGE}
 
