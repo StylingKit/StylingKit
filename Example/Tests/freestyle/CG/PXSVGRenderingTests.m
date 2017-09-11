@@ -90,7 +90,7 @@
 
 - (void)testLoadingOfNilURL
 {
-    PXShapeView *shapeView = [[PXShapeView alloc] init];
+    STKShapeView *shapeView = [[STKShapeView alloc] init];
 
     [shapeView loadSceneFromURL:nil];
 
