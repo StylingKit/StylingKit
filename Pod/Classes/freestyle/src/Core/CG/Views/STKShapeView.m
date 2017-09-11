@@ -22,6 +22,7 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
+#import <StylingKit/PixateFreestyle.h>
 #import "STKShapeView.h"
 #import "PXShapeGroup.h"
 #import "PXSVGLoader.h"
@@ -103,9 +104,9 @@
     return result;
 }
 
-- (void)loadSceneFromURL:(NSURL *)URL
+- (void)loadSceneFromURL:(NSURL*)URL
 {
-    // TODO: this has been exposed and when used directly, resourcePath will keep it's old value
+    _resourcePath = URL.absoluteString;
     self.document = [PXSVGLoader loadFromURL:URL];
 }
 

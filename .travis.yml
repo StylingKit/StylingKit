@@ -22,10 +22,10 @@ env:
     - destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
 
   matrix:
-    - CURRENT_STAGE=0
-    - CURRENT_STAGE=1
-    - CURRENT_STAGE=2
+    - BUILD_STAGE=test
+    - BUILD_STAGE=carthage
+    - BUILD_STAGE=pod_lint
 
 script:
-  - ./scripts/travis_build.${CURRENT_STAGE}
+  - ./scripts/travis_build.${BUILD_STAGE}
 
