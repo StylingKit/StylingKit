@@ -161,7 +161,7 @@
 /**
  * Add decoration attribute to attributed text attributes dictionary based on CSS decoration value (strike-through, underline).
  * @param decoration CSS decoration value (for text-decoration)
- @ @param attribute attributedString attributes dictionary.
+ @ @param attributes attributedString attributes dictionary.
  */
 + (void)addDecoration:(NSString *)decoration toAttributes:(NSMutableDictionary *)attributes;
 
@@ -177,6 +177,6 @@
  *  @param defaultText The text to be used if there is no text set in the css (the source of this can vary on states and components)
  *  @param defaultColor The color to be used if there is no color set in the css (the source of this can vary on states and components)
  */
-- (NSMutableDictionary *) attributedTextAttributes:(UIView *)view withDefaultText:(NSString *)text andColor:(UIColor *)defaultColor;
+- (NSMutableDictionary *) attributedTextAttributes:(UIView *)view withDefaultText:(NSString *)defaultText andColor:(UIColor *)defaultColor;
 
 @end

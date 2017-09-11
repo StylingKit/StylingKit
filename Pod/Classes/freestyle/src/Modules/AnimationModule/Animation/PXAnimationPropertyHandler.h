@@ -27,10 +27,6 @@
 
 /**
  *  A typedef for the block that will be called once this styler is ready to be applied to a control
- *
- *  @param view The view to be styled
- *  @param styler The styler to use when styling the view
- *  @param context Any additional context associated with this styling cycle
  */
 typedef id(^PXAnimationPropertyHandlerBlock)(PXDeclaration *declaration);
 
