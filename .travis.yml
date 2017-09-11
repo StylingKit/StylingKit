@@ -1,31 +1,31 @@
-osx_image: xcode8.3 # update destination iOS when upgrade
+osx_image: xcode8.3
 language: objective-c
-
 rvm: 2.2
-
 branches:
   only:
-    - master
-    - develop
+  - master
+  - develop
 
 before_install:
-  - sysctl -n machdep.cpu.brand_string
-  - sysctl hw
+- sysctl -n machdep.cpu.brand_string
+- sysctl hw
 
 install:
-  - ./scripts/bootstrap
+- "./scripts/bootstrap"
 
 env:
   global:
-    - workspace="Example/StylingKit.xcworkspace"
-    - scheme="StylingKit-Example"
-    - destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
-
+  - workspace="Example/StylingKit.xcworkspace"
+  - scheme="StylingKit-Example"
+  - destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
   matrix:
-    - BUILD_STAGE=test
-    - BUILD_STAGE=carthage
-    - BUILD_STAGE=pod_lint
+  - BUILD_STAGE=test
+  - BUILD_STAGE=carthage
+  - BUILD_STAGE=pod_lint
 
 script:
-  - ./scripts/travis_build.${BUILD_STAGE}
+- "./scripts/travis_build.${BUILD_STAGE}"
 
+notifications:
+  slack:
+    secure: vP7gTG5gvtYWHgEbbXg6AW1FQhcRaRN1iFxsHw8fCXhpkscr0yJS7TPrddAU2IZtNrGnf6ZYuz0rloS9QXk6pTy8ZLyJTVDEhi6ZF0FGyv3neymm+45nCOulypHKGa3n8I4oUUhmFC1d5a3Ww2U3NJn7BHKtFB9l/ZMBPntry3bWewxp1cak9ryK75jIpD2IGgDVDkO7Kk1M7LmuqsuuOJvhilNu649bgzmeT7BrIM+rhKDHX3b4MVfm3yTCYGm1wCZKbRuFY8p378782uG8PA+kmYGuzixhthmrO5Xvv2eSFBMoXSEW0LZ4awyfmj6y56M3QWbqeD+1YYSy8Bqj8H3KeJ+ed454WICEjU2LhGfH9j2vxTq7rVefcAPlSarNlfqwDZzvZYME79fJx58HB6/y6Ov9ky9oOxQwmJLDHVdmYIOspFYPdyyY/XOtrwzOR466RQNPYnCTBxBg8dQxWK3M+nIxKntqllJpX54MlfZEt3ucmEGXCWi/+B3LeIuh7sf/2+hnCiFnzCBf61YC2EPT3TPu0NAxE4qUIlg2zipun+hyuVZXMB/QsWqAQNDGzvz+Iu29yifpErahcbdP/rWBDV0a/VoiKh6bJj52ZeXPndbUVYlwMHXaIJW/Xo6ZZA/LRmOwT99S/fSjMsQXHrrwM5TG9M8avMC5cDYHiKU=
