@@ -27,7 +27,7 @@
 #import "PXPaint.h"
 #import "PXShadowPaint.h"
 
-@class PXShape;
+@class STKShape;
 
 /**
  *  The PXPaintable protocol declares properties needed when rendering content to a CGContext.
@@ -64,7 +64,7 @@
 /**
  *  A property returning a PXShape to be used as a clipping path on this shape
  */
-@property (nonatomic, strong) PXShape *clippingPath;
+@property (nonatomic, strong) STKShape *clippingPath;
 
 /**
  *  A property returning a PXShadow to be used to case inner and outer shadows

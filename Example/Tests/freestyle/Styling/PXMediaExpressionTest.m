@@ -126,11 +126,11 @@
     PXVersionType sysVersion = PXVersionCurrentSystem();
 
     PXVersionType minVersion = PXVersionFromObject(@"1.0");
-    PXVersionType maxVersion = PXVersionFromObject(@"10.0");
+    PXVersionType maxVersion = PXVersionFromObject(@"20.0");
          
     XCTAssertTrue( PXVersionCompare(sysVersion, minVersion) > 0, @"System > 1" );
 
-    XCTAssertTrue( PXVersionCompare(sysVersion, maxVersion) < 0, @"System < 10" );
+    XCTAssertTrue( PXVersionCompare(sysVersion, maxVersion) < 0, @"System < 20" );
 }
 
 
@@ -152,11 +152,11 @@
     PXStylesheet* stylesheet   = [parser parse:emptySource withOrigin:PXStylesheetOriginApplication];
     XCTAssertTrue([stylesheet.ruleSets count] == 0 , @"ruleSets count %lu", (unsigned long)stylesheet.ruleSets.count);
     
-    NSString *validSource = @"@media (max-device-os-version: '10') { #myButton { background-color: pink; } }";
+    NSString *validSource = @"@media (max-device-os-version: '20') { #myButton { background-color: pink; } }";
     PXStylesheet* validStylesheet   = [parser parse:validSource withOrigin:PXStylesheetOriginApplication];
     XCTAssertTrue([validStylesheet.ruleSets count] > 0 , @"ruleSets count %lu", (unsigned long)validStylesheet.ruleSets.count);
     
-    NSString *validSource2 = @"@media (min-device-os-version: '1') and (max-device-os-version: '10') { #myButton { background-color: pink; } }";
+    NSString *validSource2 = @"@media (min-device-os-version: '1') and (max-device-os-version: '20') { #myButton { background-color: pink; } }";
     PXStylesheet* validStylesheet2 = [parser parse:validSource2 withOrigin:PXStylesheetOriginApplication];
     XCTAssertTrue([validStylesheet2.ruleSets count] > 0 , @"ruleSets count %lu", (unsigned long)validStylesheet2.ruleSets.count);
     

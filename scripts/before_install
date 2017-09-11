@@ -8,21 +8,44 @@ if [ -z $(which brew) ] ;then
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew_install()
+function brew_install()
 {
     brew list $1 > /dev/null || brew install $1
     brew outdated $1 || brew upgrade $1
 }
 
-echo "== Updating homebrew database"
-brew update
+function gem_install()
+{
+	gem install "$@" --no-document
+}
+
+if [[ $TRAVIS != true ]]; then
+	echo "== Updating homebrew database"
+	brew update
+fi
 
 echo "== Updating tools"
 
-if [[ $TRAVIS != true ]]; then
-	brew_install rbenv ruby-build
+which ruby
+ruby --version
 
-	RUBY_VERSION="2.2.4"
+if [[ $TRAVIS != true ]]; then
+	brew_install rbenv
+	brew_install ruby-build
+	# brew_install openssl
+	# brew_install homebrew/dupes/apple-gcc42
+
+	RUBY_VERSION="2.2.6"
+
+# export CC=/usr/local/bin/gcc-4.2
+# export CFLAGS='-g -O2'
+# export RUBY_CONFIGURE_OPTS=--with-openssl-dir=`brew --prefix openssl`
+# export CONFIGURE_OPTS=--with-openssl-dir=`brew --prefix openssl`
+
+
+	# Install Ruby
+	rbenv install "$RUBY_VERSION" --skip-existing
+	rbenv global "$RUBY_VERSION" --skip-existing
 
 	# Add rbenv to bash so that it loads every time you open a terminal
 	RBENV_CONF='if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'
@@ -30,27 +53,20 @@ if [[ $TRAVIS != true ]]; then
 		echo "$RBENV_CONF" >> ~/.bash_profile
 		source ~/.bash_profile
 	fi
-
-	# Install Ruby
-	rbenv install "$RUBY_VERSION" --skip-existing
-	rbenv global "$RUBY_VERSION" --skip-existing
 fi
-
-
-which ruby
-ruby --version
-gem environment
 
 brew_install carthage
 
-gem install cocoapods --version 0.39.0
+gem_install xcpretty
+gem_install fastlane
 
-echo "== Updating cocoapods master repo"
-pod setup --silent
-echo "== Done"
+gem_install sass
 
-gem install fastlane
-gem install match
+gem_install cocoapods
+pod --version
 
-gem install sass
-
+if [[ $TRAVIS != true ]]; then
+	echo "== Updating cocoapods master repo"
+	pod setup --silent
+	echo "== Done"
+fi

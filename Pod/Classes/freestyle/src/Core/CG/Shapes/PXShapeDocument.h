@@ -25,7 +25,7 @@
 #import <Foundation/Foundation.h>
 #import "PXRenderable.h"
 
-@class PXShapeView;
+@class STKShapeView;
 
 /**
  *  A top-level container for PXShapes. This is used to define the bounds of a set of PXShapes. It also is a centralized
@@ -48,7 +48,7 @@
 /**
  *  The top-level view that this scene belongs to
  */
-@property (nonatomic, strong) PXShapeView *parentView;
+@property (nonatomic, strong) STKShapeView *parentView;
 
 /**
  *  Return the shape in this scene with the specfied name.

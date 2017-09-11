@@ -9,7 +9,7 @@
 
 #import "ImageBasedTests.h"
 #import <XCTest/XCTest.h>
-#import "PXShapeView.h"
+#import "STKShapeView.h"
 #import "PXShapeGroup.h"
 #import "STKTestsCommon.h"
 
@@ -64,7 +64,7 @@
     NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:name ofType:@"svg"];
 
     // create view
-    PXShapeView *shapeView = [[PXShapeView alloc] init];
+    STKShapeView *shapeView = [[STKShapeView alloc] init];
 
     // load SVG image
     [shapeView loadSceneFromURL:[NSURL fileURLWithPath:path]];

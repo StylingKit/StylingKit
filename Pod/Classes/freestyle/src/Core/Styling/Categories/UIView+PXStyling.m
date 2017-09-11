@@ -179,6 +179,11 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (void)stk_subclassIfNeeded
 {
+    if ([self stk_isSublcassingException])
+    {
+        return;
+    }
+
     // Grabbing Pixate's subclass of this instance
     Class viewDynamicSubclass = SubclassForViewWithClass(self, nil);
 
@@ -201,6 +206,41 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
             }
         }
     }
+}
+- (BOOL)stk_isSublcassingException
+{
+    static NSMutableSet<Class> *exceptions;
+    static NSMutableSet<NSString *> *exceptionClassNames;
+    static NSMutableSet<NSString *> *matchedClasses;
+
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        exceptions = [NSMutableSet new];
+        exceptionClassNames = [NSMutableSet new];
+        matchedClasses = [NSMutableSet new];
+
+        NSString *prefix = @"CAM";
+        if ([[UIDevice currentDevice] systemVersion].floatValue >= 9.0)
+        {
+            prefix = @"CMK";
+        }
+        [exceptionClassNames addObject:[NSString stringWithFormat:@"%@%@%@", prefix, @"Flip", @"Button" ]];
+        [exceptionClassNames addObject:[NSString stringWithFormat:@"%@%@%@", prefix, @"Shutter", @"Button" ]];
+    });
+
+    for (NSString *name in exceptionClassNames)
+    {
+        Class except = NSClassFromString(name);
+        if (except)
+        {
+            [exceptions addObject:except];
+            [matchedClasses addObject:name];
+        }
+    }
+    [exceptionClassNames minusSet:matchedClasses];
+    [matchedClasses removeAllObjects];
+
+    return [exceptions containsObject:self.class];
 }
 
 + (BOOL)subclassIfNeeded:(Class)superClass object:(NSObject *)object

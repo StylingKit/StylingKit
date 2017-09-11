@@ -23,13 +23,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXBoundable.h"
 
 /**
  *  A PXShape sub-class used to render rectangles
  */
-@interface PXRectangle : PXShape <PXBoundable>
+@interface PXRectangle : STKShape <PXBoundable>
 
 /**
  *  The size (width and height) of this rectangle

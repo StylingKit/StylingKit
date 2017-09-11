@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PXStyleable.h"
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXPaint.h"
 #import "PXShadowPaint.h"
 #import "PXShadowGroup.h"
@@ -41,7 +41,7 @@
 @property (nonatomic, strong) NSString *activeStateName;
 @property (nonatomic) NSUInteger styleHash;
 
-@property (nonatomic, strong) PXShape *shape;
+@property (nonatomic, strong) STKShape *shape;
 
 // This group of properties is for PXLayoutStyler
 @property (nonatomic) CGFloat top;

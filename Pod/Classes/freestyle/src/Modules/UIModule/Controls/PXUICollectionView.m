@@ -225,4 +225,6 @@ PX_WRAP_PROP(UIView, backgroundView);
 PX_WRAP_1(setBackgroundColor, color);
 PX_WRAP_1(setBackgroundView, view);
 
+PX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
+
 @end

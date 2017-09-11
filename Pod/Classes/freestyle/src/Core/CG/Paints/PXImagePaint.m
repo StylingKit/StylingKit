@@ -24,7 +24,7 @@
 //
 
 #import "PXImagePaint.h"
-#import "PXShapeView.h"
+#import "STKShapeView.h"
 
 @implementation PXImagePaint
 
@@ -71,7 +71,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         // create image
         if ([self hasSVGImageURL])
         {
-            PXShapeView *shapeView = [[PXShapeView alloc] initWithFrame:bounds];
+            STKShapeView *shapeView = [[STKShapeView alloc] initWithFrame:bounds];
 
             [shapeView loadSceneFromURL:_imageURL];
             image = shapeView.renderToImage;

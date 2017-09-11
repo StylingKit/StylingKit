@@ -401,7 +401,7 @@ didStartElement:(NSString *)elementName
 
     if (d)
     {
-        PXPath *path = [PXPath createPathFromPathData:d];
+        STKPath *path = [STKPath createPathFromPathData:d];
 
         [self applyStyles:attributeDict forShape:path];
         [self addShape:path];
@@ -684,14 +684,14 @@ didStartElement:(NSString *)elementName
 
 #pragma mark - Supporting Methods
 
-- (void) addShape:(PXShape *)shape
+- (void) addShape:(STKShape *)shape
 {
     PXShapeGroup *group = stack.lastObject;
 
     [group addShape:shape];
 }
 
-- (void)applyStyles:(NSDictionary *)attributeDict forShape:(PXShape *)shape
+- (void)applyStyles:(NSDictionary *)attributeDict forShape:(STKShape *)shape
 {
     NSString *strokeDashArray = attributeDict[@"stroke-dasharray"];
     NSString *fillColor = attributeDict[@"fill"];

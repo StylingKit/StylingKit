@@ -23,7 +23,7 @@
 //
 
 #import "PXShapeStyler.h"
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXEllipse.h"
 #import "PXRectangle.h"
 #import "PXArrowRectangle.h"

@@ -23,7 +23,7 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "PXShape.h"
+#import "STKShape.h"
 #import "PXBoundable.h"
 #import "PXBorderInfo.h"
 
@@ -33,7 +33,7 @@ typedef NS_ENUM(unsigned int, PXBoxSizing) {
     PXBoxSizingBorderBox
 };
 
-@interface PXBoxModel : PXShape <PXBoundable>
+@interface PXBoxModel : STKShape <PXBoundable>
 
 @property (nonatomic) id<PXPaint> borderTopPaint;
 @property (nonatomic) CGFloat borderTopWidth;

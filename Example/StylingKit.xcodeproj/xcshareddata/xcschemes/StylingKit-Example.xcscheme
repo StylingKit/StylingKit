@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1C5703754CC817CD0D9A5482B0869137"
+               BlueprintIdentifier = "8AFEEBF7E02A93DE057FD9A59899C287"
                BuildableName = "StylingKit.framework"
                BlueprintName = "StylingKit"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
