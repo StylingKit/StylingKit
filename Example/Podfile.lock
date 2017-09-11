@@ -1,66 +1,63 @@
 PODS:
-  - CocoaLumberjack (2.2.0):
-    - CocoaLumberjack/Default (= 2.2.0)
-    - CocoaLumberjack/Extensions (= 2.2.0)
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
+  - CocoaLumberjack (3.2.1):
+    - CocoaLumberjack/Default (= 3.2.1)
+    - CocoaLumberjack/Extensions (= 3.2.1)
+  - CocoaLumberjack/Default (3.2.1)
+  - CocoaLumberjack/Extensions (3.2.1):
     - CocoaLumberjack/Default
-  - FBSnapshotTestCase (2.0.7):
-    - FBSnapshotTestCase/SwiftSupport (= 2.0.7)
-  - FBSnapshotTestCase/Core (2.0.7)
-  - FBSnapshotTestCase/SwiftSupport (2.0.7):
+  - Expecta (1.0.6)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - GCDWebServer/CocoaLumberjack (3.3.2):
-    - CocoaLumberjack (~> 2)
-    - GCDWebServer/Core
-  - GCDWebServer/Core (3.3.2)
-  - GCDWebServer/WebDAV (3.3.2):
-    - GCDWebServer/WebDAV/Core (= 3.3.2)
-  - GCDWebServer/WebDAV/CocoaLumberjack (3.3.2):
-    - GCDWebServer/CocoaLumberjack
-    - GCDWebServer/WebDAV/Core
-  - GCDWebServer/WebDAV/Core (3.3.2):
+  - GCDWebServer/Core (3.4.1)
+  - GCDWebServer/WebDAV/Core (3.4.1):
     - GCDWebServer/Core
   - Kiwi (2.4.0)
-  - StylingKit/Cloud/Main (0.3.0):
-    - GCDWebServer/WebDAV (~> 3)
+  - StylingKit/Cloud (0.4.3):
+    - StylingKit/Cloud/Main (= 0.4.3)
+  - StylingKit/Cloud/Main (0.4.3):
+    - GCDWebServer/WebDAV/Core (~> 3)
     - StylingKit/Main
-  - StylingKit/Cloud/WithLogging (0.3.0):
-    - GCDWebServer/WebDAV/CocoaLumberjack (~> 3)
-    - StylingKit/Cloud/Main
-    - StylingKit/WithLogging
-  - StylingKit/Freestyle (0.3.0)
-  - StylingKit/Main (0.3.0):
+  - StylingKit/Freestyle (0.4.3)
+  - StylingKit/Main (0.4.3):
     - StylingKit/Freestyle
-  - StylingKit/WithLogging (0.3.0):
-    - CocoaLumberjack (~> 2)
-    - StylingKit/Main
-  - StylingKitThemes/blue/css (0.1.0):
+  - StylingKitThemes/blue/css (0.1.3):
     - StylingKitThemes/Core
-    - StylingKitThemes/icons
-  - StylingKitThemes/Core (0.1.0)
-  - StylingKitThemes/icons (0.1.0)
+  - StylingKitThemes/Core (0.1.3):
+    - StylingKitThemes/Core/All (= 0.1.3)
+    - StylingKitThemes/Core/Icons (= 0.1.3)
+    - StylingKitThemes/Core/Scripts (= 0.1.3)
+  - StylingKitThemes/Core/All (0.1.3):
+    - StylingKitThemes/Core/Icons
+    - StylingKitThemes/Core/Scripts
+  - StylingKitThemes/Core/Icons (0.1.3)
+  - StylingKitThemes/Core/Scripts (0.1.3)
 
 DEPENDENCIES:
+  - CocoaLumberjack (~> 3)
+  - Expecta
   - FBSnapshotTestCase
   - Kiwi
-  - StylingKit/Cloud/WithLogging (from `../`)
+  - StylingKit/Cloud (from `../`)
   - StylingKitThemes/blue/css (from `./themes`)
 
 EXTERNAL SOURCES:
   StylingKit:
-    :path: "../"
+    :path: ../
   StylingKitThemes:
-    :path: "./themes"
+    :path: ./themes
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
-  FBSnapshotTestCase: 7e85180d0d141a0cf472352edda7e80d7eaeb547
-  GCDWebServer: 2a375ec42839a41d7187d04e5b688d32fa5c4cd5
+  CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  StylingKit: fd7d1e424d2a258a953eadeac8682b126e6af49d
-  StylingKitThemes: f8a4e11e4aa170b010a7b02d1cc61fbcd7fd2be0
+  StylingKit: c7be8dbff3fd1ef3190cd86302412fbd852e2e66
+  StylingKitThemes: aa44797406ab67bd8a765265731d37363d40554a
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 29e4fb3c6cdda9d8f77d45467b12ec40629e4207
+
+COCOAPODS: 1.3.1

@@ -21,12 +21,12 @@
 
 @implementation PXShapeRenderingTests
 
-- (void)assertShape:(PXShape *)shape equalsImageName:(NSString *)name
+- (void)assertShape:(STKShape *)shape equalsImageName:(NSString *)name
 {
     [self assertShape:shape equalsImageName:name withWidth:100 withHeight:100];
 }
 
-- (void)assertShape:(PXShape *)shape equalsImageName:(NSString *)name withWidth:(UInt16)width withHeight:(UInt16)height
+- (void)assertShape:(STKShape *)shape equalsImageName:(NSString *)name withWidth:(UInt16)width withHeight:(UInt16)height
 {
     // create context
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, height), NO, 0.0f);
@@ -169,7 +169,7 @@
 
 - (void)testEllipticalArc
 {
-    PXPath *path = [[PXPath alloc] init];
+    STKPath *path = [[STKPath alloc] init];
 
     [path moveToX:10.0f y:40.0f];
     [path lineToX:90.0f y:40.0f];
@@ -330,7 +330,7 @@
 
 - (void)testLineJoinBevel
 {
-    PXPath *shape = [[PXPath alloc] init];
+    STKPath *shape = [[STKPath alloc] init];
     PXStroke *stroke = [[PXStroke alloc] init];
 
     [shape moveToX:20.0f y:60.0f];
@@ -347,7 +347,7 @@
 
 - (void)testLineJoinRound
 {
-    PXPath *shape = [[PXPath alloc] init];
+    STKPath *shape = [[STKPath alloc] init];
     PXStroke *stroke = [[PXStroke alloc] init];
 
     [shape moveToX:20.0f y:60.0f];
@@ -364,7 +364,7 @@
 
 - (void)testLineJoinMiter
 {
-    PXPath *shape = [[PXPath alloc] init];
+    STKPath *shape = [[STKPath alloc] init];
     PXStroke *stroke = [[PXStroke alloc] init];
 
     [shape moveToX:20.0f y:60.0f];
@@ -381,7 +381,7 @@
 
 - (void)testMiterLimit
 {
-    PXPath *shape = [[PXPath alloc] init];
+    STKPath *shape = [[STKPath alloc] init];
     PXStroke *stroke = [[PXStroke alloc] init];
 
     [shape moveToX:20.0f y:60.0f];

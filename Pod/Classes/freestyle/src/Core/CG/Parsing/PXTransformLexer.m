@@ -95,7 +95,7 @@
                                   @(PXTransformToken_COMMA)];
         [tokenList addObject:[[PXCharacterMatcher alloc] initWithCharactersInString:operators withTypes:operatorTypes]];
 
-        self->tokens = [NSArray arrayWithArray:tokenList];
+        self->tokens = tokenList;
 
     }
 

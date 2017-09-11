@@ -24,7 +24,7 @@
 //
 
 #import "PXBarShadowStyler.h"
-#import "PXShapeView.h"
+#import "STKShapeView.h"
 #import "PXRectangle.h"
 #import "PXStroke.h"
 #import "PXSolidPaint.h"
@@ -78,7 +78,7 @@
                 size = bounds.size;
             }
 
-            PXShapeView *shapeView = [[PXShapeView alloc] initWithFrame:bounds];
+            STKShapeView *shapeView = [[STKShapeView alloc] initWithFrame:bounds];
 
             [shapeView loadSceneFromURL:context.shadowUrl];
             context.shadowImage = shapeView.renderToImage;

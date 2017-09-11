@@ -25,6 +25,8 @@
 
 #import "PXGestalt.h"
 
+PX_DEFINE_FILE_LOG_LEVEL;
+
 NSString* _PX_NomalizeStringInput(NSString* stringValue)
 {
     NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\' "];

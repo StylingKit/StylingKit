@@ -72,37 +72,66 @@ static PXValueParser *VALUE_PARSER;
     loaderClass = class;
 }
 
+
++ (NSCache *)prv_cache
+{
+    static NSCache *shapeCache;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        shapeCache = [[NSCache alloc] init];
+        shapeCache.name = @"StylingKit Shape Cache";
+
+        shapeCache.countLimit = PixateFreestyle.configuration.imageCacheCount;
+    });
+    return shapeCache;
+}
+
 #pragma mark - Static Methods
 
 + (PXShapeDocument *) loadFromURL:(NSURL *)URL
 {
+    id cacheKey = URL.absoluteURL;
+    PXShapeDocument *document = [[self prv_cache] objectForKey:cacheKey];
+    if (document == nil)
+    {
+        document = [self prv_loadDocumentFromURL:URL];
+
+        [[self prv_cache] setObject:document
+                             forKey:cacheKey];
+    }
+
+    return document;
+}
+
++ (PXShapeDocument*)prv_loadDocumentFromURL:(NSURL*)URL
+{
+    PXShapeDocument *document;
     NSData *data = [NSData dataWithContentsOfURL:URL];
 
     // create and init NSXMLParser object
     NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:data];
-    
+
     // create and init our delegate
     Class loader = (loaderClass) ? loaderClass : [PXSVGLoader class];
     PXSVGLoader *parser = [[loader alloc] init];
-    
+
     // save reference to URL for errors
     parser.URL = URL;
-    
+
     // set delegate
     nsXmlParser.delegate = parser;
-    
+
     // parsing...
     BOOL success = [nsXmlParser parse];
-    
+
     // test the result
     if (!success)
     {
-        //        [parser logErrorMessageWithFormat:@"Error parsing document: %@", URL];
+        [parser logErrorMessageWithFormat:@"Error parsing SVG document from URL: %@", URL];
     }
-    
-    PXShapeDocument *document = parser->document;
+
+    document = parser->document;
     document.shape = parser->result;
-    
     return document;
 }
 
@@ -124,7 +153,7 @@ static PXValueParser *VALUE_PARSER;
     // test the result
     if (!success)
     {
-//        [parser logErrorMessageWithFormat:@"Error parsing document: %@", URL];
+        [parser logErrorMessageWithFormat:@"Error parsing SVG document from data"];
     }
 
     PXShapeDocument *document = parser->document;
@@ -372,7 +401,7 @@ didStartElement:(NSString *)elementName
 
     if (d)
     {
-        PXPath *path = [PXPath createPathFromPathData:d];
+        STKPath *path = [STKPath createPathFromPathData:d];
 
         [self applyStyles:attributeDict forShape:path];
         [self addShape:path];
@@ -655,14 +684,14 @@ didStartElement:(NSString *)elementName
 
 #pragma mark - Supporting Methods
 
-- (void) addShape:(PXShape *)shape
+- (void) addShape:(STKShape *)shape
 {
     PXShapeGroup *group = stack.lastObject;
 
     [group addShape:shape];
 }
 
-- (void)applyStyles:(NSDictionary *)attributeDict forShape:(PXShape *)shape
+- (void)applyStyles:(NSDictionary *)attributeDict forShape:(STKShape *)shape
 {
     NSString *strokeDashArray = attributeDict[@"stroke-dasharray"];
     NSString *fillColor = attributeDict[@"fill"];
@@ -700,9 +729,7 @@ didStartElement:(NSString *)elementName
 
     if (strokeDashArray)
     {
-        NSMutableArray *dashes = [self numberArrayFromString:strokeDashArray];
-
-        stroke.dashArray = [NSArray arrayWithArray:dashes];
+        stroke.dashArray = [self numberArrayFromString:strokeDashArray];
     }
 
     stroke.dashOffset = [self numberFromString:attributeDict[@"stroke-dashoffset"]];
@@ -710,7 +737,7 @@ didStartElement:(NSString *)elementName
     stroke.lineJoin = [self lineJoinFromString:attributeDict[@"stroke-linejoin"]];
 
     NSString *miterLimit = attributeDict[@"stroke-miterlimit"];
-    stroke.miterLimit = (miterLimit) ? [self numberFromString:miterLimit] : 4.0;
+    stroke.miterLimit = (miterLimit) ? [self numberFromString:miterLimit] : 4.0f;
 
     shape.stroke = stroke;
 
@@ -863,7 +890,7 @@ didStartElement:(NSString *)elementName
         [points addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
     }
 
-    return [[PXPolygon alloc] initWithPoints:[NSArray arrayWithArray:points]];
+    return [[PXPolygon alloc] initWithPoints:points];
 }
 
 - (id<PXPaint>)paintFromString:(NSString *)attributeValue withOpacityString:(NSString *)opacityValue

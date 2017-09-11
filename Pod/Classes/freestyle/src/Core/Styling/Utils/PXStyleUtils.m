@@ -49,6 +49,8 @@ static const char viewDelegate;
 
 @implementation PXStyleUtils
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 + (NSArray *)elementChildrenOfStyleable:(id<PXStyleable>)styleable
 {
     NSMutableArray *children = [[NSMutableArray alloc] init];
@@ -232,6 +234,11 @@ static const char viewDelegate;
     return [parts componentsJoinedByString:@""];
 }
 
++ (NSString *)styleKeyFromStyleable:(id<PXStyleable>)styleable
+{
+    return [[styleable.class description] stringByAppendingPathComponent:[PXStyleUtils selectorFromStyleable:styleable]];
+}
+
 + (NSString *)selectorFromStyleable:(id<PXStyleable>)styleable
 {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
@@ -243,7 +250,7 @@ static const char viewDelegate;
     if (styleable.styleId) [parts addObject:[NSString stringWithFormat:@"#%@", styleable.styleId]];
 
     // add classes
-    NSArray *classes = styleable.styleClasses;
+    NSSet *classes = styleable.styleClasses;
 
     for (NSString *className in classes)
     {
@@ -334,7 +341,7 @@ static const char viewDelegate;
 + (NSMutableArray *)matchingRuleSetsForStyleable:(id<PXStyleable>)styleable
 {
     // find matching rule sets, regardless of any supported or specified pseudo-classes
-    NSMutableArray *ruleSets = [NSMutableArray arrayWithArray:[[PXStylesheet currentApplicationStylesheet] ruleSetsMatchingStyleable:styleable]];
+    NSMutableArray *ruleSets = [[PXStylesheet currentApplicationStylesheet] ruleSetsMatchingStyleable:styleable].mutableCopy;
     [ruleSets addObjectsFromArray:[[PXStylesheet currentUserStylesheet] ruleSetsMatchingStyleable:styleable]];
     [ruleSets addObjectsFromArray:[[PXStylesheet currentViewStylesheet] ruleSetsMatchingStyleable:styleable]];
 
@@ -427,6 +434,11 @@ static const char viewDelegate;
 
     return ruleSetsForPseudoElement;
 }
+NSUInteger STKHashFromCGRect(CGRect rect)
+{
+    return (*(NSUInteger *)&rect.origin.x << 10 ^ *(NSUInteger *)&rect.origin.y)
+        + (*(NSUInteger *)&rect.size.width << 10 ^ *(NSUInteger *)&rect.size.height);
+}
 
 + (BOOL)stylesOfStyleable:(id<PXStyleable>)styleable matchDeclarations:(NSArray *)declarations state:(NSString *)state
 {
@@ -449,13 +461,12 @@ static const char viewDelegate;
         NSValue *cachedHashValue = cachedHashValues[stateNameKey];
 
         // calculate active declarations hash
-        CGRect bounds = styleable.bounds;
-        NSString *boundsString = [NSString stringWithFormat:@"%f,%f,%f,%f", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height];
-        __block NSUInteger activeDeclarationsHash = boundsString.hash;
+        NSUInteger activeDeclarationsHash = STKHashFromCGRect(styleable.bounds);
 
-        [declarations enumerateObjectsUsingBlock:^(PXDeclaration *declaration, NSUInteger idx, BOOL *stop) {
+        for (PXDeclaration *declaration in declarations)
+        {
             activeDeclarationsHash = activeDeclarationsHash * 31 + declaration.hash;
-        }];
+        }
 
         // if we had a previous hash, then see if it matches our new hash
         if (cachedHashValue)
@@ -550,7 +561,8 @@ static const char viewDelegate;
                     // save for later
                     if (cache.cached)
                     {
-                        [PXCacheManager setStyleTreeInfo:cache forKey:styleKey];
+                        [PXCacheManager setStyleTreeInfo:cache
+                                                  forKey:styleKey];
                     }
                 }
 
@@ -580,14 +592,16 @@ static const char viewDelegate;
     {
         if (recurse)
         {
-            [PXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<PXStyleable> obj, BOOL *stop, BOOL *stopDescending) {
-                [PXStyleUtils updateStyleForStyleable:obj];
+            [PXStyleUtils enumerateStyleableAndDescendants:styleable
+                                                usingBlock:^(id <PXStyleable> obj, BOOL *stop, BOOL *stopDescending)
+                                                {
+                                                    [PXStyleUtils updateStyleForStyleable:obj];
 
-                if (PixateFreestyle.configuration.cacheStyles)
-                {
-                    *stopDescending = [obj isKindOfClass:[UITableViewCell class]];
-                }
-            }];
+                                                    if (PixateFreestyle.configuration.cacheStyles)
+                                                    {
+                                                        *stopDescending = [obj isKindOfClass:[UITableViewCell class]];
+                                                    }
+                                                }];
         }
         else
         {

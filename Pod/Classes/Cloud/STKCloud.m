@@ -40,6 +40,9 @@ static NSString* const kStylesheetExt = @"css";
 
 @synthesize defaultDavFolder = _defaultDavFolder;
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
+
 + (instancetype)defaultCloud
 {
     static id instance;

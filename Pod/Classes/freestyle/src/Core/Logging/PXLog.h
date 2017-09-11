@@ -24,34 +24,40 @@
 //
 
 
-#if defined(STK_LOGGING) && (__has_include("CocoaLumberjack.h") || __has_include("CocoaLumberjack/CocoaLumberjack.h"))
+#if defined(STK_LOGGING) && defined(__has_include) && (__has_include("CocoaLumberjack.h") || __has_include("CocoaLumberjack/CocoaLumberjack.h"))
 
 #define PX_LOGGING STK_LOGGING
 
 # import <CocoaLumberjack/CocoaLumberjack.h>
 
-static const DDLogLevel ddLogLevel = DDLogLevelWarning;
+static const DDLogLevel LogLevelDefault = DDLogLevelWarning;
 
-# define PX_DEFINE_CLASS_LOG_LEVEL      \
-  static int gLogLevel = ddLogLevel;    \
-  + (int)ddLogLevel                     \
-  {                                     \
-    return gLogLevel;                   \
-  }                                     \
-                                        \
-  + (void)ddSetLogLevel:(int)logLevel   \
-  {                                     \
-    gLogLevel = logLevel;               \
+# define PX_DEFINE_FILE_LOG_LEVEL static const DDLogLevel ddLogLevel = LogLevelDefault;
+
+# define STK_DEFINE_CLASS_LOG_LEVEL                 \
+  static DDLogLevel ddLogLevel = LogLevelDefault;   \
+  + (DDLogLevel)ddLogLevel                          \
+  {                                                 \
+    return ddLogLevel;                              \
+  }                                                 \
+                                                    \
+  + (void)ddSetLogLevel:(DDLogLevel)logLevel        \
+  {                                                 \
+    ddLogLevel = logLevel;                          \
   }
 
 
 #else
 
-# define PX_DEFINE_CLASS_LOG_LEVEL
+# define STK_DEFINE_CLASS_LOG_LEVEL
+# define PX_DEFINE_FILE_LOG_LEVEL
+
 # define DDLogError(...)
 # define DDLogWarn(...)
 # define DDLogInfo(...)
 # define DDLogVerbose(...)
 # define DDLogDebug(...)
+
+typedef enum{DDLogLevelNone} DDLogLevel;
 
 #endif

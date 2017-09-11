@@ -82,7 +82,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
          {
              [UIBarButtonItem UpdateStyleWithRuleSetHandler:ruleSet
                                                     context:context
-                                                     target:[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil]];
+                                                     target:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]];
          }];
         
         barButtons.supportedPseudoClasses = BUTTONS_PSEUDOCLASS_MAP.allKeys;
@@ -95,12 +95,12 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
                                    PXShapeStyler.sharedInstance,
                                    PXBoxShadowStyler.sharedInstance,
                                    
-                                   [[PXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil]]],
+                                   [[PXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
                                    
-                                   [[PXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem PXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil]]],
+                                   [[PXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem PXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
                                    
                                    [[PXGenericStyler alloc] initWithHandlers: @{
-                                        @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil]]
+                                        @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]
                                         }],
                                    ];
         children = @[ barButtons ];

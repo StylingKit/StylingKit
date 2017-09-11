@@ -52,7 +52,7 @@
     dispatch_once(&onceToken, ^{
         handlers = @{
              @"animation" : ^(PXDeclaration *declaration, PXStylerContext *context) {
-                 context.animationInfos = [NSMutableArray arrayWithArray:declaration.animationInfoList];
+                 context.animationInfos = declaration.animationInfoList.mutableCopy;
              },
              @"animation-name" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *names = declaration.nameListValue;

@@ -7,7 +7,4 @@ script_dir="$(dirname "$0")"
 
 echo "Bootstrapping your checkout"
 
-(cd Example && pod install)
-
-
-
+"$script_dir/pod_install"

@@ -1,0 +1,11 @@
+#! /bin/sh
+
+set -e
+set -x
+
+
+script_dir="$(dirname "$0")"
+
+"$script_dir/travis_build.test"
+"$script_dir/travis_build.carthage"
+"$script_dir/travis_build.pod_lint"

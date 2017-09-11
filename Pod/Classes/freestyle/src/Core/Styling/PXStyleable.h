@@ -57,9 +57,9 @@ typedef NS_ENUM(unsigned int, PXStylingMode)
 @property (nonatomic, copy) NSString *styleClass;
 
 /**
-*  Return an array of the styleClass separated by whitespace for faster performance
+*  Return a set of the styleClass separated by whitespace for faster performance
 */
-@property (nonatomic, readonly) NSArray *styleClasses;
+@property (nonatomic, readonly) NSSet *styleClasses;
 
 /**
  *  For support in cache, programing change style or class style

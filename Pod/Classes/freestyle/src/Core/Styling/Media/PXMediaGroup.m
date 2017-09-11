@@ -51,23 +51,30 @@
 
 - (NSArray *)ruleSets
 {
-    return (ruleSets_) ? [NSArray arrayWithArray:ruleSets_] : nil;
+    return ruleSets_;
 }
 
 - (NSArray *)ruleSetsForStyleable:(id<PXStyleable>)styleable
 {
-    NSMutableArray *result = [NSMutableArray array];
-    NSMutableSet *items = [NSMutableSet set];
-
     // gather keys
     NSString *elementName = styleable.pxStyleElementName;
     NSString *styleId = styleable.styleId;
-    NSArray *styleClasses = styleable.styleClasses;
+    NSSet *styleClasses = styleable.styleClasses;
+
+    NSArray *ruleSetsForElement = ruleSetsByElementName_[elementName];
+    NSArray *ruleSetsForStyle = ruleSetsById_[styleId];
+
+    const NSUInteger capacity = [ruleSetsForElement count]
+        + [ruleSetsForStyle count]
+        + ruleSetsByClass_.count * styleClasses.count;
+
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:capacity];
+    NSMutableSet *items = [NSMutableSet setWithCapacity:capacity];
 
     // find relevant ruleSets by element name
     if (elementName.length > 0)
     {
-        for (PXRuleSet *ruleSet in ruleSetsByElementName_[elementName])
+        for (PXRuleSet *ruleSet in ruleSetsForElement)
         {
             if (![items containsObject:ruleSet])
             {
@@ -80,7 +87,7 @@
     // find relevant ruleSets by id
     if (styleId.length > 0)
     {
-        for (PXRuleSet *ruleSet in ruleSetsById_[styleId])
+        for (PXRuleSet *ruleSet in ruleSetsForStyle)
         {
             if (![items containsObject:ruleSet])
             {
@@ -91,17 +98,14 @@
     }
 
     // find relevant ruleSets by class
-    if (styleClasses.count > 0)
+    for (NSString *aClass in styleClasses)
     {
-        for (NSString *aClass in styleClasses)
+        for (PXRuleSet *ruleSet in ruleSetsByClass_[aClass])
         {
-            for (PXRuleSet *ruleSet in ruleSetsByClass_[aClass])
+            if (![items containsObject:ruleSet])
             {
-                if (![items containsObject:ruleSet])
-                {
-                    [result addObject:ruleSet];
-                    [items addObject:ruleSet];
-                }
+                [result addObject:ruleSet];
+                [items addObject:ruleSet];
             }
         }
     }
@@ -158,7 +162,7 @@
         // the default to be true when typeSelector is nil
         NSString *elementName = (typeSelector == nil || typeSelector.hasUniversalType) ? nil : typeSelector.typeName;
         NSString *styleId = (typeSelector == nil) ? nil : typeSelector.styleId;
-        NSArray *styleClasses = (typeSelector == nil) ? nil : typeSelector.styleClasses;
+        NSSet *styleClasses = (typeSelector == nil) ? nil : typeSelector.styleClasses;
         BOOL added = NO;
 
         // NOTE: nesting if-statements to avoid walking type selector expressions for id and classes when not needed

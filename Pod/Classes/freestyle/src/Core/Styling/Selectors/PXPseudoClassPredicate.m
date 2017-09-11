@@ -28,7 +28,7 @@
 
 @implementation PXPseudoClassPredicate
 
-PX_DEFINE_CLASS_LOG_LEVEL
+STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Initializers
 

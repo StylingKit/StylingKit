@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26C1C9786F754A9504F810D4 /* Pods_StylingKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3CA38A5C838CFF4D05FEA72 /* Pods_StylingKit_Tests.framework */; };
+		20483569DCCAB782A08CEF95 /* Pods_StylingKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551E75E1291E8AA5651AAED8 /* Pods_StylingKit_Tests.framework */; };
+		446C77921E8A4F4400FDA381 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446C77901E8A4EE500FDA381 /* PhotosUI.framework */; };
+		49522144CF91AE2A8BF12A9F /* Pods_StylingKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027F65B2586CA1CEC9CC4F6A /* Pods_StylingKit_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,6 +23,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		7CDD775A1C5FB7E900F8C8EF /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 7CE29D1A1C49501300D843E7 /* default.css */; };
 		7CF7A4CC1C3A772E00B3BD16 /* solid-image-stroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF7A4CA1C3A770800B3BD16 /* solid-image-stroke.png */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A09420033B649B7D9AD59FB1 /* css3-modsel-27a.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09423FEC94613E597EDF987 /* css3-modsel-27a.xml */; };
@@ -529,7 +532,6 @@
 		A0942B43DCCEE3D2E4CEFFA0 /* css3-modsel-70-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942B10883CA87081814E56 /* css3-modsel-70-result.xml */; };
 		A0942B4626E90825CD8292E8 /* css3-modsel-6-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09429C3CF163195C9DA53D0 /* css3-modsel-6-result.xml */; };
 		A0942B50C772258A333237A3 /* css3-modsel-14b-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09422ECDE8BB595CA549848 /* css3-modsel-14b-result.xml */; };
-		A0942B544C9B6ADC77B39C7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A094205724A10B3D8F5AC0BB /* InfoPlist.strings */; };
 		A0942B55023713D529177590 /* css3-modsel-123b.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09424EC726D40E3651D1616 /* css3-modsel-123b.xml */; };
 		A0942B56453BF501EA1DAAEB /* css3-modsel-179.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09427CA5586DCDF9658AC39 /* css3-modsel-179.xml */; };
 		A0942B5A775D177C6D912B00 /* css3-modsel-116.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09424BF373BA85DE48D3B58 /* css3-modsel-116.xml */; };
@@ -719,6 +721,7 @@
 		A0942EB7F3439EB3F6083ADE /* css3-modsel-68-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09425819B297782281A6216 /* css3-modsel-68-result.xml */; };
 		A0942EB89890EE0F7D7C2950 /* css3-modsel-140.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942FCA11A232C8FAD47AB1 /* css3-modsel-140.xml */; };
 		A0942EBB01F8E7F2677B8D3C /* css3-modsel-41-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942225E9FB99EE4625BE84 /* css3-modsel-41-result.xml */; };
+		A0942EBC603FC22683A7EB48 /* TestUITextFieldSubclassing.m in Sources */ = {isa = PBXBuildFile; fileRef = A0942AA6B51CDE0434DC1D14 /* TestUITextFieldSubclassing.m */; };
 		A0942EC0838E2FF6960A7D2A /* css3-modsel-23.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942B38E6E52A6BFA9AEBF1 /* css3-modsel-23.xml */; };
 		A0942ECAA6CA6B8D5096334C /* css3-modsel-74b-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942FA355E11662265FB682 /* css3-modsel-74b-result.xml */; };
 		A0942ECF5CB4AD519E9C5C97 /* css3-modsel-91.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09423684BB440DE51EA0333 /* css3-modsel-91.xml */; };
@@ -779,7 +782,6 @@
 		A0942FEA3DF302CA4BE67994 /* css3-modsel-138b.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09427ADAB544E87322AD4DB /* css3-modsel-138b.xml */; };
 		A0942FFC83BA8C0BD31DEAAB /* css3-modsel-8.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942C622A3F8BA1E9AA6D67 /* css3-modsel-8.xml */; };
 		A0942FFE167D64A810E1964B /* css3-modsel-34.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09426034687BE04305F65E9 /* css3-modsel-34.xml */; };
-		DE52BF87B720E6ABB77AD3F5 /* Pods_StylingKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63689FED0D061E19FA6CBDF8 /* Pods_StylingKit_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -793,7 +795,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		027F65B2586CA1CEC9CC4F6A /* Pods_StylingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1806D9D1E38A901C7596A444 /* StylingKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = StylingKit.podspec; path = ../StylingKit.podspec; sourceTree = "<group>"; };
+		272601728768574EF245BB76 /* Pods-StylingKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		446C77901E8A4EE500FDA381 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		551E75E1291E8AA5651AAED8 /* Pods_StylingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylingKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* StylingKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StylingKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -813,13 +819,10 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		63689FED0D061E19FA6CBDF8 /* Pods_StylingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CE29D1A1C49501300D843E7 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		7CF7A4CA1C3A770800B3BD16 /* solid-image-stroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solid-image-stroke.png"; sourceTree = "<group>"; };
-		807B21C1BB0379A0297AC2F8 /* Pods-StylingKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		825E385DF4DD2CF5CBB3CFB1 /* Pods-StylingKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		88995C9C0A492283F9E9FA69 /* Pods-StylingKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		88BF13EECBAD6971EE9DB355 /* Pods-StylingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A094201476C6C1BD73B210ED /* css3-modsel-150.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-150.xml"; sourceTree = "<group>"; };
 		A09420196CECB96991D1E3C9 /* css3-modsel-122-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-122-result.xml"; sourceTree = "<group>"; };
 		A0942019D34BA84236EE267C /* css3-modsel-100b.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-100b.xml"; sourceTree = "<group>"; };
@@ -918,7 +921,6 @@
 		A09421D8B5F1C96E406CE762 /* css3-modsel-8-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-8-result.xml"; sourceTree = "<group>"; };
 		A09421DBCB597143957CCFA1 /* css3-modsel-15b.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-15b.xml"; sourceTree = "<group>"; };
 		A09421EC19AAD04B51A3DDC7 /* css3-modsel-179a-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-179a-result.xml"; sourceTree = "<group>"; };
-		A09421ED73F755D5F4F32297 /* tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tester.m; sourceTree = "<group>"; };
 		A09421EE89EE3D03FFC253A5 /* relativeHorizontalLineCommand.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = relativeHorizontalLineCommand.svg; sourceTree = "<group>"; };
 		A09421FB381CC659629C19B0 /* css3-modsel-184a-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-184a-result.xml"; sourceTree = "<group>"; };
 		A09421FC305CF112B2D72F41 /* css3-modsel-177b-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-177b-result.xml"; sourceTree = "<group>"; };
@@ -1307,6 +1309,7 @@
 		A0942A76A68BDA393D24B162 /* css3-modsel-83-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-83-result.xml"; sourceTree = "<group>"; };
 		A0942A995A032AD76C1E3863 /* css3-modsel-75-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-75-result.xml"; sourceTree = "<group>"; };
 		A0942A9E8A72267CDA8DD67A /* PXLexemeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXLexemeTests.m; sourceTree = "<group>"; };
+		A0942AA6B51CDE0434DC1D14 /* TestUITextFieldSubclassing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUITextFieldSubclassing.m; sourceTree = "<group>"; };
 		A0942AA7E63414B6CB21BB53 /* PXTransformLexerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTransformLexerTests.m; sourceTree = "<group>"; };
 		A0942AA8A23AC34B343C5733 /* toucan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toucan.png; sourceTree = "<group>"; };
 		A0942AAA4966A31957EDE97C /* lineCommand.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = lineCommand.svg; sourceTree = "<group>"; };
@@ -1342,7 +1345,6 @@
 		A0942B3B15EA4C8FD2E4CC6B /* css3-modsel-94-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-94-result.xml"; sourceTree = "<group>"; };
 		A0942B41ADD325572CBFC4CC /* css3-modsel-24.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-24.xml"; sourceTree = "<group>"; };
 		A0942B45B7C274D709B65A74 /* radial-gradient.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = "radial-gradient.svg"; sourceTree = "<group>"; };
-		A0942B5120C249B6B9771ED9 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		A0942B53F2CC0A804ACE8A72 /* css3-modsel-44c-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-44c-result.xml"; sourceTree = "<group>"; };
 		A0942B5428294AA6AAA43F00 /* StyleableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleableView.h; sourceTree = "<group>"; };
 		A0942B55F94357010DEC6212 /* css3-modsel-182-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-182-result.xml"; sourceTree = "<group>"; };
@@ -1587,8 +1589,8 @@
 		A0942FFC452999B79AD0B778 /* css3-modsel-100b-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-100b-result.xml"; sourceTree = "<group>"; };
 		A0942FFF39DF4536744A2616 /* css3-modsel-38-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-38-result.xml"; sourceTree = "<group>"; };
 		C929C5EEDF2CCA4D20C915A2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		CA30D970D3527E3AD2600315 /* Pods-StylingKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		E3CA38A5C838CFF4D05FEA72 /* Pods_StylingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylingKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCA2218992833BE2676B8FF7 /* Pods-StylingKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		ECD13B24D860D00D33DD4BBE /* Pods-StylingKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FC8C9DE9443A2D50C5A36AF7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1597,10 +1599,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446C77921E8A4F4400FDA381 /* PhotosUI.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				DE52BF87B720E6ABB77AD3F5 /* Pods_StylingKit_Example.framework in Frameworks */,
+				49522144CF91AE2A8BF12A9F /* Pods_StylingKit_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1611,13 +1614,24 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				26C1C9786F754A9504F810D4 /* Pods_StylingKit_Tests.framework in Frameworks */,
+				20483569DCCAB782A08CEF95 /* Pods_StylingKit_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28C88AB08F1250CF848CF9EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				825E385DF4DD2CF5CBB3CFB1 /* Pods-StylingKit_Example.debug.xcconfig */,
+				CCA2218992833BE2676B8FF7 /* Pods-StylingKit_Example.release.xcconfig */,
+				272601728768574EF245BB76 /* Pods-StylingKit_Tests.debug.xcconfig */,
+				ECD13B24D860D00D33DD4BBE /* Pods-StylingKit_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -1626,7 +1640,7 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				C52AE89519B78C9047D6211F /* Pods */,
+				28C88AB08F1250CF848CF9EC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1642,12 +1656,13 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				446C77901E8A4EE500FDA381 /* PhotosUI.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				63689FED0D061E19FA6CBDF8 /* Pods_StylingKit_Example.framework */,
-				E3CA38A5C838CFF4D05FEA72 /* Pods_StylingKit_Tests.framework */,
+				027F65B2586CA1CEC9CC4F6A /* Pods_StylingKit_Example.framework */,
+				551E75E1291E8AA5651AAED8 /* Pods_StylingKit_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1686,6 +1701,7 @@
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				A0942BB9EDC834B329848562 /* freestyle */,
 				A09424756D80F06A869B2823 /* STKTestsCommon.h */,
+				A0942AA6B51CDE0434DC1D14 /* TestUITextFieldSubclassing.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1850,14 +1866,6 @@
 				A0942573EE92192AE0E53358 /* clipping-path2.svg */,
 			);
 			path = "Clipping-Paths";
-			sourceTree = "<group>";
-		};
-		A0942894D67743B460668B9B /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				A094205724A10B3D8F5AC0BB /* InfoPlist.strings */,
-			);
-			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		A09428F04151749E688E027D /* Rendering */ = {
@@ -2256,19 +2264,9 @@
 			children = (
 				A0942C3C3D28A3F66BE602F0 /* CG */,
 				A0942F2B8CF681473CB4F745 /* Styling */,
-				A0942894D67743B460668B9B /* en.lproj */,
-				A0942BD741BD05DF7A7B873E /* MAFuture */,
 				A094228BD4A02F6E17EB5C75 /* Resources */,
 			);
 			path = freestyle;
-			sourceTree = "<group>";
-		};
-		A0942BD741BD05DF7A7B873E /* MAFuture */ = {
-			isa = PBXGroup;
-			children = (
-				A09421ED73F755D5F4F32297 /* tester.m */,
-			);
-			path = MAFuture;
 			sourceTree = "<group>";
 		};
 		A0942C3C3D28A3F66BE602F0 /* CG */ = {
@@ -2659,17 +2657,6 @@
 			path = Styling;
 			sourceTree = "<group>";
 		};
-		C52AE89519B78C9047D6211F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				88995C9C0A492283F9E9FA69 /* Pods-StylingKit_Example.debug.xcconfig */,
-				CA30D970D3527E3AD2600315 /* Pods-StylingKit_Example.release.xcconfig */,
-				807B21C1BB0379A0297AC2F8 /* Pods-StylingKit_Tests.debug.xcconfig */,
-				88BF13EECBAD6971EE9DB355 /* Pods-StylingKit_Tests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2677,12 +2664,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "StylingKit_Example" */;
 			buildPhases = (
-				48E45A4C5EE8DB381079E5E0 /* Check Pods Manifest.lock */,
+				13A4E3EC80EC411DC8835C2A /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				0E2E30B871B83F27EC7D8ED4 /* Embed Pods Frameworks */,
-				6E4C486D0DD6641380FADA71 /* Copy Pods Resources */,
+				83A937A0ADE8EA5BFE08661D /* [CP] Embed Pods Frameworks */,
+				4EC068E13687E192179B3FA0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2697,12 +2684,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "StylingKit_Tests" */;
 			buildPhases = (
-				04BD10117CACCC5BD34B02CF /* Check Pods Manifest.lock */,
+				2573242C92A84D1245863F3E /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				4ECB40A48B89B34095B2C276 /* Embed Pods Frameworks */,
-				9357D11419DE84D854EFB593 /* Copy Pods Resources */,
+				9C46A0D962DC9992E1F6B89B /* [CP] Embed Pods Frameworks */,
+				96F6A17B7F5AF99E0F1AB8F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2721,8 +2708,16 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = STK;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Anton Matosov";
+				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = KGGP62Z8AS;
+					};
+					6003F5AD195388D20070C39A = {
+						LastSwiftMigration = 0830;
+					};
+				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "StylingKit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2751,6 +2746,7 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				7CDD775A1C5FB7E900F8C8EF /* default.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2760,7 +2756,6 @@
 			files = (
 				7CF7A4CC1C3A772E00B3BD16 /* solid-image-stroke.png in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
-				A0942B544C9B6ADC77B39C7C /* InfoPlist.strings in Resources */,
 				A0942F7C51E739438D0E1B79 /* text.svg in Resources */,
 				A0942EDF4B236F744D7DAB3F /* arcCommand.svg in Resources */,
 				A0942FC37FAE06A036C16523 /* lineCommand.svg in Resources */,
@@ -3496,74 +3491,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04BD10117CACCC5BD34B02CF /* Check Pods Manifest.lock */ = {
+		13A4E3EC80EC411DC8835C2A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StylingKit_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0E2E30B871B83F27EC7D8ED4 /* Embed Pods Frameworks */ = {
+		2573242C92A84D1245863F3E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StylingKit_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		48E45A4C5EE8DB381079E5E0 /* Check Pods Manifest.lock */ = {
+		4EC068E13687E192179B3FA0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		4ECB40A48B89B34095B2C276 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6E4C486D0DD6641380FADA71 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3571,19 +3542,73 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9357D11419DE84D854EFB593 /* Copy Pods Resources */ = {
+		83A937A0ADE8EA5BFE08661D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKit/StylingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKitThemes/StylingKitThemes.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCDWebServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKitThemes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96F6A17B7F5AF99E0F1AB8F6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C46A0D962DC9992E1F6B89B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKit/StylingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKitThemes/StylingKitThemes.framework",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${BUILT_PRODUCTS_DIR}/Kiwi/Kiwi.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCDWebServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKitThemes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3630,6 +3655,7 @@
 				A09429A3A8E9BD8CBD8EA4DC /* PXStylesheetParserTests.m in Sources */,
 				A09421C9B0633385333F7239 /* PXTransitionStylerTests.m in Sources */,
 				A0942C1E641CA6F34DB67001 /* SelectorPerformanceTests.m in Sources */,
+				A0942EBC603FC22683A7EB48 /* TestUITextFieldSubclassing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3660,14 +3686,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		A094205724A10B3D8F5AC0BB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A0942B5120C249B6B9771ED9 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3684,14 +3702,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -3724,13 +3747,18 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3746,10 +3774,11 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88995C9C0A492283F9E9FA69 /* Pods-StylingKit_Example.debug.xcconfig */;
+			baseConfigurationReference = 825E385DF4DD2CF5CBB3CFB1 /* Pods-StylingKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = KGGP62Z8AS;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StylingKit/StylingKit-Prefix.pch";
 				INFOPLIST_FILE = "StylingKit/StylingKit-Info.plist";
@@ -3762,10 +3791,11 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA30D970D3527E3AD2600315 /* Pods-StylingKit_Example.release.xcconfig */;
+			baseConfigurationReference = CCA2218992833BE2676B8FF7 /* Pods-StylingKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = KGGP62Z8AS;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StylingKit/StylingKit-Prefix.pch";
 				INFOPLIST_FILE = "StylingKit/StylingKit-Info.plist";
@@ -3778,7 +3808,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 807B21C1BB0379A0297AC2F8 /* Pods-StylingKit_Tests.debug.xcconfig */;
+			baseConfigurationReference = 272601728768574EF245BB76 /* Pods-StylingKit_Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3792,18 +3822,20 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PODS_ROOT}/Headers/Private/StylingKit",
+					"${SRCROOT}/../Pod/Classes/freestyle/src/**",
+					"${SRCROOT}/Pods/FBSnapshotTestCase/**",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88BF13EECBAD6971EE9DB355 /* Pods-StylingKit_Tests.release.xcconfig */;
+			baseConfigurationReference = ECD13B24D860D00D33DD4BBE /* Pods-StylingKit_Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3813,11 +3845,13 @@
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PODS_ROOT}/Headers/Private/StylingKit",
+					"${SRCROOT}/../Pod/Classes/freestyle/src/**",
+					"${SRCROOT}/Pods/FBSnapshotTestCase/**",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
