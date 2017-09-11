@@ -1,27 +1,20 @@
 PODS:
-  - CocoaLumberjack (3.1.0):
-    - CocoaLumberjack/Default (= 3.1.0)
-    - CocoaLumberjack/Extensions (= 3.1.0)
-  - CocoaLumberjack/Default (3.1.0)
-  - CocoaLumberjack/Extensions (3.1.0):
+  - CocoaLumberjack (3.2.1):
+    - CocoaLumberjack/Default (= 3.2.1)
+    - CocoaLumberjack/Extensions (= 3.2.1)
+  - CocoaLumberjack/Default (3.2.1)
+  - CocoaLumberjack/Extensions (3.2.1):
     - CocoaLumberjack/Default
-  - Expecta (1.0.5)
+  - Expecta (1.0.6)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - GCDWebServer/Core (3.3.3)
-  - GCDWebServer/WebDAV/Core (3.3.3):
+  - GCDWebServer/Core (3.4.1)
+  - GCDWebServer/WebDAV/Core (3.4.1):
     - GCDWebServer/Core
   - Kiwi (2.4.0)
-  - ReactiveCocoa (2.5):
-    - ReactiveCocoa/UI (= 2.5)
-  - ReactiveCocoa/Core (2.5):
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.5)
-  - ReactiveCocoa/UI (2.5):
-    - ReactiveCocoa/Core
   - StylingKit/Cloud (0.4.3):
     - StylingKit/Cloud/Main (= 0.4.3)
   - StylingKit/Cloud/Main (0.4.3):
@@ -47,7 +40,6 @@ DEPENDENCIES:
   - Expecta
   - FBSnapshotTestCase
   - Kiwi
-  - ReactiveCocoa (~> 2.5)
   - StylingKit/Cloud (from `../`)
   - StylingKitThemes/blue/css (from `./themes`)
 
@@ -58,15 +50,14 @@ EXTERNAL SOURCES:
     :path: ./themes
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
-  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
+  CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  GCDWebServer: 1c39a1f0763e4eb492bee021e4270fce097d3555
+  GCDWebServer: 1db60034fe0e78a4a8524bd6c7cd97cd3c589870
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   StylingKit: c7be8dbff3fd1ef3190cd86302412fbd852e2e66
   StylingKitThemes: aa44797406ab67bd8a765265731d37363d40554a
 
-PODFILE CHECKSUM: b467cfb53dd5e6ae135df9a06aa241c75ba95c5d
+PODFILE CHECKSUM: 29e4fb3c6cdda9d8f77d45467b12ec40629e4207
 
 COCOAPODS: 1.3.1
