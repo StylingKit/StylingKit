@@ -1,14 +1,13 @@
-[![Slack Status](https://stylingkit-slackin.herokuapp.com/badge.svg)](https://stylingkit-slackin.herokuapp.com) [![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=master)](https://travis-ci.org/StylingKit/StylingKit)
+# ![Logo](https://avatars1.githubusercontent.com/u/15862653?s=50) StylingKit
+
+[![Slack Status](https://stylingkit-slackin.herokuapp.com/badge.svg)](https://stylingkit-slackin.herokuapp.com) 
 [![GitHub release](https://img.shields.io/github/release/StylingKit/StylingKit.svg)](https://github.com/StylingKit/StylingKit/releases)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 [![License](https://img.shields.io/cocoapods/l/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
 [![Platform](https://img.shields.io/cocoapods/p/StylingKit.svg?style=flat)](http://cocoapods.org/pods/StylingKit)
-
-Develop: 
-[![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=develop)](https://travis-ci.org/StylingKit/StylingKit)
-
-# StylingKit
+<br />Develop: [![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=develop)](https://travis-ci.org/StylingKit/StylingKit)
+<br />Master: [![Build Status](https://travis-ci.org/StylingKit/StylingKit.svg?branch=master)](https://travis-ci.org/StylingKit/StylingKit)
 
 StylingKit is an iOS framework that allows you to style your application using stylesheets and a CSS-like syntax. StylingKit lets you build  beautiful applications with less code and more flexibility by using familiar CSS markup to style native controls and components. Free up your team to focus on creating amazing user experiences throughout the design and development cycle.
 
@@ -109,6 +108,8 @@ More information on the Apache License can be found here: [http://www.apache.org
 ### NOTICE
 
 StylingKit includes modified version of Pixate Freestyle library developed by Pixate, Inc.
+
+StylingKit logo designed by [Freepik](http://www.freepik.com)
 
 ## Disclaimer
 
