@@ -9,14 +9,23 @@ branches:
     - develop
 
 before_install:
- - sysctl -n machdep.cpu.brand_string
- - sysctl hw
+  - sysctl -n machdep.cpu.brand_string
+  - sysctl hw
 
 install:
- - ./scripts/bootstrap
+  - ./scripts/bootstrap
 
 env:
- - workspace="Example/StylingKit.xcworkspace" scheme="StylingKit-Example" destination="platform=iOS Simulator,name=iPhone 6s,OS=10.1"
+  - workspace: "Example/StylingKit.xcworkspace"
+  - scheme: "StylingKit-Example"
+  - destination: "platform=iOS Simulator,name=iPhone 6s,OS=10.1"
 
+matrix:
+  - include:
+    - env: CURRENT_STAGE=0
+    - env: CURRENT_STAGE=1
+    - env: CURRENT_STAGE=2
+    
 script:
- - ./scripts/travis_build
+  - ./scripts/travis_build.${CURRENT_STAGE}
+
