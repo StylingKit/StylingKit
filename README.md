@@ -110,7 +110,7 @@ More information on the Apache License can be found here: [http://www.apache.org
 
 StylingKit includes modified version of Pixate Freestyle library developed by Pixate, Inc.
 
-StylingKit logo designed by [Freepik](http://www.freepik.com)
+StylingKit logo designed by Anton Matosov based on design from [Freepik](http://www.freepik.com)
 
 ## Disclaimer
 
