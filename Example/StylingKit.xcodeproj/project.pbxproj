@@ -532,7 +532,6 @@
 		A0942B43DCCEE3D2E4CEFFA0 /* css3-modsel-70-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942B10883CA87081814E56 /* css3-modsel-70-result.xml */; };
 		A0942B4626E90825CD8292E8 /* css3-modsel-6-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09429C3CF163195C9DA53D0 /* css3-modsel-6-result.xml */; };
 		A0942B50C772258A333237A3 /* css3-modsel-14b-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09422ECDE8BB595CA549848 /* css3-modsel-14b-result.xml */; };
-		A0942B544C9B6ADC77B39C7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A094205724A10B3D8F5AC0BB /* InfoPlist.strings */; };
 		A0942B55023713D529177590 /* css3-modsel-123b.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09424EC726D40E3651D1616 /* css3-modsel-123b.xml */; };
 		A0942B56453BF501EA1DAAEB /* css3-modsel-179.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09427CA5586DCDF9658AC39 /* css3-modsel-179.xml */; };
 		A0942B5A775D177C6D912B00 /* css3-modsel-116.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09424BF373BA85DE48D3B58 /* css3-modsel-116.xml */; };
@@ -922,7 +921,6 @@
 		A09421D8B5F1C96E406CE762 /* css3-modsel-8-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-8-result.xml"; sourceTree = "<group>"; };
 		A09421DBCB597143957CCFA1 /* css3-modsel-15b.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-15b.xml"; sourceTree = "<group>"; };
 		A09421EC19AAD04B51A3DDC7 /* css3-modsel-179a-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-179a-result.xml"; sourceTree = "<group>"; };
-		A09421ED73F755D5F4F32297 /* tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tester.m; sourceTree = "<group>"; };
 		A09421EE89EE3D03FFC253A5 /* relativeHorizontalLineCommand.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = relativeHorizontalLineCommand.svg; sourceTree = "<group>"; };
 		A09421FB381CC659629C19B0 /* css3-modsel-184a-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-184a-result.xml"; sourceTree = "<group>"; };
 		A09421FC305CF112B2D72F41 /* css3-modsel-177b-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-177b-result.xml"; sourceTree = "<group>"; };
@@ -1347,7 +1345,6 @@
 		A0942B3B15EA4C8FD2E4CC6B /* css3-modsel-94-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-94-result.xml"; sourceTree = "<group>"; };
 		A0942B41ADD325572CBFC4CC /* css3-modsel-24.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-24.xml"; sourceTree = "<group>"; };
 		A0942B45B7C274D709B65A74 /* radial-gradient.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = "radial-gradient.svg"; sourceTree = "<group>"; };
-		A0942B5120C249B6B9771ED9 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		A0942B53F2CC0A804ACE8A72 /* css3-modsel-44c-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-44c-result.xml"; sourceTree = "<group>"; };
 		A0942B5428294AA6AAA43F00 /* StyleableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleableView.h; sourceTree = "<group>"; };
 		A0942B55F94357010DEC6212 /* css3-modsel-182-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-182-result.xml"; sourceTree = "<group>"; };
@@ -1871,14 +1868,6 @@
 			path = "Clipping-Paths";
 			sourceTree = "<group>";
 		};
-		A0942894D67743B460668B9B /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				A094205724A10B3D8F5AC0BB /* InfoPlist.strings */,
-			);
-			path = en.lproj;
-			sourceTree = "<group>";
-		};
 		A09428F04151749E688E027D /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
@@ -2275,19 +2264,9 @@
 			children = (
 				A0942C3C3D28A3F66BE602F0 /* CG */,
 				A0942F2B8CF681473CB4F745 /* Styling */,
-				A0942894D67743B460668B9B /* en.lproj */,
-				A0942BD741BD05DF7A7B873E /* MAFuture */,
 				A094228BD4A02F6E17EB5C75 /* Resources */,
 			);
 			path = freestyle;
-			sourceTree = "<group>";
-		};
-		A0942BD741BD05DF7A7B873E /* MAFuture */ = {
-			isa = PBXGroup;
-			children = (
-				A09421ED73F755D5F4F32297 /* tester.m */,
-			);
-			path = MAFuture;
 			sourceTree = "<group>";
 		};
 		A0942C3C3D28A3F66BE602F0 /* CG */ = {
@@ -2777,7 +2756,6 @@
 			files = (
 				7CF7A4CC1C3A772E00B3BD16 /* solid-image-stroke.png in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
-				A0942B544C9B6ADC77B39C7C /* InfoPlist.strings in Resources */,
 				A0942F7C51E739438D0E1B79 /* text.svg in Resources */,
 				A0942EDF4B236F744D7DAB3F /* arcCommand.svg in Resources */,
 				A0942FC37FAE06A036C16523 /* lineCommand.svg in Resources */,
@@ -3704,14 +3682,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6003F5B9195388D20070C39A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A094205724A10B3D8F5AC0BB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A0942B5120C249B6B9771ED9 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
