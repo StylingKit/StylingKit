@@ -49,4 +49,13 @@
 @property (nonatomic, copy) IBInspectable NSString *styleClass;
 @property (nonatomic, copy) IBInspectable NSString *styleCSS;
 
+- (void)updateStyles;
+- (void)updateStylesNonRecursively;
+- (void)updateStylesAsync;
+- (void)updateStylesNonRecursivelyAsync;
+
+- (void)addStyleClass:(NSString *)styleClass;
+- (void)removeStyleClass:(NSString *)styleClass;
+- (void)styleClassed:(NSString *)styleClass enabled:(bool)enabled;
+
 @end
