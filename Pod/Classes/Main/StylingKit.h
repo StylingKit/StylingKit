@@ -38,6 +38,10 @@
 - (STKTheme*)registerThemeNamed:(NSString*)themeName
                        inBundle:(NSBundle*)bundle;
 
+- (STKTheme*)registerThemeNamed:(NSString*)themeName
+             stylesheetFileName:(NSString*)stylesheetFileName
+                       inBundle:(NSBundle*)bundle;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 @end

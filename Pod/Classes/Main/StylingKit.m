@@ -110,14 +110,25 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 - (STKTheme*)registerThemeNamed:(NSString*)themeName
                        inBundle:(NSBundle*)bundle
 {
+    return [self registerThemeNamed:themeName stylesheetFileName:nil inBundle:bundle];
+}
+
+- (STKTheme*)registerThemeNamed:(NSString*)themeName
+             stylesheetFileName:(NSString*)stylesheetFileName
+                       inBundle:(NSBundle*)bundle
+{
+    
+    
+    
     if (self.themes[themeName])
     {
         DDLogWarn(@"Theme with name %@ already registered. %@", themeName, self.themes[themeName]);
     }
     STKTheme* theme = [STKTheme themeWithName:themeName
+                           stylesheetFileName:(NSString*)stylesheetFileName
                                        bundle:bundle];
     self.themes[themeName] = theme;
-
+    
     return theme;
 }
 
