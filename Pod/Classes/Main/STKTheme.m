@@ -73,6 +73,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
                                                              withOrigin:(PXStylesheetOrigin)self.origin];
         stylesheet.monitorChanges = YES;
 
+        
         result = YES;
         _loadedFromPath = path;
     }

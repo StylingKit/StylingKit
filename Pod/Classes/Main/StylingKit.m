@@ -31,6 +31,11 @@
 #import "STKThemesRegistry.h"
 #import "STK_UIAlertControllerView.h"
 #import "PXLoggingUtils.h"
+#import "PXStylesheetParser.h"
+#import "PXStyleUtils.h"
+#import "STStyleable.H"
+#import "PXClassSelector.h"
+#import "UIView+PXStyling.h"
 
 @interface StylingKit ()
 
@@ -127,9 +132,27 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     STKTheme* theme = [STKTheme themeWithName:themeName
                            stylesheetFileName:(NSString*)stylesheetFileName
                                        bundle:bundle];
+    
     self.themes[themeName] = theme;
     
     return theme;
 }
+- (NSString*)getStyleValueWithClass:(NSString*)className propertyName:(NSString*) propertyName {
+    
+    STStyleable *stylable = [[STStyleable alloc] init];
+    [stylable setStyleClass:className];
 
+    NSMutableArray *ruleSets = [PXStyleUtils matchingRuleSetsForStyleable:stylable];
+    
+    for (PXRuleSet *ruleSet in ruleSets)
+    {
+        for(PXDeclaration *dec in ruleSet.declarations){
+            if([[dec name] isEqualToString:propertyName]){
+                return [dec stringValue];
+            }
+        }
+    }
+    
+    return nil;
+}
 @end

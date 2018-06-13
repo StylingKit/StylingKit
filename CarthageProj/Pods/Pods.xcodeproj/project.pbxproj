@@ -326,6 +326,8 @@
 		C747D788288959CE027F9BE737BCCF64 /* PXDeclarationContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FDE914BEBD276892CAF11C26CFE931 /* PXDeclarationContainer.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C7DA63C18E58B24460185521F4F2538E /* PXSpecificity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CFC609DEF645E9FC0BE14BD1E2053 /* PXSpecificity.m */; };
 		C7E466369433235D9B966E6D733DE2FA /* PXIdSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = B354D346F5080D5E0BC859253DB95D43 /* PXIdSelector.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C86C4DBB20D11E9500904A17 /* STStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = C86C4DB820D11E6300904A17 /* STStyleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C86C4DBC20D11EB400904A17 /* STStyleable.m in Sources */ = {isa = PBXBuildFile; fileRef = C86C4DB720D11E6300904A17 /* STStyleable.m */; };
 		C896B2A0A221CF68E4800F869F4EC40E /* PXUIDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D879A20972D44ABC2B68EB3C96D7B2A /* PXUIDatePicker.m */; };
 		C8FD3A3E2DCAE2B27259E222AB259B20 /* PXStylingMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = E4D82563EB8D912B56554A8525D77591 /* PXStylingMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA0A1C3A93869D6EC1AA5F7BE591A0B9 /* NSScanner+PXFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = 62F1B51C0667132E24CB93F695AE5FBF /* NSScanner+PXFloat.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -455,7 +457,7 @@
 		08C8CA5F6520225AC667AFF1F378B777 /* PXGraphics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXGraphics.h; sourceTree = "<group>"; };
 		08D54CC1FE98FEBA513CC539863E999B /* PXRuleSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXRuleSet.m; sourceTree = "<group>"; };
 		092697C25CAA987A9FAF1A79CBE60A43 /* PXStyleInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXStyleInfo.h; sourceTree = "<group>"; };
-		09BBB091286CFD13FA5A9CCD4C31ED57 /* objc.c */ = {isa = PBXFileReference; includeInIndex = 1; path = objc.c; sourceTree = "<group>"; };
+		09BBB091286CFD13FA5A9CCD4C31ED57 /* objc.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = objc.c; sourceTree = "<group>"; };
 		09BCAEF180D6D1418FD00CA5E055AD26 /* STKUILabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = STKUILabel.h; sourceTree = "<group>"; };
 		0AFAE567B96AF0EE87DE4BA90D3516AB /* PXRuntimeUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXRuntimeUtils.m; sourceTree = "<group>"; };
 		0BB8C0BA538AA942DB528FD5770F2B80 /* PXEllipse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXEllipse.h; sourceTree = "<group>"; };
@@ -483,7 +485,7 @@
 		1CCAAA46B33B4CD8AEC9DFFB67163BA4 /* PXTypeSelector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXTypeSelector.m; sourceTree = "<group>"; };
 		1D38CACFA76EDDEA089112CCDC5CF412 /* STKTheme.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STKTheme.h; path = Pod/Classes/Main/STKTheme.h; sourceTree = "<group>"; };
 		1E682AF8D158CC3B40982CCC94475D39 /* PXTransformParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXTransformParser.m; sourceTree = "<group>"; };
-		1E9F8EDCF1CDA903C24B04410610747E /* StylingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = StylingKit.framework; path = StylingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E9F8EDCF1CDA903C24B04410610747E /* StylingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StylingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECF4432CCECD28D231713BB3E91E788 /* NSDictionary+PXCSSEncoding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+PXCSSEncoding.m"; sourceTree = "<group>"; };
 		1EE24461A683260C433AF63489625C9E /* PXStylerBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXStylerBase.m; sourceTree = "<group>"; };
 		1F320EF198BE572DEE559078B9E3D77A /* StylingKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "StylingKit-prefix.pch"; sourceTree = "<group>"; };
@@ -582,7 +584,7 @@
 		4CD9110DAA703BB878B641B2A77D9CE3 /* Pods-CarthageProj-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CarthageProj-acknowledgements.plist"; sourceTree = "<group>"; };
 		4D2CFC609DEF645E9FC0BE14BD1E2053 /* PXSpecificity.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXSpecificity.m; sourceTree = "<group>"; };
 		4D43B00EDB8133559EAD44C1B6331548 /* PXPolygon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXPolygon.h; sourceTree = "<group>"; };
-		4DACDAC95A0FD60F16A00466AC4CEDA4 /* Pods_CarthageProj.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CarthageProj.framework; path = "Pods-CarthageProj.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DACDAC95A0FD60F16A00466AC4CEDA4 /* Pods_CarthageProj.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarthageProj.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBE09DC89A37A732492E1233F9F0ECF /* PXUITabBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXUITabBar.h; sourceTree = "<group>"; };
 		4F684887F891F49ACEE2519CB9DF6189 /* PXStyler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXStyler.h; sourceTree = "<group>"; };
 		4F6BB54B4A0A5E678CCCB73EBE4012F7 /* UIColor+PXColors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PXColors.m"; sourceTree = "<group>"; };
@@ -670,7 +672,7 @@
 		7EB35EF8304CF9DC8F6AA0FC54027122 /* STKShape.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = STKShape.h; sourceTree = "<group>"; };
 		7F5BB29BBFA08727AD95BC632F63E534 /* PXValueParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXValueParser.m; sourceTree = "<group>"; };
 		7F6BBAAA00260DF12C711F272C726205 /* PXKeyframe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXKeyframe.h; sourceTree = "<group>"; };
-		812A45E31BCC79BF9676BE04E282FBCC /* Pods-CarthageProj.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CarthageProj.modulemap"; sourceTree = "<group>"; };
+		812A45E31BCC79BF9676BE04E282FBCC /* Pods-CarthageProj.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CarthageProj.modulemap"; sourceTree = "<group>"; };
 		812B0409421EBE8F5CBFAAD6A328EA79 /* PXStyleUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXStyleUtils.m; sourceTree = "<group>"; };
 		844980CC06A2082E5AF2C2699AFF0F15 /* PXStylesheet-Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PXStylesheet-Private.h"; sourceTree = "<group>"; };
 		84FEED0E907387252F805717274EB4CE /* PXShapeStyler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXShapeStyler.m; sourceTree = "<group>"; };
@@ -697,7 +699,7 @@
 		92A7BF09C545EF6331463ECAB99A13A7 /* PXMediaExpression.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXMediaExpression.h; sourceTree = "<group>"; };
 		92FE2684BE485F660EC882F8E65B50D6 /* PXUIPageControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXUIPageControl.h; sourceTree = "<group>"; };
 		931F3467509CEB23DA4752FE0CD21BE3 /* PXShapeStyler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXShapeStyler.h; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93E939C1DB7EF3E5EA479F9976A6892D /* NSObject+PXSwizzle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PXSwizzle.m"; sourceTree = "<group>"; };
 		944E3D67AB900E0329FE96C6391309DC /* PXDeclarationContainer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXDeclarationContainer.m; sourceTree = "<group>"; };
 		946D4EC4F3150886C2C7D0CDF62F1811 /* PXCombinatorBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXCombinatorBase.h; sourceTree = "<group>"; };
@@ -718,7 +720,7 @@
 		A08EAAAD09466DDA973F11658526D917 /* PXAttributeSelector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXAttributeSelector.h; sourceTree = "<group>"; };
 		A08FA2B957108D668F30729C33973254 /* PXUINavigationBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXUINavigationBar.m; sourceTree = "<group>"; };
 		A14A5C35352C2F96A5B45AEC87189D5B /* PXUICollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXUICollectionViewCell.m; sourceTree = "<group>"; };
-		A1DD248D8DA616132A0A29007EDA5A0E /* StylingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = StylingKit.modulemap; sourceTree = "<group>"; };
+		A1DD248D8DA616132A0A29007EDA5A0E /* StylingKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = StylingKit.modulemap; sourceTree = "<group>"; };
 		A20E5B015F135CDADD42F286E4BD5164 /* PXForceLoadPixateCategories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXForceLoadPixateCategories.h; sourceTree = "<group>"; };
 		A24A6B1C74598FF126709A0217D00E68 /* PXUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXUtils.h; sourceTree = "<group>"; };
 		A30DDF5A74ADB332C3240C944A398445 /* PXEllipticalArc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXEllipticalArc.h; sourceTree = "<group>"; };
@@ -784,6 +786,8 @@
 		C796E3B56AE04623AE8857C127C83264 /* PXCombinator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXCombinator.h; sourceTree = "<group>"; };
 		C7EC4105B007D822E8AE706A97A06790 /* PXFileFunctionLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXFileFunctionLogFormatter.m; sourceTree = "<group>"; };
 		C8462C2CCAC32AE7D2285A0F9C130D40 /* PXGradient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXGradient.m; sourceTree = "<group>"; };
+		C86C4DB720D11E6300904A17 /* STStyleable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STStyleable.m; path = Pod/Classes/Main/STStyleable.m; sourceTree = "<group>"; };
+		C86C4DB820D11E6300904A17 /* STStyleable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STStyleable.h; path = Pod/Classes/Main/STStyleable.h; sourceTree = "<group>"; };
 		C898B43CD0AD2EF2504821882A113D46 /* PXFontInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXFontInfo.m; sourceTree = "<group>"; };
 		C93D673831745F51F5ED84BAD7FFA574 /* PXForceLoadControls.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXForceLoadControls.h; sourceTree = "<group>"; };
 		CB53EF05B577C5BDDCE4E14C218FEB23 /* UIView+PXStyling-Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+PXStyling-Private.h"; sourceTree = "<group>"; };
@@ -901,7 +905,6 @@
 				C4997212E3ACB5020920F3A0C3F52CD3 /* PXSiblingCombinator.h */,
 				BC4B5391F2A0609EB974583BCDFDA346 /* PXSiblingCombinator.m */,
 			);
-			name = Combinators;
 			path = Combinators;
 			sourceTree = "<group>";
 		};
@@ -923,7 +926,6 @@
 				FC7ECBCBC28710C8CB42730085D32B69 /* UIView+PXStyling.m */,
 				CB53EF05B577C5BDDCE4E14C218FEB23 /* UIView+PXStyling-Private.h */,
 			);
-			name = Categories;
 			path = Categories;
 			sourceTree = "<group>";
 		};
@@ -940,7 +942,6 @@
 				559076B5CE9D91D7628512DB0D8143EF /* PXWordMatcher.h */,
 				E9A40CAFA1F463C18361B21E05CD2B3A /* PXWordMatcher.m */,
 			);
-			name = Matchers;
 			path = Matchers;
 			sourceTree = "<group>";
 		};
@@ -955,7 +956,6 @@
 				135739C39BA2C46818A910139D1B216C /* PXLoggingUtils.h */,
 				76BECFCC707AADE6D0395BCEB6843553 /* PXLoggingUtils.m */,
 			);
-			name = Logging;
 			path = Logging;
 			sourceTree = "<group>";
 		};
@@ -965,7 +965,6 @@
 				B7BE117CAB6E604C6FC5F24C188CD2B1 /* STKShapeView.h */,
 				EB90A1876BFF7EA94F36947FC1DABD8B /* STKShapeView.m */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -993,7 +992,6 @@
 				17F8B6866BE1FB307B262023B671EFE2 /* PXNamedMediaExpression.h */,
 				475170AE1EE203F595731D9A2C5FC1DB /* PXNamedMediaExpression.m */,
 			);
-			name = Media;
 			path = Media;
 			sourceTree = "<group>";
 		};
@@ -1008,6 +1006,8 @@
 		32ABE1EA01F2D4764F9376F35EB5CEF5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				C86C4DB820D11E6300904A17 /* STStyleable.h */,
+				C86C4DB720D11E6300904A17 /* STStyleable.m */,
 				1D38CACFA76EDDEA089112CCDC5CF412 /* STKTheme.h */,
 				CCB8CA1CD70697B1B2C3350F3E2113A0 /* STKTheme.m */,
 				1866248B9F549CE469D858BFDAAF584C /* STKThemesRegistry.h */,
@@ -1048,7 +1048,6 @@
 				F51A50E9D002F1F19F65DAD06B92D19F /* Stylers */,
 				8E5C0A1E4EBA5A58B444A710CF8F90D6 /* Utils */,
 			);
-			name = Styling;
 			path = Styling;
 			sourceTree = "<group>";
 		};
@@ -1057,7 +1056,6 @@
 			children = (
 				4ED0B74C95293E0F8727BAF73D175C58 /* Controls */,
 			);
-			name = UIModule;
 			path = UIModule;
 			sourceTree = "<group>";
 		};
@@ -1077,7 +1075,6 @@
 				F058274EC4FA8318DC71E470970E461F /* PXValueParser.h */,
 				7F5BB29BBFA08727AD95BC632F63E534 /* PXValueParser.m */,
 			);
-			name = Parsing;
 			path = Parsing;
 			sourceTree = "<group>";
 		};
@@ -1093,7 +1090,6 @@
 				04D01D6B60EEE552B49CB9C13DFF8361 /* PXTransformTokenType.h */,
 				596B066B394FD8F85DC9556B6341AEF4 /* PXTransformTokenType.m */,
 			);
-			name = Parsing;
 			path = Parsing;
 			sourceTree = "<group>";
 		};
@@ -1183,7 +1179,6 @@
 				8EFAE4BAAA879C1304A6C1CD3BDB31E5 /* Extensions */,
 				B46E081E19EB41634A22E63FC7FF83CB /* Virtual */,
 			);
-			name = Controls;
 			path = Controls;
 			sourceTree = "<group>";
 		};
@@ -1197,7 +1192,6 @@
 				6B4CBB532F0198C503599E049C2964E2 /* PXWeakWrapper.h */,
 				C459ACEFAAD0DBD4545FCB9E98EFA988 /* PXWeakWrapper.m */,
 			);
-			name = Notifications;
 			path = Notifications;
 			sourceTree = "<group>";
 		};
@@ -1218,7 +1212,6 @@
 				A5D7E645749FD6B9541DE704C248D9AE /* PXSolidPaint.h */,
 				F4F757D02F2623600B8695626C92C0E6 /* PXSolidPaint.m */,
 			);
-			name = Paints;
 			path = Paints;
 			sourceTree = "<group>";
 		};
@@ -1228,7 +1221,6 @@
 				09BBB091286CFD13FA5A9CCD4C31ED57 /* objc.c */,
 				B06611F200EB6681A78F737C86E2BA61 /* objc.h */,
 			);
-			name = Utils;
 			path = Utils;
 			sourceTree = "<group>";
 		};
@@ -1256,7 +1248,6 @@
 				2A42D2EF309AEE71BA06D9C934EB8BF2 /* PXBoxModel.h */,
 				11794A1B53EE37B70A06AAEA2003502B /* PXBoxModel.m */,
 			);
-			name = Shapes;
 			path = Shapes;
 			sourceTree = "<group>";
 		};
@@ -1273,7 +1264,6 @@
 				E9DBD9383BCD2F9EA5349D6494A62861 /* Strokes */,
 				167DDEA245D202B3A60C56305DD02233 /* Views */,
 			);
-			name = CG;
 			path = CG;
 			sourceTree = "<group>";
 		};
@@ -1295,7 +1285,6 @@
 				E4D82563EB8D912B56554A8525D77591 /* PXStylingMacros.h */,
 				2F79D41B186ECB43E558D9E58CE62C8A /* PXTitaniumMacros.h */,
 			);
-			name = Macros;
 			path = Macros;
 			sourceTree = "<group>";
 		};
@@ -1332,7 +1321,6 @@
 				7EB35EF8304CF9DC8F6AA0FC54027122 /* STKShape.h */,
 				4C1C0EA3C4F740F7BC1CE89962306A35 /* STKShape.m */,
 			);
-			name = Shapes;
 			path = Shapes;
 			sourceTree = "<group>";
 		};
@@ -1359,7 +1347,6 @@
 				A5335FD804F6FBA218572F0BED731C87 /* PXKeyframeBlock.h */,
 				66597897C8D1B7C5D537A917107F9EE9 /* PXKeyframeBlock.m */,
 			);
-			name = Animation;
 			path = Animation;
 			sourceTree = "<group>";
 		};
@@ -1387,7 +1374,6 @@
 				2B5672C482B3028EA4CF866E3A7D09E3 /* PXViewUtils.h */,
 				F0699CAB45B06C6C9AD79883DB7A1662 /* PXViewUtils.m */,
 			);
-			name = Utils;
 			path = Utils;
 			sourceTree = "<group>";
 		};
@@ -1397,7 +1383,6 @@
 				AADC71F8E1235D51707A6DD853CB40EA /* UICollectionViewCell+STKStyling.h */,
 				1F42BB66BB0DD27E5ED60C8F19FE80F3 /* UICollectionViewCell+STKStyling.m */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -1437,7 +1422,6 @@
 				24523A563AC7B1857CB5BAE3A2BF14E7 /* PXShadowGroup.m */,
 				6325BCB1A7C9669C13A91FCFDA96F9DF /* PXShadowPaint.h */,
 			);
-			name = Shadow;
 			path = Shadow;
 			sourceTree = "<group>";
 		};
@@ -1450,7 +1434,6 @@
 				49C6A2059E0C5EFDD7DE8526B0845C8C /* NSObject+PXSwizzle.h */,
 				93E939C1DB7EF3E5EA479F9976A6892D /* NSObject+PXSwizzle.m */,
 			);
-			name = Categories;
 			path = Categories;
 			sourceTree = "<group>";
 		};
@@ -1472,7 +1455,6 @@
 				85034E89B487416904002058E1EF000C /* UITabBarItem+PXStyling.h */,
 				74E81A96B252B1541914690B7B816C4C /* UITabBarItem+PXStyling.m */,
 			);
-			name = Virtual;
 			path = Virtual;
 			sourceTree = "<group>";
 		};
@@ -1486,7 +1468,6 @@
 				3B7286403CE368E1AEC5324AF4172296 /* PXStyleTreeInfo.h */,
 				0E17948D7DC3ABE08ED47750488848C9 /* PXStyleTreeInfo.m */,
 			);
-			name = Cache;
 			path = Cache;
 			sourceTree = "<group>";
 		};
@@ -1502,7 +1483,6 @@
 				7B1344F2019FAC8018EB046538AD0A5A /* PXTransitionRuleSetInfo.h */,
 				CF2661F412E968EED63B66302694E724 /* PXTransitionRuleSetInfo.m */,
 			);
-			name = Infos;
 			path = Infos;
 			sourceTree = "<group>";
 		};
@@ -1514,7 +1494,6 @@
 				32FD732EB304BD3D305602F1E584B26F /* PXFontRegistry.h */,
 				A9EB74E40BF317628EE4A0A7ECA01728 /* PXFontRegistry.m */,
 			);
-			name = Fonts;
 			path = Fonts;
 			sourceTree = "<group>";
 		};
@@ -1541,7 +1520,6 @@
 				EE852DEE9751B5BB0D971CAE444CFA05 /* PXTypeSelector.h */,
 				1CCAAA46B33B4CD8AEC9DFFB67163BA4 /* PXTypeSelector.m */,
 			);
-			name = Selectors;
 			path = Selectors;
 			sourceTree = "<group>";
 		};
@@ -1550,7 +1528,6 @@
 			children = (
 				7F565DFCCA06AD232040D08ABCBA9572 /* Animation */,
 			);
-			name = AnimationModule;
 			path = AnimationModule;
 			sourceTree = "<group>";
 		};
@@ -1580,7 +1557,6 @@
 				9DD74B99387906DC6D44CE99C07226E6 /* PXSourceWriter.m */,
 				13528C4BE6E526E460F445AA77C05FB2 /* Matchers */,
 			);
-			name = Parsing;
 			path = Parsing;
 			sourceTree = "<group>";
 		};
@@ -1594,7 +1570,6 @@
 				D68E40B389E31D3BDF9CE453BECA1635 /* UIColor+PXColors.h */,
 				4F6BB54B4A0A5E678CCCB73EBE4012F7 /* UIColor+PXColors.m */,
 			);
-			name = Categories;
 			path = Categories;
 			sourceTree = "<group>";
 		};
@@ -1611,7 +1586,6 @@
 				AD8EBC1A0196053454EEDEDE9B3C067C /* PXVector.h */,
 				94B3530F8A5D45D68C84988C74881B98 /* PXVector.m */,
 			);
-			name = Math;
 			path = Math;
 			sourceTree = "<group>";
 		};
@@ -1625,7 +1599,6 @@
 				A20E5B015F135CDADD42F286E4BD5164 /* PXForceLoadPixateCategories.h */,
 				707D07820824D891919E9B172BBFCBE2 /* PXForceLoadPixateCategories.m */,
 			);
-			name = Categories;
 			path = Categories;
 			sourceTree = "<group>";
 		};
@@ -1642,7 +1615,6 @@
 				77171BFB94892716301F0821279316CA /* PXStrokeStroke.h */,
 				FBFBDF94BA35F07E91E6C9D6C9CD7CF1 /* PXStrokeStroke.m */,
 			);
-			name = Strokes;
 			path = Strokes;
 			sourceTree = "<group>";
 		};
@@ -1720,7 +1692,6 @@
 				E2E0200ECA1EF81666E4962E97B7F1E8 /* PXTransitionStyler.h */,
 				7C6AA98D82FF918A10085169E0325BF2 /* PXTransitionStyler.m */,
 			);
-			name = Stylers;
 			path = Stylers;
 			sourceTree = "<group>";
 		};
@@ -1976,6 +1947,7 @@
 				EDE55BFA123C7F1E78AA2B8BEB68BCBD /* UITabBarItem+PXStyling.h in Headers */,
 				B6376EE7E17C2C3518D88E48FF70D3F9 /* UIView+PXStyling-Private.h in Headers */,
 				CDBAF8C7039FE043703E4DDA9B187887 /* UIView+PXStyling.h in Headers */,
+				C86C4DBB20D11E9500904A17 /* STStyleable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2064,6 +2036,7 @@
 				081AC8DA279F892B1D026705F5E2A99A /* PXAdjacentSiblingCombinator.m in Sources */,
 				6BE69E57DA5F6103B76C31CF25EFEA79 /* PXAnimationInfo.m in Sources */,
 				9C3D5439BBD0B526F16DD4214B3903B4 /* PXAnimationPropertyHandler.m in Sources */,
+				C86C4DBC20D11EB400904A17 /* STStyleable.m in Sources */,
 				530958EFC00F74BB9FF53A76A1597B84 /* PXAnimationStyler.m in Sources */,
 				C1A72282993E0F0D2A20ECD666FB56E6 /* PXArc.m in Sources */,
 				74CF463B8C54BC8820DF712948AD630D /* PXArrowRectangle.m in Sources */,
