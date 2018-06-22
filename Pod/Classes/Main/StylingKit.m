@@ -155,4 +155,22 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     
     return nil;
 }
+- (NSDictionary*)getStylesWithClass:(NSString*)className {
+    
+    NSMutableDictionary *styles = [NSMutableDictionary dictionary];
+    
+    STStyleable *stylable = [[STStyleable alloc] init];
+    [stylable setStyleClass:className];
+    
+    NSMutableArray *ruleSets = [PXStyleUtils matchingRuleSetsForStyleable:stylable];
+    
+    for (PXRuleSet *ruleSet in ruleSets)
+    {
+        for(PXDeclaration *dec in ruleSet.declarations){
+            [styles setValue:[dec stringValue] forKey:[dec name]];
+        }
+    }
+    
+    return styles;
+}
 @end
