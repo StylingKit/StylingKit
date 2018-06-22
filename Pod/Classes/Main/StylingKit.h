@@ -45,6 +45,7 @@
 - (instancetype)init NS_UNAVAILABLE;
 
 - (NSString*)getStyleValueWithClass:(NSString*)className propertyName:(NSString*) propertyName;
+- (NSDictionary*)getStylesWithClass:(NSString*)className;
 
 @end
 
