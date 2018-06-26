@@ -31,6 +31,13 @@
 #import "STKThemesRegistry.h"
 #import "STK_UIAlertControllerView.h"
 #import "PXLoggingUtils.h"
+#import "PXStylesheetParser.h"
+#import "PXStyleUtils.h"
+#import "STStyleable.h"
+#import "PXClassSelector.h"
+#import "UIView+PXStyling.h"
+#import "NSObject+PXStyling.h"
+#import "PXStyleInfo.h"
 
 @interface StylingKit ()
 
@@ -110,15 +117,87 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 - (STKTheme*)registerThemeNamed:(NSString*)themeName
                        inBundle:(NSBundle*)bundle
 {
+    return [self registerThemeNamed:themeName stylesheetFileName:nil inBundle:bundle];
+}
+
+- (STKTheme*)registerThemeNamed:(NSString*)themeName
+             stylesheetFileName:(NSString*)stylesheetFileName
+                       inBundle:(NSBundle*)bundle
+{
+    
+    
+    
     if (self.themes[themeName])
     {
         DDLogWarn(@"Theme with name %@ already registered. %@", themeName, self.themes[themeName]);
     }
     STKTheme* theme = [STKTheme themeWithName:themeName
+                           stylesheetFileName:(NSString*)stylesheetFileName
                                        bundle:bundle];
+    
     self.themes[themeName] = theme;
-
+    
     return theme;
+}
+- (NSString*)getStyleValueWithClass:(NSString*)className propertyName:(NSString*) propertyName {
+    
+//    STStyleable *stylable = [[STStyleable alloc] init];
+//    [stylable setStyleClass:className];
+//
+//    NSMutableArray *ruleSets = [PXStyleUtils matchingRuleSetsForStyleable:stylable];
+//
+//    for (PXRuleSet *ruleSet in ruleSets)
+//    {
+//        for(PXDeclaration *dec in ruleSet.declarations){
+//            if([[dec name] isEqualToString:propertyName]){
+//                return [dec stringValue];
+//            }
+//        }
+//    }
+    
+    NSDictionary* dict = [self getStylesWithClass:className];
+    
+    return dict[propertyName];
+}
+- (NSDictionary*)getStylesWithClass:(NSString*)className {
+    
+    NSMutableDictionary *styles = [NSMutableDictionary dictionary];
+
+    STStyleable *stylable = [[STStyleable alloc] init];
+    [stylable setStyleClass:className];
+    
+    NSMutableArray *ruleSets = [PXStyleUtils matchingRuleSetsForStyleable:stylable];
+    
+    for (PXRuleSet *ruleSet in ruleSets)
+    {
+        for(PXDeclaration *dec in ruleSet.declarations){
+            [styles setValue:[dec stringValue] forKey:[dec name]];
+        }
+    }
+    
+    return styles;
+}
+
+//- (STStyleable*)getStyleableWithClass:(NSString*)className {
+//
+//    STStyleable *stylable = [[STStyleable alloc] init];
+//    [stylable setStyleClass:className];
+//
+//    PXStyleInfo *styleInfo = [PXStyleInfo styleInfoForStyleable:stylable];
+//    [styleInfo applyToStyleable:stylable];
+//
+//    return stylable;
+//}
+
+- (STStyleable*)getStyleableWithClass:(NSString*)className; {
+    
+    STStyleable *stylable = [[STStyleable alloc] init];
+    [stylable setStyleClass:className];
+    
+    PXStyleInfo *styleInfo = [PXStyleInfo styleInfoForStyleable:stylable];
+    [styleInfo applyToStyleable:stylable];
+    
+    return stylable;
 }
 
 @end
