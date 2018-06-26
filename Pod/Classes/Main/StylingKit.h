@@ -21,6 +21,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STStyleable.h"
 
 @class STKTheme;
 @class STKCloud;
@@ -45,6 +46,8 @@
 - (instancetype)init NS_UNAVAILABLE;
 
 - (NSString*)getStyleValueWithClass:(NSString*)className propertyName:(NSString*) propertyName;
+- (NSDictionary*)getStylesWithClass:(NSString*)className;
+- (STStyleable*)getStyleableWithClass:(NSString*)className;
 
 @end
 
