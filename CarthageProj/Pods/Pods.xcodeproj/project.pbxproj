@@ -165,7 +165,7 @@
 		64D295746F12718AD6A88644EDF93A1D /* PXKeyframeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A458C690C2768EF2B5346E4E08688FCB /* PXKeyframeAnimation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6504669D86F6A41550C6D450B9BEB99B /* PXGenericStyler.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC9D900B993ECE826A2F8A755FF1DE4 /* PXGenericStyler.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		651AF6C31D63629A3E8AD81C6B4F7865 /* NSObject+PXStyling.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B91FFC530030C151702AD882AC67FC2 /* NSObject+PXStyling.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		651FEBA9668AD4502FE73BABF04DAE30 /* PXStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = AE579591293221B9C4F11DB408B4E470 /* PXStyleable.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		651FEBA9668AD4502FE73BABF04DAE30 /* PXStyleable.h in Headers */ = {isa = PBXBuildFile; fileRef = AE579591293221B9C4F11DB408B4E470 /* PXStyleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		652533380D2B978615768B9D1ADE02D8 /* PXUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A841759B43A3D9647D71777040E31D /* PXUITextField.m */; };
 		65B205AA4646AE42EA755D3C41D62F94 /* PXUIPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFBFD8545020BE5956E26442BC7938 /* PXUIPickerView.m */; };
 		667B1977D1EE6B94C44676850C00C518 /* PXNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 852CBC647A338E7B92E1B60EEE58A354 /* PXNotificationManager.h */; settings = {ATTRIBUTES = (Private, ); }; };

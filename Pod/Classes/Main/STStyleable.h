@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PXStyleable.h"
-#import "UIView+PXStyling.h"
 
 @interface STStyleable : NSObject  <PXStyleable>
 
